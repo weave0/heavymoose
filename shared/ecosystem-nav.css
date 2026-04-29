@@ -1,0 +1,364 @@
+/**
+ * GFD Ecosystem Navigation Component Styles
+ * GPU-accelerated animations, WCAG 2.1 AA compliant
+ */
+
+.gfd-ecosystem-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+/* Solid background when menu is open for better readability */
+.gfd-ecosystem-nav.menu-open {
+  background: rgba(10, 10, 10, 1);
+}
+
+.ecosystem-nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ecosystem-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #f5f5f5;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.ecosystem-logo {
+  height: 28px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6))
+    drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
+}
+
+.ecosystem-title {
+  background: linear-gradient(135deg, #8b5cf6 0%, #10b981 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Toggle Button */
+.ecosystem-toggle {
+  background: transparent;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 6px;
+  padding: 0.5rem;
+  color: #f5f5f5;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ecosystem-toggle:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.ecosystem-toggle:active {
+  transform: scale(0.95);
+}
+
+.ecosystem-toggle:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* Dropdown */
+.ecosystem-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(13, 13, 13, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* GPU-accelerated animation */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  will-change: opacity, transform;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.ecosystem-dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.dropdown-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Navigation Sections */
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a8a8a;
+  margin-bottom: 0.5rem;
+}
+
+/* Navigation Links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: #f5f5f5;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  min-height: 44px;
+}
+
+.nav-link:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.2);
+  transform: translateX(4px);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+}
+
+/* Branded letter-badge icons for sites without logo images */
+.nav-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: "Inter", system-ui, sans-serif;
+  flex-shrink: 0;
+}
+.nav-icon-badge-ai {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+}
+.nav-icon-badge-cs {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+}
+.nav-icon-badge-gfv {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+}
+.nav-icon-badge-gd {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+}
+.nav-icon-badge-gfd {
+  background: linear-gradient(135deg, #8b5cf6 0%, #10b981 100%);
+  font-size: 0.5rem;
+}
+.nav-icon-badge-ca {
+  background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+}
+
+.nav-link-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.nav-link-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nav-link-subtitle {
+  font-size: 0.8125rem;
+  color: #8a8a8a;
+  font-weight: 400;
+}
+
+/* CTA Section */
+.nav-cta-section {
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  padding-top: 1rem;
+}
+
+.nav-cta-link {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(16, 185, 129, 0.15)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.nav-cta-link:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.25),
+    rgba(16, 185, 129, 0.25)
+  );
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateX(4px) scale(1.02);
+}
+
+.nav-cta-link .nav-link-title {
+  background: linear-gradient(135deg, #8b5cf6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dropdown-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ecosystem-brand {
+    font-size: 0.875rem;
+  }
+
+  .ecosystem-logo {
+    height: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gfd-ecosystem-nav {
+    padding: 0.25rem 1rem; /* Reduced from 0.5rem for compact mobile header */
+  }
+
+  .dropdown-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .ecosystem-logo {
+    height: 20px; /* Reduced from 24px for more compact header */
+  }
+
+  .ecosystem-title {
+    display: none; /* Hide text on very small screens, show only logo */
+  }
+
+  .ecosystem-toggle {
+    min-width: 44px; /* Maintain WCAG touch target */
+    min-height: 44px;
+    padding: 0.375rem;
+  }
+
+  .nav-link {
+    min-height: 44px; /* Ensure WCAG compliant touch targets */
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-link-title {
+    font-size: 0.875rem; /* Smaller on mobile */
+  }
+
+  .nav-link-subtitle {
+    font-size: 0.75rem;
+  }
+}
+
+/* Backdrop overlay when menu is open */
+.ecosystem-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 149; /* Below nav (150), above page content */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  pointer-events: none;
+}
+
+.ecosystem-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ecosystem-dropdown,
+  .nav-link,
+  .ecosystem-toggle {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .gfv-ecosystem-nav {
+    display: none;
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "heavymoose",
+    "version": "1.0.0",
+    "description": "heavymoose.com — industrial artist website",
+    "scripts": {
+        "dev": "npx http-server . -p 3001 -o --cors",
+        "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --commit-dirty=true",
+        "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose",
+        "wrangler": "npx wrangler@latest"
+    },
+    "keywords": [
+        "heavy-moose",
+        "music",
+        "industrial",
+        "cloudflare-pages"
+    ],
+    "license": "UNLICENSED",
+    "private": true
+}

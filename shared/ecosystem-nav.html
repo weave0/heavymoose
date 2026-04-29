@@ -1,0 +1,95 @@
+<!-- GFD Ecosystem Navigation Component -->
+<!-- Reusable across all GFD ecosystem sites -->
+<nav class="gfd-ecosystem-nav" aria-label="Ecosystem navigation">
+    <div class="ecosystem-nav-container">
+        <div class="ecosystem-brand">
+            <img src="assets/logo-vector.png" alt="Good Flippin Design Logo" class="ecosystem-logo" />
+            <span class="ecosystem-title">GFD Ecosystem</span>
+        </div>
+
+        <button
+            class="ecosystem-toggle"
+            aria-label="Open ecosystem menu"
+            aria-expanded="false"
+            aria-controls="ecosystem-dropdown">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <div class="ecosystem-dropdown" id="ecosystem-dropdown" role="menu" aria-hidden="true">
+        <div class="dropdown-content">
+            <div class="nav-section">
+                <h3 class="nav-section-title">Production Platforms</h3>
+                <a href="https://goodflippinvibes.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">🎨</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">Good Flippin Design</strong>
+                        <small class="nav-link-subtitle">Strategic Web Development</small>
+                    </div>
+                </a>
+                <a href="https://aiaimate.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">🧠</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">AI Aimate</strong>
+                        <small class="nav-link-subtitle">AI Education Platform</small>
+                    </div>
+                </a>
+                <a href="https://culturesherpa.org" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">🌍</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">CultureSherpa</strong>
+                        <small class="nav-link-subtitle">Interactive Cultural Atlas</small>
+                    </div>
+                </a>
+                <a href="https://goodflippinvibes.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">✨</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">Good Flippin Vibes</strong>
+                        <small class="nav-link-subtitle">Holistic Wellness Platform</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Research & Intelligence</h3>
+                <a href="https://globaldeets.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">📊</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">GlobalDeets</strong>
+                        <small class="nav-link-subtitle">Visualization & Research Platform</small>
+                    </div>
+                </a>
+                <a href="https://citizenapproved.org" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                    <span class="nav-icon" aria-hidden="true">
+                        <img src="assets/logos/citizenapproved/citizenapproved-icon-32x32.png" alt="" width="24" height="24" style="border-radius: 4px; object-fit: contain;">
+                    </span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">CitizenApproved</strong>
+                        <small class="nav-link-subtitle">U.S. Citizenship Pathways</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-section nav-cta-section">
+                <a href="https://gofund.me/f07ea3faf" class="nav-cta-link" role="menuitem" target="_blank" rel="noopener" aria-label="Support via GoFundMe Community Campaign (opens in a new tab)">
+                    <span class="nav-icon" aria-hidden="true">❤️</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">GoFundMe: Support GFD</strong>
+                        <small class="nav-link-subtitle">Help sustain the GFD Ecosystem</small>
+                    </div>
+                </a>
+                <a href="https://goodflippinvibes.com/donate.html" class="nav-link" role="menuitem">
+                    <span class="nav-icon" aria-hidden="true">🤝</span>
+                    <div class="nav-link-content">
+                        <strong class="nav-link-title">Other Donation Options</strong>
+                        <small class="nav-link-subtitle">Stripe, PayPal, and more</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

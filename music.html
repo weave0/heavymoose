@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Heavy Moose — Discography</title>
+  <meta name="description" content="The full Heavy Moose discography. DROSS, DROSS II, and the ongoing catalog of industrial soundscapes and dark ambient compositions." />
+  <link rel="canonical" href="https://heavymoose.com/music.html">
+
+  <meta property="og:title" content="Heavy Moose — Discography">
+  <meta property="og:description" content="DROSS. DROSS II. Industrial soundscapes from the crucible.">
+  <meta property="og:type" content="music.playlist">
+  <meta property="og:url" content="https://heavymoose.com/music.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="shared/ecosystem-nav.css">
+
+  <style>
+    /* ── Tokens (same as index.html) ─────────────────────────── */
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #0f0f0f;
+      --bg-card: #141414;
+      --bg-card-hover: #1a1a1a;
+      --text: #f0f0f0;
+      --text-muted: #8a8a8a;
+      --text-secondary: #b0b0b0;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --accent: #8B0000;
+      --accent-ember: #b34700;
+      --accent-steel: #4a4a5a;
+      --glow-red: 0 0 24px rgba(139, 0, 0, 0.4);
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --radius: 4px;
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Skip link ───────────────────────────────────────────── */
+    .skip-link {
+      position: fixed;
+      top: 0; left: 0;
+      background: var(--accent);
+      color: var(--text);
+      padding: 12px 20px;
+      font-weight: 600;
+      z-index: 9999;
+      transform: translateY(-100%);
+      transition: transform var(--transition-fast);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ── Layout ──────────────────────────────────────────────── */
+    main { padding-top: 48px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .page-header .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+    }
+
+    .page-header .section-intro {
+      margin-bottom: 0;
+    }
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .page-header {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(139, 0, 0, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .page-header-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb-sep { opacity: 0.3; }
+
+    /* ── Video section ───────────────────────────────────────── */
+    .video-section {
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .video-embed {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--glow-red);
+    }
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-meta {
+      padding-top: 8px;
+    }
+    .video-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      background: rgba(139, 0, 0, 0.15);
+      border: 1px solid rgba(139, 0, 0, 0.3);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .video-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .video-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    /* ── Album sections ──────────────────────────────────────── */
+    .album-section {
+      border-bottom: 1px solid var(--border);
+    }
+    .album-section:last-of-type { border-bottom: none; }
+
+    .album-section-inner {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .album-cover {
+      position: sticky;
+      top: 64px;
+    }
+    .album-cover-art {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .album-cover-art-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .album-cover-art-inner svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.15;
+    }
+    .album-cover-art img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .album-cover-art img.loaded { opacity: 0.85; }
+
+    .album-cover-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .album-cover-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .album-cover-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+    .album-cover-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .tag {
+      padding: 3px 8px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Tracklist ───────────────────────────────────────────── */
+    .album-content {}
+    .album-desc-long {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+    .tracklist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .tracklist {
+      list-style: none;
+    }
+    .track-row {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+      transition: background var(--transition-fast);
+      border-radius: 2px;
+      cursor: default;
+    }
+    .track-row:last-child { border-bottom: none; }
+    .track-row:hover { background: rgba(255, 255, 255, 0.02); }
+
+    .track-index {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-align: right;
+    }
+    .track-info { display: flex; flex-direction: column; gap: 2px; }
+    .track-title { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+    .track-sub { font-size: 0.75rem; color: var(--text-muted); font-style: italic; }
+    .track-duration {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .album-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .stream-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      transition:
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+      min-height: 44px;
+    }
+    .stream-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+    .stream-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .stream-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-red);
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 600px; margin: 0 auto; }
+    .footer-wordmark {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text); margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex; gap: 24px; justify-content: center;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.85rem; color: var(--text-muted);
+      transition: color var(--transition-fast);
+      min-height: 44px; display: inline-flex; align-items: center;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .video-grid { grid-template-columns: 1fr; gap: 32px; }
+      .album-section-inner { grid-template-columns: 1fr; gap: 40px; }
+      .album-cover { position: static; }
+      .album-cover-art { max-width: 280px; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 60px 0; }
+      .album-cover-art { max-width: 100%; }
+    }
+
+    /* ── Scroll reveal ──────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div id="ecosystem-nav-mount"></div>
+
+  <main id="main">
+
+    <!-- ── Page Header ─────────────────────────────────────── -->
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-bg" aria-hidden="true"></div>
+        <div class="page-header-inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            <span aria-current="page">Discography</span>
+          </nav>
+          <span class="section-label">Full Catalog</span>
+          <h1 class="section-title">Discography</h1>
+          <p class="section-intro">
+            Industrial soundscapes, dark ambient compositions, and the ongoing
+            excavation of grief through sound. All releases from Heavy Moose.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Video Section ───────────────────────────────────── -->
+    <section class="video-section" id="video" aria-labelledby="video-title">
+      <div class="container">
+        <div class="video-grid">
+          <div class="video-embed reveal">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/huHMmsKLh50"
+              title="Heavy Moose — Featured Music Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="video-meta reveal">
+            <span class="video-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Now Streaming
+            </span>
+            <h2 class="video-title" id="video-title">Featured Video</h2>
+            <p class="video-desc">
+              The latest visual from the Heavy Moose catalog. Industrial textures
+              meeting slow-burn composition — watch on YouTube or explore the
+              full discography below.
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=huHMmsKLh50"
+              class="stream-btn primary"
+              target="_blank"
+              rel="noopener"
+              aria-label="Watch on YouTube (opens in new tab)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.4 12 20.4 12 20.4s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+              Watch on YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DROSS I ──────────────────────────────────────────── -->
+    <section class="album-section" id="dross-1" aria-labelledby="dross1-title">
+      <div class="container">
+        <div class="album-section-inner">
+          <div class="album-cover reveal">
+            <div class="album-cover-art" aria-hidden="true">
+              <div class="album-cover-art-inner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+            </div>
+            <div class="album-cover-info">
+              <span class="album-cover-title">DROSS</span>
+              <div class="album-cover-meta">
+                <div>Debut Album · 2024</div>
+                <div>10 Tracks · 47 min</div>
+              </div>
+              <div class="album-cover-tags">
+                <span class="tag">Industrial</span>
+                <span class="tag">Dark Ambient</span>
+                <span class="tag">Experimental</span>
+              </div>
+            </div>
+          </div>
+          <div class="album-content reveal">
+            <span class="section-label">Album 001</span>
+            <h2 class="section-title" id="dross1-title">DROSS</h2>
+            <p class="album-desc-long">
+              Grief has a sound. This is it. The debut Heavy Moose record is ten tracks of
+              industrial soundscapes built from digital grit — factory floors made audible,
+              ember light translated into frequency. A figure in a wool overcoat standing
+              in the crucible of what remains.
+            </p>
+            <p class="album-desc-long">
+              DROSS doesn't resolve. It documents. The slag left after the smelting —
+              residue that turns out to be the most interesting material in the room.
+            </p>
+            <div class="tracklist-header" aria-hidden="true">
+              <span>#</span>
+              <span>Track</span>
+              <span>Time</span>
+            </div>
+            <ol class="tracklist" aria-label="DROSS track listing">
+              <li class="track-row">
+                <span class="track-index">01</span>
+                <div class="track-info"><span class="track-title">Residue</span><span class="track-sub">Opening movement</span></div>
+                <span class="track-duration">4:23</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">02</span>
+                <div class="track-info"><span class="track-title">Factory Floor Elegy</span></div>
+                <span class="track-duration">5:11</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">03</span>
+                <div class="track-info"><span class="track-title">Wool Overcoat</span><span class="track-sub">Extended version</span></div>
+                <span class="track-duration">6:02</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">04</span>
+                <div class="track-info"><span class="track-title">Ember Cartography</span></div>
+                <span class="track-duration">4:45</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">05</span>
+                <div class="track-info"><span class="track-title">The Weight of Slag</span></div>
+                <span class="track-duration">5:30</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">06</span>
+                <div class="track-info"><span class="track-title">Cold Inventory</span></div>
+                <span class="track-duration">3:58</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">07</span>
+                <div class="track-info"><span class="track-title">Night Shift Requiem</span></div>
+                <span class="track-duration">5:44</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">08</span>
+                <div class="track-info"><span class="track-title">Ash Meridian</span></div>
+                <span class="track-duration">4:17</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">09</span>
+                <div class="track-info"><span class="track-title">The Overcoat Returns</span></div>
+                <span class="track-duration">4:55</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">10</span>
+                <div class="track-info"><span class="track-title">What the Dross Knows</span><span class="track-sub">Closing movement</span></div>
+                <span class="track-duration">3:41</span>
+              </li>
+            </ol>
+            <div class="album-links">
+              <a
+                href="https://goodflippinvibes.com/music-heavymoose-dross1.html"
+                class="stream-btn primary"
+                target="_blank"
+                rel="noopener"
+                aria-label="Stream DROSS on GFV (opens in new tab)">
+                Stream DROSS
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DROSS II ─────────────────────────────────────────── -->
+    <section class="album-section" id="dross-2" aria-labelledby="dross2-title">
+      <div class="container">
+        <div class="album-section-inner">
+          <div class="album-cover reveal">
+            <div class="album-cover-art" aria-hidden="true">
+              <div class="album-cover-art-inner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+            </div>
+            <div class="album-cover-info">
+              <span class="album-cover-title">DROSS II</span>
+              <div class="album-cover-meta">
+                <div>Second Album · 2025</div>
+                <div>12 Tracks · 58 min</div>
+              </div>
+              <div class="album-cover-tags">
+                <span class="tag">Industrial</span>
+                <span class="tag">Experimental</span>
+                <span class="tag">Post-Grief</span>
+              </div>
+            </div>
+          </div>
+          <div class="album-content reveal">
+            <span class="section-label">Album 002</span>
+            <h2 class="section-title" id="dross2-title">DROSS II</h2>
+            <p class="album-desc-long">
+              Twelve tracks forged in the aftermath. The second record picks up
+              where DROSS left off — in the wreckage, yes, but also in the strange
+              productivity of wreckage. Heavier water. Longer games. The work after the grief.
+            </p>
+            <p class="album-desc-long">
+              DROSS II is the construction phase. Still industrial, still dark,
+              but oriented now toward what we build from what remains.
+            </p>
+            <div class="tracklist-header" aria-hidden="true">
+              <span>#</span>
+              <span>Track</span>
+              <span>Time</span>
+            </div>
+            <ol class="tracklist" aria-label="DROSS II track listing">
+              <li class="track-row">
+                <span class="track-index">01</span>
+                <div class="track-info"><span class="track-title">Heavier Water</span><span class="track-sub">Opening movement</span></div>
+                <span class="track-duration">5:02</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">02</span>
+                <div class="track-info"><span class="track-title">Longer Games</span></div>
+                <span class="track-duration">4:33</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">03</span>
+                <div class="track-info"><span class="track-title">What Remains</span></div>
+                <span class="track-duration">5:17</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">04</span>
+                <div class="track-info"><span class="track-title">Reconstruction Protocol</span></div>
+                <span class="track-duration">4:48</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">05</span>
+                <div class="track-info"><span class="track-title">Cold Steel Memory</span></div>
+                <span class="track-duration">5:55</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">06</span>
+                <div class="track-info"><span class="track-title">Scaffold</span></div>
+                <span class="track-duration">4:12</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">07</span>
+                <div class="track-info"><span class="track-title">The Second Overcoat</span></div>
+                <span class="track-duration">6:04</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">08</span>
+                <div class="track-info"><span class="track-title">Fault Lines</span></div>
+                <span class="track-duration">4:39</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">09</span>
+                <div class="track-info"><span class="track-title">Industrial Pastoral</span></div>
+                <span class="track-duration">5:21</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">10</span>
+                <div class="track-info"><span class="track-title">The Crucible Speaks</span></div>
+                <span class="track-duration">4:07</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">11</span>
+                <div class="track-info"><span class="track-title">New Dross</span></div>
+                <span class="track-duration">4:50</span>
+              </li>
+              <li class="track-row">
+                <span class="track-index">12</span>
+                <div class="track-info"><span class="track-title">After the Work</span><span class="track-sub">Closing movement</span></div>
+                <span class="track-duration">3:56</span>
+              </li>
+            </ol>
+            <div class="album-links">
+              <a
+                href="https://goodflippinvibes.com/music-heavymoose-dross2.html"
+                class="stream-btn primary"
+                target="_blank"
+                rel="noopener"
+                aria-label="Stream DROSS II on GFV (opens in new tab)">
+                Stream DROSS II
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-wordmark">Heavy Moose</p>
+      <p class="footer-tagline">Industrial Soundscapes · Est. 2024</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="#dross-1">DROSS</a>
+        <a href="#dross-2">DROSS II</a>
+        <a href="https://goodflippinvibes.com" target="_blank" rel="noopener">GFV</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="footer-year"></span> Brett Weaver / GFV LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="shared/ecosystem-nav.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var yearEl = document.getElementById('footer-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      var navMount = document.getElementById('ecosystem-nav-mount');
+      if (navMount) {
+        fetch('shared/ecosystem-nav.html')
+          .then(function (r) { return r.text(); })
+          .then(function (html) { navMount.innerHTML = html; });
+      }
+
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      document.querySelectorAll('.album-cover-art img').forEach(function (img) {
+        if (img.complete) { img.classList.add('loaded'); }
+        else { img.addEventListener('load', function () { img.classList.add('loaded'); }); }
+      });
+
+    })();
+  </script>
+</body>
+
+</html>

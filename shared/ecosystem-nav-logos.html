@@ -1,0 +1,130 @@
+<!-- GFD Ecosystem Navigation - Updated with Proper Logos -->
+<!-- Version: 2.0 - Proper Brand Logos -->
+<!-- Last Updated: 2026-02-05 -->
+
+<style>
+    /* Ecosystem Nav Logo Styles */
+    .ecosystem-nav .nav-link img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px;
+        margin-right: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .ecosystem-nav .nav-link:hover img {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.1);
+    }
+
+    /* Fallback for sites without logos - styled SVG icons */
+    .ecosystem-nav .nav-icon {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 191, 255, 0.2));
+        margin-right: 12px;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .ecosystem-nav .nav-link:hover .nav-icon {
+        background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(0, 191, 255, 0.4));
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    }
+</style>
+
+<nav class="gfd-ecosystem-nav">
+    <div class="ecosystem-container">
+        <div class="ecosystem-brand">
+            <img src="assets/logo-vector.png" alt="Good Flippin Design Logo" class="ecosystem-logo" />
+            <span class="ecosystem-title">GFD Ecosystem</span>
+        </div>
+
+        <div class="ecosystem-nav">
+            <!-- Good Flippin Design -->
+            <a href="https://goodflippinvibes.com" class="nav-link" aria-label="Good Flippin Design - Strategic Web Development">
+                <img src="assets/logo-nav.png" alt="Good Flippin Design" />
+                <span class="nav-text">
+                    <span class="nav-name">Good Flippin Design</span>
+                    <span class="nav-desc">Strategic Web Development</span>
+                </span>
+            </a>
+
+            <!-- AI Aimate -->
+            <a href="https://aiaimate.com" class="nav-link" aria-label="AI Aimate - AI Education Platform">
+                <!-- Using SVG icon until we get actual logo -->
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                </div>
+                <span class="nav-text">
+                    <span class="nav-name">AI Aimate</span>
+                    <span class="nav-desc">AI Education Platform</span>
+                </span>
+            </a>
+
+            <!-- CultureSherpa -->
+            <a href="https://culturesherpa.org" class="nav-link" aria-label="CultureSherpa - Interactive Cultural Atlas">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                </div>
+                <span class="nav-text">
+                    <span class="nav-name">CultureSherpa</span>
+                    <span class="nav-desc">Interactive Cultural Atlas</span>
+                </span>
+            </a>
+
+            <!-- Good Flippin Vibes -->
+            <a href="https://goodflippinvibes.com" class="nav-link" aria-label="Good Flippin Vibes - Holistic Wellness Platform">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                </div>
+                <span class="nav-text">
+                    <span class="nav-name">Good Flippin Vibes</span>
+                    <span class="nav-desc">Holistic Wellness Platform</span>
+                </span>
+            </a>
+
+            <!-- GlobalDeets -->
+            <a href="https://globaldeets.com" class="nav-link" aria-label="GlobalDeets - Visualization & Research Platform">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                </div>
+                <span class="nav-text">
+                    <span class="nav-name">GlobalDeets</span>
+                    <span class="nav-desc">Visualization & Research Platform</span>
+                </span>
+            </a>
+
+            <!-- CitizenApproved -->
+            <a href="https://citizenapproved.org" class="nav-link" aria-label="CitizenApproved - U.S. Citizenship Pathways">
+                <div class="nav-icon">
+                    <img src="/assets/logos/citizenapproved/icon-32x32.png" alt="" width="20" height="20" style="border-radius: 4px;">
+                </div>
+                <span class="nav-text">
+                    <span class="nav-name">CitizenApproved</span>
+                    <span class="nav-desc">U.S. Citizenship Pathways</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</nav>

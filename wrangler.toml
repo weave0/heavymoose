@@ -1,0 +1,12 @@
+name = "heavymoose"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare Pages — static files served from repo root
+pages_build_output_dir = "."
+
+[vars]
+NODE_ENV = "production"
+
+# Secrets (set via: wrangler secret put <NAME> --project-name heavymoose)
+# GA_MEASUREMENT_ID  — Google Analytics 4 property ID (optional)
