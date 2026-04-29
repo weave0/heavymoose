@@ -1,0 +1,28 @@
+{
+  "recommendations": [
+    // THEME & APPEARANCE
+    "GitHub.github-vscode-theme",
+    "enkia.tokyo-night",
+
+    // CODE QUALITY & FORMATTING
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+
+    // DEVELOPMENT & PRODUCTIVITY
+    "ritwickdey.liveserver",
+    "github.copilot",
+    "github.copilot-chat",
+    "eamodio.gitlens",
+
+    // ICONS & UI
+    "PKief.material-icon-theme",
+
+    // UTILITIES
+    "mhutchie.git-graph",
+    "DavidAnson.vscode-markdownlint",
+    "Gruntfuggly.todo-tree",
+    "tamasfe.even-better-toml"
+  ],
+  "unwantedRecommendations": []
+}

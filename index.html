@@ -5,18 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Heavy Moose — Industrial Soundscapes</title>
-    <meta name="description" content="Heavy Moose is the darker artistic project of Brett Weaver. Industrial soundscapes, ember-lit factory floors, grief transmuted through sound." />
+    <title>Heavy Moose — Yeah... Sometimes Life is Heavy</title>
+    <meta name="description" content="Heavy Moose is the darker artistic project of Brett Weaver. Yeah... Sometimes Life is Heavy." />
     <link rel="canonical" href="https://heavymoose.com/">
 
-    <meta property="og:title" content="Heavy Moose — Industrial Soundscapes">
-    <meta property="og:description" content="Industrial soundscapes. Grief transmuted through sound. The darker pairing to Good Flippin Vibes.">
+    <meta property="og:title" content="Heavy Moose — Yeah... Sometimes Life is Heavy">
+    <meta property="og:description" content="Yeah... Sometimes Life is Heavy. The darker pairing to Good Flippin Vibes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://heavymoose.com/">
     <meta property="og:image" content="https://heavymoose.com/assets/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Heavy Moose — Industrial Soundscapes">
-    <meta name="twitter:description" content="Industrial soundscapes. Grief transmuted through sound.">
+    <meta name="twitter:title" content="Heavy Moose — Yeah... Sometimes Life is Heavy">
+    <meta name="twitter:description" content="Yeah... Sometimes Life is Heavy.">
+
+    <!-- Google tag (gtag.js) — replace G-XXXXXXXXXX with real HM GA4 ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,27 +36,29 @@
     <style>
         /* =============================================
        DESIGN TOKENS — Heavy Moose
-       Dark, industrial, ember-lit
+       Neon Industrial · Cyber-Hard Rock · 2050
        ============================================= */
         :root {
-            --bg: #0a0a0a;
-            --bg-elevated: #0f0f0f;
-            --bg-card: #141414;
-            --bg-card-hover: #1a1a1a;
-            --text: #f0f0f0;
-            --text-muted: #8a8a8a;
-            --text-secondary: #b0b0b0;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --accent: #8B0000;
-            --accent-ember: #b34700;
-            --accent-steel: #4a4a5a;
-            --glow-red: 0 0 24px rgba(139, 0, 0, 0.4);
-            --glow-ember: 0 0 24px rgba(179, 71, 0, 0.3);
+            --bg: #060608;
+            --bg-elevated: #0c0c10;
+            --bg-card: #10101a;
+            --bg-card-hover: #16161f;
+            --text: #eeeef0;
+            --text-muted: #888899;
+            --text-secondary: #aaaabc;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --accent: #e0001e;
+            --electric: #00d4ff;
+            --volt: #b8ff00;
+            --accent-dim: #8a0010;
+            --glow-red: 0 0 20px rgba(224, 0, 30, 0.6), 0 0 60px rgba(224, 0, 30, 0.2);
+            --glow-electric: 0 0 16px rgba(0, 212, 255, 0.55), 0 0 50px rgba(0, 212, 255, 0.15);
+            --glow-volt: 0 0 12px rgba(184, 255, 0, 0.5);
             --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-            --radius: 4px;
-            --transition-fast: 0.2s ease;
+            --radius: 0px;
+            --transition-fast: 0.15s ease;
             --transition-base: 0.3s ease;
         }
 
@@ -115,6 +126,16 @@
             /* ecosystem nav height */
         }
 
+        /* Heavy Moose nav brand override */
+        .ecosystem-brand .ecosystem-title {
+            font-family: var(--font-mono) !important;
+            font-size: 0.78rem !important;
+            letter-spacing: 0.22em !important;
+            color: var(--accent) !important;
+            font-weight: 700 !important;
+            text-shadow: var(--glow-red);
+        }
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -123,6 +144,119 @@
 
         section {
             padding: 80px 0;
+        }
+
+        /* =============================================
+       ANIMATIONS — Glitch, Scanline, Flicker
+       ============================================= */
+        @keyframes glitch-1 {
+
+            0%,
+            84%,
+            100% {
+                clip-path: inset(0 0 100% 0);
+                transform: translate(0);
+            }
+
+            85% {
+                clip-path: inset(15% 0 58% 0);
+                transform: translate(-4px, 0);
+            }
+
+            86% {
+                clip-path: inset(52% 0 28% 0);
+                transform: translate(4px, 0);
+            }
+
+            87% {
+                clip-path: inset(72% 0 8% 0);
+                transform: translate(-2px, 0);
+            }
+
+            88% {
+                clip-path: inset(32% 0 48% 0);
+                transform: translate(3px, 0);
+            }
+
+            89% {
+                clip-path: inset(0 0 100% 0);
+                transform: translate(0);
+            }
+        }
+
+        @keyframes glitch-2 {
+
+            0%,
+            87%,
+            100% {
+                clip-path: inset(0 0 100% 0);
+                transform: translate(0);
+            }
+
+            88% {
+                clip-path: inset(38% 0 42% 0);
+                transform: translate(3px, 0);
+            }
+
+            89% {
+                clip-path: inset(8% 0 72% 0);
+                transform: translate(-3px, 0);
+            }
+
+            90% {
+                clip-path: inset(62% 0 22% 0);
+                transform: translate(2px, 0);
+            }
+
+            91% {
+                clip-path: inset(0 0 100% 0);
+                transform: translate(0);
+            }
+        }
+
+        @keyframes scanSweep {
+            0% {
+                transform: translateY(-8px);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            95% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            95%,
+            100% {
+                opacity: 1;
+            }
+
+            96% {
+                opacity: 0.88;
+            }
+
+            97% {
+                opacity: 0.97;
+            }
+
+            98% {
+                opacity: 0.82;
+            }
+
+            99% {
+                opacity: 0.95;
+            }
         }
 
         /* =============================================
@@ -136,25 +270,43 @@
             position: relative;
             overflow: hidden;
             padding: 120px 24px 80px;
+            animation: flicker 9s ease-in-out infinite;
         }
 
         .hero-bg {
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(139, 0, 0, 0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(179, 71, 0, 0.07) 0%, transparent 50%),
+                linear-gradient(rgba(224, 0, 30, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(224, 0, 30, 0.04) 1px, transparent 1px),
+                radial-gradient(ellipse 100% 55% at 50% -5%, rgba(224, 0, 30, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 30% at 5% 95%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
                 var(--bg);
+            background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+            pointer-events: none;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(224, 0, 30, 0.6), transparent);
+            animation: scanSweep 5s linear infinite;
             pointer-events: none;
         }
 
         .hero-bg-grain {
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            opacity: 0.4;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 0, 0, 0.09) 3px,
+                    rgba(0, 0, 0, 0.09) 4px);
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero-content {
@@ -166,20 +318,21 @@
 
         .hero-eyebrow {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
             text-transform: uppercase;
-            color: var(--accent);
+            color: var(--electric);
             margin-bottom: 20px;
             display: block;
+            text-shadow: var(--glow-electric);
         }
 
         .hero-title {
-            font-size: clamp(3rem, 10vw, 7rem);
+            font-size: clamp(3.5rem, 12vw, 9rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 0.95;
-            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+            line-height: 0.88;
+            margin-bottom: 28px;
             color: var(--text);
         }
 
@@ -188,6 +341,42 @@
             font-style: normal;
             color: var(--accent);
             text-shadow: var(--glow-red);
+        }
+
+        .hero-title-static {
+            display: block;
+            color: var(--text);
+        }
+
+        .hero-title-glitch {
+            display: block;
+            color: var(--accent);
+            text-shadow: var(--glow-red);
+            position: relative;
+            will-change: transform;
+        }
+
+        .hero-title-glitch::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: var(--accent);
+            text-shadow: -4px 0 var(--electric);
+            animation: glitch-1 5s ease-in-out infinite;
+        }
+
+        .hero-title-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: var(--accent);
+            text-shadow: 4px 0 var(--volt);
+            animation: glitch-2 5s ease-in-out infinite;
+            animation-delay: 0.35s;
         }
 
         .hero-tagline {
@@ -236,13 +425,14 @@
 
         .btn-outline {
             background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border-hover);
+            color: var(--electric);
+            border: 1px solid var(--electric);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent);
+            border-color: var(--electric);
             transform: translateY(-2px);
+            box-shadow: var(--glow-electric);
         }
 
         .hero-scroll-cue {
@@ -254,12 +444,12 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            color: var(--text-muted);
+            color: var(--electric);
             font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            opacity: 0.5;
+            opacity: 0.45;
             animation: scrollPulse 2.5s ease-in-out infinite;
         }
 
@@ -287,10 +477,10 @@
        ============================================= */
         .section-label {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
+            font-size: 0.65rem;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: var(--accent);
+            color: var(--electric);
             margin-bottom: 16px;
             display: block;
         }
@@ -316,8 +506,8 @@
        ============================================= */
         .showcase {
             background: var(--bg-elevated);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         .showcase-inner {
@@ -337,7 +527,7 @@
             background: #000;
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(224, 0, 30, 0.4);
             box-shadow: var(--glow-red);
         }
 
@@ -366,10 +556,18 @@
         .about-visual-frame {
             aspect-ratio: 3 / 4;
             background: var(--bg-card);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(224, 0, 30, 0.2);
             border-radius: var(--radius);
             overflow: hidden;
             position: relative;
+        }
+
+        .about-visual-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(224, 0, 30, 0.18) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .about-visual-frame img {
@@ -377,11 +575,15 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.85;
-            transition: opacity var(--transition-base);
+            filter: saturate(0.6) contrast(1.1);
+            transition:
+                opacity var(--transition-base),
+                filter var(--transition-base);
         }
 
         .about-visual-frame:hover img {
             opacity: 1;
+            filter: saturate(0.8) contrast(1.1);
         }
 
         .about-visual-accent {
@@ -390,10 +592,11 @@
             right: -16px;
             width: 60%;
             aspect-ratio: 1;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--electric);
             border-radius: var(--radius);
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.15;
+            box-shadow: var(--glow-electric);
         }
 
         .about-text p {
@@ -411,8 +614,8 @@
             display: flex;
             gap: 32px;
             padding: 24px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid rgba(0, 212, 255, 0.12);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.12);
             margin-bottom: 32px;
         }
 
@@ -426,6 +629,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--accent);
+            text-shadow: var(--glow-red);
             line-height: 1;
         }
 
@@ -442,7 +646,7 @@
        ============================================= */
         .albums {
             background: var(--bg-elevated);
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(224, 0, 30, 0.15);
         }
 
         .albums-header {
@@ -453,8 +657,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
+            background: rgba(224, 0, 30, 0.18);
+            border: 1px solid rgba(224, 0, 30, 0.22);
             border-radius: var(--radius);
             overflow: hidden;
         }
@@ -476,10 +680,11 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--electric));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform var(--transition-base);
+            box-shadow: var(--glow-red);
         }
 
         .album-card:hover {
@@ -492,10 +697,10 @@
 
         .album-number {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
+            font-size: 0.62rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--electric);
             margin-bottom: 20px;
             display: block;
         }
@@ -525,12 +730,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .album-art-placeholder img.loaded {
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .album-title {
@@ -544,9 +744,9 @@
 
         .album-meta {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+            color: var(--electric);
+            letter-spacing: 0.1em;
             margin-bottom: 16px;
         }
 
@@ -576,7 +776,7 @@
         }
 
         .album-tracklist li:hover {
-            color: var(--text);
+            color: var(--electric);
         }
 
         .album-tracklist li:last-child {
@@ -595,258 +795,371 @@
             padding: 0 12px;
         }
 
+        .album-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .album-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            transition: opacity var(--transition-fast);
+            gap: 10px;
+            padding: 11px 18px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--electric);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition:
+                border-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                color var(--transition-fast);
             min-height: 44px;
         }
 
         .album-link:hover {
-            opacity: 0.75;
+            border-color: var(--electric);
+            box-shadow: var(--glow-electric);
+            color: #fff;
+        }
+
+        .album-link--amazon {
+            border-color: rgba(255, 165, 0, 0.35);
+            color: #ffa500;
+        }
+
+        .album-link--amazon:hover {
+            border-color: #ffa500;
+            box-shadow: 0 0 16px rgba(255, 165, 0, 0.4);
+            color: #fff;
+        }
+
+        .album-link--secondary {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.72rem;
+        }
+
+        .album-link--secondary:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+            color: var(--text);
         }
 
         /* =============================================
-       VISUALS STRIP (art showcase)
+       ART GALLERY
        ============================================= */
-        .visuals-strip {
-            padding: 60px 0;
+        .art-gallery {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            margin-top: 48px;
+        }
+
+        .gallery-cell {
+            position: relative;
             overflow: hidden;
+            aspect-ratio: 3 / 4;
+            background: var(--bg-card);
+            cursor: pointer;
         }
 
-        .visuals-strip-inner {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding: 0 24px;
-            -ms-overflow-style: none;
+        .gallery-cell.wide {
+            grid-column: span 2;
+            aspect-ratio: 16 / 9;
         }
 
-        .visuals-strip-inner::-webkit-scrollbar {
-            display: none;
-            width: 0;
+        .gallery-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            filter: saturate(0.7) contrast(1.05);
+            transition:
+                opacity var(--transition-base),
+                filter var(--transition-base),
+                transform 0.5s ease;
+            will-change: transform;
         }
 
-        .visuals-strip-inner.no-padding {
-            padding: 0 24px;
+        .gallery-cell:hover img {
+            opacity: 1;
+            filter: saturate(1) contrast(1.1);
+            transform: scale(1.04);
         }
 
-        .visuals-strip-padless {
-            padding: 0;
+        .gallery-cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(224, 0, 30, 0);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-base);
+            pointer-events: none;
+        }
 
-            .visual-thumb {
-                flex: 0 0 240px;
-                aspect-ratio: 3 / 4;
-                border-radius: var(--radius);
-                overflow: hidden;
-                border: 1px solid var(--border);
-                background: var(--bg-card);
-                transition:
-                    transform var(--transition-base),
-                    border-color var(--transition-fast);
+        .gallery-cell:hover::after {
+            border-color: rgba(224, 0, 30, 0.5);
+            box-shadow: inset 0 0 30px rgba(224, 0, 30, 0.08);
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .visual-thumb:hover {
-                transform: scale(1.02);
-                border-color: var(--border-hover);
+            .gallery-cell.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
 
-            .visual-thumb img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                opacity: 0.8;
-                transition: opacity var(--transition-base);
+            .gallery-cell.wide,
+            .gallery-cell {
+                grid-column: span 1;
+                aspect-ratio: 4 / 3;
             }
+        }
 
-            .visual-thumb:hover img {
-                opacity: 1;
-            }
-
-            /* =============================================
+        /* =============================================
        ECOSYSTEM BRIDGE
        ============================================= */
-            .ecosystem-bridge {
-                border-top: 1px solid var(--border);
-                text-align: center;
-                padding: 60px 24px;
-            }
+        .ecosystem-bridge {
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            text-align: center;
+            padding: 60px 24px;
+        }
 
-            .ecosystem-bridge .section-label {
-                text-align: center;
-            }
+        .ecosystem-bridge .section-label {
+            text-align: center;
+        }
 
-            .ecosystem-bridge .section-title {
-                text-align: center;
-                margin-bottom: 12px;
-            }
+        .ecosystem-bridge .section-title {
+            text-align: center;
+            margin-bottom: 12px;
+        }
 
-            .ecosystem-bridge .section-intro {
-                text-align: center;
-                margin: 0 auto 32px;
-            }
+        .ecosystem-bridge .section-intro {
+            text-align: center;
+            margin: 0 auto 32px;
+        }
 
-            .ecosystem-links {
-                display: flex;
-                gap: 16px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
+        .ecosystem-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-            .eco-link {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                padding: 12px 24px;
-                background: var(--bg-card);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                font-size: 0.9rem;
-                font-weight: 500;
-                color: var(--text-secondary);
-                transition:
-                    border-color var(--transition-fast),
-                    color var(--transition-fast),
-                    transform var(--transition-fast);
-                min-height: 44px;
-            }
+        .eco-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition:
+                border-color var(--transition-fast),
+                color var(--transition-fast),
+                transform var(--transition-fast),
+                box-shadow var(--transition-base);
+            min-height: 44px;
+        }
 
-            .eco-link:hover {
-                border-color: var(--border-hover);
-                color: var(--text);
-                transform: translateY(-2px);
-            }
+        .eco-link:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+            transform: translateY(-2px);
+            box-shadow: var(--glow-electric);
+        }
 
-            /* =============================================
+        /* =============================================
        FOOTER
        ============================================= */
-            footer {
-                background: var(--bg-elevated);
-                border-top: 1px solid var(--border);
-                padding: 40px 24px;
-                text-align: center;
-            }
+        footer {
+            background: var(--bg-elevated);
+            border-top: 1px solid rgba(224, 0, 30, 0.2);
+            padding: 40px 24px;
+            text-align: center;
+        }
 
-            .footer-inner {
-                max-width: 600px;
-                margin: 0 auto;
-            }
+        .footer-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-            .footer-wordmark {
-                font-size: 1.1rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--text);
-                margin-bottom: 8px;
-            }
+        .footer-wordmark {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: var(--glow-red);
+            margin-bottom: 8px;
+        }
 
-            .footer-tagline {
-                font-family: var(--font-mono);
-                font-size: 0.7rem;
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                color: var(--text-muted);
-                margin-bottom: 24px;
-            }
+        .footer-tagline {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
 
-            .footer-links {
-                display: flex;
-                gap: 24px;
-                justify-content: center;
-                margin-bottom: 24px;
-                flex-wrap: wrap;
-            }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
 
-            .footer-links a {
-                font-size: 0.85rem;
-                color: var(--text-muted);
-                transition: color var(--transition-fast);
-                min-height: 44px;
-                display: inline-flex;
-                align-items: center;
-            }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
 
-            .footer-links a:hover {
-                color: var(--text);
-            }
+        .footer-links a:hover {
+            color: var(--electric);
+        }
 
-            .footer-copy {
-                font-size: 0.75rem;
-                color: var(--text-muted);
-                opacity: 0.6;
-            }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
 
-            /* =============================================
+        /* =============================================
        RESPONSIVE
        ============================================= */
-            @media (max-width: 900px) {
-                .showcase-inner {
-                    grid-template-columns: 1fr;
-                    gap: 40px;
-                }
-
-                .about-grid {
-                    grid-template-columns: 1fr;
-                    gap: 40px;
-                }
-
-                .about-visual {
-                    max-width: 360px;
-                }
+        @media (max-width: 900px) {
+            .showcase-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            @media (max-width: 600px) {
-                section {
-                    padding: 60px 0;
-                }
-
-                .hero {
-                    padding: 100px 20px 60px;
-                }
-
-                .hero-title {
-                    font-size: clamp(2.6rem, 14vw, 4rem);
-                }
-
-                .about-stat-row {
-                    gap: 20px;
-                }
-
-                .album-card {
-                    padding: 28px 24px;
-                }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            /* =============================================
+            .about-visual {
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.6rem, 14vw, 4rem);
+            }
+
+            .about-stat-row {
+                gap: 20px;
+            }
+
+            .album-card {
+                padding: 28px 24px;
+            }
+        }
+
+        /* =============================================
        SCROLL REVEAL STATES
        ============================================= */
-            .reveal {
-                opacity: 0;
-                transform: translateY(20px);
-                transition:
-                    opacity 0.6s ease,
-                    transform 0.6s ease;
-            }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition:
+                opacity 0.6s ease,
+                transform 0.6s ease;
+        }
 
-            .reveal.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Ecosystem nav injected by shared/ecosystem-nav.js -->
-    <div id="ecosystem-nav-mount"></div>
+    <!-- GFD Ecosystem Navigation -->
+    <nav class="gfd-ecosystem-nav" aria-label="GFD Ecosystem navigation">
+        <div class="ecosystem-nav-container">
+            <div class="ecosystem-brand">
+                <span class="ecosystem-title">HEAVY MOOSE</span>
+            </div>
+            <button class="ecosystem-toggle" aria-label="Open ecosystem menu" aria-expanded="false" aria-controls="ecosystem-dropdown">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="ecosystem-dropdown" id="ecosystem-dropdown" role="menu" aria-hidden="true">
+            <div class="dropdown-content">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">GFD Ecosystem</h3>
+                    <a href="https://goodflippinvibes.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                        <span class="nav-icon" aria-hidden="true">✨</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">Good Flippin Vibes</strong>
+                            <small class="nav-link-subtitle">The lighter half — holistic &amp; creative</small>
+                        </div>
+                    </a>
+                    <a href="https://goodflippinvibes.com/music-heavymoose-dross1.html" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                        <span class="nav-icon" aria-hidden="true">🎵</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">DROSS Vol. 1</strong>
+                            <small class="nav-link-subtitle">Ten tracks from the darker side of healing</small>
+                        </div>
+                    </a>
+                    <a href="https://goodflippinvibes.com/music-heavymoose-dross2.html" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                        <span class="nav-icon" aria-hidden="true">🎵</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">DROSS Vol. 2</strong>
+                            <small class="nav-link-subtitle">The weight continues</small>
+                        </div>
+                    </a>
+                    <a href="https://aiaimate.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                        <span class="nav-icon" aria-hidden="true">🧠</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">AI Aimate</strong>
+                            <small class="nav-link-subtitle">AI Education Platform</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <main id="main">
 
@@ -858,10 +1171,10 @@
             <div class="hero-bg-grain" aria-hidden="true"></div>
 
             <div class="hero-content">
-                <span class="hero-eyebrow">Industrial Soundscapes</span>
+                <span class="hero-eyebrow">Yeah... Sometimes Life is Heavy</span>
                 <h1 class="hero-title" id="hero-title">
-                    Heavy<br>
-                    <em>Moose</em>
+                    <span class="hero-title-static">Heavy</span>
+                    <span class="hero-title-glitch" data-text="Moose">Moose</span>
                 </h1>
                 <p class="hero-tagline">
                     The darker pairing. Grief processed through industrial sound —
@@ -935,8 +1248,8 @@
                     <div class="about-visual reveal">
                         <div class="about-visual-frame">
                             <img
-                                src="assets/images/rockstar-moose-performing.jpg"
-                                alt="Heavy Moose — Rockstar moose leads fiery ritual concert"
+                                src="assets/images/Mythical moose at neon-lit concert.png"
+                                alt="Heavy Moose — Mythical moose commands a neon-lit concert stage"
                                 loading="lazy"
                                 width="480"
                                 height="640">
@@ -984,64 +1297,6 @@
         </section>
 
         <!-- ==========================================
-         VISUALS STRIP
-         ========================================== -->
-        <section class="visuals-strip" aria-label="Heavy Moose artwork">
-            <div class="container visuals-strip-padless">
-                <div class="visuals-strip-inner" role="list">
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/apocalyptic-ritual.jpg"
-                            alt="Apocalyptic ritual of the moose leader"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/cosmic-ritual-defiance.jpg"
-                            alt="Cosmic ritual of defiance"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/moose-on-sun-banjo.jpg"
-                            alt="Moose on the sun with banjo"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/ritual-of-no.jpg"
-                            alt="Ritual of no at the end of days"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/rockstar-moose-ready.jpg"
-                            alt="Rockstar moose ready to perform"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                    <div class="visual-thumb" role="listitem">
-                        <img
-                            src="assets/images/rockstar-moose-festival.jpg"
-                            alt="Rockstar moose at music festival"
-                            loading="lazy"
-                            width="240"
-                            height="320">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
          ALBUMS (PREVIEW)
          ========================================== -->
         <section class="albums" id="albums" aria-labelledby="albums-title">
@@ -1059,11 +1314,10 @@
                     <!-- DROSS I -->
                     <article class="album-card reveal">
                         <span class="album-number">Album 001</span>
-                        <div class="album-art-placeholder" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
+                        <div class="album-art-placeholder">
+                            <img
+                                src="assets/images/Molten moose skull in industrial chaos.png"
+                                alt="DROSS album art — molten moose skull in industrial chaos">
                         </div>
                         <h3 class="album-title">DROSS</h3>
                         <p class="album-meta">2024 · 10 Tracks · Industrial / Dark Ambient</p>
@@ -1080,23 +1334,32 @@
                             <li><span class="track-num">05</span><span class="track-name">The Weight of Slag</span></li>
                             <li><span class="track-num">06–10</span><span class="track-name">+ Five more</span></li>
                         </ol>
-                        <a href="music.html#dross-1" class="album-link" aria-label="Explore DROSS album">
-                            Explore DROSS
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
+                        <div class="album-links">
+                            <a href="https://music.amazon.com/search/Heavy%20Moose%20DROSS" class="album-link album-link--amazon" target="_blank" rel="noopener" aria-label="Listen to DROSS on Amazon Music">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
+                                </svg>
+                                Amazon Music
+                            </a>
+                            <a href="https://music.apple.com/search?term=Heavy+Moose+DROSS" class="album-link" target="_blank" rel="noopener" aria-label="Listen to DROSS on Apple Music">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.048-2.31-2.07-3.04a5.022 5.022 0 0 0-1.86-.82c-.63-.12-1.26-.19-1.9-.21-.04 0-.1-.01-.15-.01H6.17c-.05 0-.1 0-.15.01-.64.02-1.27.09-1.9.21a5.022 5.022 0 0 0-1.86.82C1.23 1.624.5 2.624.183 3.934a9.23 9.23 0 0 0-.18 2.19v11.75c0 .63.05 1.26.18 1.88.317 1.31 1.048 2.31 2.07 3.04a5.022 5.022 0 0 0 1.86.82c.63.12 1.26.19 1.9.21h11.97c.64-.02 1.27-.09 1.9-.21a5.022 5.022 0 0 0 1.86-.82c1.022-.73 1.753-1.73 2.07-3.04.13-.62.18-1.25.18-1.88V6.124zm-6.967 5.765a3.505 3.505 0 0 1-1.78.48 3.4 3.4 0 0 1-1.21-.22v4.51c0 .96-.78 1.74-1.74 1.74a1.74 1.74 0 0 1-1.74-1.74V9.174c0-.53.23-1.01.6-1.35.36-.34.85-.54 1.37-.54h.01c.95 0 1.74.78 1.74 1.74v.2a3.43 3.43 0 0 1 1.21-.22c1.93 0 3.5 1.57 3.5 3.5 0 .85-.3 1.63-.8 2.24-.3-.65-.78-1.18-1.16-1.85z" />
+                                </svg>
+                                Apple Music
+                            </a>
+                            <a href="https://goodflippinvibes.com" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Visit Good Flippin Vibes">
+                                Good Flippin Vibes
+                            </a>
+                        </div>
                     </article>
 
                     <!-- DROSS II -->
                     <article class="album-card reveal">
                         <span class="album-number">Album 002</span>
-                        <div class="album-art-placeholder" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
+                        <div class="album-art-placeholder">
+                            <img
+                                src="assets/images/Ruined city with moose-headed wanderer.png"
+                                alt="DROSS II album art — moose-headed wanderer in ruined neon city">
                         </div>
                         <h3 class="album-title">DROSS II</h3>
                         <p class="album-meta">2025 · 12 Tracks · Industrial / Experimental</p>
@@ -1112,15 +1375,75 @@
                             <li><span class="track-num">05</span><span class="track-name">Cold Steel Memory</span></li>
                             <li><span class="track-num">06–12</span><span class="track-name">+ Seven more</span></li>
                         </ol>
-                        <a href="music.html#dross-2" class="album-link" aria-label="Explore DROSS II album">
-                            Explore DROSS II
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
+                        <div class="album-links">
+                            <a href="https://music.amazon.com/search/Heavy%20Moose%20DROSS%20II" class="album-link album-link--amazon" target="_blank" rel="noopener" aria-label="Listen to DROSS II on Amazon Music">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
+                                </svg>
+                                Amazon Music
+                            </a>
+                            <a href="https://music.apple.com/search?term=Heavy+Moose+DROSS+II" class="album-link" target="_blank" rel="noopener" aria-label="Listen to DROSS II on Apple Music">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.048-2.31-2.07-3.04a5.022 5.022 0 0 0-1.86-.82c-.63-.12-1.26-.19-1.9-.21-.04 0-.1-.01-.15-.01H6.17c-.05 0-.1 0-.15.01-.64.02-1.27.09-1.9.21a5.022 5.022 0 0 0-1.86.82C1.23 1.624.5 2.624.183 3.934a9.23 9.23 0 0 0-.18 2.19v11.75c0 .63.05 1.26.18 1.88.317 1.31 1.048 2.31 2.07 3.04a5.022 5.022 0 0 0 1.86.82c.63.12 1.26.19 1.9.21h11.97c.64-.02 1.27-.09 1.9-.21a5.022 5.022 0 0 0 1.86-.82c1.022-.73 1.753-1.73 2.07-3.04.13-.62.18-1.25.18-1.88V6.124zm-6.967 5.765a3.505 3.505 0 0 1-1.78.48 3.4 3.4 0 0 1-1.21-.22v4.51c0 .96-.78 1.74-1.74 1.74a1.74 1.74 0 0 1-1.74-1.74V9.174c0-.53.23-1.01.6-1.35.36-.34.85-.54 1.37-.54h.01c.95 0 1.74.78 1.74 1.74v.2a3.43 3.43 0 0 1 1.21-.22c1.93 0 3.5 1.57 3.5 3.5 0 .85-.3 1.63-.8 2.24-.3-.65-.78-1.18-1.16-1.85z" />
+                                </svg>
+                                Apple Music
+                            </a>
+                            <a href="https://goodflippinvibes.com" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Visit Good Flippin Vibes">
+                                Good Flippin Vibes
+                            </a>
+                        </div>
                     </article>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+         ART GALLERY
+         ========================================== -->
+        <section class="art-gallery" id="gallery" aria-labelledby="gallery-title">
+            <div class="container">
+                <div class="reveal">
+                    <span class="section-label">Visual Identity</span>
+                    <h2 class="section-title" id="gallery-title">The World of Heavy Moose</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-cell wide reveal">
+                        <img
+                            src="assets/images/Mythical moose at neon-lit concert.png"
+                            alt="Mythical moose commanding a neon-lit concert stage"
+                            loading="lazy">
+                    </div>
+                    <div class="gallery-cell reveal">
+                        <img
+                            src="assets/images/Cyberpunk moose with electric guitar.png"
+                            alt="Cyberpunk moose in circuit-board leather jacket with electric guitar"
+                            loading="lazy">
+                    </div>
+                    <div class="gallery-cell reveal">
+                        <img
+                            src="assets/images/Moose-headed figure in neon industrial chaos.png"
+                            alt="Moose-headed figure amid neon industrial chaos"
+                            loading="lazy">
+                    </div>
+                    <div class="gallery-cell reveal">
+                        <img
+                            src="assets/images/Ruined city with moose-headed wanderer.png"
+                            alt="Post-apocalyptic ruined city with moose-headed wanderer"
+                            loading="lazy">
+                    </div>
+                    <div class="gallery-cell reveal">
+                        <img
+                            src="assets/images/Molten moose skull in industrial chaos.png"
+                            alt="Molten moose skull amid industrial chaos and embers"
+                            loading="lazy">
+                    </div>
+                    <div class="gallery-cell reveal">
+                        <img
+                            src="assets/images/Rust and glitch in darkness.png"
+                            alt="Rust and glitch textures in darkness"
+                            loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
@@ -1169,7 +1492,7 @@
     <footer>
         <div class="footer-inner">
             <p class="footer-wordmark">Heavy Moose</p>
-            <p class="footer-tagline">Industrial Soundscapes · Est. 2024</p>
+            <p class="footer-tagline">Yeah... Sometimes Life is Heavy</p>
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="music.html">Music</a>
                 <a href="#about">About</a>
@@ -1187,14 +1510,6 @@
             // ── Footer year ────────────────────────────────────────────
             const yearEl = document.getElementById('footer-year');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-            // ── Ecosystem nav mount ─────────────────────────────────────
-            const navMount = document.getElementById('ecosystem-nav-mount');
-            if (navMount) {
-                fetch('shared/ecosystem-nav.html')
-                    .then(function (r) { return r.text(); })
-                    .then(function (html) { navMount.innerHTML = html; });
-            }
 
             // ── Scroll reveal ───────────────────────────────────────────
             var revealEls = document.querySelectorAll('.reveal');

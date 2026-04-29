@@ -2,168 +2,250 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Heavy Moose</title>
-  <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --text: #f0f0f0;
-      --text-muted: #8a8a8a;
-      --border: rgba(255, 255, 255, 0.06);
-      --accent: #8B0000;
-      --glow-red: 0 0 32px rgba(139, 0, 0, 0.4);
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --transition-fast: 0.2s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Heavy Moose</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="shared/ecosystem-nav.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #f0f0f0;
+            --text-muted: #8a8a8a;
+            --border: rgba(255, 255, 255, 0.06);
+            --accent: #8B0000;
+            --glow-red: 0 0 32px rgba(139, 0, 0, 0.4);
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition-fast: 0.2s ease;
+        }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      text-align: center;
-      -webkit-font-smoothing: antialiased;
-      overflow: hidden;
-    }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    a { color: inherit; text-decoration: none; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            text-align: center;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
 
-    .bg-glow {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139, 0, 0, 0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-    }
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139, 0, 0, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
 
-    .error-code {
-      font-size: clamp(6rem, 20vw, 10rem);
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      color: var(--accent);
-      text-shadow: var(--glow-red);
-      margin-bottom: 8px;
-    }
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+        }
 
-    .error-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      display: block;
-    }
+        .error-code {
+            font-size: clamp(6rem, 20vw, 10rem);
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            color: var(--accent);
+            text-shadow: var(--glow-red);
+            margin-bottom: 8px;
+        }
 
-    .error-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
+        .error-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            display: block;
+        }
 
-    .error-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 40px;
-    }
+        .error-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
 
-    .error-links {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        .error-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
 
-    .error-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      min-height: 44px;
-      transition:
-        transform var(--transition-fast),
-        opacity var(--transition-fast);
-    }
+        .error-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    .error-link:hover { transform: translateY(-2px); }
-    .error-link:active { transform: translateY(0); }
+        .error-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-height: 44px;
+            transition:
+                transform var(--transition-fast),
+                opacity var(--transition-fast);
+        }
 
-    .error-link-primary {
-      background: var(--accent);
-      color: var(--text);
-    }
-    .error-link-primary:hover { box-shadow: var(--glow-red); }
+        .error-link:hover {
+            transform: translateY(-2px);
+        }
 
-    .error-link-secondary {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-    .error-link-secondary:hover {
-      color: var(--text);
-      border-color: rgba(255, 255, 255, 0.12);
-    }
+        .error-link:active {
+            transform: translateY(0);
+        }
 
-    .footer-note {
-      position: fixed;
-      bottom: 24px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      opacity: 0.4;
-    }
-  </style>
+        .error-link-primary {
+            background: var(--accent);
+            color: var(--text);
+        }
+
+        .error-link-primary:hover {
+            box-shadow: var(--glow-red);
+        }
+
+        .error-link-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .error-link-secondary:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-note {
+            position: fixed;
+            bottom: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="bg-glow" aria-hidden="true"></div>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-  <main class="content" id="main">
-    <p class="error-code" aria-hidden="true">404</p>
-    <span class="error-eyebrow">Page Not Found</span>
-    <h1 class="error-title">Lost in the slag heap.</h1>
-    <p class="error-desc">
-      This page doesn't exist — or it got buried in the residue.
-      Head back to solid ground.
-    </p>
-    <nav class="error-links" aria-label="Recovery navigation">
-      <a href="index.html" class="error-link error-link-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-        Back to Home
-      </a>
-      <a href="music.html" class="error-link error-link-secondary">
-        Music
-      </a>
+    <!-- GFD Ecosystem Navigation -->
+    <nav class="gfd-ecosystem-nav" aria-label="GFD Ecosystem navigation">
+        <div class="ecosystem-nav-container">
+            <div class="ecosystem-brand">
+                <span class="ecosystem-title">GFD Ecosystem</span>
+            </div>
+            <button class="ecosystem-toggle" aria-label="Open ecosystem menu" aria-expanded="false" aria-controls="ecosystem-dropdown-404">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="ecosystem-dropdown" id="ecosystem-dropdown-404" role="menu" aria-hidden="true">
+            <div class="dropdown-content">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">GFD Ecosystem</h3>
+                    <a href="/" class="nav-link" role="menuitem">
+                        <span class="nav-icon" aria-hidden="true">🧯</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">Heavy Moose</strong>
+                            <small class="nav-link-subtitle">Home</small>
+                        </div>
+                    </a>
+                    <a href="https://goodflippinvibes.com" class="nav-link" role="menuitem" target="_blank" rel="noopener">
+                        <span class="nav-icon" aria-hidden="true">✨</span>
+                        <div class="nav-link-content">
+                            <strong class="nav-link-title">Good Flippin Vibes</strong>
+                            <small class="nav-link-subtitle">The lighter half</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </nav>
-  </main>
 
-  <p class="footer-note" aria-hidden="true">Heavy Moose · heavymoose.com</p>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <main class="content" id="main">
+        <p class="error-code" aria-hidden="true">404</p>
+        <span class="error-eyebrow">Page Not Found</span>
+        <h1 class="error-title">Lost in the slag heap.</h1>
+        <p class="error-desc">
+            This page doesn't exist — or it got buried in the residue.
+            Head back to solid ground.
+        </p>
+        <nav class="error-links" aria-label="Recovery navigation">
+            <a href="index.html" class="error-link error-link-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                Back to Home
+            </a>
+            <a href="music.html" class="error-link error-link-secondary">
+                Music
+            </a>
+        </nav>
+    </main>
+
+    <p class="footer-note" aria-hidden="true">Heavy Moose · heavymoose.com</p>
+
+    <script src="shared/ecosystem-nav.js"></script>
 </body>
 
 </html>

@@ -4,8 +4,10 @@
     "description": "heavymoose.com — industrial artist website",
     "scripts": {
         "dev": "npx http-server . -p 3001 -o --cors",
-        "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --commit-dirty=true",
-        "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose",
+        "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main --commit-dirty=true",
+        "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main",
+        "verify:prod": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/verify-production.ps1",
+        "deploy:verified": "npm run deploy && npm run verify:prod",
         "wrangler": "npx wrangler@latest"
     },
     "keywords": [
