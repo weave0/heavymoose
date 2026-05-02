@@ -1,0 +1,65 @@
+<!--
+  SHARED GA4 + WEB VITALS — paste into <head> AFTER existing JSON-LD.
+  Source of truth: weave0/goodflippindesign · scratch/cross-repo-paste-bundles/
+  Pre-baked for: Heavy Moose (ecosystem_property = "heavymoose")
+
+  TODO before merging:
+    1. Replace G-XXXXXXXXXX with your GA4 Measurement ID.
+    2. Paste this <script> block into <head> of index.html (after JSON-LD).
+    3. Verify CSP allows googletagmanager.com + unpkg.com.
+-->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+        custom_map: { dimension1: 'ecosystem_property' },
+        ecosystem_property: 'heavymoose'
+    });
+
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var ecosystem = [
+            'goodflippindesign.com', 'goodflippinvibes.com', 'aiaimate.com',
+            'citizenapproved.org', 'culturesherpa.org', 'heavymoose.com',
+            'lowertownstpaul.org', 'brettleeweaver.com', 'globaldeets.com'
+        ];
+        var hit = ecosystem.find(function (d) { return href.indexOf(d) !== -1; });
+        if (hit && hit !== location.hostname.replace(/^www\./, '')) {
+            gtag('event', 'ecosystem_outbound', {
+                target_property: hit,
+                link_url: href,
+                link_text: (a.textContent || '').trim().slice(0, 64)
+            });
+        }
+    }, { passive: true });
+</script>
+
+<script type="module">
+    import { onCLS, onINP, onLCP, onFCP, onTTFB }
+        from 'https://unpkg.com/web-vitals@4?module';
+    function send(metric) {
+        if (typeof gtag !== 'function') return;
+        gtag('event', metric.name, {
+            event_category: 'Web Vitals',
+            value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+            metric_id: metric.id,
+            metric_value: metric.value,
+            metric_delta: metric.delta,
+            non_interaction: true
+        });
+    }
+    onCLS(send); onINP(send); onLCP(send); onFCP(send); onTTFB(send);
+</script>
+
+<!--
+  CSP additions:
+    script-src ... https://www.googletagmanager.com https://unpkg.com
+    connect-src ... https://www.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net
+    img-src     ... https://www.google-analytics.com https://*.googletagmanager.com
+-->
