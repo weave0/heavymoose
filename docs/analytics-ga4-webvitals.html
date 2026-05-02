@@ -1,0 +1,70 @@
+<!--
+  SHARED GA4 + WEB VITALS — paste into <head> AFTER existing JSON-LD.
+  Source of truth: weave0/goodflippindesign · scratch/cross-repo-paste-bundles/
+  Pre-baked for: Heavy Moose (ecosystem_property = "heavymoose")
+
+  GA4 Measurement ID: G-WM6Q66W9W0 (GFD ecosystem cross-property measurement)
+  Paste into <head> of your HTML entry file.
+
+  CSP additions if you have a strict policy:
+    script-src ... https://www.googletagmanager.com https://unpkg.com
+    connect-src ... https://www.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net
+    img-src     ... https://www.google-analytics.com https://*.googletagmanager.com
+-->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM6Q66W9W0"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WM6Q66W9W0', {
+        custom_map: { dimension1: 'ecosystem_property' },
+        ecosystem_property: 'heavymoose'
+    });
+
+    // Auto-track outbound clicks to other ecosystem properties
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var ecosystem = [
+            'goodflippindesign.com', 'goodflippinvibes.com', 'aiaimate.com',
+            'citizenapproved.org', 'culturesherpa.org', 'heavymoose.com',
+            'lowertownstpaul.org', 'brettleeweaver.com', 'globaldeets.com'
+        ];
+        var hit = ecosystem.find(function (d) { return href.indexOf(d) !== -1; });
+        if (hit && hit !== location.hostname.replace(/^www\./, '')) {
+            gtag('event', 'ecosystem_outbound', {
+                target_property: hit,
+                link_url: href,
+                link_text: (a.textContent || '').trim().slice(0, 64)
+            });
+        }
+    }, { passive: true });
+</script>
+
+<!-- Web Vitals → GA4 events (no dependencies, self-contained ESM) -->
+<script type="module">
+    import { onCLS, onINP, onLCP, onFCP, onTTFB }
+        from 'https://unpkg.com/web-vitals@4?module';
+
+    function send(metric) {
+        if (typeof gtag !== 'function') return;
+        gtag('event', metric.name, {
+            event_category: 'Web Vitals',
+            value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+            metric_id: metric.id,
+            metric_value: metric.value,
+            metric_delta: metric.delta,
+            non_interaction: true
+        });
+    }
+    onCLS(send); onINP(send); onLCP(send); onFCP(send); onTTFB(send);
+</script>
+
+<!--
+  After deploy, in GA4 Admin → Custom definitions, create custom dimension
+  "ecosystem_property" (event scope, dimension1) so you can pivot all events
+  by which property in the ecosystem produced them.
+-->
