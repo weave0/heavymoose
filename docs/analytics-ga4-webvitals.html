@@ -3,23 +3,27 @@
   Source of truth: weave0/goodflippindesign · scratch/cross-repo-paste-bundles/
   Pre-baked for: Heavy Moose (ecosystem_property = "heavymoose")
 
-  TODO before merging:
-    1. Replace G-XXXXXXXXXX with your GA4 Measurement ID.
-    2. Paste this <script> block into <head> of index.html (after JSON-LD).
-    3. Verify CSP allows googletagmanager.com + unpkg.com.
+  GA4 Measurement ID: G-WM6Q66W9W0 (GFD ecosystem cross-property measurement)
+  Paste into <head> of your HTML entry file.
+
+  CSP additions if you have a strict policy:
+    script-src ... https://www.googletagmanager.com https://unpkg.com
+    connect-src ... https://www.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net
+    img-src     ... https://www.google-analytics.com https://*.googletagmanager.com
 -->
 
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM6Q66W9W0"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', {
+    gtag('config', 'G-WM6Q66W9W0', {
         custom_map: { dimension1: 'ecosystem_property' },
         ecosystem_property: 'heavymoose'
     });
 
+    // Auto-track outbound clicks to other ecosystem properties
     document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href]');
         if (!a) return;
@@ -40,9 +44,11 @@
     }, { passive: true });
 </script>
 
+<!-- Web Vitals → GA4 events (no dependencies, self-contained ESM) -->
 <script type="module">
     import { onCLS, onINP, onLCP, onFCP, onTTFB }
         from 'https://unpkg.com/web-vitals@4?module';
+
     function send(metric) {
         if (typeof gtag !== 'function') return;
         gtag('event', metric.name, {
@@ -58,8 +64,7 @@
 </script>
 
 <!--
-  CSP additions:
-    script-src ... https://www.googletagmanager.com https://unpkg.com
-    connect-src ... https://www.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net
-    img-src     ... https://www.google-analytics.com https://*.googletagmanager.com
+  After deploy, in GA4 Admin → Custom definitions, create custom dimension
+  "ecosystem_property" (event scope, dimension1) so you can pivot all events
+  by which property in the ecosystem produced them.
 -->
