@@ -331,13 +331,13 @@
             --bg-elevated: #050505;
             --bg-card: transparent;
             --bg-card-hover: transparent;
-            --text: oklch(0.94 0.004 250);
-            --text-muted: oklch(0.68 0.012 250);
-            --text-secondary: oklch(0.78 0.008 250);
-            --border: color-mix(in srgb, white 10%, transparent);
-            --border-hover: color-mix(in srgb, white 16%, transparent);
-            --hairline: color-mix(in srgb, white 10%, transparent);
-            --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
+            --text: #eeeef2;
+            --text-muted: #9a9aa8;
+            --text-secondary: #b8b8c4;
+            --border: rgba(255, 255, 255, 0.10);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --hairline: rgba(255, 255, 255, 0.10);
+            --scrim: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
             --accent: #e0001e;
             --electric: #00d4ff;
             --volt: #b8ff00;
@@ -350,6 +350,22 @@
             --radius: 0px;
             --transition-fast: 0.15s ease;
             --transition-base: 0.3s ease;
+        }
+
+        @supports (color: oklch(0.94 0.004 250)) {
+            :root {
+                --text: oklch(0.94 0.004 250);
+                --text-muted: oklch(0.68 0.012 250);
+                --text-secondary: oklch(0.78 0.008 250);
+            }
+        }
+
+        @supports (color: color-mix(in srgb, white 10%, transparent)) {
+            :root {
+                --border: color-mix(in srgb, white 10%, transparent);
+                --border-hover: color-mix(in srgb, white 16%, transparent);
+                --hairline: color-mix(in srgb, white 10%, transparent);
+            }
         }
 
         /* =============================================
@@ -2396,8 +2412,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-trueblack">
-    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-trueblack">
+    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-trueblack3">
+    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-trueblack3">
 </head>
 
 <body>
@@ -2934,7 +2950,7 @@
     </footer>
 
     <script src="shared/heavy-moose-nav.js?v=2026-05-13-navfix2"></script>
-    <script src="shared/catalog-cards.js?v=2026-08-28-trueblack"></script>
+    <script src="shared/catalog-cards.js?v=2026-08-28-trueblack3"></script>
     <script>
         (function () {
             'use strict';
