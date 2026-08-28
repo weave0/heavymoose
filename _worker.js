@@ -50,26 +50,6 @@ export default {
     }
 
 
-    const htmlAliases = new Map([
-      ["/music", "/music.html"],
-      ["/videos", "/videos.html"],
-      ["/america-250-art-prompts", "/america-250-art-prompts.html"],
-      ["/video-missed-some-80s", "/video-missed-some-80s.html"],
-      ["/video-no", "/video-no.html"],
-      ["/video-lux-laugh-protocol", "/video-lux-laugh-protocol.html"],
-      ["/video-move-then-prove", "/video-move-then-prove.html"],
-      ["/video-wiggle-pit-it", "/video-wiggle-pit-it.html"],
-      ["/video-well-deep", "/video-well-deep.html"],
-      ["/video-have-a-waffle", "/video-have-a-waffle.html"],
-      ["/video-try-meh", "/video-try-meh.html"],
-      ["/video-jack", "/video-jack.html"],
-    ]);
-
-    if (htmlAliases.has(pathLower)) {
-      const rewritten = new URL(request.url);
-      rewritten.pathname = htmlAliases.get(pathLower);
-      return env.ASSETS.fetch(new Request(rewritten.toString(), request));
-    }
 
     // Serve static asset via Cloudflare Pages
     return env.ASSETS.fetch(request);
