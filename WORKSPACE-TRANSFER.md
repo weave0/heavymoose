@@ -4,7 +4,7 @@
 **Live site:** <https://heavymoose.com>
 **GitHub repo:** <https://github.com/weave0/heavymoose>
 **Parent label / ecosystem hub:** <https://goodflippinvibes.com>
-**Last updated:** April 29, 2026
+**Last updated:** August 28, 2026
 
 ---
 
@@ -15,12 +15,13 @@ the darker pairing to Good Flippin Vibes. Single-page vanilla HTML/CSS/JS (no bu
 no frameworks). Hosted on Cloudflare Pages as a static site with an advanced-mode Worker
 (`_worker.js`) for routing.
 
-**Two public pages:**
+**Public pages:**
 
-| Page         | URL                       | Purpose                                                                |
-| ------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `index.html` | heavymoose.com            | Homepage: hero, showcase, about, albums, art gallery, ecosystem bridge |
-| `music.html` | heavymoose.com/music.html | Full discography + in-page audio player                                |
+| Page           | URL                         | Purpose                                                                |
+| -------------- | --------------------------- | ---------------------------------------------------------------------- |
+| `index.html`   | heavymoose.com              | Homepage: current video + current Apple release, driven from JSON      |
+| `music.html`   | heavymoose.com/music.html   | Full discography + in-page audio player + 15-video latest feed         |
+| `videos.html`  | heavymoose.com/videos.html  | Official Music Videos playlist (34), click-to-play     |
 
 ---
 
@@ -57,6 +58,8 @@ File → Open Workspace from File → z:\HeavyMoose\heavymoose.code-workspace
 
 ```powershell
 npm run dev              # local http-server on :3001
+npm run catalog:sync     # refresh Apple + YouTube JSON (merge, do not drop old videos)
+npm run lint:html        # htmlhint on *.html
 npm run deploy           # deploy to production (--branch main, --commit-dirty=true)
 npm run deploy:clean     # deploy to production (no dirty flag)
 npm run verify:prod      # HEAD check against https://heavymoose.com
@@ -166,32 +169,60 @@ and then sync to each site.
 
 ---
 
+## 8.5 Catalog sync (YouTube + Apple Music)
+
+Featured homepage video/album and `/videos` are driven by JSON, not hardcoded copy.
+
+| File | Source |
+| ---- | ------ |
+| `assets/data/media-library.json` | YouTube RSS latest 15 **merged** into existing entries, plus official playlist flags |
+| `assets/data/music-catalog.json` | iTunes lookup `id=1895530727` |
+
+```bash
+npm run catalog:sync
+```
+
+`scripts/sync-music-catalog.js` (WeaverASUS local name) is the sync entry point. `npm run sync:catalogs` is an alias.
+
+It:
+
+- Pulls Apple Music via iTunes lookup `id=1895530727` and downloads missing 800px artwork
+- Pulls YouTube via RSS `https://www.youtube.com/feeds/videos.xml?channel_id=UCrGqGbSQYxxNAjsvlQ8tT8g` (latest 15 only)
+- **Keeps** every video already in `media-library.json` and **adds** newer RSS items. It does not replace the list with the 15-entry window.
+- Refreshes membership for the official Music Videos playlist `PLqKeZP1HGoZmqeR60aYzywnEJDY227xgZ` (34 videos). `/videos` uses that playlist as source of truth.
+- Marks extras that look like videos but are not on the playlist (Bobba, Sorry, Give the Nuns One, Every Night) as a Features group.
+- Skips YouTube Topic-channel IDs.
+- Sets `isLatestUpload` / `latestUploadVideoId` from the newest **official playlist** item.
+
+Do not replace live `index.html` / `music.html` / assets with stale git copies. Production is the source of truth when the repo lags. Production deploys from the WeaverASUS dirty tree with `npx wrangler pages deploy . --project-name=heavymoose --branch main --commit-dirty=true`. This GitHub PR does not merge or deploy.
+
+---
+
 ## 9. SEO & Schema
 
-- `music.html` contains a full **JSON-LD schema graph** (`application/ld+json`) with:
-  - `MusicGroup` (Heavy Moose, linked to goodflippinvibes.com)
-  - Three `MusicAlbum` entries (DROSS, DROSS II, DROSS: TEMPER)
-  - 12 `MusicRecording` entries for TEMPER tracks
-- `sitemap.xml` lists `index.html` and `music.html` with `lastmod 2026-04-30`
-- Open Graph + Twitter Card meta on both pages
+- Homepage, `/music`, and `/videos` have distinct titles.
+- Homepage JSON-LD includes `MusicGroup` (full current Apple catalog, newest first), `VideoObject` for the latest official upload, and `sameAs` YouTube/Instagram/Apple/Amazon.
+- `sitemap.xml` includes `/videos.html`, current `lastmod`, and video sitemap entries for the newest uploads.
 
 ---
 
 ## 10. Key Files
 
 ```
-index.html            Homepage
-music.html            Discography + TEMPER player
-_worker.js            Cloudflare Pages Worker (routing + static serve)
-_headers              Security headers (CSP, HSTS, audio cache rules)
+index.html            Homepage (JSON-driven featured video + release)
+music.html            Discography + players + current-release shelf
+videos.html           Official 34-video playlist, click-to-play
+_worker.js            Cloudflare Pages Worker (www→apex 301, pretty URL aliases)
+_headers              Security headers (CSP, HSTS)
 wrangler.toml         CF Pages config — project "heavymoose", nodejs_compat
-sitemap.xml           Two-page sitemap
+sitemap.xml           Pages + video entries
 robots.txt            Standard allow-all
-cache-bust.txt        Bump on each deploy (currently: 2026-04-30)
-assets/images/        DALL·E album art + gallery (see copilot-instructions.md for map)
-assets/audio/temper/  12 TEMPER MP3 files (320 kbps, 79 MB total)
-shared/               GFV ecosystem nav component
-scripts/              dev-admin-check.ps1, update-cache-bust.js, verify-production.ps1
+cache-bust.txt        Bump on each deploy
+assets/data/          music-catalog.json + media-library.json
+assets/images/        Album art, America 250 archive, gallery
+assets/audio/         In-page preview MP3s (America 250, Floor Witness, Temper, Missed Some 80s)
+shared/               Heavy Moose + GFV nav
+scripts/sync-music-catalog.js   Refresh Apple + YouTube JSON (merge RSS, flag official playlist)
 ```
 
 ---

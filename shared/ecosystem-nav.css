@@ -180,6 +180,17 @@
   height: 26px;
 }
 
+.nav-icon-image {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.nav-icon-image--tight {
+  object-fit: contain;
+}
+
 /* Branded letter-badge icons for sites without logo images */
 .nav-icon-badge {
   display: inline-flex;

@@ -4,11 +4,17 @@
     "description": "heavymoose.com — industrial artist website",
     "scripts": {
         "dev": "npx http-server . -p 3001 -o --cors",
+        "lint:html": "htmlhint \"*.html\" --config .htmlhintrc.json",
+        "catalog:sync": "node scripts/sync-music-catalog.js",
+        "sync:catalogs": "node scripts/sync-music-catalog.js",
         "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main --commit-dirty=true",
         "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main",
         "verify:prod": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/verify-production.ps1",
         "deploy:verified": "npm run deploy && npm run verify:prod",
         "wrangler": "npx wrangler@latest"
+    },
+    "devDependencies": {
+        "htmlhint": "^1.1.4"
     },
     "keywords": [
         "heavy-moose",

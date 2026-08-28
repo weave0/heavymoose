@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heavy Moose Music Videos | Official YouTube Library</title>
+    <meta name="description" content="Watch official Heavy Moose music videos from the Music Videos playlist. Click a card to play in-page, or open Watch on YouTube.">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="author" content="Heavy Moose">
+    <meta name="application-name" content="Heavy Moose">
+    <link rel="canonical" href="https://heavymoose.com/videos.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png?v=20260515hm1">
+    <link rel="shortcut icon" href="/favicon.ico?v=20260515hm1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png?v=20260515hm1">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest?v=20260515hm1">
+
+    <meta property="og:title" content="Heavy Moose Music Videos | Official YouTube Library">
+    <meta property="og:description" content="Official Heavy Moose music videos from the Music Videos playlist, newest first.">
+    <meta property="og:site_name" content="Heavy Moose">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://heavymoose.com/videos.html">
+    <meta property="og:image" content="https://heavymoose.com/assets/images/releases/pledge.jpg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:alt" content="Heavy Moose Pledge - Single artwork">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heavy Moose Music Videos | Official YouTube Library">
+    <meta name="twitter:description" content="Official Heavy Moose music videos, newest first.">
+    <meta name="twitter:image" content="https://heavymoose.com/assets/images/releases/pledge.jpg">
+    <meta name="twitter:image:alt" content="Heavy Moose Pledge - Single artwork">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "CollectionPage",
+                    "@id": "https://heavymoose.com/videos.html#webpage",
+                    "url": "https://heavymoose.com/videos.html",
+                    "name": "Heavy Moose Music Videos",
+                    "description": "Official Heavy Moose music video library from the Music Videos playlist.",
+                    "isPartOf": { "@id": "https://heavymoose.com/#website" },
+                    "about": { "@id": "https://heavymoose.com/#artist" }
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://heavymoose.com/#website",
+                    "url": "https://heavymoose.com/",
+                    "name": "Heavy Moose"
+                },
+                {
+                    "@type": "MusicGroup",
+                    "@id": "https://heavymoose.com/#artist",
+                    "name": "Heavy Moose",
+                    "url": "https://heavymoose.com/",
+                    "genre": ["Industrial", "Dark Ambient", "Experimental"],
+                    "sameAs": [
+                        "https://www.youtube.com/@HeavyMoose",
+                        "https://www.instagram.com/hvymoose/",
+                        "https://music.apple.com/us/artist/heavy-moose/1895530727",
+                        "https://music.amazon.com/artists/B0GYLK4RWC/heavy-moose"
+                    ]
+                },
+                {
+                    "@type": "VideoObject",
+                    "@id": "https://heavymoose.com/videos.html#latest-video",
+                    "name": "Wiggle Pit It",
+                    "description": "Official Heavy Moose music video for Wiggle Pit It, from Double T. Moose.",
+                    "thumbnailUrl": "https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg",
+                    "embedUrl": "https://www.youtube-nocookie.com/embed/_AlTynB84dE",
+                    "url": "https://heavymoose.com/video-wiggle-pit-it.html",
+                    "uploadDate": "2026-08-23",
+                    "isFamilyFriendly": true,
+                    "publisher": { "@id": "https://heavymoose.com/#artist" }
+                }
+            ]
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared/heavy-moose-nav.css?v=2026-08-28-navux">
+
+    <style>
+        :root {
+            --bg: #060608;
+            --bg-elevated: #0c0c10;
+            --bg-card: #10101a;
+            --text: #eeeef0;
+            --text-muted: #888899;
+            --text-secondary: #aaaabc;
+            --border: rgba(255, 255, 255, 0.07);
+            --accent: #e0001e;
+            --electric: #00d4ff;
+            --volt: #b8ff00;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .skip-link {
+            position: absolute; left: 16px; top: -40px;
+            background: var(--electric); color: #050505; padding: 8px 12px; z-index: 2000;
+        }
+        .skip-link:focus { top: 16px; }
+        main { padding: 110px 0 80px; }
+        .container { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
+        .page-intro { margin-bottom: 40px; max-width: 72ch; }
+        .section-label {
+            display: inline-block; font-family: var(--font-mono); font-size: 0.72rem;
+            letter-spacing: 0.22em; text-transform: uppercase; color: var(--electric); margin-bottom: 12px;
+        }
+        h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 14px; }
+        .page-intro p, .section-intro { color: var(--text-secondary); max-width: 68ch; }
+        .page-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-height: 44px; padding: 0 16px; border: 1px solid var(--border);
+            font-weight: 600; font-size: 0.92rem;
+        }
+        .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .btn-outline:hover, .video-card a:hover {
+            border-color: rgba(0, 212, 255, 0.45);
+            background: rgba(0, 212, 255, 0.08);
+        }
+        .video-group { margin-top: 48px; }
+        .video-group h2 { font-size: 1.35rem; margin: 8px 0 18px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+        .video-card { border: 1px solid var(--border); background: rgba(16, 16, 22, 0.92); }
+        .video-facade {
+            position: relative; display: block; width: 100%; border: 0; padding: 0;
+            cursor: pointer; background: #000; aspect-ratio: 16 / 9; overflow: hidden;
+        }
+        .video-facade img { width: 100%; height: 100%; object-fit: cover; }
+        .video-play {
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            min-width: 72px; min-height: 44px; padding: 0 16px;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--accent); color: #fff; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; font-size: 0.78rem;
+        }
+        .video-card iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; background: #000; }
+        .video-card-body { padding: 18px; }
+        .video-kicker { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--electric); }
+        .video-card h2 { margin-top: 8px; font-size: 1.15rem; }
+        .video-meta { margin-top: 8px; color: var(--text-muted); font-size: 0.95rem; min-height: 1.4em; }
+        .video-card a {
+            display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px;
+            margin-right: 8px; padding: 0 14px; border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600;
+        }
+        .fallback-list { margin: 16px 0 0 18px; color: var(--text-secondary); }
+        .fallback-list a { text-decoration: underline; }
+        .status { color: var(--text-muted); padding: 24px 0; }
+        footer { border-top: 1px solid var(--border); padding: 36px 24px 48px; text-align: center; }
+        .footer-wordmark { letter-spacing: 0.22em; text-transform: uppercase; font-weight: 800; }
+        .footer-tagline, .footer-copy { color: var(--text-muted); margin-top: 8px; font-size: 0.92rem; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; margin: 18px 0; }
+        @media (max-width: 600px) {
+            main { padding-top: 96px; }
+            .container { width: min(100% - 24px, 1200px); }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <nav class="hm-masthead" aria-label="Heavy Moose site navigation">
+        <div class="hm-masthead-inner">
+            <a class="hm-brand" href="index.html" aria-label="Heavy Moose home">
+                <span class="hm-brand-mark">Heavy Moose</span>
+                <span class="hm-brand-subtitle">Industrial / Dark Ambient / Experimental</span>
+            </a>
+            <div class="hm-quicklinks" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="videos.html" aria-current="page">Videos</a>
+                <a href="music.html">Discography</a>
+            </div>
+            <div class="hm-menu-actions">
+                <button class="hm-menu-toggle" type="button" aria-label="Open Heavy Moose menu" aria-expanded="false" aria-controls="hm-site-menu" data-panel="hm-site-menu">
+                    <span class="hm-menu-label">Heavy Moose</span>
+                    <span class="hm-menu-meta">Pages, videos, releases</span>
+                </button>
+                <button class="hm-menu-toggle hm-menu-toggle--secondary" type="button" aria-label="Open ecosystem menu" aria-expanded="false" aria-controls="hm-ecosystem-menu" data-panel="hm-ecosystem-menu">
+                    <span class="hm-menu-label">GFV Network</span>
+                    <span class="hm-menu-meta">Related sites</span>
+                </button>
+            </div>
+        </div>
+        <div class="hm-menu-panel" id="hm-site-menu" aria-hidden="true">
+            <div class="hm-menu-grid">
+                <section class="hm-menu-section" aria-labelledby="hm-videos-explore-title">
+                    <p class="hm-menu-heading" id="hm-videos-explore-title">Explore Heavy Moose</p>
+                    <a class="hm-menu-link" href="index.html">
+                        <span class="hm-link-chip">HM</span>
+                        <span class="hm-link-copy">
+                            <span class="hm-link-title">Homepage</span>
+                            <span class="hm-link-subtitle">Artist overview and current featured work.</span>
+                        </span>
+                    </a>
+                    <a class="hm-menu-link" href="music.html">
+                        <span class="hm-link-chip">CAT</span>
+                        <span class="hm-link-copy">
+                            <span class="hm-link-title">Discography</span>
+                            <span class="hm-link-subtitle">Full Heavy Moose discography and in-page players.</span>
+                        </span>
+                    </a>
+                    <a class="hm-menu-link" href="videos.html" aria-current="page">
+                        <span class="hm-link-chip">VID</span>
+                        <span class="hm-link-copy">
+                            <span class="hm-link-title">Videos</span>
+                            <span class="hm-link-subtitle">The official Music Videos playlist, click to play.</span>
+                        </span>
+                    </a>
+                </section>
+            </div>
+        </div>
+        <div class="hm-menu-panel hm-menu-panel--secondary" id="hm-ecosystem-menu" aria-hidden="true">
+            <div class="hm-menu-grid hm-menu-grid--secondary">
+                <section class="hm-menu-section" aria-labelledby="hm-eco-related-title">
+                    <p class="hm-menu-heading" id="hm-eco-related-title">Related Sites</p>
+                    <a class="hm-menu-link" href="https://goodflippinvibes.com" target="_blank" rel="noopener">
+                        <span class="hm-link-chip">GFV</span>
+                        <span class="hm-link-copy">
+                            <span class="hm-link-title">Good Flippin Vibes</span>
+                            <span class="hm-link-subtitle">The lighter brand counterpart.</span>
+                        </span>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="container">
+            <header class="page-intro">
+                <span class="section-label">Official Music Videos playlist</span>
+                <h1>Heavy Moose music videos</h1>
+                <p>
+                    The official 34-video playlist, newest first. Click a thumbnail to play in-page.
+                    Features and extras that are not on the playlist sit in a smaller group below.
+                </p>
+                <div class="page-actions">
+                    <a class="btn btn-primary" href="https://www.youtube.com/playlist?list=PLqKeZP1HGoZmqeR60aYzywnEJDY227xgZ" target="_blank" rel="noopener">Open the playlist</a>
+                    <a class="btn btn-outline" href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+                    <a class="btn btn-outline" href="music.html">Discography</a>
+                </div>
+            </header>
+
+            <section class="video-group" aria-labelledby="official-videos-title">
+                <span class="section-label">34 official videos</span>
+                <h2 id="official-videos-title">Official music videos</h2>
+                <div class="video-grid" id="official-video-grid">
+                <article class="video-card" data-video-id="_AlTynB84dE">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/_AlTynB84dE" aria-label="Play Wiggle Pit It">
+                        <img src="https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Wiggle Pit It</h2>
+                        <p class="video-meta">August 23, 2026 · Double T. Moose</p>
+                        <a href="video-wiggle-pit-it.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="spupt7sFlVs">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/spupt7sFlVs" aria-label="Play Well (Deep)">
+                        <img src="https://i.ytimg.com/vi/spupt7sFlVs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Well (Deep)</h2>
+                        <p class="video-meta">August 22, 2026</p>
+                        <a href="video-well-deep.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=spupt7sFlVs" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="ggsk-w-rzvA">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/ggsk-w-rzvA" aria-label="Play Have a Waffle">
+                        <img src="https://i.ytimg.com/vi/ggsk-w-rzvA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Have a Waffle</h2>
+                        <p class="video-meta">August 12, 2026 · Whisp</p>
+                        <a href="video-have-a-waffle.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=ggsk-w-rzvA" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="HNascZ8Eflo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/HNascZ8Eflo" aria-label="Play Try (Meh)">
+                        <img src="https://i.ytimg.com/vi/HNascZ8Eflo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Try (Meh)</h2>
+                        <p class="video-meta">August 9, 2026 · Meh</p>
+                        <a href="video-try-meh.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=HNascZ8Eflo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="W33Yw2o-Yaw">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/W33Yw2o-Yaw" aria-label="Play Jack">
+                        <img src="https://i.ytimg.com/vi/W33Yw2o-Yaw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Jack</h2>
+                        <p class="video-meta">August 5, 2026 · Jack - Single</p>
+                        <a href="video-jack.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=W33Yw2o-Yaw" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="qPbUA9RziPo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/qPbUA9RziPo" aria-label="Play Que Tal">
+                        <img src="https://i.ytimg.com/vi/qPbUA9RziPo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Que Tal</h2>
+                        <p class="video-meta">August 3, 2026 · Yippee Ki-Yay</p>
+                        <a href="https://www.youtube.com/watch?v=qPbUA9RziPo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="2qa2wZcODV8">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/2qa2wZcODV8" aria-label="Play Yippee Ki-Yay: MF Dream (w/cheese)">
+                        <img src="https://i.ytimg.com/vi/2qa2wZcODV8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Yippee Ki-Yay: MF Dream (w/cheese)</h2>
+                        <p class="video-meta">August 1, 2026 · Yippee Ki-Yay</p>
+                        <a href="https://www.youtube.com/watch?v=2qa2wZcODV8" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="1ZUs-jUahqE">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/1ZUs-jUahqE" aria-label="Play Pas de l&#x27;art (Oh la la)">
+                        <img src="https://i.ytimg.com/vi/1ZUs-jUahqE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Pas de l&#x27;art (Oh la la)</h2>
+                        <p class="video-meta">July 28, 2026 · Pas de l&#x27;art</p>
+                        <a href="https://www.youtube.com/watch?v=1ZUs-jUahqE" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="Pmaaru0JVVw">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/Pmaaru0JVVw" aria-label="Play Summer Sausage">
+                        <img src="https://i.ytimg.com/vi/Pmaaru0JVVw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Summer Sausage</h2>
+                        <p class="video-meta">July 26, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=Pmaaru0JVVw" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="y-55hCaxNlk">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/y-55hCaxNlk" aria-label="Play Moose Pudding: Shark">
+                        <img src="https://i.ytimg.com/vi/y-55hCaxNlk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Moose Pudding: Shark</h2>
+                        <p class="video-meta">July 24, 2026 · Moose Pudding</p>
+                        <a href="https://www.youtube.com/watch?v=y-55hCaxNlk" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="80p8JL7b1J0">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/80p8JL7b1J0" aria-label="Play Welp: Recap">
+                        <img src="https://i.ytimg.com/vi/80p8JL7b1J0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Welp: Recap</h2>
+                        <p class="video-meta">July 21, 2026 · Welp</p>
+                        <a href="https://www.youtube.com/watch?v=80p8JL7b1J0" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="9MRzoV6dtN4">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/9MRzoV6dtN4" aria-label="Play Heavy Moose: Train of Pugs">
+                        <img src="https://i.ytimg.com/vi/9MRzoV6dtN4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Train of Pugs</h2>
+                        <p class="video-meta">July 13, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=9MRzoV6dtN4" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="WJjpcPs6YsU">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/WJjpcPs6YsU" aria-label="Play Welp: Moose Told It">
+                        <img src="https://i.ytimg.com/vi/WJjpcPs6YsU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Welp: Moose Told It</h2>
+                        <p class="video-meta">July 1, 2026 · Welp</p>
+                        <a href="https://www.youtube.com/watch?v=WJjpcPs6YsU" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="iK2ytZ4Duxo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/iK2ytZ4Duxo" aria-label="Play BF (America Got Ya)">
+                        <img src="https://i.ytimg.com/vi/iK2ytZ4Duxo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>BF (America Got Ya)</h2>
+                        <p class="video-meta">July 1, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=iK2ytZ4Duxo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="LYSRLTipfwo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/LYSRLTipfwo" aria-label="Play Heavy Moose: Neon Jellyfish - Jazzy Jellyfish">
+                        <img src="https://i.ytimg.com/vi/LYSRLTipfwo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Neon Jellyfish - Jazzy Jellyfish</h2>
+                        <p class="video-meta">June 29, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=LYSRLTipfwo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="DF0HEuXyU7E">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/DF0HEuXyU7E" aria-label="Play (DJ Shariff - Glass &amp; Ash feat.) Heavy Moose: Meridian Dark">
+                        <img src="https://i.ytimg.com/vi/DF0HEuXyU7E/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>(DJ Shariff - Glass &amp; Ash feat.) Heavy Moose: Meridian Dark</h2>
+                        <p class="video-meta">June 26, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=DF0HEuXyU7E" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="ktr0UREKSz8">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/ktr0UREKSz8" aria-label="Play Year Long Dark">
+                        <img src="https://i.ytimg.com/vi/ktr0UREKSz8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Year Long Dark</h2>
+                        <p class="video-meta">June 26, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=ktr0UREKSz8" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="AJZCoAqlnnM">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/AJZCoAqlnnM" aria-label="Play Heavy Moose: Neon Jellyfish - Horse Named Glory">
+                        <img src="https://i.ytimg.com/vi/AJZCoAqlnnM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Neon Jellyfish - Horse Named Glory</h2>
+                        <p class="video-meta">Neon Jellyfish</p>
+                        <a href="https://www.youtube.com/watch?v=AJZCoAqlnnM" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="enXxee17OVc">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/enXxee17OVc" aria-label="Play Heavy Moose - Word - You Said What">
+                        <img src="https://i.ytimg.com/vi/enXxee17OVc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Word - You Said What</h2>
+                        <p class="video-meta">Word</p>
+                        <a href="https://www.youtube.com/watch?v=enXxee17OVc" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="jA9QxKiTnUc">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/jA9QxKiTnUc" aria-label="Play Heavy Moose: Move Then Prove">
+                        <img src="https://i.ytimg.com/vi/jA9QxKiTnUc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Move Then Prove</h2>
+                        <p class="video-meta"></p>
+                        <a href="video-move-then-prove.html">Open watch page</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="9-qfia4-ls0">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/9-qfia4-ls0" aria-label="Play Stars, Stripes, and Side Eye">
+                        <img src="https://i.ytimg.com/vi/9-qfia4-ls0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Stars, Stripes, and Side Eye</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=9-qfia4-ls0" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="B1QZYmcYUMo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/B1QZYmcYUMo" aria-label="Play Heavy Moose - Moose in Paris">
+                        <img src="https://i.ytimg.com/vi/B1QZYmcYUMo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Moose in Paris</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=B1QZYmcYUMo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="AZ_RIcuzCiA">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/AZ_RIcuzCiA" aria-label="Play Heavy Moose - Knock, Knock, &#x27;Merica -">
+                        <img src="https://i.ytimg.com/vi/AZ_RIcuzCiA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Knock, Knock, &#x27;Merica -</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=AZ_RIcuzCiA" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="VQJ9hkiseDk">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/VQJ9hkiseDk" aria-label="Play Heavy Moose - Hollywood &#x27;n Label Schmo">
+                        <img src="https://i.ytimg.com/vi/VQJ9hkiseDk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Hollywood &#x27;n Label Schmo</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=VQJ9hkiseDk" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="FdhLwlJzvUI">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/FdhLwlJzvUI" aria-label="Play Heavy Moose - Applebee&#x27;s Parking Lot">
+                        <img src="https://i.ytimg.com/vi/FdhLwlJzvUI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Applebee&#x27;s Parking Lot</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=FdhLwlJzvUI" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="ETBLvKkZcQc">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/ETBLvKkZcQc" aria-label="Play Heavy Moose - We All Drop">
+                        <img src="https://i.ytimg.com/vi/ETBLvKkZcQc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - We All Drop</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=ETBLvKkZcQc" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="aAjoGstOXA4">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/aAjoGstOXA4" aria-label="Play Heavy Moose - Jack A">
+                        <img src="https://i.ytimg.com/vi/aAjoGstOXA4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose - Jack A</h2>
+                        <p class="video-meta">Jack - Single</p>
+                        <a href="https://www.youtube.com/watch?v=aAjoGstOXA4" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="LxPj9sExxuc">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/LxPj9sExxuc" aria-label="Play Heavy Moose: Flipside Rituals - Get Flipped">
+                        <img src="https://i.ytimg.com/vi/LxPj9sExxuc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Flipside Rituals - Get Flipped</h2>
+                        <p class="video-meta">Flipside Rituals - EP</p>
+                        <a href="https://www.youtube.com/watch?v=LxPj9sExxuc" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="4pLOb0lknOk">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/4pLOb0lknOk" aria-label="Play Heavy Moose: Single - Missed a bit of 80s">
+                        <img src="https://i.ytimg.com/vi/4pLOb0lknOk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Single - Missed a bit of 80s</h2>
+                        <p class="video-meta"></p>
+                        <a href="video-missed-some-80s.html">Open watch page</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="8UTeaFOOWPw">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/8UTeaFOOWPw" aria-label="Play Heavy Moose: Temper - Maybe (NO)">
+                        <img src="https://i.ytimg.com/vi/8UTeaFOOWPw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Temper - Maybe (NO)</h2>
+                        <p class="video-meta"></p>
+                        <a href="video-no.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=8UTeaFOOWPw" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="6VFqD3v-YeM">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/6VFqD3v-YeM" aria-label="Play Heavy Moose: Glass and Ash - Pressure Surface">
+                        <img src="https://i.ytimg.com/vi/6VFqD3v-YeM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Glass and Ash - Pressure Surface</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=6VFqD3v-YeM" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="YdO9xWtw-fY">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/YdO9xWtw-fY" aria-label="Play Heavy Moose: Wicked Clean Re-release - &#x27;Merica">
+                        <img src="https://i.ytimg.com/vi/YdO9xWtw-fY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Wicked Clean Re-release - &#x27;Merica</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=YdO9xWtw-fY" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="NM4Nrv9zyN8">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/NM4Nrv9zyN8" aria-label="Play Heavy Moose: Floor Witness - Lux Laugh Protocol">
+                        <img src="https://i.ytimg.com/vi/NM4Nrv9zyN8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Floor Witness - Lux Laugh Protocol</h2>
+                        <p class="video-meta">Floor Witness</p>
+                        <a href="video-lux-laugh-protocol.html">Open watch page</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="lrK4cAsJYeA">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/lrK4cAsJYeA" aria-label="Play Heavy Moose: Floor Witness - Air Punch Ceremony">
+                        <img src="https://i.ytimg.com/vi/lrK4cAsJYeA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Official music video</div>
+                        <h2>Heavy Moose: Floor Witness - Air Punch Ceremony</h2>
+                        <p class="video-meta">Floor Witness</p>
+                        <a href="https://www.youtube.com/watch?v=lrK4cAsJYeA" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                </div>
+                <noscript>
+                    <ol class="fallback-list">
+                    <li><a href="video-wiggle-pit-it.html">Wiggle Pit It</a></li>
+                    <li><a href="video-well-deep.html">Well (Deep)</a></li>
+                    <li><a href="video-have-a-waffle.html">Have a Waffle</a></li>
+                    <li><a href="video-try-meh.html">Try (Meh)</a></li>
+                    <li><a href="video-jack.html">Jack</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=qPbUA9RziPo">Que Tal</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=2qa2wZcODV8">Yippee Ki-Yay: MF Dream (w/cheese)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=1ZUs-jUahqE">Pas de l&#x27;art (Oh la la)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=Pmaaru0JVVw">Summer Sausage</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=y-55hCaxNlk">Moose Pudding: Shark</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=80p8JL7b1J0">Welp: Recap</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=9MRzoV6dtN4">Heavy Moose: Train of Pugs</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=WJjpcPs6YsU">Welp: Moose Told It</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=iK2ytZ4Duxo">BF (America Got Ya)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=LYSRLTipfwo">Heavy Moose: Neon Jellyfish - Jazzy Jellyfish</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=DF0HEuXyU7E">(DJ Shariff - Glass &amp; Ash feat.) Heavy Moose: Meridian Dark</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=ktr0UREKSz8">Year Long Dark</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=AJZCoAqlnnM">Heavy Moose: Neon Jellyfish - Horse Named Glory</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=enXxee17OVc">Heavy Moose - Word - You Said What</a></li>
+                    <li><a href="video-move-then-prove.html">Heavy Moose: Move Then Prove</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=9-qfia4-ls0">Stars, Stripes, and Side Eye</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=B1QZYmcYUMo">Heavy Moose - Moose in Paris</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=AZ_RIcuzCiA">Heavy Moose - Knock, Knock, &#x27;Merica -</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=VQJ9hkiseDk">Heavy Moose - Hollywood &#x27;n Label Schmo</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=FdhLwlJzvUI">Heavy Moose - Applebee&#x27;s Parking Lot</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=ETBLvKkZcQc">Heavy Moose - We All Drop</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=aAjoGstOXA4">Heavy Moose - Jack A</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=LxPj9sExxuc">Heavy Moose: Flipside Rituals - Get Flipped</a></li>
+                    <li><a href="video-missed-some-80s.html">Heavy Moose: Single - Missed a bit of 80s</a></li>
+                    <li><a href="video-no.html">Heavy Moose: Temper - Maybe (NO)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=6VFqD3v-YeM">Heavy Moose: Glass and Ash - Pressure Surface</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=YdO9xWtw-fY">Heavy Moose: Wicked Clean Re-release - &#x27;Merica</a></li>
+                    <li><a href="video-lux-laugh-protocol.html">Heavy Moose: Floor Witness - Lux Laugh Protocol</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=lrK4cAsJYeA">Heavy Moose: Floor Witness - Air Punch Ceremony</a></li>
+                    </ol>
+                </noscript>
+            </section>
+
+            <section class="video-group" id="features" aria-labelledby="feature-videos-title">
+                <span class="section-label">Not on the official playlist</span>
+                <h2 id="feature-videos-title">Features and extras</h2>
+                <p class="section-intro">Looks-like-a-video clips that are not part of the official Music Videos playlist.</p>
+                <div class="video-grid" id="feature-video-grid">
+                <article class="video-card" data-video-id="AVBnhx2jA7c">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/AVBnhx2jA7c" aria-label="Play Stuff and Things (Bobba)">
+                        <img src="https://i.ytimg.com/vi/AVBnhx2jA7c/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Feature</div>
+                        <h2>Stuff and Things (Bobba)</h2>
+                        <p class="video-meta">August 10, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=AVBnhx2jA7c" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="hoN657bntjg">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/hoN657bntjg" aria-label="Play Heavy Moose: Sorry (&#x27;bout your wall)">
+                        <img src="https://i.ytimg.com/vi/hoN657bntjg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Feature</div>
+                        <h2>Heavy Moose: Sorry (&#x27;bout your wall)</h2>
+                        <p class="video-meta">July 20, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=hoN657bntjg" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="OXXuboDQ2Qk">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/OXXuboDQ2Qk" aria-label="Play Heavy Moose (Dross: Temper) - Every Night">
+                        <img src="https://i.ytimg.com/vi/OXXuboDQ2Qk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Feature</div>
+                        <h2>Heavy Moose (Dross: Temper) - Every Night</h2>
+                        <p class="video-meta">June 28, 2026</p>
+                        <a href="https://www.youtube.com/watch?v=OXXuboDQ2Qk" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                <article class="video-card" data-video-id="sXHNn1w04uo">
+                    <button type="button" class="video-facade" data-embed="https://www.youtube-nocookie.com/embed/sXHNn1w04uo" aria-label="Play Heavy Moose - Give the Nuns One">
+                        <img src="https://i.ytimg.com/vi/sXHNn1w04uo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                        <span class="video-play" aria-hidden="true">Play</span>
+                    </button>
+                    <div class="video-card-body">
+                        <div class="video-kicker">Feature</div>
+                        <h2>Heavy Moose - Give the Nuns One</h2>
+                        <p class="video-meta"></p>
+                        <a href="https://www.youtube.com/watch?v=sXHNn1w04uo" target="_blank" rel="noopener">Watch on YouTube</a>
+                    </div>
+                </article>
+                </div>
+                <noscript>
+                    <ol class="fallback-list">
+                    <li><a href="https://www.youtube.com/watch?v=AVBnhx2jA7c" target="_blank" rel="noopener">Stuff and Things (Bobba)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=hoN657bntjg" target="_blank" rel="noopener">Heavy Moose: Sorry (&#x27;bout your wall)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=OXXuboDQ2Qk" target="_blank" rel="noopener">Heavy Moose (Dross: Temper) - Every Night</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=sXHNn1w04uo" target="_blank" rel="noopener">Heavy Moose - Give the Nuns One</a></li>
+                    </ol>
+                </noscript>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p class="footer-wordmark">Heavy Moose</p>
+        <p class="footer-tagline">Yeah... Sometimes Life is Heavy</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="videos.html" aria-current="page">Videos</a>
+                <a href="music.html">Discography</a>
+            <a href="mailto:gfv@heavymoose.com">gfv@heavymoose.com</a>
+        </nav>
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Heavy Moose / GFV LLC. All rights reserved.</p>
+    </footer>
+
+    <script src="shared/heavy-moose-nav.js?v=2026-08-28-videos"></script>
+    <script>
+        (function () {
+            'use strict';
+            var yearEl = document.getElementById('footer-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            function formatDate(value) {
+                if (!value) return '';
+                return new Date(value).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            }
+
+            function bindFacades(root) {
+                root.addEventListener('click', function (event) {
+                    var button = event.target.closest('.video-facade');
+                    if (!button || !root.contains(button)) return;
+                    var embed = button.getAttribute('data-embed');
+                    if (!embed) return;
+                    var iframe = document.createElement('iframe');
+                    iframe.src = embed + (embed.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+                    iframe.title = button.getAttribute('aria-label') || 'Heavy Moose video';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.allowFullscreen = true;
+                    button.replaceWith(iframe);
+                });
+            }
+
+            function renderCard(video, kicker) {
+                var card = document.createElement('article');
+                card.className = 'video-card';
+                card.setAttribute('data-video-id', video.videoId);
+
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'video-facade';
+                button.setAttribute('data-embed', video.embedUrl);
+                button.setAttribute('aria-label', 'Play ' + video.title);
+
+                var img = document.createElement('img');
+                img.src = video.thumbnailUrl;
+                img.alt = '';
+                img.width = 480;
+                img.height = 360;
+                img.loading = 'lazy';
+
+                var play = document.createElement('span');
+                play.className = 'video-play';
+                play.setAttribute('aria-hidden', 'true');
+                play.textContent = 'Play';
+                button.append(img, play);
+
+                var body = document.createElement('div');
+                body.className = 'video-card-body';
+
+                var kickerEl = document.createElement('div');
+                kickerEl.className = 'video-kicker';
+                kickerEl.textContent = kicker;
+
+                var title = document.createElement('h2');
+                title.textContent = video.title;
+
+                var meta = document.createElement('p');
+                meta.className = 'video-meta';
+                meta.textContent = [formatDate(video.publishedAt), video.associatedReleaseTitle].filter(Boolean).join(' · ');
+
+                var watch = document.createElement('a');
+                watch.href = video.watchUrl;
+                watch.target = '_blank';
+                watch.rel = 'noopener';
+                watch.textContent = 'Watch on YouTube';
+                body.append(kickerEl, title, meta, watch);
+                if (video.watchPage) {
+                    var page = document.createElement('a');
+                    page.href = video.watchPage;
+                    page.textContent = 'Open watch page';
+                    body.append(page);
+                }
+                card.append(button, body);
+                return card;
+            }
+
+            var officialGrid = document.getElementById('official-video-grid');
+            var featureGrid = document.getElementById('feature-video-grid');
+            bindFacades(document);
+
+            if (!officialGrid || !window.fetch) return;
+
+            fetch('assets/data/media-library.json', { cache: 'no-store' })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('Media library unavailable');
+                    return response.json();
+                })
+                .then(function (library) {
+                    var official = (library.videos || []).filter(function (video) {
+                        return video.inOfficialMusicVideosPlaylist;
+                    }).sort(function (a, b) {
+                        if (a.officialPlaylistIndex != null && b.officialPlaylistIndex != null) {
+                            return a.officialPlaylistIndex - b.officialPlaylistIndex;
+                        }
+                        return String(b.publishedAt || '') < String(a.publishedAt || '') ? -1 : 1;
+                    });
+                    var features = (library.videos || []).filter(function (video) {
+                        return video.includeInFeaturesGroup && !video.inOfficialMusicVideosPlaylist;
+                    });
+
+                    officialGrid.textContent = '';
+                    official.forEach(function (video) {
+                        officialGrid.append(renderCard(video, video.isLatestUpload ? 'Latest official upload' : 'Official music video'));
+                    });
+                    if (featureGrid) {
+                        featureGrid.textContent = '';
+                        features.forEach(function (video) {
+                            featureGrid.append(renderCard(video, 'Feature'));
+                        });
+                    }
+                })
+                .catch(function () {
+                    // Keep the server-rendered cards if the JSON feed is unavailable.
+                });
+        })();
+    </script>
+</body>
+
+</html>
