@@ -325,7 +325,10 @@ body.hm-menu-open {
     }
 
     .hm-quicklinks {
-        display: none;
+        display: inline-flex;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 16px;
     }
 
     .hm-menu-actions {
