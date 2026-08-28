@@ -277,7 +277,7 @@
                     "description": "Heavy Moose America 250 anniversary player featuring Knock, Knock ('Merica), selected Flipside Rituals tracks, and DJ Shariff's 'Merica signal.",
                     "url": "https://heavymoose.com/music.html#america-250",
                     "numTracks": 16,
-                    "image": "https://heavymoose.com/assets/images/america-250/america-250-social-share.png",
+                    "image": "https://heavymoose.com/assets/images/releases/pledge.jpg",
                     "byArtist": [
                         {
                             "@id": "https://heavymoose.com/#artist"
@@ -2210,11 +2210,9 @@
             </a>
 
             <div class="hm-quicklinks" aria-label="Primary navigation">
+                <a href="index.html" aria-current="page">Home</a>
                 <a href="videos.html">Videos</a>
                 <a href="music.html">Music</a>
-                <a href="#showcase">Featured</a>
-                <a href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Subscribe to Heavy Moose on YouTube (opens in new tab)">Subscribe</a>
-                <a href="#about">About</a>
             </div>
 
             <div class="hm-menu-actions">
@@ -2308,7 +2306,7 @@
                         <span class="hm-link-chip">005</span>
                         <span class="hm-link-copy">
                             <span class="hm-link-title">Knock, Knock ('Merica)</span>
-                            <span class="hm-link-subtitle">A 2026 album from the America 250 era, with artwork and direct platform links.</span>
+                            <span class="hm-link-subtitle">America 250-era album. Archive copy, not the current Heavy Moose release.</span>
                         </span>
                     </a>
                     <a class="hm-menu-link" href="music.html#missed-some-80s">
@@ -2465,8 +2463,8 @@
                             <strong>Wiggle Pit It</strong> currently leads the official Heavy Moose upload feed and updates automatically from the synced channel data.
                         </p>
                         <div class="showcase-actions">
-                        <a href="https://www.youtube.com/watch?v=_AlTynB84dE" class="btn btn-outline" target="_blank" rel="noopener" id="showcase-link">
-                            Watch on YouTube
+                        <a href="video-wiggle-pit-it.html" class="btn btn-outline" id="showcase-link">
+                            Open watch page
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -2499,8 +2497,10 @@
                             Current Heavy Moose release, synchronized from the verified Apple Music artist catalog.
                         </p>
                         <div class="signal-promo-actions">
-                            <a href="music.html#latest-releases" class="btn btn-primary">Explore Latest Releases</a>
-                            <a href="https://music.apple.com/us/album/pledge-single/6805803272" class="btn btn-outline" target="_blank" rel="noopener" id="latest-release-link">Listen on Apple Music</a>
+                            <a href="https://music.apple.com/us/album/pledge-single/6805803272" class="btn btn-primary" target="_blank" rel="noopener" id="latest-release-link">Apple Music</a>
+                            <a href="https://music.amazon.com/artists/B0GYLK4RWC/heavy-moose" class="btn btn-outline" target="_blank" rel="noopener" id="latest-release-amazon">Amazon Music</a>
+                            <a href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" class="btn btn-outline" target="_blank" rel="noopener">YouTube</a>
+                            <a href="music.html#latest-releases" class="btn btn-outline">Discography</a>
                         </div>
                     </div>
                     <article class="signal-promo-card reveal" aria-label="Latest Heavy Moose release art and metadata">
@@ -2608,15 +2608,15 @@
                         </h2>
                         <div class="about-stat-row">
                             <div class="about-stat">
-                                <span class="about-stat-value">6</span>
+                                <span class="about-stat-value" id="about-stat-releases">27</span>
                                 <span class="about-stat-label">Releases</span>
                             </div>
                             <div class="about-stat">
-                                <span class="about-stat-value">62</span>
+                                <span class="about-stat-value" id="about-stat-tracks">306</span>
                                 <span class="about-stat-label">Tracks</span>
                             </div>
                             <div class="about-stat">
-                                <span class="about-stat-value">3</span>
+                                <span class="about-stat-value" id="about-stat-dross">3</span>
                                 <span class="about-stat-label">DROSS Albums</span>
                             </div>
                         </div>
@@ -3094,8 +3094,16 @@
                         if (heroPoster) heroPoster.style.backgroundImage = "linear-gradient(180deg, rgba(8, 8, 12, 0.58) 0%, rgba(6, 6, 8, 0.86) 100%), url('" + (latestReleaseArtworkOverrides[latestRelease.slug] || latestRelease.artwork) + "')";
                         if (heroUrl) heroUrl.textContent = latestRelease.title;
                         if (heroKicker) heroKicker.textContent = formatReleaseType(latestRelease.type) + ' · Current';
-                        var aboutReleases = document.querySelector('.about-stat-value');
+                        var aboutReleases = document.getElementById('about-stat-releases');
+                        var aboutTracks = document.getElementById('about-stat-tracks');
+                        var aboutDross = document.getElementById('about-stat-dross');
                         if (aboutReleases) aboutReleases.textContent = String(catalog.releases.length);
+                        if (aboutTracks) {
+                            aboutTracks.textContent = String(catalog.releases.reduce(function (sum, release) {
+                                return sum + (Number(release.trackCount) || 0);
+                            }, 0));
+                        }
+                        if (aboutDross) aboutDross.textContent = '3';
                     }
 
                     if (latestVideo) {
@@ -3103,7 +3111,14 @@
                         showcaseBadgePrimary.textContent = latestVideo.catalogClass === 'feature-appearance' ? 'Feature Appearance' : 'New Music Video';
                         showcaseTitle.textContent = latestVideo.title;
                         showcaseCopy.innerHTML = '<strong>' + latestVideo.title + '</strong> is now leading the live Heavy Moose video feed from the official channel, with newer release embeds syncing directly into the discography.';
-                        showcaseLink.href = latestVideo.watchUrl;
+                        showcaseLink.href = latestVideo.watchPage || latestVideo.watchUrl;
+                        if (latestVideo.watchPage) {
+                            showcaseLink.removeAttribute('target');
+                            showcaseLink.removeAttribute('rel');
+                        } else {
+                            showcaseLink.target = '_blank';
+                            showcaseLink.rel = 'noopener';
+                        }
                         showcaseIframe.src = latestVideo.embedUrl;
                         showcaseIframe.title = 'Heavy Moose - ' + latestVideo.title + ' music video';
                     }

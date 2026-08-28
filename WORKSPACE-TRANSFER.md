@@ -21,7 +21,7 @@ no frameworks). Hosted on Cloudflare Pages as a static site with an advanced-mod
 | -------------- | --------------------------- | ---------------------------------------------------------------------- |
 | `index.html`   | heavymoose.com              | Homepage: current video + current Apple release, driven from JSON      |
 | `music.html`   | heavymoose.com/music.html   | Full discography + in-page audio player + 15-video latest feed         |
-| `videos.html`  | heavymoose.com/videos.html  | Full official YouTube library with nocookie embeds                     |
+| `videos.html`  | heavymoose.com/videos.html  | Official Music Videos playlist (34), click-to-play     |
 
 ---
 
@@ -58,6 +58,8 @@ File → Open Workspace from File → z:\HeavyMoose\heavymoose.code-workspace
 
 ```powershell
 npm run dev              # local http-server on :3001
+npm run catalog:sync     # refresh Apple + YouTube JSON (merge, do not drop old videos)
+npm run lint:html        # htmlhint on *.html
 npm run deploy           # deploy to production (--branch main, --commit-dirty=true)
 npm run deploy:clean     # deploy to production (no dirty flag)
 npm run verify:prod      # HEAD check against https://heavymoose.com
@@ -173,16 +175,26 @@ Featured homepage video/album and `/videos` are driven by JSON, not hardcoded co
 
 | File | Source |
 | ---- | ------ |
-| `assets/data/media-library.json` | YouTube RSS latest 15, merged into existing entries |
+| `assets/data/media-library.json` | YouTube RSS latest 15 **merged** into existing entries, plus official playlist flags |
 | `assets/data/music-catalog.json` | iTunes lookup `id=1895530727` |
 
 ```bash
-npm run sync:catalogs
+npm run catalog:sync
 ```
 
-This preserves existing records, downloads new Apple artwork into `assets/images/releases/`, sets `isLatestUpload` / `latestUploadVideoId` from the newest RSS item, and updates `updatedAt` / `videosUpdatedAt`. After a sync, check homepage fallback copy and JSON-LD if crawlers should see the new titles without waiting for JS.
+`scripts/sync-music-catalog.js` (WeaverASUS local name) is the sync entry point. `npm run sync:catalogs` is an alias.
 
-Do not replace live `index.html` / `music.html` / assets with stale git copies. Production is the source of truth when the repo lags.
+It:
+
+- Pulls Apple Music via iTunes lookup `id=1895530727` and downloads missing 800px artwork
+- Pulls YouTube via RSS `https://www.youtube.com/feeds/videos.xml?channel_id=UCrGqGbSQYxxNAjsvlQ8tT8g` (latest 15 only)
+- **Keeps** every video already in `media-library.json` and **adds** newer RSS items. It does not replace the list with the 15-entry window.
+- Refreshes membership for the official Music Videos playlist `PLqKeZP1HGoZmqeR60aYzywnEJDY227xgZ` (34 videos). `/videos` uses that playlist as source of truth.
+- Marks extras that look like videos but are not on the playlist (Bobba, Sorry, Give the Nuns One, Every Night) as a Features group.
+- Skips YouTube Topic-channel IDs.
+- Sets `isLatestUpload` / `latestUploadVideoId` from the newest **official playlist** item.
+
+Do not replace live `index.html` / `music.html` / assets with stale git copies. Production is the source of truth when the repo lags. Production deploys from the WeaverASUS dirty tree with `npx wrangler pages deploy . --project-name=heavymoose --branch main --commit-dirty=true`. This GitHub PR does not merge or deploy.
 
 ---
 
@@ -198,9 +210,9 @@ Do not replace live `index.html` / `music.html` / assets with stale git copies. 
 
 ```
 index.html            Homepage (JSON-driven featured video + release)
-music.html            Discography + players + latest 15 videos
-videos.html           Full YouTube library
-_worker.js            Cloudflare Pages Worker (pretty URL aliases + static serve)
+music.html            Discography + players + current-release shelf
+videos.html           Official 34-video playlist, click-to-play
+_worker.js            Cloudflare Pages Worker (www→apex 301, pretty URL aliases)
 _headers              Security headers (CSP, HSTS)
 wrangler.toml         CF Pages config — project "heavymoose", nodejs_compat
 sitemap.xml           Pages + video entries
@@ -210,7 +222,7 @@ assets/data/          music-catalog.json + media-library.json
 assets/images/        Album art, America 250 archive, gallery
 assets/audio/         In-page preview MP3s (America 250, Floor Witness, Temper, Missed Some 80s)
 shared/               Heavy Moose + GFV nav
-scripts/sync-catalogs.js   Refresh Apple + YouTube JSON
+scripts/sync-music-catalog.js   Refresh Apple + YouTube JSON (merge RSS, flag official playlist)
 ```
 
 ---

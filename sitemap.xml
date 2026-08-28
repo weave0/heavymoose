@@ -37,19 +37,19 @@
             <video:family_friendly>yes</video:family_friendly>
         </video:video>
         <video:video>
-            <video:thumbnail_loc>https://i.ytimg.com/vi/AVBnhx2jA7c/hqdefault.jpg</video:thumbnail_loc>
-            <video:title>Stuff and Things (Bobba)</video:title>
-            <video:description>#heavymoose #goodflippinvibes</video:description>
-            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/AVBnhx2jA7c</video:player_loc>
-            <video:publication_date>2026-08-10T02:38:54+00:00</video:publication_date>
-            <video:family_friendly>yes</video:family_friendly>
-        </video:video>
-        <video:video>
             <video:thumbnail_loc>https://i.ytimg.com/vi/HNascZ8Eflo/hqdefault.jpg</video:thumbnail_loc>
             <video:title>Try (Meh)</video:title>
             <video:description>Try Harder</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/HNascZ8Eflo</video:player_loc>
             <video:publication_date>2026-08-09T00:50:08+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/W33Yw2o-Yaw/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Jack</video:title>
+            <video:description>enjoy</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/W33Yw2o-Yaw</video:player_loc>
+            <video:publication_date>2026-08-05T01:51:35+00:00</video:publication_date>
             <video:family_friendly>yes</video:family_friendly>
         </video:video>
     </url>
@@ -94,19 +94,89 @@
             <video:family_friendly>yes</video:family_friendly>
         </video:video>
         <video:video>
-            <video:thumbnail_loc>https://i.ytimg.com/vi/AVBnhx2jA7c/hqdefault.jpg</video:thumbnail_loc>
-            <video:title>Stuff and Things (Bobba)</video:title>
-            <video:description>#heavymoose #goodflippinvibes</video:description>
-            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/AVBnhx2jA7c</video:player_loc>
-            <video:publication_date>2026-08-10T02:38:54+00:00</video:publication_date>
-            <video:family_friendly>yes</video:family_friendly>
-        </video:video>
-        <video:video>
             <video:thumbnail_loc>https://i.ytimg.com/vi/HNascZ8Eflo/hqdefault.jpg</video:thumbnail_loc>
             <video:title>Try (Meh)</video:title>
             <video:description>Try Harder</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/HNascZ8Eflo</video:player_loc>
             <video:publication_date>2026-08-09T00:50:08+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/W33Yw2o-Yaw/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Jack</video:title>
+            <video:description>enjoy</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/W33Yw2o-Yaw</video:player_loc>
+            <video:publication_date>2026-08-05T01:51:35+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+    <url>
+        <loc>https://heavymoose.com/video-wiggle-pit-it.html</loc>
+        <lastmod>2026-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Wiggle Pit It</video:title>
+            <video:description>Official Heavy Moose music video for Wiggle Pit It, from Double T. Moose.</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/_AlTynB84dE</video:player_loc>
+            <video:publication_date>2026-08-23T19:25:56+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+    <url>
+        <loc>https://heavymoose.com/video-well-deep.html</loc>
+        <lastmod>2026-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/spupt7sFlVs/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Well (Deep)</video:title>
+            <video:description>Official Heavy Moose music video for Well (Deep).</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/spupt7sFlVs</video:player_loc>
+            <video:publication_date>2026-08-22T03:21:21+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+    <url>
+        <loc>https://heavymoose.com/video-have-a-waffle.html</loc>
+        <lastmod>2026-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/ggsk-w-rzvA/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Have a Waffle</video:title>
+            <video:description>Official Heavy Moose music video for Have a Waffle.</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/ggsk-w-rzvA</video:player_loc>
+            <video:publication_date>2026-08-12T23:16:47+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+    <url>
+        <loc>https://heavymoose.com/video-try-meh.html</loc>
+        <lastmod>2026-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/HNascZ8Eflo/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Try (Meh)</video:title>
+            <video:description>Official Heavy Moose music video for Try (Meh).</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/HNascZ8Eflo</video:player_loc>
+            <video:publication_date>2026-08-09T00:50:08+00:00</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+    <url>
+        <loc>https://heavymoose.com/video-jack.html</loc>
+        <lastmod>2026-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <video:video>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/W33Yw2o-Yaw/hqdefault.jpg</video:thumbnail_loc>
+            <video:title>Jack</video:title>
+            <video:description>Official Heavy Moose music video for Jack.</video:description>
+            <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/W33Yw2o-Yaw</video:player_loc>
+            <video:publication_date>2026-08-05T01:51:35+00:00</video:publication_date>
             <video:family_friendly>yes</video:family_friendly>
         </video:video>
     </url>
@@ -115,13 +185,8 @@
         <lastmod>2026-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://heavymoose.com/assets/images/Heavy%20Moose%20DJ%20Sillouette.png</image:loc>
-            <image:title>Heavy Moose DJ silhouette artwork</image:title>
-            <image:caption>Watch page art for the Heavy Moose video Missed Some 80s</image:caption>
-        </image:image>
         <video:video>
-            <video:thumbnail_loc>https://heavymoose.com/assets/images/Heavy%20Moose%20DJ%20Sillouette.png</video:thumbnail_loc>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/4pLOb0lknOk/hqdefault.jpg</video:thumbnail_loc>
             <video:title>Missed Some 80s</video:title>
             <video:description>Official Heavy Moose music video for Missed Some 80s, a standalone industrial single.</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/4pLOb0lknOk</video:player_loc>
@@ -132,9 +197,9 @@
         <loc>https://heavymoose.com/video-no.html</loc>
         <lastmod>2026-05-31</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
         <video:video>
-            <video:thumbnail_loc>https://i.ytimg.com/vi/8UTeaFOOWPw/maxresdefault.jpg</video:thumbnail_loc>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/8UTeaFOOWPw/hqdefault.jpg</video:thumbnail_loc>
             <video:title>NO</video:title>
             <video:description>Official Heavy Moose music video for NO from DROSS: TEMPER.</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/8UTeaFOOWPw</video:player_loc>
@@ -145,9 +210,9 @@
         <loc>https://heavymoose.com/video-lux-laugh-protocol.html</loc>
         <lastmod>2026-05-31</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
         <video:video>
-            <video:thumbnail_loc>https://heavymoose.com/assets/images/lux-laugh-protocol/t04_cover_cufflink.png</video:thumbnail_loc>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/NM4Nrv9zyN8/hqdefault.jpg</video:thumbnail_loc>
             <video:title>Lux Laugh Protocol</video:title>
             <video:description>Official Heavy Moose music video for Lux Laugh Protocol from Floor Witness.</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/NM4Nrv9zyN8</video:player_loc>
@@ -158,9 +223,9 @@
         <loc>https://heavymoose.com/video-move-then-prove.html</loc>
         <lastmod>2026-06-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
         <video:video>
-            <video:thumbnail_loc>https://i.ytimg.com/vi/jA9QxKiTnUc/maxresdefault.jpg</video:thumbnail_loc>
+            <video:thumbnail_loc>https://i.ytimg.com/vi/jA9QxKiTnUc/hqdefault.jpg</video:thumbnail_loc>
             <video:title>Move Then Prove</video:title>
             <video:description>Official Heavy Moose music video for Move Then Prove.</video:description>
             <video:player_loc allow_embed="yes">https://www.youtube-nocookie.com/embed/jA9QxKiTnUc</video:player_loc>

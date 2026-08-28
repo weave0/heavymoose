@@ -7,6 +7,12 @@
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    if (url.hostname === "www.heavymoose.com") {
+      url.hostname = "heavymoose.com";
+      return Response.redirect(url.toString(), 301);
+    }
+
     const rawPath = url.pathname || "/";
     let decodedPath = rawPath;
     try {
@@ -52,6 +58,11 @@ export default {
       ["/video-no", "/video-no.html"],
       ["/video-lux-laugh-protocol", "/video-lux-laugh-protocol.html"],
       ["/video-move-then-prove", "/video-move-then-prove.html"],
+      ["/video-wiggle-pit-it", "/video-wiggle-pit-it.html"],
+      ["/video-well-deep", "/video-well-deep.html"],
+      ["/video-have-a-waffle", "/video-have-a-waffle.html"],
+      ["/video-try-meh", "/video-try-meh.html"],
+      ["/video-jack", "/video-jack.html"],
     ]);
 
     if (htmlAliases.has(pathLower)) {

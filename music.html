@@ -1958,10 +1958,8 @@
 
             <div class="hm-quicklinks" aria-label="Primary navigation">
                 <a href="index.html">Home</a>
-                <a href="music.html" aria-current="page">Music</a>
                 <a href="videos.html">Videos</a>
-                <a href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Subscribe to Heavy Moose on YouTube (opens in new tab)">Subscribe</a>
-                <a href="#latest-youtube-releases">Latest</a>
+                <a href="music.html" aria-current="page">Music</a>
             </div>
 
             <div class="hm-menu-actions">
@@ -2005,7 +2003,7 @@
                         <span class="hm-link-chip">005</span>
                         <span class="hm-link-copy">
                             <span class="hm-link-title">Knock, Knock ('Merica)</span>
-                            <span class="hm-link-subtitle">A 2026 album from the America 250 era, with artwork and direct platform links.</span>
+                            <span class="hm-link-subtitle">America 250-era album. Archive copy and the on-site player, not the current release.</span>
                         </span>
                     </a>
                     <a class="hm-menu-link" href="#floor-witness">
@@ -2129,8 +2127,65 @@
                 </div>
 
                 <div class="latest-release-grid" id="latest-release-grid" aria-label="Latest Heavy Moose releases">
-                    <p class="catalog-status">Loading latest releases…</p>
+                    <article class="latest-release-card reveal visible latest-release-card--feature">
+                        <img class="latest-release-art" src="assets/images/releases/pledge.jpg" alt="Pledge - Single album cover" width="600" height="600" loading="eager">
+                        <div class="latest-release-body">
+                            <span class="latest-release-kicker">Newest Single · 2026-08-26</span>
+                            <h3>Pledge - Single</h3>
+                            <p class="latest-release-meta">1 track · Rock</p>
+                            <div class="latest-release-actions">
+                                <a class="stream-btn primary" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener">Apple Music</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="latest-release-card reveal visible">
+                        <img class="latest-release-art" src="assets/images/releases/double-t-moose.jpg" alt="Double T. Moose album cover" width="600" height="600" loading="lazy">
+                        <div class="latest-release-body">
+                            <span class="latest-release-kicker">Album · 2026-08-22</span>
+                            <h3>Double T. Moose</h3>
+                            <p class="latest-release-meta">17 tracks · Hip-Hop/Rap</p>
+                            <div class="latest-release-actions">
+                                <a class="stream-btn primary" href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener">Apple Music</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="latest-release-card reveal visible">
+                        <img class="latest-release-art" src="assets/images/releases/fine.jpg" alt="Fine album cover" width="600" height="600" loading="lazy">
+                        <div class="latest-release-body">
+                            <span class="latest-release-kicker">Album · 2026-08-16</span>
+                            <h3>Fine</h3>
+                            <p class="latest-release-meta">16 tracks · Dance</p>
+                            <div class="latest-release-actions">
+                                <a class="stream-btn primary" href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener">Apple Music</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="latest-release-card reveal visible">
+                        <img class="latest-release-art" src="assets/images/releases/meh.jpg" alt="Meh album cover" width="600" height="600" loading="lazy">
+                        <div class="latest-release-body">
+                            <span class="latest-release-kicker">Album · 2026-08-07</span>
+                            <h3>Meh</h3>
+                            <p class="latest-release-meta">18 tracks · Dance</p>
+                            <div class="latest-release-actions">
+                                <a class="stream-btn primary" href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener">Apple Music</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="latest-release-card reveal visible">
+                        <img class="latest-release-art" src="assets/images/releases/yippee-ki-yay.jpg" alt="Yippee Ki-Yay album cover" width="600" height="600" loading="lazy">
+                        <div class="latest-release-body">
+                            <span class="latest-release-kicker">Album · 2026-07-30</span>
+                            <h3>Yippee Ki-Yay</h3>
+                            <p class="latest-release-meta">21 tracks · Dance</p>
+                            <div class="latest-release-actions">
+                                <a class="stream-btn primary" href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener">Apple Music</a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+                <noscript>
+                    <p class="catalog-status">Newest verified releases: Pledge, Double T. Moose, Fine, Meh, and Yippee Ki-Yay. Open Apple Music or the album sections below.</p>
+                </noscript>
             </div>
         </section>
 
@@ -2155,9 +2210,9 @@
                     </div>
                 </div>
                 <div class="catalog-grid" id="catalog-grid" aria-live="polite">
-                    <p class="catalog-status">Loading catalog…</p>
+                    <p class="catalog-status">The verified Apple Music catalog currently lists 27 releases and 306 tracks. JavaScript fills this grid when available.</p>
                 </div>
-                <noscript><p class="catalog-status">Use the detailed album sections below or open the Apple Music artist page for the current catalog.</p></noscript>
+                <noscript><p class="catalog-status">The current Apple Music catalog has 27 releases / 306 tracks. Use the detailed album sections below or open the Apple Music artist page.</p></noscript>
             </div>
         </section>
 
@@ -2375,15 +2430,32 @@
                 <div class="video-feed-group">
                     <h3 class="video-feed-heading">Primary Release Videos</h3>
                     <div class="video-feed-grid" id="latest-video-feed" aria-live="polite">
-                        <p class="catalog-status">Loading latest music video embeds…</p>
+                        <p class="catalog-status">The official video library is on the <a href="videos.html">Videos</a> page.</p>
                     </div>
+                    <noscript>
+                        <ol>
+                            <li><a href="video-wiggle-pit-it.html">Wiggle Pit It</a></li>
+                            <li><a href="video-well-deep.html">Well (Deep)</a></li>
+                            <li><a href="video-have-a-waffle.html">Have a Waffle</a></li>
+                            <li><a href="video-try-meh.html">Try (Meh)</a></li>
+                            <li><a href="video-jack.html">Jack</a></li>
+                        </ol>
+                    </noscript>
                 </div>
 
                 <div class="video-feed-group">
                     <h3 class="video-feed-heading">Features and Collaborations</h3>
                     <div class="video-feed-grid" id="feature-video-feed" aria-live="polite">
-                        <p class="catalog-status">Loading feature video embeds…</p>
+                        <p class="catalog-status">Features live with the official library on the <a href="videos.html">Videos</a> page.</p>
                     </div>
+                    <noscript>
+                        <ol>
+                            <li><a href="https://www.youtube.com/watch?v=AVBnhx2jA7c">Stuff and Things (Bobba)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=hoN657bntjg">Sorry ('bout your wall)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=sXHNn1w04uo">Give the Nuns One</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=OXXuboDQ2Qk">Every Night</a></li>
+                        </ol>
+                    </noscript>
                 </div>
             </div>
         </section>
@@ -2490,13 +2562,13 @@
                             <div class="album-cover-tags">
                                 <span class="tag">Heavy Moose</span>
                                 <span class="tag">Single</span>
-                                <span class="tag">New</span>
+                                <span class="tag">Archive</span>
                             </div>
                         </div>
                     </div>
                     <div class="album-content reveal">
-                        <span class="new-release-badge" aria-label="New release">New · May 2026</span>
-                        <span class="section-label">Signal 001 — Live now</span>
+                        <span class="new-release-badge" aria-label="May 2026 release">May 2026</span>
+                        <span class="section-label">Standalone single</span>
                         <h2 class="section-title" id="conus-title">Heavy Moose — Missed Some 80s</h2>
                         <p class="album-desc-long">
                             A newly released standalone Heavy Moose track posted directly into the site. <strong>Missed Some 80s</strong>
@@ -2608,13 +2680,13 @@
                             <div class="album-cover-tags">
                                 <span class="tag">Industrial</span>
                                 <span class="tag">Electronic</span>
-                                <span class="tag">New</span>
+                                <span class="tag">Archive</span>
                             </div>
                         </div>
                     </div>
                     <div class="album-content reveal">
-                        <span class="new-release-badge" aria-label="New release">New · May 2026</span>
-                        <span class="section-label">Album 005 — Latest</span>
+                        <span class="new-release-badge" aria-label="May 2026 release">May 2026</span>
+                        <span class="section-label">Album — May 2026 archive</span>
                         <h2 class="section-title" id="flipside-title">Flipside Rituals</h2>
                         <p class="album-desc-long">
                             Six tracks. Twenty-one minutes. <strong>Flipside Rituals</strong> stays compact and precise —
@@ -2713,17 +2785,17 @@
                             <div class="album-cover-tags">
                                 <span class="tag">Industrial</span>
                                 <span class="tag">Experimental</span>
-                                <span class="tag">Live now</span>
+                                <span class="tag">America 250</span>
                             </div>
                         </div>
                     </div>
                     <div class="album-content reveal">
-                        <span class="new-release-badge new-release-badge--kk" aria-label="New release">New · May 2026</span>
-                        <span class="section-label">Album 005 — Live now</span>
+                        <span class="new-release-badge new-release-badge--kk" aria-label="America 250 archive">May 2026 archive</span>
+                        <span class="section-label">Album 005 — America 250 archive</span>
                         <h2 class="section-title" id="kk-title">Knock, Knock ('Merica)</h2>
                         <p class="album-desc-long">
                             Thirteen tracks. Forty minutes. <strong>Knock, Knock ('Merica)</strong>
-                            pushes march cadence, hard-edged satire, and release-day pressure into a compact new Heavy Moose set.
+                            is a 2026 Heavy Moose album from the America 250 run, kept here as catalog history rather than the current release.
                         </p>
                         <p class="album-desc-long">
                             The full public track list below was pulled from the live release listing so the site reflects the album exactly as it shipped.
