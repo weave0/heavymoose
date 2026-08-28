@@ -160,7 +160,7 @@
         .video-meta { margin-top: 8px; color: var(--text-muted); font-size: 0.95rem; min-height: 1.4em; }
         .video-card a {
             display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px;
-            padding: 0 14px; border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600;
+            margin-right: 8px; padding: 0 14px; border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600;
         }
         .fallback-list { margin: 16px 0 0 18px; color: var(--text-secondary); }
         .fallback-list a { text-decoration: underline; }
@@ -275,6 +275,7 @@
                         <h2>Wiggle Pit It</h2>
                         <p class="video-meta">August 23, 2026 · Double T. Moose</p>
                         <a href="video-wiggle-pit-it.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="spupt7sFlVs">
@@ -287,6 +288,7 @@
                         <h2>Well (Deep)</h2>
                         <p class="video-meta">August 22, 2026</p>
                         <a href="video-well-deep.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=spupt7sFlVs" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="ggsk-w-rzvA">
@@ -299,6 +301,7 @@
                         <h2>Have a Waffle</h2>
                         <p class="video-meta">August 12, 2026 · Whisp</p>
                         <a href="video-have-a-waffle.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=ggsk-w-rzvA" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="HNascZ8Eflo">
@@ -311,6 +314,7 @@
                         <h2>Try (Meh)</h2>
                         <p class="video-meta">August 9, 2026 · Meh</p>
                         <a href="video-try-meh.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=HNascZ8Eflo" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="W33Yw2o-Yaw">
@@ -323,6 +327,7 @@
                         <h2>Jack</h2>
                         <p class="video-meta">August 5, 2026 · Jack - Single</p>
                         <a href="video-jack.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=W33Yw2o-Yaw" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="qPbUA9RziPo">
@@ -623,6 +628,7 @@
                         <h2>Heavy Moose: Temper - Maybe (NO)</h2>
                         <p class="video-meta"></p>
                         <a href="video-no.html">Open watch page</a>
+                        <a href="https://www.youtube.com/watch?v=8UTeaFOOWPw" target="_blank" rel="noopener">Watch on YouTube</a>
                     </div>
                 </article>
                 <article class="video-card" data-video-id="6VFqD3v-YeM">
@@ -858,17 +864,17 @@
                 meta.textContent = [formatDate(video.publishedAt), video.associatedReleaseTitle].filter(Boolean).join(' · ');
 
                 var watch = document.createElement('a');
-                if (video.watchPage) {
-                    watch.href = video.watchPage;
-                    watch.textContent = 'Open watch page';
-                } else {
-                    watch.href = video.watchUrl;
-                    watch.target = '_blank';
-                    watch.rel = 'noopener';
-                    watch.textContent = 'Watch on YouTube';
-                }
-
+                watch.href = video.watchUrl;
+                watch.target = '_blank';
+                watch.rel = 'noopener';
+                watch.textContent = 'Watch on YouTube';
                 body.append(kickerEl, title, meta, watch);
+                if (video.watchPage) {
+                    var page = document.createElement('a');
+                    page.href = video.watchPage;
+                    page.textContent = 'Open watch page';
+                    body.append(page);
+                }
                 card.append(button, body);
                 return card;
             }

@@ -304,7 +304,7 @@
                     "numTracks": 16,
                     "datePublished": "2026-06",
                     "byArtist": { "@id": "https://heavymoose.com/#artist" },
-                    "url": "https://www.youtube.com/watch?v=XpzUROVV3Mg&list=OLAK5uy_m9wGQvgL2-hzfjmj-7-MsSowvXGiq5ROA",
+                    "url": "https://music.apple.com/us/album/neon-jellyfish/6783911759",
                     "genre": ["Industrial", "Experimental"]
                 },
                 {
@@ -315,7 +315,7 @@
                     "numTracks": 12,
                     "datePublished": "2026-06",
                     "byArtist": { "@id": "https://heavymoose.com/#artist" },
-                    "url": "https://www.youtube.com/watch?v=r3x7x9doJX8&list=OLAK5uy_lx3VaAk49-MExf-sqiFzzLSySQkzmZwXM",
+                    "url": "https://music.apple.com/us/album/dark-cloud-circuit/6781015683",
                     "genre": ["Industrial", "Experimental"]
                 },
                 {
@@ -326,7 +326,7 @@
                     "numTracks": 15,
                     "datePublished": "2026-06",
                     "byArtist": { "@id": "https://heavymoose.com/#artist" },
-                    "url": "https://www.youtube.com/watch?v=3luWCy99SUg&list=OLAK5uy_naLutvnB44y4Fj636zYsv-5PjNL5Flm5k",
+                    "url": "https://music.apple.com/us/album/word/6779770887",
                     "genre": ["Industrial", "Experimental"]
                 },
                 {
@@ -2425,7 +2425,7 @@
             <div class="container">
                 <span class="section-label">Synced from the official channel</span>
                 <h2 class="section-title" id="latest-youtube-releases-title">Latest Music Videos</h2>
-                <p class="section-intro">A short latest-upload feed from the official channel. The full library, with every embed, lives on the <a href="videos.html">Videos</a> page.</p>
+                <p class="section-intro">A short official-playlist feed. The full 34-video library lives on the <a href="videos.html">Videos</a> page. Features that are not on the playlist sit in the group below.</p>
 
                 <div class="video-feed-group">
                     <h3 class="video-feed-heading">Primary Release Videos</h3>
@@ -2722,8 +2722,8 @@
 
                         <div class="video-embed video-embed--compact reveal">
                             <iframe
-                                src="https://www.youtube-nocookie.com/embed/NudJoquxfv8"
-                                title="Heavy Moose — Flipside Rituals"
+                                src="https://www.youtube-nocookie.com/embed/LxPj9sExxuc"
+                                title="Heavy Moose — Flipside Rituals: Get Flipped"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen
                                 loading="lazy">
@@ -2743,11 +2743,11 @@
                                 Stream on Amazon Music
                             </a>
                             <a
-                                href="https://www.youtube.com/watch?v=NudJoquxfv8"
+                                href="https://www.youtube.com/watch?v=LxPj9sExxuc"
                                 class="stream-btn"
                                 target="_blank"
                                 rel="noopener"
-                                aria-label="Watch Flipside Rituals on YouTube (opens in new tab)">
+                                aria-label="Watch Flipside Rituals Get Flipped on YouTube (opens in new tab)">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.4 12 20.4 12 20.4s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z" />
                                 </svg>
@@ -3988,7 +3988,13 @@
 
                         latestVideoFeed.textContent = '';
                         mediaLibrary.videos
-                            .filter(function (video) { return video.includeInLatestMusicVideos; })
+                            .filter(function (video) { return video.inOfficialMusicVideosPlaylist; })
+                            .sort(function (a, b) {
+                                if (a.officialPlaylistIndex != null && b.officialPlaylistIndex != null) {
+                                    return a.officialPlaylistIndex - b.officialPlaylistIndex;
+                                }
+                                return String(b.publishedAt || '') < String(a.publishedAt || '') ? -1 : 1;
+                            })
                             .slice(0, 15)
                             .forEach(function (video) {
                                 latestVideoFeed.append(buildVideoCard(video, releaseLookup));
@@ -3996,8 +4002,7 @@
 
                         featureVideoFeed.textContent = '';
                         mediaLibrary.videos
-                            .filter(function (video) { return !video.includeInLatestMusicVideos; })
-                            .slice(0, 4)
+                            .filter(function (video) { return video.includeInFeaturesGroup && !video.inOfficialMusicVideosPlaylist; })
                             .forEach(function (video) {
                                 featureVideoFeed.append(buildVideoCard(video, releaseLookup));
                             });

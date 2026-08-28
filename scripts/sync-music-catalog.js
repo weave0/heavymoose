@@ -33,6 +33,7 @@ const HEAVY_MOOSE_ITUNES_ID = 1895530727;
 const HEAVY_MOOSE_CHANNEL_ID = 'UCrGqGbSQYxxNAjsvlQ8tT8g';
 const OFFICIAL_PLAYLIST_ID = 'PLqKeZP1HGoZmqeR60aYzywnEJDY227xgZ';
 const TOPIC_CHANNEL_IDS = new Set(['UClXJsYy8qljXchec1hbWLTg']);
+const TOPIC_VIDEO_IDS = new Set(['NudJoquxfv8', 'XpzUROVV3Mg']);
 
 const FEATURE_VIDEO_IDS = new Set([
     'AVBnhx2jA7c', // Stuff and Things (Bobba)
@@ -403,7 +404,7 @@ function syncCatalog(existing) {
 }
 
 function upsertVideo(byId, entry, catalog) {
-    if (isTopicChannel(entry.authorName, entry.authorUrl) || TOPIC_CHANNEL_IDS.has(entry.channelId)) {
+    if (TOPIC_VIDEO_IDS.has(entry.videoId) || isTopicChannel(entry.authorName, entry.authorUrl) || TOPIC_CHANNEL_IDS.has(entry.channelId)) {
         console.warn('skip topic-channel video', entry.videoId);
         return;
     }
@@ -417,6 +418,10 @@ function syncMedia(existing, catalog) {
     const byId = new Map();
 
     existing.videos.forEach(function (video) {
+        if (TOPIC_VIDEO_IDS.has(video.videoId)) {
+            console.warn('drop topic-channel video from library', video.videoId);
+            return;
+        }
         byId.set(video.videoId, Object.assign({}, video, {
             isLatestUpload: false,
             inOfficialMusicVideosPlaylist: false,
