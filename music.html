@@ -2324,8 +2324,8 @@
                 <div class="video-grid">
                     <div class="video-embed reveal">
                         <iframe
-                            src="https://www.youtube-nocookie.com/embed/W33Yw2o-Yaw"
-                            title="Heavy Moose latest synced music video"
+                            src="https://www.youtube-nocookie.com/embed/_AlTynB84dE"
+                            title="Heavy Moose - Wiggle Pit It"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen
                             id="latest-video-iframe"
@@ -2339,9 +2339,9 @@
                             </svg>
                             Latest Video
                         </span>
-                        <h2 class="video-title" id="video-title">Loading latest music video…</h2>
+                        <h2 class="video-title" id="video-title">Wiggle Pit It</h2>
                         <p class="video-desc" id="latest-video-copy">
-                            The newest official Heavy Moose music video is loading from the synced YouTube channel feed.
+                            <strong>Wiggle Pit It</strong> currently leads the official Heavy Moose upload feed.
                         </p>
                         <a
                             href="https://www.youtube.com/@HeavyMoose"
@@ -3643,7 +3643,7 @@
 
             function buildReleaseCard(release, index, videoMatch) {
                 var card = document.createElement('article');
-                card.className = 'latest-release-card reveal' + (index === 0 ? ' latest-release-card--feature' : '');
+                card.className = 'latest-release-card reveal visible' + (index === 0 ? ' latest-release-card--feature' : '');
 
                 var releaseArtworkOverrides = {
                     'yippee-ki-yay': 'assets/images/yippee-ki-yay/yippee-ki-yay-foundry-republic.png'
@@ -3716,7 +3716,7 @@
 
             function buildDirectoryCard(artist) {
                 var card = document.createElement('article');
-                card.className = 'latest-release-card reveal';
+                card.className = 'latest-release-card reveal visible';
 
                 var body = document.createElement('div');
                 body.className = 'latest-release-body';
@@ -3760,7 +3760,7 @@
 
             function buildVideoCard(video, releaseLookup) {
                 var card = document.createElement('article');
-                card.className = 'video-feed-card reveal';
+                card.className = 'video-feed-card reveal visible';
 
                 var frame = document.createElement('iframe');
                 frame.src = video.embedUrl;
@@ -3900,7 +3900,13 @@
                         }) || mediaLibrary.videos[0];
 
                         if (latestVideo) {
-                            latestVideoBadge.lastChild.textContent = latestVideo.isLatestUpload ? ' Latest upload' : ' Latest music video';
+                            if (latestVideoBadge) {
+                                var badgeText = latestVideo.isLatestUpload ? ' Latest upload' : ' Latest music video';
+                                var textNode = Array.prototype.find.call(latestVideoBadge.childNodes, function (node) {
+                                    return node.nodeType === 3 && node.textContent.trim();
+                                });
+                                if (textNode) textNode.textContent = badgeText;
+                            }
                             latestVideoTitle.textContent = latestVideo.title;
                             latestVideoCopy.innerHTML = '<strong>' + latestVideo.title + '</strong> currently leads the synced Heavy Moose channel feed and stays embedded here alongside the rest of the current release run.';
                             latestVideoLink.href = latestVideo.watchUrl;
