@@ -1191,20 +1191,7 @@
             background: #000;
         }
 
-        .now-play {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            min-height: 44px;
-            padding: 0 16px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-        }
+        /* Quiet play chrome lives in shared/facade-play.css */
 
         .now-copy,
         .now-release-body {
@@ -2349,6 +2336,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-coverux">
+    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-coverux">
 </head>
 
 <body>
@@ -2469,10 +2458,17 @@
                         </span>
                     </a>
                     <a class="hm-menu-link" href="#albums">
-                        <span class="hm-link-chip">ALL</span>
+                        <span class="hm-link-chip">NOW</span>
                         <span class="hm-link-copy">
-                            <span class="hm-link-title">Release Overview</span>
-                            <span class="hm-link-subtitle">Jump to the homepage catalog preview and branch into the full discography.</span>
+                            <span class="hm-link-title">Current Catalog</span>
+                            <span class="hm-link-subtitle">Newest Apple Music releases, cover-led, newest first.</span>
+                        </span>
+                    </a>
+                    <a class="hm-menu-link" href="#origin">
+                        <span class="hm-link-chip">ORIG</span>
+                        <span class="hm-link-copy">
+                            <span class="hm-link-title">Origin / History</span>
+                            <span class="hm-link-subtitle">DROSS, Floor Witness, and Knock Knock — after the current run.</span>
                         </span>
                     </a>
                 </section>
@@ -2527,7 +2523,7 @@
                     <article class="now-video" aria-labelledby="showcase-title">
                         <button type="button" class="now-facade" id="showcase-facade" data-embed="https://www.youtube-nocookie.com/embed/_AlTynB84dE" aria-label="Play Wiggle Pit It">
                             <img src="https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg" alt="" width="480" height="360">
-                            <span class="now-play" aria-hidden="true">Play</span>
+                            <span class="now-play" aria-hidden="true"></span>
                         </button>
                         <div class="now-copy">
                             <p class="section-label" id="showcase-label">Official video</p>
@@ -2555,7 +2551,63 @@
                     <a class="btn btn-outline" id="latest-release-amazon" href="https://music.amazon.com/artists/B0GYLK4RWC/heavy-moose" target="_blank" rel="noopener noreferrer">Amazon Music</a>
                     <a class="btn btn-outline" href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" target="_blank" rel="noopener noreferrer">YouTube</a>
                 </div>
-                <p class="now-next">Then <a href="videos.html">Videos</a>, then <a href="#albums">history</a>.</p>
+                <p class="now-next">Then the <a href="#albums">current catalog</a>. Origin history sits below.</p>
+            </div>
+        </section>
+
+
+        <div class="cover-strip" aria-hidden="true">
+            <!-- COVER_STRIP_START -->
+                    <img src="assets/images/releases/pledge.jpg" alt="" width="400" height="400"><img src="assets/images/releases/double-t-moose.jpg" alt="" width="400" height="400"><img src="assets/images/releases/fine.jpg" alt="" width="400" height="400"><img src="assets/images/releases/meh.jpg" alt="" width="400" height="400"><img src="assets/images/releases/yippee-ki-yay.jpg" alt="" width="400" height="400" loading="lazy"><img src="assets/images/releases/whisp.jpg" alt="" width="400" height="400" loading="lazy"><img src="assets/images/releases/moose-pudding.jpg" alt="" width="400" height="400" loading="lazy"><img src="assets/images/releases/argh.jpg" alt="" width="400" height="400" loading="lazy">
+                    <!-- COVER_STRIP_END -->
+        </div>
+
+        <!-- ==========================================
+         CURRENT APPLE CATALOG
+         ========================================== -->
+        <section class="current-catalog" id="albums" aria-labelledby="albums-title">
+            <div class="container">
+                <div class="current-catalog-header reveal">
+                    <span class="section-label">Current Apple catalog</span>
+                    <h2 class="section-title" id="albums-title">Newest releases</h2>
+                    <p class="section-intro">
+                        The live Apple Music run, newest first: Pledge, Double T. Moose, Fine, Meh,
+                        Yippee Ki-Yay, Whisp, and the rest of the 2026 catalog. Artwork and links
+                        are baked from the verified catalog so this cannot go stale.
+                    </p>
+                </div>
+                <div class="cover-grid" id="current-catalog-grid">
+                    <!-- CATALOG_GRID_START -->
+                    <article class="cover-card" data-slug="pledge" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener"><img src="assets/images/releases/pledge.jpg" alt="Pledge - Single cover art" width="800" height="800" loading="eager"></a><div class="cover-card-body"><p class="cover-card-date">Aug 26, 2026</p><h3>Pledge - Single</h3><p class="cover-card-meta">Single · 1 track · Rock</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener" aria-label="Open Pledge - Single on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Pledge - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="double-t-moose" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener"><img src="assets/images/releases/double-t-moose.jpg" alt="Double T. Moose cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Aug 22, 2026</p><h3>Double T. Moose</h3><p class="cover-card-meta">Album · 17 tracks · Hip-Hop/Rap</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener" aria-label="Open Double T. Moose on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener" aria-label="Open Double T. Moose on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="fine" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener"><img src="assets/images/releases/fine.jpg" alt="Fine cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Aug 16, 2026</p><h3>Fine</h3><p class="cover-card-meta">Album · 16 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener" aria-label="Open Fine on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Fine on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="meh" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener"><img src="assets/images/releases/meh.jpg" alt="Meh cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Aug 7, 2026</p><h3>Meh</h3><p class="cover-card-meta">Album · 18 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener" aria-label="Open Meh on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=HNascZ8Eflo" target="_blank" rel="noopener" aria-label="Open Meh on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="yippee-ki-yay" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener"><img src="assets/images/releases/yippee-ki-yay.jpg" alt="Yippee Ki-Yay cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 30, 2026</p><h3>Yippee Ki-Yay</h3><p class="cover-card-meta">Album · 21 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener" aria-label="Open Yippee Ki-Yay on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=qPbUA9RziPo" target="_blank" rel="noopener" aria-label="Open Yippee Ki-Yay on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="whisp" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/whisp/6793851742" target="_blank" rel="noopener"><img src="assets/images/releases/whisp.jpg" alt="Whisp cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 23, 2026</p><h3>Whisp</h3><p class="cover-card-meta">Album · 12 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/whisp/6793851742" target="_blank" rel="noopener" aria-label="Open Whisp on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=ggsk-w-rzvA" target="_blank" rel="noopener" aria-label="Open Whisp on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="moose-pudding" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/moose-pudding/6793006768" target="_blank" rel="noopener"><img src="assets/images/releases/moose-pudding.jpg" alt="Moose Pudding cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 20, 2026</p><h3>Moose Pudding</h3><p class="cover-card-meta">Album · 16 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/moose-pudding/6793006768" target="_blank" rel="noopener" aria-label="Open Moose Pudding on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=y-55hCaxNlk" target="_blank" rel="noopener" aria-label="Open Moose Pudding on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="argh" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/argh/6791926673" target="_blank" rel="noopener"><img src="assets/images/releases/argh.jpg" alt="Argh cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 17, 2026</p><h3>Argh</h3><p class="cover-card-meta">Album · 13 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/argh/6791926673" target="_blank" rel="noopener" aria-label="Open Argh on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Argh on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="nebulous-breakfast" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/nebulous-breakfast/6790054576" target="_blank" rel="noopener"><img src="assets/images/releases/nebulous-breakfast.jpg" alt="Nebulous Breakfast cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 11, 2026</p><h3>Nebulous Breakfast</h3><p class="cover-card-meta">Album · 15 tracks · New Age</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/nebulous-breakfast/6790054576" target="_blank" rel="noopener" aria-label="Open Nebulous Breakfast on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Nebulous Breakfast on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="pas-de-l-art" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/pas-de-lart/6789486076" target="_blank" rel="noopener"><img src="assets/images/releases/pas-de-l-art.jpg" alt="Pas de l&#39;art cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jul 9, 2026</p><h3>Pas de l&#39;art</h3><p class="cover-card-meta">Album · 24 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/pas-de-lart/6789486076" target="_blank" rel="noopener" aria-label="Open Pas de l&#39;art on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=1ZUs-jUahqE" target="_blank" rel="noopener" aria-label="Open Pas de l&#39;art on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="welp" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/welp/6786644950" target="_blank" rel="noopener"><img src="assets/images/releases/welp.jpg" alt="Welp cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 30, 2026</p><h3>Welp</h3><p class="cover-card-meta">Album · 14 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/welp/6786644950" target="_blank" rel="noopener" aria-label="Open Welp on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=80p8JL7b1J0" target="_blank" rel="noopener" aria-label="Open Welp on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="neon-jellyfish" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/neon-jellyfish/6783911759" target="_blank" rel="noopener"><img src="assets/images/releases/neon-jellyfish.jpg" alt="Neon Jellyfish cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 22, 2026</p><h3>Neon Jellyfish</h3><p class="cover-card-meta">Album · 16 tracks · Dubstep</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/neon-jellyfish/6783911759" target="_blank" rel="noopener" aria-label="Open Neon Jellyfish on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=AJZCoAqlnnM" target="_blank" rel="noopener" aria-label="Open Neon Jellyfish on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="dark-cloud-circuit" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/dark-cloud-circuit/6781015683" target="_blank" rel="noopener"><img src="assets/images/releases/dark-cloud-circuit.jpg" alt="Dark Cloud Circuit cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 15, 2026</p><h3>Dark Cloud Circuit</h3><p class="cover-card-meta">Album · 12 tracks · Hardcore</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/dark-cloud-circuit/6781015683" target="_blank" rel="noopener" aria-label="Open Dark Cloud Circuit on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Dark Cloud Circuit on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="word" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/word/6779770887" target="_blank" rel="noopener"><img src="assets/images/releases/word.jpg" alt="Word cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 8, 2026</p><h3>Word</h3><p class="cover-card-meta">Album · 15 tracks · Jungle/Drum&#39;n&#39;bass</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/word/6779770887" target="_blank" rel="noopener" aria-label="Open Word on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=enXxee17OVc" target="_blank" rel="noopener" aria-label="Open Word on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="merican-moose-hugs" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/merican-moose-hugs-single/6777121073" target="_blank" rel="noopener"><img src="assets/images/releases/merican-moose-hugs.jpg" alt="Merican Moose Hugs - Single cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 4, 2026</p><h3>Merican Moose Hugs - Single</h3><p class="cover-card-meta">Single · 3 tracks · Hardcore</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/merican-moose-hugs-single/6777121073" target="_blank" rel="noopener" aria-label="Open Merican Moose Hugs - Single on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Merican Moose Hugs - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="flag-on-the-jukebox" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/flag-on-the-jukebox/6776086029" target="_blank" rel="noopener"><img src="assets/images/releases/flag-on-the-jukebox.jpg" alt="Flag on the Jukebox cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">Jun 1, 2026</p><h3>Flag on the Jukebox</h3><p class="cover-card-meta">Album · 11 tracks · Pop</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/flag-on-the-jukebox/6776086029" target="_blank" rel="noopener" aria-label="Open Flag on the Jukebox on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Flag on the Jukebox on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="k-paul" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/k-paul/6775364208" target="_blank" rel="noopener"><img src="assets/images/releases/k-paul.jpg" alt="K, Paul cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 31, 2026</p><h3>K, Paul</h3><p class="cover-card-meta">Album · 12 tracks · Pop</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/k-paul/6775364208" target="_blank" rel="noopener" aria-label="Open K, Paul on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open K, Paul on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="floor-gospel" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/floor-gospel/6777205500" target="_blank" rel="noopener"><img src="assets/images/releases/floor-gospel.jpg" alt="Floor Gospel cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 29, 2026</p><h3>Floor Gospel</h3><p class="cover-card-meta">Album · 12 tracks · Fitness &amp; Workout</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/floor-gospel/6777205500" target="_blank" rel="noopener" aria-label="Open Floor Gospel on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Floor Gospel on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="cold-cathedral" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/cold-cathedral/6772851915" target="_blank" rel="noopener"><img src="assets/images/releases/cold-cathedral.jpg" alt="Cold Cathedral + cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 24, 2026</p><h3>Cold Cathedral +</h3><p class="cover-card-meta">Album · 10 tracks · Dance</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/cold-cathedral/6772851915" target="_blank" rel="noopener" aria-label="Open Cold Cathedral + on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Cold Cathedral + on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="applebee-s-parking-lot-feat-dj-shariff" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/applebees-parking-lot-feat-dj-shariff-single/6771956352" target="_blank" rel="noopener"><img src="assets/images/releases/applebee-s-parking-lot-feat-dj-shariff.jpg" alt="Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 21, 2026</p><h3>Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single</h3><p class="cover-card-meta">Single · 1 track · Downtempo</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/applebees-parking-lot-feat-dj-shariff-single/6771956352" target="_blank" rel="noopener" aria-label="Open Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="motion-is-normal" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/motion-is-normal/6771133705" target="_blank" rel="noopener"><img src="assets/images/releases/motion-is-normal.jpg" alt="Motion is Normal cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 18, 2026</p><h3>Motion is Normal</h3><p class="cover-card-meta">Album · 12 tracks · House</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/motion-is-normal/6771133705" target="_blank" rel="noopener" aria-label="Open Motion is Normal on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Motion is Normal on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="jack" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/jack-single/6770118831" target="_blank" rel="noopener"><img src="assets/images/releases/jack.jpg" alt="Jack - Single cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 15, 2026</p><h3>Jack - Single</h3><p class="cover-card-meta">Single · 1 track · Downtempo</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/jack-single/6770118831" target="_blank" rel="noopener" aria-label="Open Jack - Single on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=W33Yw2o-Yaw" target="_blank" rel="noopener" aria-label="Open Jack - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="flipside-rituals" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/flipside-rituals-ep/6769816855" target="_blank" rel="noopener"><img src="assets/images/releases/flipside-rituals.jpg" alt="Flipside Rituals - EP cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 14, 2026</p><h3>Flipside Rituals - EP</h3><p class="cover-card-meta">EP · 6 tracks · Hardcore</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/flipside-rituals-ep/6769816855" target="_blank" rel="noopener" aria-label="Open Flipside Rituals - EP on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=LxPj9sExxuc" target="_blank" rel="noopener" aria-label="Open Flipside Rituals - EP on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="knock-knock-merica" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/knock-knock-merica/6768399020" target="_blank" rel="noopener"><img src="assets/images/releases/knock-knock-merica.jpg" alt="Knock, Knock (&#39;Merica) cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 7, 2026</p><h3>Knock, Knock (&#39;Merica)</h3><p class="cover-card-meta">Album · 13 tracks · Hardcore</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/knock-knock-merica/6768399020" target="_blank" rel="noopener" aria-label="Open Knock, Knock (&#39;Merica) on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Knock, Knock (&#39;Merica) on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="missed-some-80s-feat-dj-shariff" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/missed-some-80s-feat-dj-shariff-single/6767615420" target="_blank" rel="noopener"><img src="assets/images/releases/missed-some-80s-feat-dj-shariff.jpg" alt="Missed Some 80s (feat. DJ Shariff) - Single cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 5, 2026</p><h3>Missed Some 80s (feat. DJ Shariff) - Single</h3><p class="cover-card-meta">Single · 1 track · Dubstep</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/missed-some-80s-feat-dj-shariff-single/6767615420" target="_blank" rel="noopener" aria-label="Open Missed Some 80s (feat. DJ Shariff) - Single on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Missed Some 80s (feat. DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="floor-witness" data-kind="album"><a class="cover-card-art" href="https://music.apple.com/us/album/floor-witness/1896371819" target="_blank" rel="noopener"><img src="assets/images/releases/floor-witness.jpg" alt="Floor Witness cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 4, 2026</p><h3>Floor Witness</h3><p class="cover-card-meta">Album · 13 tracks · Dubstep</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/floor-witness/1896371819" target="_blank" rel="noopener" aria-label="Open Floor Witness on Apple Music">Apple</a><a href="https://www.youtube.com/watch?v=NM4Nrv9zyN8" target="_blank" rel="noopener" aria-label="Open Floor Witness on YouTube">YouTube</a></div></div></article>
+                    <article class="cover-card" data-slug="air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff" data-kind="single"><a class="cover-card-art" href="https://music.apple.com/us/album/air-punch-ceremony-feat-red-leopard-of-st-paul-dj/6766690846" target="_blank" rel="noopener"><img src="assets/images/releases/air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff.jpg" alt="Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single cover art" width="800" height="800" loading="lazy"></a><div class="cover-card-body"><p class="cover-card-date">May 2, 2026</p><h3>Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single</h3><p class="cover-card-meta">Single · 1 track · Dubstep</p><div class="cover-card-links"><a href="https://music.apple.com/us/album/air-punch-ceremony-feat-red-leopard-of-st-paul-dj/6766690846" target="_blank" rel="noopener" aria-label="Open Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single on Apple Music">Apple</a><a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <!-- CATALOG_GRID_END -->
+                </div>
+                <p class="catalog-more"><a href="music.html">Full discography and in-page players</a></p>
             </div>
         </section>
 
@@ -2568,8 +2620,8 @@
                     <div class="about-visual reveal">
                         <div class="about-visual-frame">
                             <img
-                                src="assets/images/floor-witness-cover-2.png"
-                                alt="Heavy Moose portrait art from Floor Witness"
+                                src="assets/images/Ruined-city-with-moose-headed-wanderer.png"
+                                alt="Heavy Moose industrial still — moose-headed wanderer in a ruined city"
                                 loading="lazy"
                                 width="480"
                                 height="640">
@@ -2601,9 +2653,9 @@
                             when the heat is over but the material is still glowing.
                         </p>
                         <p>
-                            The catalog moves from the DROSS trilogy into later releases, collaborations,
-                            and standalone signals without losing the core spirit: industrial soundscapes,
-                            dark ambience, digital grit, and melody dragged through friction.
+                            Current work leads: the 2026 Apple run sits on this page with its covers.
+                            The DROSS trilogy remains the origin story further down, with Floor Witness
+                            and Knock Knock as later history, not the first thing you hit.
                         </p>
                         <p>
                             This is not background music. This is excavation.
@@ -2615,258 +2667,95 @@
         </section>
 
         <!-- ==========================================
-         ALBUMS (PREVIEW)
+         ORIGIN / HISTORY
          ========================================== -->
-        <section class="albums" id="albums" aria-labelledby="albums-title">
+        <section class="origin-catalog" id="origin" aria-labelledby="origin-title">
             <div class="container">
-                <div class="albums-header reveal">
-                    <span class="section-label">Origin story</span>
-                    <h2 class="section-title" id="albums-title">The DROSS trilogy, then later history</h2>
+                <div class="current-catalog-header reveal">
+                    <span class="section-label">Origin / history</span>
+                    <h2 class="section-title" id="origin-title">DROSS, then Floor Witness and Knock Knock</h2>
                     <p class="section-intro">
-                        The first three albums are the origin story: <strong>Glass and Ash</strong>,
-                        <strong>Yield</strong>, and <strong>Temper</strong>. Later history includes
-                        <strong>Floor Witness</strong>, <strong>Flipside Rituals</strong>, and the
-                        America 250 / <strong>Knock, Knock ('Merica)</strong> campaign. Current releases live on the first screen and in the <a href="music.html">discography</a>.
+                        The current Apple run is above. This block is the origin story:
+                        the <strong>DROSS</strong> trilogy, then <strong>Floor Witness</strong>
+                        and <strong>Knock, Knock ('Merica)</strong>. Not the newest releases.
                     </p>
                 </div>
-                <div class="album-grid">
-
-                    <!-- DROSS I -->
-                    <article class="album-card reveal">
-                        <span class="album-number">DROSS Trilogy · 001</span>
-                        <div class="album-art-placeholder">
-                            <img src="assets/images/COVER-glass-and-ash.png" alt="Glass and Ash album cover — Heavy Moose" loading="lazy">
-                        </div>
-                        <h3 class="album-title">Glass and Ash</h3>
-                        <p class="album-meta">2024 · Glass and Ash · 11 Tracks · Industrial / Dark Ambient</p>
-                        <p class="album-desc">
-                            Grief has a sound. This is it. The debut record — <em>Glass and Ash</em> —
-                            is eleven tracks of industrial soundscapes built from digital grit,
-                            ember-lit factory floors, and a year-long dark walked end to end.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Glass and Ash track listing">
-                            <li><span class="track-num">01</span><span class="track-name">Prelude to Glass</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Embed</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Year-Long Dark</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">All the Friends I Buried</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Pressure Surface</span></li>
-                            <li><span class="track-num">06–11</span><span class="track-name">+ Six more</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="https://music.amazon.com/search/Heavy%20Moose%20Glass%20and%20Ash" class="album-link album-link--amazon" target="_blank" rel="noopener" aria-label="Listen to Glass and Ash on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://music.apple.com/search?term=Heavy+Moose+Glass+and+Ash" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Glass and Ash on Apple Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.048-2.31-2.07-3.04a5.022 5.022 0 0 0-1.86-.82c-.63-.12-1.26-.19-1.9-.21-.04 0-.1-.01-.15-.01H6.17c-.05 0-.1 0-.15.01-.64.02-1.27.09-1.9.21a5.022 5.022 0 0 0-1.86.82C1.23 1.624.5 2.624.183 3.934a9.23 9.23 0 0 0-.18 2.19v11.75c0 .63.05 1.26.18 1.88.317 1.31 1.048 2.31 2.07 3.04a5.022 5.022 0 0 0 1.86.82c.63.12 1.26.19 1.9.21h11.97c.64-.02 1.27-.09 1.9-.21a5.022 5.022 0 0 0 1.86-.82c1.022-.73 1.753-1.73 2.07-3.04.13-.62.18-1.25.18-1.88V6.124zm-6.967 5.765a3.505 3.505 0 0 1-1.78.48 3.4 3.4 0 0 1-1.21-.22v4.51c0 .96-.78 1.74-1.74 1.74a1.74 1.74 0 0 1-1.74-1.74V9.174c0-.53.23-1.01.6-1.35.36-.34.85-.54 1.37-.54h.01c.95 0 1.74.78 1.74 1.74v.2a3.43 3.43 0 0 1 1.21-.22c1.93 0 3.5 1.57 3.5 3.5 0 .85-.3 1.63-.8 2.24-.3-.65-.78-1.18-1.16-1.85z" />
-                                </svg>
-                                Apple Music
-                            </a>
-                            <a href="https://goodflippinvibes.com" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Visit Good Flippin Vibes">
-                                Good Flippin Vibes
-                            </a>
+                <div class="origin-grid">
+                    <article class="cover-card">
+                        <a class="cover-card-art" href="music.html#dross-1">
+                            <img src="assets/images/COVER-glass-and-ash.png" alt="Glass and Ash cover art" width="800" height="800" loading="lazy">
+                        </a>
+                        <div class="cover-card-body">
+                            <span class="origin-kicker">DROSS · 001</span>
+                            <p class="cover-card-date">2024</p>
+                            <h3>Glass and Ash</h3>
+                            <p class="cover-card-meta">Album · 11 tracks · Industrial</p>
+                            <div class="cover-card-links">
+                                <a href="music.html#dross-1">On site</a>
+                                <a href="https://music.apple.com/search?term=Heavy+Moose+Glass+and+Ash" target="_blank" rel="noopener">Apple</a>
+                            </div>
                         </div>
                     </article>
-
-                    <!-- DROSS II -->
-                    <article class="album-card reveal">
-                        <span class="album-number">DROSS Trilogy · 002</span>
-                        <div class="album-art-placeholder">
-                            <img src="assets/images/COVERyield.png" alt="Yield album cover — Heavy Moose" loading="lazy">
-                        </div>
-                        <h3 class="album-title">Yield</h3>
-                        <p class="album-meta">2025 · Yield · 12 Tracks · Industrial / Experimental</p>
-                        <p class="album-desc">
-                            Twelve tracks forged in the aftermath. <em>Yield</em> — heavy water,
-                            blood and honey, the long game, the things we build (and what we yield)
-                            from what remains. The work after the grief.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Yield track listing">
-                            <li><span class="track-num">01</span><span class="track-name">Through</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Still Here</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Heavy Water</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">Small Things</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Hands</span></li>
-                            <li><span class="track-num">06–12</span><span class="track-name">+ Seven more</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="https://music.amazon.com/search/Heavy%20Moose%20Yield" class="album-link album-link--amazon" target="_blank" rel="noopener" aria-label="Listen to Yield on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://music.apple.com/search?term=Heavy+Moose+Yield" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Yield on Apple Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.048-2.31-2.07-3.04a5.022 5.022 0 0 0-1.86-.82c-.63-.12-1.26-.19-1.9-.21-.04 0-.1-.01-.15-.01H6.17c-.05 0-.1 0-.15.01-.64.02-1.27.09-1.9.21a5.022 5.022 0 0 0-1.86.82C1.23 1.624.5 2.624.183 3.934a9.23 9.23 0 0 0-.18 2.19v11.75c0 .63.05 1.26.18 1.88.317 1.31 1.048 2.31 2.07 3.04a5.022 5.022 0 0 0 1.86.82c.63.12 1.26.19 1.9.21h11.97c.64-.02 1.27-.09 1.9-.21a5.022 5.022 0 0 0 1.86-.82c1.022-.73 1.753-1.73 2.07-3.04.13-.62.18-1.25.18-1.88V6.124zm-6.967 5.765a3.505 3.505 0 0 1-1.78.48 3.4 3.4 0 0 1-1.21-.22v4.51c0 .96-.78 1.74-1.74 1.74a1.74 1.74 0 0 1-1.74-1.74V9.174c0-.53.23-1.01.6-1.35.36-.34.85-.54 1.37-.54h.01c.95 0 1.74.78 1.74 1.74v.2a3.43 3.43 0 0 1 1.21-.22c1.93 0 3.5 1.57 3.5 3.5 0 .85-.3 1.63-.8 2.24-.3-.65-.78-1.18-1.16-1.85z" />
-                                </svg>
-                                Apple Music
-                            </a>
-                            <a href="https://goodflippinvibes.com" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Visit Good Flippin Vibes">
-                                Good Flippin Vibes
-                            </a>
+                    <article class="cover-card">
+                        <a class="cover-card-art" href="music.html#dross-2">
+                            <img src="assets/images/COVERyield.png" alt="Yield cover art" width="800" height="800" loading="lazy">
+                        </a>
+                        <div class="cover-card-body">
+                            <span class="origin-kicker">DROSS · 002</span>
+                            <p class="cover-card-date">2025</p>
+                            <h3>Yield</h3>
+                            <p class="cover-card-meta">Album · 12 tracks · Industrial</p>
+                            <div class="cover-card-links">
+                                <a href="music.html#dross-2">On site</a>
+                                <a href="https://music.apple.com/search?term=Heavy+Moose+Yield" target="_blank" rel="noopener">Apple</a>
+                            </div>
                         </div>
                     </article>
-
-                    <!-- DROSS: TEMPER -->
-                    <article class="album-card reveal">
-                        <span class="album-number">DROSS Trilogy · 003</span>
-                        <div class="album-art-placeholder">
-                            <img src="assets/images/COVER-TEMPER.png" alt="Temper album cover — Heavy Moose" loading="lazy">
-                        </div>
-                        <h3 class="album-title">Temper</h3>
-                        <p class="album-meta">2026 · 12 Tracks · with DJ Shariff · Industrial / Electronic</p>
-                        <p class="album-desc">
-                            The third and final DROSS album. <em>Temper</em> closes the trilogy after
-                            <em>Glass and Ash</em> and <em>Yield</em>. Twelve tracks tempered between
-                            industrial weight and electronic pulse.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Temper track listing">
-                            <li><span class="track-num">01</span><span class="track-name">NO</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Fight</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Every Night</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">Worst Dark</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Turn</span></li>
-                            <li><span class="track-num">06–12</span><span class="track-name">+ Seven more</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="music.html#temper" class="album-link album-link--amazon" aria-label="Listen to Temper on this site">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                                Play on Site
-                            </a>
-                            <a href="https://music.amazon.com/albums/B0GZ17Z8BH" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Temper on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://music.apple.com/search?term=DJ+Shariff+Heavy+Moose+Temper" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Find Temper on Apple Music">
-                                Apple Music
-                            </a>
+                    <article class="cover-card">
+                        <a class="cover-card-art" href="music.html#temper">
+                            <img src="assets/images/COVER-TEMPER.png" alt="Temper cover art" width="800" height="800" loading="lazy">
+                        </a>
+                        <div class="cover-card-body">
+                            <span class="origin-kicker">DROSS · 003</span>
+                            <p class="cover-card-date">2026</p>
+                            <h3>Temper</h3>
+                            <p class="cover-card-meta">Album · 12 tracks · Industrial</p>
+                            <div class="cover-card-links">
+                                <a href="music.html#temper">On site</a>
+                                <a href="https://music.apple.com/search?term=DJ+Shariff+Heavy+Moose+Temper" target="_blank" rel="noopener">Apple</a>
+                            </div>
                         </div>
                     </article>
-
-                    <!-- FLOOR WITNESS -->
-                    <article class="album-card reveal">
-                        <span class="album-number">Album 004</span>
-                        <div class="album-art-placeholder">
-                            <img
-                                src="assets/images/floor-witness-cover-2.png"
-                                alt="Floor Witness album art — Heavy Moose in leather at neon industrial venue">
-                        </div>
-                        <h3 class="album-title">Floor Witness</h3>
-                        <p class="album-meta">2026 · 13 Tracks · Industrial / Electronic / Experimental</p>
-                        <p class="album-desc">
-                            Thirteen tracks. Forty-nine minutes. <em>Floor Witness</em> is kinetics,
-                            momentum, and the specific weight of staying on the floor — from
-                            Cold Start to Bf, the whole session plays in-page.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Floor Witness track listing">
-                            <li><span class="track-num">01</span><span class="track-name">Cold Start / Floor Witness</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Mooseknuckle Kinetics</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Carbon Sprint</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">Lux Laugh Protocol</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Chrome Meadows</span></li>
-                            <li><span class="track-num">06–13</span><span class="track-name">+ Eight more</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="music.html#floor-witness" class="album-link album-link--amazon" aria-label="Listen to Floor Witness on this site">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                                Play on Site
-                            </a>
-                            <a href="https://music.amazon.com/albums/B0GZJTG54L" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Floor Witness on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://music.apple.com/search?term=Heavy+Moose+Floor+Witness" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Find Floor Witness on Apple Music">Apple Music</a>
+                    <article class="cover-card">
+                        <a class="cover-card-art" href="https://music.apple.com/us/album/floor-witness/1896371819" target="_blank" rel="noopener">
+                            <img src="assets/images/releases/floor-witness.jpg" alt="Floor Witness cover art" width="800" height="800" loading="lazy">
+                        </a>
+                        <div class="cover-card-body">
+                            <span class="origin-kicker">Later history</span>
+                            <p class="cover-card-date">May 4, 2026</p>
+                            <h3>Floor Witness</h3>
+                            <p class="cover-card-meta">Album · 13 tracks · Dubstep</p>
+                            <div class="cover-card-links">
+                                <a href="https://music.apple.com/us/album/floor-witness/1896371819" target="_blank" rel="noopener">Apple</a>
+                                <a href="https://www.youtube.com/watch?v=NM4Nrv9zyN8" target="_blank" rel="noopener">YouTube</a>
+                            </div>
                         </div>
                     </article>
-
-                    <!-- FLIPSIDE RITUALS -->
-                    <article class="album-card reveal">
-                        <span class="album-number">Album 005</span>
-                        <div class="album-art-placeholder">
-                            <img src="assets/images/flipside-rituals-cover.png" alt="Flipside Rituals album cover — Heavy Moose" loading="lazy">
-                        </div>
-                        <h3 class="album-title">Flipside Rituals</h3>
-                        <p class="album-meta">2026 · 6 Tracks · Industrial / Electronic</p>
-                        <p class="album-desc">
-                            Six tracks. Twenty-one minutes. <em>Flipside Rituals</em> stays compact and precise —
-                            from the opening weight of <em>We All Drop</em> through the closing march of
-                            <em>Knock, Knock, &#8217;Merica (Roll Call)</em>.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Flipside Rituals track listing">
-                            <li><span class="track-num">01</span><span class="track-name">We All Drop</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Get Flipped</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Slow Like Toffee</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">Pre Mission Pulse (Zero Hour)</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Hooah Swing (Brass Smirk)</span></li>
-                            <li><span class="track-num">06</span><span class="track-name">Knock, Knock, &#8217;Merica (Roll Call)</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="music.html#flipside-rituals" class="album-link album-link--amazon" aria-label="View the full Flipside Rituals track list on this site">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                                Full Tracklist
-                            </a>
-                            <a href="https://music.amazon.com/albums/B0H1XG8BDK" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Flipside Rituals on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=LxPj9sExxuc" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Watch Flipside Rituals Get Flipped on YouTube">YouTube</a>
+                    <article class="cover-card">
+                        <a class="cover-card-art" href="https://music.apple.com/us/album/knock-knock-merica/6768399020" target="_blank" rel="noopener">
+                            <img src="assets/images/releases/knock-knock-merica.jpg" alt="Knock, Knock ('Merica) cover art" width="800" height="800" loading="lazy">
+                        </a>
+                        <div class="cover-card-body">
+                            <span class="origin-kicker">Later history</span>
+                            <p class="cover-card-date">May 7, 2026</p>
+                            <h3>Knock, Knock ('Merica)</h3>
+                            <p class="cover-card-meta">Album · 13 tracks · Hardcore</p>
+                            <div class="cover-card-links">
+                                <a href="https://music.apple.com/us/album/knock-knock-merica/6768399020" target="_blank" rel="noopener">Apple</a>
+                                <a href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener">YouTube</a>
+                            </div>
                         </div>
                     </article>
-
-                    <!-- KNOCK, KNOCK ('MERICA) -->
-                    <article class="album-card reveal">
-                        <span class="album-number">America 250 · Archive</span>
-                        <div class="album-art-placeholder">
-                            <img src="assets/images/america-250/knock-knock-merica-250-key-art.png" alt="Knock, Knock ('Merica) America 250 key art — Heavy Moose" loading="lazy">
-                        </div>
-                        <h3 class="album-title">Knock, Knock ('Merica)</h3>
-                        <p class="album-meta">2026 · 13 Tracks · Industrial / Experimental</p>
-                        <p class="album-desc">
-                            A 2026 Heavy Moose album from the America 250 run. <em>Knock, Knock ('Merica)</em>
-                            holds thirteen tracks in forty minutes, from the title track through
-                            Missed Some 80s (Classic) and into the closing re-release cut.
-                        </p>
-                        <ol class="album-tracklist" aria-label="Knock, Knock ('Merica) track listing">
-                            <li><span class="track-num">01</span><span class="track-name">Knock, Knock ('Merica)</span></li>
-                            <li><span class="track-num">02</span><span class="track-name">Boots on Concrete</span></li>
-                            <li><span class="track-num">03</span><span class="track-name">Pre Mission Pulse</span></li>
-                            <li><span class="track-num">04</span><span class="track-name">Hoorah Swing</span></li>
-                            <li><span class="track-num">05</span><span class="track-name">Missed Some 80s (Classic)</span></li>
-                            <li><span class="track-num">06–13</span><span class="track-name">+ Eight more</span></li>
-                        </ol>
-                        <div class="album-links">
-                            <a href="music.html#knock-knock-merica" class="album-link album-link--amazon" aria-label="View the full Knock, Knock ('Merica) track list on this site">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                                Full Tracklist
-                            </a>
-                            <a href="https://music.amazon.com/albums/B0H11DTMK5?marketplaceId=ATVPDKIKX0DER&amp;musicTerritory=US" class="album-link" target="_blank" rel="noopener" aria-label="Listen to Knock, Knock ('Merica) on Amazon Music">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 0 1-4.445.558c-3.553 0-6.84-.872-9.86-2.616-.352-.195-.435-.41-.18-.61zm16.98-6.28c-.187.24-.51.166-.96-.222-1.57-1.306-3.45-1.96-5.64-1.96-1.39 0-2.67.22-3.836.66-.487.18-.863.37-1.124.57-.26.2-.497.19-.71-.03-.21-.22-.17-.47.12-.75.28-.28.74-.575 1.38-.88 1.08-.49 2.32-.79 3.73-.9 2.38-.19 4.574.29 6.58 1.44.56.34.9.66 1.02.97.11.3.02.55-.26.76l-.3.34z" />
-                                </svg>
-                                Amazon Music
-                            </a>
-                            <a href="https://music.youtube.com/browse/MPREb_VTwZzAFRomk" class="album-link album-link--secondary" target="_blank" rel="noopener" aria-label="Listen to Knock, Knock ('Merica) on YouTube Music">YouTube Music</a>
-                        </div>
-                    </article>
-
                 </div>
             </div>
         </section>
@@ -2985,6 +2874,7 @@
     </footer>
 
     <script src="shared/heavy-moose-nav.js?v=2026-05-13-navfix2"></script>
+    <script src="shared/catalog-cards.js?v=2026-08-28-coverux"></script>
     <script>
         (function () {
             'use strict';
@@ -3105,6 +2995,21 @@
                             }, 0));
                         }
                         if (aboutDross) aboutDross.textContent = '3';
+
+                        var catalogGrid = document.getElementById('current-catalog-grid');
+                        if (catalogGrid && window.HeavyMooseCatalog) {
+                            var youtubeBySlug = window.HeavyMooseCatalog.youtubeMap(mediaLibrary);
+                            catalogGrid.innerHTML = window.HeavyMooseCatalog.renderGrid(
+                                catalog.releases,
+                                youtubeBySlug,
+                                catalog.artist,
+                                'cover'
+                            );
+                        }
+                        var strip = document.querySelector('.cover-strip');
+                        if (strip && window.HeavyMooseCatalog) {
+                            strip.innerHTML = window.HeavyMooseCatalog.stripHtml(catalog.releases.slice(0, 8));
+                        }
                     }
 
                     if (latestVideo) {

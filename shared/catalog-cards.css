@@ -1,0 +1,214 @@
+/* Cover-led catalog: artwork is the field, type stays tight, no empty dark slabs. */
+.cover-strip {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0;
+    overflow: hidden;
+    max-height: 18vh;
+    border-bottom: 1px solid var(--border);
+    background: #050506;
+}
+
+.cover-strip img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    filter: saturate(0.88) contrast(1.06);
+}
+
+.current-catalog {
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(6, 6, 8, 0.2) 0%, rgba(6, 6, 8, 0.92) 28%),
+        var(--bg);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.current-catalog .container,
+.origin-catalog .container {
+    max-width: 1200px;
+}
+
+.current-catalog-header .section-title {
+    letter-spacing: -0.04em;
+}
+
+.current-catalog-header .section-intro {
+    margin-top: 10px;
+    max-width: 62ch;
+}
+
+.cover-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+}
+
+.cover-card {
+    min-width: 0;
+    background: var(--bg-card);
+    overflow: hidden;
+}
+
+.cover-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.cover-card-art {
+    display: block;
+    background: #08080a;
+}
+
+.cover-card-art img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 400ms ease, filter 400ms ease;
+    filter: saturate(0.92) contrast(1.04);
+}
+
+.cover-card:hover .cover-card-art img,
+.cover-card:focus-within .cover-card-art img {
+    transform: scale(1.03);
+    filter: saturate(1) contrast(1.08);
+}
+
+.cover-card-body {
+    padding: 12px 14px 14px;
+}
+
+.cover-card:nth-child(1) .cover-card-body {
+    padding: 16px 18px 18px;
+}
+
+.cover-card-date,
+.cover-card-meta {
+    margin: 0;
+    color: var(--text-muted);
+    font: 500 0.62rem/1.45 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.cover-card h3 {
+    margin: 6px 0 6px;
+    font-size: 0.98rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.cover-card:nth-child(1) h3 {
+    font-size: 1.45rem;
+    letter-spacing: -0.03em;
+}
+
+.cover-card-links {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.cover-card-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cover-card-links a:hover,
+.cover-card-links a:focus-visible {
+    color: var(--text);
+}
+
+.catalog-more {
+    margin-top: 22px;
+}
+
+.catalog-more a {
+    color: var(--text-secondary);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+}
+
+.catalog-more a:hover {
+    color: var(--text);
+}
+
+.origin-catalog {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+}
+
+.origin-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+}
+
+.origin-grid .cover-card:nth-child(1) {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+.origin-grid .cover-card:nth-child(1) h3 {
+    font-size: 0.98rem;
+}
+
+.origin-kicker {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-muted);
+    font: 500 0.62rem/1.4 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .cover-strip {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-height: 28vw;
+    }
+
+    .cover-strip img:nth-child(n + 5) {
+        display: none;
+    }
+
+    .cover-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cover-card:nth-child(1) {
+        grid-column: span 2;
+        grid-row: auto;
+    }
+
+    .origin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .cover-grid,
+    .origin-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cover-card:nth-child(1) h3 {
+        font-size: 1.15rem;
+    }
+}

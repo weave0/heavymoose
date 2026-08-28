@@ -5,8 +5,9 @@
     "scripts": {
         "dev": "npx http-server . -p 3001 -o --cors",
         "lint:html": "htmlhint \"*.html\" --config .htmlhintrc.json",
-        "catalog:sync": "node scripts/sync-music-catalog.js",
-        "sync:catalogs": "node scripts/sync-music-catalog.js",
+        "catalog:sync": "node scripts/sync-music-catalog.js && node scripts/bake-catalog-html.js",
+        "sync:catalogs": "node scripts/sync-music-catalog.js && node scripts/bake-catalog-html.js",
+        "catalog:bake": "node scripts/bake-catalog-html.js",
         "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main --commit-dirty=true",
         "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main",
         "verify:prod": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/verify-production.ps1",
