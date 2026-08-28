@@ -83,24 +83,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared/heavy-moose-nav.css?v=2026-08-28-navux">
-    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-trueblack">
+    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-trueblack4">
 
     <style>
         :root {
             --bg: #000;
             --bg-elevated: #050505;
             --bg-card: transparent;
-            --text: oklch(0.94 0.004 250);
-            --text-muted: oklch(0.68 0.012 250);
-            --text-secondary: oklch(0.78 0.008 250);
-            --border: color-mix(in srgb, white 10%, transparent);
-            --hairline: color-mix(in srgb, white 10%, transparent);
-            --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
+            --text: #eeeef2;
+            --text-muted: #9a9aa8;
+            --text-secondary: #b8b8c4;
+            --border: rgba(255, 255, 255, 0.10);
+            --hairline: rgba(255, 255, 255, 0.10);
+            --scrim: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
             --accent: #e0001e;
             --electric: #00d4ff;
             --volt: #b8ff00;
             --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        @supports (color: oklch(0.94 0.004 250)) {
+            :root {
+                --text: oklch(0.94 0.004 250);
+                --text-muted: oklch(0.68 0.012 250);
+                --text-secondary: oklch(0.78 0.008 250);
+            }
+        }
+
+        @supports (color: color-mix(in srgb, white 10%, transparent)) {
+            :root {
+                --border: color-mix(in srgb, white 10%, transparent);
+                --hairline: color-mix(in srgb, white 10%, transparent);
+            }
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }

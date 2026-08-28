@@ -1,8 +1,14 @@
 /* Cover-led catalog: the artwork is the surface. No filled card body. */
 
 :root {
-    --hairline: color-mix(in srgb, white 10%, transparent);
-    --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
+    --hairline: rgba(255, 255, 255, 0.10);
+    --scrim: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+@supports (color: color-mix(in srgb, white 10%, transparent)) {
+    :root {
+        --hairline: color-mix(in srgb, white 10%, transparent);
+    }
 }
 
 .cover-strip {
@@ -126,11 +132,18 @@
 .cover-card-date,
 .cover-card-meta {
     margin: 0;
-    color: color-mix(in srgb, white 72%, oklch(0.72 0.014 250));
+    color: #c8c8d2;
     font: 500 0.62rem/1.45 var(--font-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
+}
+
+@supports (color: color-mix(in srgb, white 10%, transparent)) and (color: oklch(0.72 0.014 250)) {
+    .cover-card-date,
+    .cover-card-meta {
+        color: color-mix(in srgb, white 72%, oklch(0.72 0.014 250));
+    }
 }
 
 .cover-card-meta {
@@ -166,11 +179,17 @@
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: color-mix(in srgb, white 82%, transparent);
+    color: rgba(255, 255, 255, 0.82);
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+@supports (color: color-mix(in srgb, white 10%, transparent)) {
+    .cover-card-links a {
+        color: color-mix(in srgb, white 82%, transparent);
+    }
 }
 
 .cover-card-links a:hover,
