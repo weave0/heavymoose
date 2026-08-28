@@ -1,27 +1,51 @@
-/* Cover-led catalog: artwork is the field, type stays tight, no empty dark slabs. */
+/* Cover-led catalog: the artwork is the surface. No filled card body. */
+
+:root {
+    --hairline: color-mix(in srgb, white 10%, transparent);
+    --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
+}
+
 .cover-strip {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     gap: 0;
     overflow: hidden;
     max-height: 18vh;
-    border-bottom: 1px solid var(--border);
-    background: #050506;
+    border-bottom: 1px solid var(--hairline);
+    background: #000;
 }
 
 .cover-strip img {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    filter: saturate(0.88) contrast(1.06);
+    filter: saturate(0.92) contrast(1.06);
+}
+
+@supports (animation-timeline: view()) {
+    .cover-strip img {
+        animation: cover-strip-shift linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+    }
+}
+
+@keyframes cover-strip-shift {
+    from {
+        opacity: 0.68;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .current-catalog {
     position: relative;
-    background:
-        linear-gradient(180deg, rgba(6, 6, 8, 0.2) 0%, rgba(6, 6, 8, 0.92) 28%),
-        var(--bg);
-    border-bottom: 1px solid var(--border);
+    background: #000;
+    border-bottom: 1px solid var(--hairline);
     overflow: hidden;
 }
 
@@ -32,6 +56,7 @@
 
 .current-catalog-header .section-title {
     letter-spacing: -0.04em;
+    font-size: clamp(1.6rem, 2.4vw + 1rem, 2.6rem);
 }
 
 .current-catalog-header .section-intro {
@@ -42,15 +67,18 @@
 .cover-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
+    gap: 0;
+    background: transparent;
+    border: 0;
 }
 
 .cover-card {
+    position: relative;
     min-width: 0;
-    background: var(--bg-card);
+    background: transparent;
     overflow: hidden;
+    isolation: isolate;
+    box-shadow: inset 0 0 0 1px var(--hairline);
 }
 
 .cover-card:nth-child(1) {
@@ -60,7 +88,7 @@
 
 .cover-card-art {
     display: block;
-    background: #08080a;
+    background: #000;
 }
 
 .cover-card-art img {
@@ -68,7 +96,7 @@
     aspect-ratio: 1;
     object-fit: cover;
     transition: transform 400ms ease, filter 400ms ease;
-    filter: saturate(0.92) contrast(1.04);
+    filter: saturate(0.94) contrast(1.04);
 }
 
 .cover-card:hover .cover-card-art img,
@@ -78,20 +106,39 @@
 }
 
 .cover-card-body {
-    padding: 12px 14px 14px;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 1.8rem 0.75rem 0.45rem;
+    background: var(--scrim);
+    pointer-events: none;
+}
+
+.cover-card-body a {
+    pointer-events: auto;
 }
 
 .cover-card:nth-child(1) .cover-card-body {
-    padding: 16px 18px 18px;
+    padding: 2.4rem 1rem 0.7rem;
 }
 
 .cover-card-date,
 .cover-card-meta {
     margin: 0;
-    color: var(--text-muted);
+    color: color-mix(in srgb, white 72%, oklch(0.72 0.014 250));
     font: 500 0.62rem/1.45 var(--font-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
+}
+
+.cover-card-meta {
+    display: none;
+}
+
+.cover-card:nth-child(1) .cover-card-meta {
+    display: block;
 }
 
 .cover-card h3 {
@@ -101,24 +148,25 @@
     letter-spacing: -0.02em;
     line-height: 1.2;
     overflow-wrap: anywhere;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
 }
 
 .cover-card:nth-child(1) h3 {
-    font-size: 1.45rem;
+    font-size: clamp(1.25rem, 1.4vw + 1rem, 1.7rem);
     letter-spacing: -0.03em;
 }
 
 .cover-card-links {
     display: flex;
     gap: 14px;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .cover-card-links a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--text-secondary);
+    color: color-mix(in srgb, white 82%, transparent);
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -127,7 +175,7 @@
 
 .cover-card-links a:hover,
 .cover-card-links a:focus-visible {
-    color: var(--text);
+    color: #fff;
 }
 
 .catalog-more {
@@ -148,16 +196,16 @@
 }
 
 .origin-catalog {
-    background: var(--bg-elevated);
-    border-top: 1px solid var(--border);
+    background: #000;
+    border-top: 1px solid var(--hairline);
 }
 
 .origin-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 2px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
+    gap: 0;
+    background: transparent;
+    border: 0;
 }
 
 .origin-grid .cover-card:nth-child(1) {
@@ -169,13 +217,22 @@
     font-size: 0.98rem;
 }
 
+.origin-grid .cover-card:nth-child(1) .cover-card-body {
+    padding: 1.8rem 0.75rem 0.45rem;
+}
+
+.origin-grid .cover-card:nth-child(1) .cover-card-meta {
+    display: none;
+}
+
 .origin-kicker {
     display: block;
     margin-bottom: 6px;
-    color: var(--text-muted);
+    color: var(--electric);
     font: 500 0.62rem/1.4 var(--font-mono);
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
 }
 
 @media (max-width: 900px) {
@@ -210,5 +267,25 @@
 
     .cover-card:nth-child(1) h3 {
         font-size: 1.15rem;
+    }
+
+    .cover-card-meta {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cover-strip img,
+    .cover-card-art img {
+        animation: none;
+        transition: none;
+        transform: none;
+        opacity: 1;
+    }
+
+    .cover-card:hover .cover-card-art img,
+    .cover-card:focus-within .cover-card-art img {
+        transform: none;
+        filter: saturate(0.94) contrast(1.04);
     }
 }
