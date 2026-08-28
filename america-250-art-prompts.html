@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America 250 Art Prompts | Heavy Moose</title>
+    <meta name="description" content="Copy-ready Heavy Moose America 250 image prompts for ChatGPT image generation, with one copy button per image prompt.">
+    <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="https://heavymoose.com/america-250-art-prompts.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png?v=20260515hm1">
+    <link rel="stylesheet" href="shared/heavy-moose-nav.css?v=2026-05-13-navfix2">
+    <style>
+        :root {
+            --bg: #060608;
+            --bg-elevated: #0c0c10;
+            --bg-card: #10101a;
+            --text: #eeeef0;
+            --text-muted: #888899;
+            --text-secondary: #aaaabc;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #e0001e;
+            --electric: #00d4ff;
+            --volt: #b8ff00;
+            --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-mono: "JetBrains Mono", Consolas, monospace;
+            --radius: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(ellipse 54% 32% at 12% 0%, rgba(224, 0, 30, 0.12) 0%, transparent 66%),
+                radial-gradient(ellipse 46% 30% at 88% 12%, rgba(0, 212, 255, 0.10) 0%, transparent 68%),
+                var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 112px 24px 72px;
+        }
+
+        .eyebrow {
+            color: var(--electric);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 860px;
+            margin: 12px 0 16px;
+            color: var(--text);
+            font-size: clamp(2.4rem, 7vw, 5.4rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            max-width: 760px;
+            margin: 0 0 32px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .link-btn,
+        .copy-btn {
+            min-height: 44px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 16px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.10em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: border-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 300ms ease;
+        }
+
+        .link-btn:hover,
+        .copy-btn:hover,
+        .link-btn:focus-visible,
+        .copy-btn:focus-visible {
+            border-color: var(--electric);
+            color: var(--electric);
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 0 18px rgba(0, 212, 255, 0.18);
+        }
+
+        .prompt-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .prompt-card {
+            border: 1px solid var(--border);
+            background:
+                linear-gradient(180deg, rgba(16, 16, 26, 0.94) 0%, rgba(10, 10, 16, 0.96) 100%),
+                var(--bg-card);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prompt-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(224, 0, 30, 0.08), transparent 46%, rgba(0, 212, 255, 0.07));
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .prompt-head {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prompt-meta {
+            min-width: 0;
+        }
+
+        .prompt-kicker {
+            color: var(--volt);
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 4px 0 6px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            letter-spacing: 0;
+            line-height: 1.15;
+        }
+
+        .prompt-purpose {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            margin-top: 18px;
+            border: 1px solid rgba(0, 212, 255, 0.14);
+            border-radius: var(--radius);
+            background: rgba(0, 0, 0, 0.34);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.65;
+            padding: 16px;
+            resize: vertical;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status {
+            min-height: 1.2em;
+            margin-top: 10px;
+            color: var(--electric);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 680px) {
+            main {
+                padding: 96px 16px 56px;
+            }
+
+            .prompt-card {
+                padding: 18px;
+            }
+
+            .prompt-head {
+                flex-direction: column;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="hm-masthead" aria-label="Heavy Moose site navigation">
+        <div class="hm-masthead-inner">
+            <a class="hm-brand" href="index.html" aria-label="Heavy Moose home">
+                <span class="hm-brand-mark">Heavy Moose</span>
+                <span class="hm-brand-subtitle">Industrial / Dark Ambient / Experimental</span>
+            </a>
+            <div class="hm-quicklinks" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="music.html#america-250">America 250 Player</a>
+                <a href="docs/america-250-art-prompt-pack.md">Markdown Pack</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <span class="eyebrow">America 250 Image Pack</span>
+        <h1>Copy-Ready Art Prompts</h1>
+        <p class="intro">Each image has its own copy button. There is intentionally no copy-all control, so prompts can be generated one scene at a time and tuned individually.</p>
+        <div class="actions">
+            <a class="link-btn" href="music.html#america-250">Open Player</a>
+            <a class="link-btn" href="docs/america-250-art-prompt-pack.md">Markdown Pack</a>
+        </div>
+
+        <section class="prompt-grid" aria-label="America 250 image prompts">
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">21:9 or 16:9</span><h2>Homepage Hero - The Foundry Republic</h2><p class="prompt-purpose">Wide site hero with negative space for headline text.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-1">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-1" title="Homepage hero prompt" aria-label="Homepage hero prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Wide cinematic hero artwork. A towering mythic moose-headed figure stands in a vast futuristic foundry-cathedral, antlers lit like electric constellations. Around the figure are abstract Americana symbols: forged stars, torn-but-honored stripes rendered as bands of light and steel, 250 glowing as a small industrial emblem on a suspended metal plate. The mood is reverent, legendary, and defiant: a republic forged under pressure, not a parade. Smoke, sparks, dark steel arches, cracked concrete, red/cyan chromatic aberration, acid-lime signal lights, volumetric hard light. Leave negative space in the upper-left or center-left for website headline text. No readable words except optional "250".
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">16:9</span><h2>Media Player Backdrop - The Anniversary Signal Deck</h2><p class="prompt-purpose">Dark backdrop for track names and controls.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-2">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-2" title="Media player backdrop prompt" aria-label="Media player backdrop prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Create a horizontal backdrop for an embedded music player. A dark industrial command-deck altar holds glowing audio waveform rails, analog meters, steel switches, and ritual lights. In the distance, an abstract neon American skyline dissolves into smoke and sparks. A moose-antler silhouette appears as a subtle backlit shape, not a cute character. The composition must leave a darker central band for readable track titles and player controls. Use ember red, electric cyan, black steel, small acid-lime indicators, hard rim light, gritty texture, and mythic ceremony. No readable text except optional small "250" mark etched into metal.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">3:4</span><h2>Gallery - Antlers Over the Continental Grid</h2><p class="prompt-purpose">Portrait gallery cell with guardian scale.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-3">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-3" title="Antlers over the continental grid prompt" aria-label="Antlers over the continental grid prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Portrait artwork for a gallery cell. A monumental moose-headed guardian stands above an abstract glowing map-grid of America, not geographically exact, made of circuitry, rail lines, rivers, and neon roadways. Stars appear as molten rivets in the sky. The figure is solemn, protective, and legendary, with antlers carrying small electric arcs. Industrial storm clouds, red/cyan split light, oxidized steel textures, sparks, and scanline haze. No readable text.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">3:4</span><h2>Gallery - Liberty Engine</h2><p class="prompt-purpose">Industrial liberty bell transformed into sound engine.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-4">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-4" title="Liberty engine prompt" aria-label="Liberty engine prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Mythic industrial artwork of a colossal liberty bell transformed into a glowing sound engine, suspended inside a dark futuristic factory-temple. The crack in the bell emits electric cyan and ember red light like an audio waveform. A moose-antler shadow crosses the floor, suggesting Heavy Moose presence without centering a literal mascot. Sparks, cables, smoke, hard geometric shadows, sacred machine atmosphere, 250 subtly engraved as a small metal detail. No other readable text.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">3:4</span><h2>Gallery - The Star Forge</h2><p class="prompt-purpose">Labor, endurance, and ceremony in a mythic forge.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-5">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-5" title="The star forge prompt" aria-label="The star forge prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+An epic star-forge scene where five-pointed stars are being hammered from molten metal by anonymous silhouetted workers in a futuristic industrial ritual hall. A moose-headed conductor figure stands in the background, arms raised like leading a dark ambient orchestra. The scene honors craft, labor, endurance, and imagination. Neon red furnace light, electric cyan edge light, acid-lime sparks, heavy smoke, black steel, glitch texture, monumental scale. No readable text.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">3:4</span><h2>Gallery - River of Signals</h2><p class="prompt-purpose">Industrial American nightscape with future-memory energy.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-6">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-6" title="River of signals prompt" aria-label="River of signals prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+A mythic neon river runs through an industrial American nightscape, carrying floating fragments of stars, circuit boards, brass instruments, drum-machine pads, and weathered steel. On a bridge above, a moose-headed figure looks out over the signal river like a guardian of memory and future noise. Dark ambient, legendary, reverent, not sentimental. Red/cyan reflections, acid-lime status lights, smoke, rain sheen, high contrast, sharp edges. No readable text.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">3:4</span><h2>Gallery - The Oath of Noise</h2><p class="prompt-purpose">Anniversary concert, civic myth, future-forged ritual.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-7">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-7" title="The oath of noise prompt" aria-label="The oath of noise prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+A ceremonial industrial stage where abstract figures raise microphones, brass horns, tools, and light rods toward a huge neon 250 emblem made from welded steel. At center is a Heavy Moose silhouette with glowing antlers, framed as a legendary ritual leader rather than a mascot. The scene should feel like a fierce anniversary concert, civic myth, and future-forged ritual all at once. Black concrete, red/cyan light, acid-lime sparks, hard shadows, CRT noise, kinetic composition. Minimal readable text: only "250".
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">1:1</span><h2>Playlist Key Art - Knock, Knock, 'Merica 250 Set</h2><p class="prompt-purpose">Square key art for the anniversary playlist.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-8">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-8" title="Playlist key art prompt" aria-label="Playlist key art prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Square key art for a Heavy Moose anniversary playlist featuring Knock, Knock, 'Merica, selected Flipside Rituals tracks, and DJ Shariff's 'Merica. Create an industrial myth album-cover composition: a massive steel door with glowing antler-shaped knockers, patriotic star fragments embedded in the metal, and a red/cyan electric pulse radiating from behind the door. The door should feel like history, pressure, humor, and ritual colliding. Include a small 250 mark as a metal badge, no other readable text.
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">1200x630</span><h2>Social Share - America 250 Heavy Moose Feature</h2><p class="prompt-purpose">Open Graph / social card composition.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-9">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-9" title="Social share image prompt" aria-label="Social share image prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Create a social share image for a HeavyMoose.com America 250 feature. Horizontal cinematic composition: a moose-antler silhouette stands before a futuristic industrial skyline, with forged stars overhead and abstract stripes as red/cyan light bands across the scene. The center-right should contain a small glowing 250 emblem, while the left third remains darker for optional website overlay text. Epic, legendary, honoring, dark neon industrial, crisp high contrast, smoke, sparks, glitch edge treatment. No readable words except optional "250".
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+
+            <article class="prompt-card">
+                <div class="prompt-head">
+                    <div class="prompt-meta"><span class="prompt-kicker">4:5</span><h2>Mobile Hero - Signal Standard</h2><p class="prompt-purpose">Mobile-safe vertical hero crop.</p></div>
+                    <button class="copy-btn" type="button" data-copy-target="prompt-10">Copy Prompt</button>
+                </div>
+                <textarea id="prompt-10" title="Mobile hero prompt" aria-label="Mobile hero prompt" readonly>Create original artwork for Heavy Moose, an industrial / dark ambient / experimental music artist site. The scene should feel epically mythic and legendary, honoring America's 250th anniversary through symbolic Americana, resilient civic imagination, and futuristic industrial ritual. Use a dark neon industrial palette: black iron, ember red, electric cyan, acid lime accents, oxidized steel, sparks, smoke, hard light, glitch atmosphere, CRT scanline texture, and cinematic scale. Sharp-edged composition, no rounded cartoon softness, no glossy corporate celebration, no cute mascot energy.
+
+Mobile-safe hero artwork. A vertical steel standard rises from a dark industrial concert floor, carrying abstract star-and-stripe light ribbons and a small 250 emblem. Behind it, a shadowed moose-headed figure with luminous antlers stands in smoke and hard neon light. Keep the top third visually powerful but uncluttered, and keep the lower third dark enough for mobile UI overlays. Mythic, legendary, honoring, futuristic Americana, Heavy Moose industrial darkness, red/cyan/acid-lime accents, no readable words except optional "250".
+
+Avoid readable slogans, misspelled text, fake logos, real politicians, partisan campaign imagery, gore, combat violence, photorealistic current public figures, flags used disrespectfully, cartoon style, cute mascot style, clean corporate stock-art style, beige vintage postcard palette, soft pastel palette, generic fireworks-only composition, and cluttered typography. If text is needed, use only a small, simple "250" as a graphic emblem.</textarea>
+                <div class="status" aria-live="polite"></div>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            'use strict';
+
+            function fallbackCopy(textarea) {
+                textarea.focus();
+                textarea.select();
+                return document.execCommand('copy');
+            }
+
+            document.querySelectorAll('.copy-btn').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var id = button.getAttribute('data-copy-target');
+                    var textarea = document.getElementById(id);
+                    var status = button.closest('.prompt-card').querySelector('.status');
+                    if (!textarea || !status) return;
+
+                    var copyPromise = navigator.clipboard && navigator.clipboard.writeText
+                        ? navigator.clipboard.writeText(textarea.value)
+                        : new Promise(function (resolve, reject) { fallbackCopy(textarea) ? resolve() : reject(); });
+
+                    copyPromise.then(function () {
+                        status.textContent = 'Copied this prompt.';
+                        button.textContent = 'Copied';
+                        window.setTimeout(function () {
+                            status.textContent = '';
+                            button.textContent = 'Copy Prompt';
+                        }, 1800);
+                    }).catch(function () {
+                        status.textContent = 'Copy failed. Select the prompt text manually.';
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

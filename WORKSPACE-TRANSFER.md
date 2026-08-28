@@ -4,7 +4,7 @@
 **Live site:** <https://heavymoose.com>
 **GitHub repo:** <https://github.com/weave0/heavymoose>
 **Parent label / ecosystem hub:** <https://goodflippinvibes.com>
-**Last updated:** April 29, 2026
+**Last updated:** August 28, 2026
 
 ---
 
@@ -15,12 +15,13 @@ the darker pairing to Good Flippin Vibes. Single-page vanilla HTML/CSS/JS (no bu
 no frameworks). Hosted on Cloudflare Pages as a static site with an advanced-mode Worker
 (`_worker.js`) for routing.
 
-**Two public pages:**
+**Public pages:**
 
-| Page         | URL                       | Purpose                                                                |
-| ------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `index.html` | heavymoose.com            | Homepage: hero, showcase, about, albums, art gallery, ecosystem bridge |
-| `music.html` | heavymoose.com/music.html | Full discography + in-page audio player                                |
+| Page           | URL                         | Purpose                                                                |
+| -------------- | --------------------------- | ---------------------------------------------------------------------- |
+| `index.html`   | heavymoose.com              | Homepage: current video + current Apple release, driven from JSON      |
+| `music.html`   | heavymoose.com/music.html   | Full discography + in-page audio player + 15-video latest feed         |
+| `videos.html`  | heavymoose.com/videos.html  | Full official YouTube library with nocookie embeds                     |
 
 ---
 
@@ -166,32 +167,50 @@ and then sync to each site.
 
 ---
 
+## 8.5 Catalog sync (YouTube + Apple Music)
+
+Featured homepage video/album and `/videos` are driven by JSON, not hardcoded copy.
+
+| File | Source |
+| ---- | ------ |
+| `assets/data/media-library.json` | YouTube RSS latest 15, merged into existing entries |
+| `assets/data/music-catalog.json` | iTunes lookup `id=1895530727` |
+
+```bash
+npm run sync:catalogs
+```
+
+This preserves existing records, downloads new Apple artwork into `assets/images/releases/`, sets `isLatestUpload` / `latestUploadVideoId` from the newest RSS item, and updates `updatedAt` / `videosUpdatedAt`. After a sync, check homepage fallback copy and JSON-LD if crawlers should see the new titles without waiting for JS.
+
+Do not replace live `index.html` / `music.html` / assets with stale git copies. Production is the source of truth when the repo lags.
+
+---
+
 ## 9. SEO & Schema
 
-- `music.html` contains a full **JSON-LD schema graph** (`application/ld+json`) with:
-  - `MusicGroup` (Heavy Moose, linked to goodflippinvibes.com)
-  - Three `MusicAlbum` entries (DROSS, DROSS II, DROSS: TEMPER)
-  - 12 `MusicRecording` entries for TEMPER tracks
-- `sitemap.xml` lists `index.html` and `music.html` with `lastmod 2026-04-30`
-- Open Graph + Twitter Card meta on both pages
+- Homepage, `/music`, and `/videos` have distinct titles.
+- Homepage JSON-LD includes `MusicGroup` (full current Apple catalog, newest first), `VideoObject` for the latest official upload, and `sameAs` YouTube/Instagram/Apple/Amazon.
+- `sitemap.xml` includes `/videos.html`, current `lastmod`, and video sitemap entries for the newest uploads.
 
 ---
 
 ## 10. Key Files
 
 ```
-index.html            Homepage
-music.html            Discography + TEMPER player
-_worker.js            Cloudflare Pages Worker (routing + static serve)
-_headers              Security headers (CSP, HSTS, audio cache rules)
+index.html            Homepage (JSON-driven featured video + release)
+music.html            Discography + players + latest 15 videos
+videos.html           Full YouTube library
+_worker.js            Cloudflare Pages Worker (pretty URL aliases + static serve)
+_headers              Security headers (CSP, HSTS)
 wrangler.toml         CF Pages config — project "heavymoose", nodejs_compat
-sitemap.xml           Two-page sitemap
+sitemap.xml           Pages + video entries
 robots.txt            Standard allow-all
-cache-bust.txt        Bump on each deploy (currently: 2026-04-30)
-assets/images/        DALL·E album art + gallery (see copilot-instructions.md for map)
-assets/audio/temper/  12 TEMPER MP3 files (320 kbps, 79 MB total)
-shared/               GFV ecosystem nav component
-scripts/              dev-admin-check.ps1, update-cache-bust.js, verify-production.ps1
+cache-bust.txt        Bump on each deploy
+assets/data/          music-catalog.json + media-library.json
+assets/images/        Album art, America 250 archive, gallery
+assets/audio/         In-page preview MP3s (America 250, Floor Witness, Temper, Missed Some 80s)
+shared/               Heavy Moose + GFV nav
+scripts/sync-catalogs.js   Refresh Apple + YouTube JSON
 ```
 
 ---

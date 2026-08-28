@@ -43,6 +43,23 @@ export default {
       }
     }
 
+
+    const htmlAliases = new Map([
+      ["/music", "/music.html"],
+      ["/videos", "/videos.html"],
+      ["/america-250-art-prompts", "/america-250-art-prompts.html"],
+      ["/video-missed-some-80s", "/video-missed-some-80s.html"],
+      ["/video-no", "/video-no.html"],
+      ["/video-lux-laugh-protocol", "/video-lux-laugh-protocol.html"],
+      ["/video-move-then-prove", "/video-move-then-prove.html"],
+    ]);
+
+    if (htmlAliases.has(pathLower)) {
+      const rewritten = new URL(request.url);
+      rewritten.pathname = htmlAliases.get(pathLower);
+      return env.ASSETS.fetch(new Request(rewritten.toString(), request));
+    }
+
     // Serve static asset via Cloudflare Pages
     return env.ASSETS.fetch(request);
   },
