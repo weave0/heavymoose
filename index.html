@@ -1178,10 +1178,10 @@
 
         .now-video h2,
         .now-release h2 {
-            font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+            font-size: clamp(1.15rem, 2vw, 1.55rem);
             letter-spacing: -0.03em;
             line-height: 1.15;
-            margin: 0 0 8px;
+            margin: 0 0 4px;
             text-shadow: 0 1px 14px rgb(0 0 0 / 0.9);
         }
 
@@ -1222,8 +1222,8 @@
             inset-inline: 0;
             bottom: 0;
             z-index: 2;
-            padding: 3.4rem 1.1rem 1rem;
-            background: var(--scrim);
+            padding: 2.1rem 1rem 0.7rem;
+            background: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
             pointer-events: none;
         }
 
@@ -1259,11 +1259,9 @@
             text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
         }
 
-        .now-copy p,
+        .now-copy p:not(.section-label),
         .now-release-body p:not(.now-meta):not(.section-label) {
-            color: var(--text-secondary);
-            margin: 0 0 10px;
-            text-shadow: 0 1px 10px rgb(0 0 0 / 0.85);
+            display: none;
         }
 
         .now-copy .section-label,
@@ -1278,6 +1276,7 @@
             display: inline-flex;
             align-items: center;
             pointer-events: auto;
+            font-size: 0.82rem;
         }
 
         .listen-row {

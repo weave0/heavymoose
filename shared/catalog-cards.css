@@ -110,7 +110,7 @@
     inset-inline: 0;
     bottom: 0;
     z-index: 1;
-    padding: 2.6rem 0.85rem 0.65rem;
+    padding: 1.8rem 0.75rem 0.45rem;
     background: var(--scrim);
     pointer-events: none;
 }
@@ -120,7 +120,7 @@
 }
 
 .cover-card:nth-child(1) .cover-card-body {
-    padding: 3.4rem 1.1rem 0.9rem;
+    padding: 2.4rem 1rem 0.7rem;
 }
 
 .cover-card-date,
@@ -131,6 +131,14 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
+}
+
+.cover-card-meta {
+    display: none;
+}
+
+.cover-card:nth-child(1) .cover-card-meta {
+    display: block;
 }
 
 .cover-card h3 {
@@ -210,7 +218,11 @@
 }
 
 .origin-grid .cover-card:nth-child(1) .cover-card-body {
-    padding: 2.6rem 0.85rem 0.65rem;
+    padding: 1.8rem 0.75rem 0.45rem;
+}
+
+.origin-grid .cover-card:nth-child(1) .cover-card-meta {
+    display: none;
 }
 
 .origin-kicker {
