@@ -337,7 +337,8 @@
             --border: rgba(255, 255, 255, 0.10);
             --border-hover: rgba(255, 255, 255, 0.16);
             --hairline: rgba(255, 255, 255, 0.10);
-            --scrim: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+            --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 32%, rgb(0 0 0 / 0.9) 100%);
+            --type-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 18px rgb(0 0 0 / 0.95);
             --accent: #e0001e;
             --electric: #00d4ff;
             --volt: #b8ff00;
@@ -1177,9 +1178,9 @@
 
         .now-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.45fr) minmax(240px, 340px);
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
-            align-items: start;
+            align-items: stretch;
             margin-top: 28px;
         }
 
@@ -1187,8 +1188,9 @@
         .now-release {
             position: relative;
             isolation: isolate;
+            aspect-ratio: 16 / 9;
             border: 1px solid var(--hairline);
-            background: transparent;
+            background: #000;
             overflow: hidden;
         }
 
@@ -1196,16 +1198,17 @@
         .now-release h2 {
             font-size: clamp(1.15rem, 2vw, 1.55rem);
             letter-spacing: -0.03em;
-            line-height: 1.15;
-            margin: 0 0 4px;
-            text-shadow: 0 1px 14px rgb(0 0 0 / 0.9);
+            line-height: 1.28;
+            margin: 0;
+            text-shadow: var(--type-shadow);
         }
 
         .now-facade {
-            position: relative;
+            position: absolute;
+            inset: 0;
             display: block;
             width: 100%;
-            aspect-ratio: 16 / 9;
+            height: 100%;
             padding: 0;
             border: 0;
             background: #000;
@@ -1222,9 +1225,10 @@
         }
 
         .now-video iframe {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            height: auto;
+            height: 100%;
             display: block;
             border: 0;
             background: #000;
@@ -1238,8 +1242,12 @@
             inset-inline: 0;
             bottom: 0;
             z-index: 2;
-            padding: 2.1rem 1rem 0.7rem;
-            background: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.72rem;
+            padding: 3.1rem 1.05rem 1rem;
+            background: var(--scrim);
             pointer-events: none;
         }
 
@@ -1253,37 +1261,50 @@
             pointer-events: none;
         }
 
+        .now-art {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
         .now-release img {
             width: 100%;
-            aspect-ratio: 1;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .now-art {
-            display: block;
-            background: #000;
+        .now-copy .section-label,
+        .now-release-body .section-label {
+            margin: 0;
+            line-height: 1.55;
+            letter-spacing: 0.16em;
+            padding: 0.12em 0.3em;
+            margin-left: -0.3em;
+            background: rgb(0 0 0 / 0.42);
+            text-shadow: var(--type-shadow);
         }
 
         .now-meta {
             font-family: var(--font-mono);
             font-size: 0.72rem;
-            letter-spacing: 0.14em;
+            line-height: 1.55;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--text-muted);
-            margin: 0 0 8px;
-            text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
+            color: #e6e6ee;
+            margin: 0;
+            padding: 0.12em 0.3em;
+            margin-left: -0.3em;
+            background: rgb(0 0 0 / 0.42);
+            text-shadow: var(--type-shadow);
         }
 
         .now-copy p:not(.section-label),
         .now-release-body p:not(.now-meta):not(.section-label) {
             display: none;
-        }
-
-        .now-copy .section-label,
-        .now-release-body .section-label {
-            margin-bottom: 8px;
-            text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
         }
 
         .now-copy a {
@@ -1293,6 +1314,9 @@
             align-items: center;
             pointer-events: auto;
             font-size: 0.82rem;
+            line-height: 1.35;
+            margin: 0;
+            text-shadow: var(--type-shadow);
         }
 
         .listen-row {
@@ -2412,8 +2436,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-trueblack3">
-    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-trueblack4">
+    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-heroalign">
+    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-heroalign">
 </head>
 
 <body>
@@ -2950,7 +2974,7 @@
     </footer>
 
     <script src="shared/heavy-moose-nav.js?v=2026-05-13-navfix2"></script>
-    <script src="shared/catalog-cards.js?v=2026-08-28-trueblack3"></script>
+    <script src="shared/catalog-cards.js?v=2026-08-28-heroalign"></script>
     <script>
         (function () {
             'use strict';
