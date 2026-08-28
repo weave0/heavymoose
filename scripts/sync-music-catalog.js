@@ -578,6 +578,8 @@ function main() {
     if (mediaSynced.videos.length < existingCount) {
         throw new Error('Refusing to write a smaller video list. Merge should never drop existing media-library entries.');
     }
+
+    require('./bake-catalog-html.js').main();
 }
 
 if (require.main === module) {

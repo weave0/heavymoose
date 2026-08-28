@@ -1,0 +1,60 @@
+/* Quiet click-to-play chrome. Thumbnail stays the star; no YouTube-red, no PLAY pill. */
+.now-play,
+.video-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: background 200ms ease, transform 200ms ease;
+}
+
+.now-play::after,
+.video-play::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0 7px 12px;
+    border-color: transparent transparent transparent rgba(236, 236, 242, 0.92);
+    margin-left: 3px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+}
+
+.now-facade:hover .now-play,
+.now-facade:focus-visible .now-play,
+.video-facade:hover .video-play,
+.video-facade:focus-visible .video-play {
+    background: rgba(8, 8, 10, 0.58);
+    transform: translate(-50%, -50%) scale(1.04);
+}
+
+.now-facade img,
+.video-facade img {
+    transition: transform 400ms ease, filter 400ms ease;
+    filter: saturate(0.94) contrast(1.04);
+}
+
+.now-facade:hover img,
+.now-facade:focus-visible img,
+.video-facade:hover img,
+.video-facade:focus-visible img {
+    transform: scale(1.03);
+    filter: saturate(1) contrast(1.06);
+}

@@ -633,20 +633,7 @@
             display: block;
         }
 
-        .video-play {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            min-height: 44px;
-            padding: 0 16px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-        }
+        /* Quiet play chrome lives in shared/facade-play.css */
 
         .video-feed-card .video-facade {
             aspect-ratio: 16 / 9;
@@ -1190,7 +1177,7 @@
         }
 
         .latest-release-body {
-            padding: 22px;
+            padding: 14px 16px 16px;
         }
 
         .latest-release-card--feature {
@@ -1314,9 +1301,8 @@
 
         .catalog-card-body {
             display: grid;
-            grid-template-rows: auto auto 1fr auto;
-            min-height: 186px;
-            padding: 16px;
+            grid-template-rows: auto auto auto auto;
+            padding: 12px 14px 10px;
         }
 
         .catalog-card-date,
@@ -1982,6 +1968,8 @@
             display: block;
         }
     </style>
+    <link rel="stylesheet" href="shared/catalog-cards.css?v=2026-08-28-coverux">
+    <link rel="stylesheet" href="shared/facade-play.css?v=2026-08-28-coverux">
 </head>
 
 <body>
@@ -2161,69 +2149,24 @@
                         <h2 class="section-title" id="latest-releases-title">Latest Releases</h2>
                     </div>
                     <p class="section-intro">
-                        The newest Heavy Moose albums, verified against the official artist catalogs on Apple Music and Amazon Music. Choose a service and go straight to the release.
+                        The newest Heavy Moose albums, verified against the official Apple Music catalog. Covers and titles are baked into this page so crawlers see them without JavaScript.
                     </p>
                 </div>
 
                 <div class="latest-release-grid" id="latest-release-grid" aria-label="Latest Heavy Moose releases">
-                    <article class="latest-release-card reveal visible latest-release-card--feature">
-                        <img class="latest-release-art" src="assets/images/releases/pledge.jpg" alt="Pledge - Single album cover" width="600" height="600" loading="eager">
-                        <div class="latest-release-body">
-                            <span class="latest-release-kicker">Newest Single · 2026-08-26</span>
-                            <h3>Pledge - Single</h3>
-                            <p class="latest-release-meta">1 track · Rock</p>
-                            <div class="latest-release-actions">
-                                <a class="stream-btn primary" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener">Apple Music</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="latest-release-card reveal visible">
-                        <img class="latest-release-art" src="assets/images/releases/double-t-moose.jpg" alt="Double T. Moose album cover" width="600" height="600" loading="lazy">
-                        <div class="latest-release-body">
-                            <span class="latest-release-kicker">Album · 2026-08-22</span>
-                            <h3>Double T. Moose</h3>
-                            <p class="latest-release-meta">17 tracks · Hip-Hop/Rap</p>
-                            <div class="latest-release-actions">
-                                <a class="stream-btn primary" href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener">Apple Music</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="latest-release-card reveal visible">
-                        <img class="latest-release-art" src="assets/images/releases/fine.jpg" alt="Fine album cover" width="600" height="600" loading="lazy">
-                        <div class="latest-release-body">
-                            <span class="latest-release-kicker">Album · 2026-08-16</span>
-                            <h3>Fine</h3>
-                            <p class="latest-release-meta">16 tracks · Dance</p>
-                            <div class="latest-release-actions">
-                                <a class="stream-btn primary" href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener">Apple Music</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="latest-release-card reveal visible">
-                        <img class="latest-release-art" src="assets/images/releases/meh.jpg" alt="Meh album cover" width="600" height="600" loading="lazy">
-                        <div class="latest-release-body">
-                            <span class="latest-release-kicker">Album · 2026-08-07</span>
-                            <h3>Meh</h3>
-                            <p class="latest-release-meta">18 tracks · Dance</p>
-                            <div class="latest-release-actions">
-                                <a class="stream-btn primary" href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener">Apple Music</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="latest-release-card reveal visible">
-                        <img class="latest-release-art" src="assets/images/releases/yippee-ki-yay.jpg" alt="Yippee Ki-Yay album cover" width="600" height="600" loading="lazy">
-                        <div class="latest-release-body">
-                            <span class="latest-release-kicker">Album · 2026-07-30</span>
-                            <h3>Yippee Ki-Yay</h3>
-                            <p class="latest-release-meta">21 tracks · Dance</p>
-                            <div class="latest-release-actions">
-                                <a class="stream-btn primary" href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener">Apple Music</a>
-                            </div>
-                        </div>
-                    </article>
+                    <!-- LATEST_GRID_START -->
+                    <article class="latest-release-card reveal visible latest-release-card--feature" data-slug="pledge"><img class="latest-release-art" src="assets/images/releases/pledge.jpg" alt="Pledge - Single album cover" width="600" height="600" loading="eager"><div class="latest-release-body"><span class="latest-release-kicker">Single · Aug 26, 2026</span><h3>Pledge - Single</h3><p class="latest-release-meta">1 track · Rock</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="double-t-moose"><img class="latest-release-art" src="assets/images/releases/double-t-moose.jpg" alt="Double T. Moose album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Aug 22, 2026</span><h3>Double T. Moose</h3><p class="latest-release-meta">17 tracks · Hip-Hop/Rap</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="fine"><img class="latest-release-art" src="assets/images/releases/fine.jpg" alt="Fine album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Aug 16, 2026</span><h3>Fine</h3><p class="latest-release-meta">16 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="meh"><img class="latest-release-art" src="assets/images/releases/meh.jpg" alt="Meh album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Aug 7, 2026</span><h3>Meh</h3><p class="latest-release-meta">18 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/watch?v=HNascZ8Eflo" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="yippee-ki-yay"><img class="latest-release-art" src="assets/images/releases/yippee-ki-yay.jpg" alt="Yippee Ki-Yay album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Jul 30, 2026</span><h3>Yippee Ki-Yay</h3><p class="latest-release-meta">21 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/watch?v=qPbUA9RziPo" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="whisp"><img class="latest-release-art" src="assets/images/releases/whisp.jpg" alt="Whisp album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Jul 23, 2026</span><h3>Whisp</h3><p class="latest-release-meta">12 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/whisp/6793851742" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/watch?v=ggsk-w-rzvA" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="moose-pudding"><img class="latest-release-art" src="assets/images/releases/moose-pudding.jpg" alt="Moose Pudding album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Jul 20, 2026</span><h3>Moose Pudding</h3><p class="latest-release-meta">16 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/moose-pudding/6793006768" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/watch?v=y-55hCaxNlk" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <article class="latest-release-card reveal visible" data-slug="argh"><img class="latest-release-art" src="assets/images/releases/argh.jpg" alt="Argh album cover" width="600" height="600" loading="lazy"><div class="latest-release-body"><span class="latest-release-kicker">Album · Jul 17, 2026</span><h3>Argh</h3><p class="latest-release-meta">13 tracks · Dance</p><div class="latest-release-actions"><a class="stream-btn primary" href="https://music.apple.com/us/album/argh/6791926673" target="_blank" rel="noopener">Apple Music</a><a class="stream-btn" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener">YouTube</a></div></div></article>
+                    <!-- LATEST_GRID_END -->
                 </div>
                 <noscript>
-                    <p class="catalog-status">Newest verified releases: Pledge, Double T. Moose, Fine, Meh, and Yippee Ki-Yay. Open Apple Music or the album sections below.</p>
+                    <p class="catalog-status">Newest verified releases: Pledge, Double T. Moose, Fine, Meh, Yippee Ki-Yay, and Whisp. Open Apple Music or the catalog grid below.</p>
                 </noscript>
             </div>
         </section>
@@ -2249,9 +2192,50 @@
                     </div>
                 </div>
                 <div class="catalog-grid" id="catalog-grid" aria-live="polite">
-                    <p class="catalog-status">The verified Apple Music catalog currently lists 27 releases and 306 tracks. JavaScript fills this grid when available.</p>
+                    <!-- CATALOG_GRID_START -->
+                    <article class="catalog-card" data-slug="pledge" data-kind="single"><img src="assets/images/releases/pledge.jpg" alt="Heavy Moose — Pledge - Single cover art" width="600" height="600" loading="eager"><div class="catalog-card-body"><p class="catalog-card-date">Aug 26, 2026</p><h3>Pledge - Single</h3><p class="catalog-card-meta">1 track · Rock</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener" aria-label="Open Pledge - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Pledge - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="double-t-moose" data-kind="album"><img src="assets/images/releases/double-t-moose.jpg" alt="Heavy Moose — Double T. Moose cover art" width="600" height="600" loading="eager"><div class="catalog-card-body"><p class="catalog-card-date">Aug 22, 2026</p><h3>Double T. Moose</h3><p class="catalog-card-meta">17 tracks · Hip-Hop/Rap</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/double-t-moose/6804336513" target="_blank" rel="noopener" aria-label="Open Double T. Moose on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener" aria-label="Open Double T. Moose on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="fine" data-kind="album"><img src="assets/images/releases/fine.jpg" alt="Heavy Moose — Fine cover art" width="600" height="600" loading="eager"><div class="catalog-card-body"><p class="catalog-card-date">Aug 16, 2026</p><h3>Fine</h3><p class="catalog-card-meta">16 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/fine/6802171284" target="_blank" rel="noopener" aria-label="Open Fine on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Fine on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="meh" data-kind="album"><img src="assets/images/releases/meh.jpg" alt="Heavy Moose — Meh cover art" width="600" height="600" loading="eager"><div class="catalog-card-body"><p class="catalog-card-date">Aug 7, 2026</p><h3>Meh</h3><p class="catalog-card-meta">18 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/meh/6799403338" target="_blank" rel="noopener" aria-label="Open Meh on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=HNascZ8Eflo" target="_blank" rel="noopener" aria-label="Open Meh on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="yippee-ki-yay" data-kind="album"><img src="assets/images/releases/yippee-ki-yay.jpg" alt="Heavy Moose — Yippee Ki-Yay cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 30, 2026</p><h3>Yippee Ki-Yay</h3><p class="catalog-card-meta">21 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/yippee-ki-yay/6796737635" target="_blank" rel="noopener" aria-label="Open Yippee Ki-Yay on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=qPbUA9RziPo" target="_blank" rel="noopener" aria-label="Open Yippee Ki-Yay on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="whisp" data-kind="album"><img src="assets/images/releases/whisp.jpg" alt="Heavy Moose — Whisp cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 23, 2026</p><h3>Whisp</h3><p class="catalog-card-meta">12 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/whisp/6793851742" target="_blank" rel="noopener" aria-label="Open Whisp on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=ggsk-w-rzvA" target="_blank" rel="noopener" aria-label="Open Whisp on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="moose-pudding" data-kind="album"><img src="assets/images/releases/moose-pudding.jpg" alt="Heavy Moose — Moose Pudding cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 20, 2026</p><h3>Moose Pudding</h3><p class="catalog-card-meta">16 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/moose-pudding/6793006768" target="_blank" rel="noopener" aria-label="Open Moose Pudding on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=y-55hCaxNlk" target="_blank" rel="noopener" aria-label="Open Moose Pudding on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="argh" data-kind="album"><img src="assets/images/releases/argh.jpg" alt="Heavy Moose — Argh cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 17, 2026</p><h3>Argh</h3><p class="catalog-card-meta">13 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/argh/6791926673" target="_blank" rel="noopener" aria-label="Open Argh on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Argh on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="nebulous-breakfast" data-kind="album"><img src="assets/images/releases/nebulous-breakfast.jpg" alt="Heavy Moose — Nebulous Breakfast cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 11, 2026</p><h3>Nebulous Breakfast</h3><p class="catalog-card-meta">15 tracks · New Age</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/nebulous-breakfast/6790054576" target="_blank" rel="noopener" aria-label="Open Nebulous Breakfast on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Nebulous Breakfast on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="pas-de-l-art" data-kind="album"><img src="assets/images/releases/pas-de-l-art.jpg" alt="Heavy Moose — Pas de l&#39;art cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jul 9, 2026</p><h3>Pas de l&#39;art</h3><p class="catalog-card-meta">24 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/pas-de-lart/6789486076" target="_blank" rel="noopener" aria-label="Open Pas de l&#39;art on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=1ZUs-jUahqE" target="_blank" rel="noopener" aria-label="Open Pas de l&#39;art on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="welp" data-kind="album"><img src="assets/images/releases/welp.jpg" alt="Heavy Moose — Welp cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 30, 2026</p><h3>Welp</h3><p class="catalog-card-meta">14 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/welp/6786644950" target="_blank" rel="noopener" aria-label="Open Welp on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=80p8JL7b1J0" target="_blank" rel="noopener" aria-label="Open Welp on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="neon-jellyfish" data-kind="album"><img src="assets/images/releases/neon-jellyfish.jpg" alt="Heavy Moose — Neon Jellyfish cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 22, 2026</p><h3>Neon Jellyfish</h3><p class="catalog-card-meta">16 tracks · Dubstep</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/neon-jellyfish/6783911759" target="_blank" rel="noopener" aria-label="Open Neon Jellyfish on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=AJZCoAqlnnM" target="_blank" rel="noopener" aria-label="Open Neon Jellyfish on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="dark-cloud-circuit" data-kind="album"><img src="assets/images/releases/dark-cloud-circuit.jpg" alt="Heavy Moose — Dark Cloud Circuit cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 15, 2026</p><h3>Dark Cloud Circuit</h3><p class="catalog-card-meta">12 tracks · Hardcore</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/dark-cloud-circuit/6781015683" target="_blank" rel="noopener" aria-label="Open Dark Cloud Circuit on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Dark Cloud Circuit on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="word" data-kind="album"><img src="assets/images/releases/word.jpg" alt="Heavy Moose — Word cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 8, 2026</p><h3>Word</h3><p class="catalog-card-meta">15 tracks · Jungle/Drum&#39;n&#39;bass</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/word/6779770887" target="_blank" rel="noopener" aria-label="Open Word on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=enXxee17OVc" target="_blank" rel="noopener" aria-label="Open Word on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="merican-moose-hugs" data-kind="single"><img src="assets/images/releases/merican-moose-hugs.jpg" alt="Heavy Moose — Merican Moose Hugs - Single cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 4, 2026</p><h3>Merican Moose Hugs - Single</h3><p class="catalog-card-meta">3 tracks · Hardcore</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/merican-moose-hugs-single/6777121073" target="_blank" rel="noopener" aria-label="Open Merican Moose Hugs - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Merican Moose Hugs - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="flag-on-the-jukebox" data-kind="album"><img src="assets/images/releases/flag-on-the-jukebox.jpg" alt="Heavy Moose — Flag on the Jukebox cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">Jun 1, 2026</p><h3>Flag on the Jukebox</h3><p class="catalog-card-meta">11 tracks · Pop</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/flag-on-the-jukebox/6776086029" target="_blank" rel="noopener" aria-label="Open Flag on the Jukebox on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Flag on the Jukebox on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="k-paul" data-kind="album"><img src="assets/images/releases/k-paul.jpg" alt="Heavy Moose — K, Paul cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 31, 2026</p><h3>K, Paul</h3><p class="catalog-card-meta">12 tracks · Pop</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/k-paul/6775364208" target="_blank" rel="noopener" aria-label="Open K, Paul on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open K, Paul on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="floor-gospel" data-kind="album"><img src="assets/images/releases/floor-gospel.jpg" alt="Heavy Moose — Floor Gospel cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 29, 2026</p><h3>Floor Gospel</h3><p class="catalog-card-meta">12 tracks · Fitness &amp; Workout</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/floor-gospel/6777205500" target="_blank" rel="noopener" aria-label="Open Floor Gospel on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Floor Gospel on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="cold-cathedral" data-kind="album"><img src="assets/images/releases/cold-cathedral.jpg" alt="Heavy Moose — Cold Cathedral + cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 24, 2026</p><h3>Cold Cathedral +</h3><p class="catalog-card-meta">10 tracks · Dance</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/cold-cathedral/6772851915" target="_blank" rel="noopener" aria-label="Open Cold Cathedral + on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Cold Cathedral + on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="applebee-s-parking-lot-feat-dj-shariff" data-kind="single"><img src="assets/images/releases/applebee-s-parking-lot-feat-dj-shariff.jpg" alt="Heavy Moose — Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 21, 2026</p><h3>Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single</h3><p class="catalog-card-meta">1 track · Downtempo</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/applebees-parking-lot-feat-dj-shariff-single/6771956352" target="_blank" rel="noopener" aria-label="Open Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Applebee&#39;s Parking Lot (feat. DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="motion-is-normal" data-kind="album"><img src="assets/images/releases/motion-is-normal.jpg" alt="Heavy Moose — Motion is Normal cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 18, 2026</p><h3>Motion is Normal</h3><p class="catalog-card-meta">12 tracks · House</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/motion-is-normal/6771133705" target="_blank" rel="noopener" aria-label="Open Motion is Normal on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Motion is Normal on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="jack" data-kind="single"><img src="assets/images/releases/jack.jpg" alt="Heavy Moose — Jack - Single cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 15, 2026</p><h3>Jack - Single</h3><p class="catalog-card-meta">1 track · Downtempo</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/jack-single/6770118831" target="_blank" rel="noopener" aria-label="Open Jack - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=W33Yw2o-Yaw" target="_blank" rel="noopener" aria-label="Open Jack - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="flipside-rituals" data-kind="single"><img src="assets/images/releases/flipside-rituals.jpg" alt="Heavy Moose — Flipside Rituals - EP cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 14, 2026</p><h3>Flipside Rituals - EP</h3><p class="catalog-card-meta">6 tracks · Hardcore</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/flipside-rituals-ep/6769816855" target="_blank" rel="noopener" aria-label="Open Flipside Rituals - EP on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=LxPj9sExxuc" target="_blank" rel="noopener" aria-label="Open Flipside Rituals - EP on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="knock-knock-merica" data-kind="album"><img src="assets/images/releases/knock-knock-merica.jpg" alt="Heavy Moose — Knock, Knock (&#39;Merica) cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 7, 2026</p><h3>Knock, Knock (&#39;Merica)</h3><p class="catalog-card-meta">13 tracks · Hardcore</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/knock-knock-merica/6768399020" target="_blank" rel="noopener" aria-label="Open Knock, Knock (&#39;Merica) on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Knock, Knock (&#39;Merica) on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="missed-some-80s-feat-dj-shariff" data-kind="single"><img src="assets/images/releases/missed-some-80s-feat-dj-shariff.jpg" alt="Heavy Moose — Missed Some 80s (feat. DJ Shariff) - Single cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 5, 2026</p><h3>Missed Some 80s (feat. DJ Shariff) - Single</h3><p class="catalog-card-meta">1 track · Dubstep</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/missed-some-80s-feat-dj-shariff-single/6767615420" target="_blank" rel="noopener" aria-label="Open Missed Some 80s (feat. DJ Shariff) - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Missed Some 80s (feat. DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="floor-witness" data-kind="album"><img src="assets/images/releases/floor-witness.jpg" alt="Heavy Moose — Floor Witness cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 4, 2026</p><h3>Floor Witness</h3><p class="catalog-card-meta">13 tracks · Dubstep</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/floor-witness/1896371819" target="_blank" rel="noopener" aria-label="Open Floor Witness on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/watch?v=NM4Nrv9zyN8" target="_blank" rel="noopener" aria-label="Open Floor Witness on YouTube">YouTube</a></div></div></article>
+                    <article class="catalog-card" data-slug="air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff" data-kind="single"><img src="assets/images/releases/air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff.jpg" alt="Heavy Moose — Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single cover art" width="600" height="600" loading="lazy"><div class="catalog-card-body"><p class="catalog-card-date">May 2, 2026</p><h3>Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single</h3><p class="catalog-card-meta">1 track · Dubstep</p><div class="catalog-card-links"><a class="catalog-card-link" href="https://music.apple.com/us/album/air-punch-ceremony-feat-red-leopard-of-st-paul-dj/6766690846" target="_blank" rel="noopener" aria-label="Open Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single on Apple Music">Apple</a><a class="catalog-card-link" href="https://www.youtube.com/@HeavyMoose/releases" target="_blank" rel="noopener" aria-label="Open Air Punch Ceremony (feat. Red Leopard of St. Paul &amp; DJ Shariff) - Single on YouTube">YouTube</a></div></div></article>
+                    <!-- CATALOG_GRID_END -->
                 </div>
-                <noscript><p class="catalog-status">The current Apple Music catalog has 27 releases / 306 tracks. Use the detailed album sections below or open the Apple Music artist page.</p></noscript>
+                <noscript>
+                    <p class="catalog-status">Current Apple catalog titles are listed in the grid above, newest first.</p>
+                </noscript>
+            </div>
+        </section>
+
+        <section class="origin-catalog" id="origin" aria-labelledby="origin-title">
+            <div class="container">
+                <span class="section-label">Origin / history</span>
+                <h2 class="section-title" id="origin-title">DROSS, Floor Witness, and Knock Knock</h2>
+                <p class="section-intro">
+                    The current Apple run is above. What follows is origin story, later in-page
+                    players, and archive listening — not the newest catalog.
+                </p>
             </div>
         </section>
 
@@ -2419,7 +2403,7 @@
                     <div class="video-embed reveal" id="latest-video-embed">
                         <button type="button" class="video-facade" id="latest-video-facade" data-embed="https://www.youtube-nocookie.com/embed/_AlTynB84dE" aria-label="Play Wiggle Pit It">
                             <img src="https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg" alt="" width="480" height="360">
-                            <span class="video-play" aria-hidden="true">Play</span>
+                            <span class="video-play" aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="video-meta reveal">
@@ -3708,6 +3692,7 @@
     </footer>
 
     <script src="shared/heavy-moose-nav.js?v=2026-05-13-navfix2"></script>
+    <script src="shared/catalog-cards.js?v=2026-08-28-coverux"></script>
     <script>
         (function () {
             'use strict';
@@ -3918,7 +3903,6 @@
                 var play = document.createElement('span');
                 play.className = 'video-play';
                 play.setAttribute('aria-hidden', 'true');
-                play.textContent = 'Play';
                 button.append(thumb, play);
 
                 var body = document.createElement('div');
@@ -3987,68 +3971,81 @@
 
                         latestReleaseGrid.textContent = '';
                         latestReleasesLabel.textContent = formatReleaseDate(catalog.releases[0].releaseDate, { month: 'long', year: 'numeric' });
-                        catalog.releases.slice(0, 5).forEach(function (release, index) {
-                            latestReleaseGrid.append(buildReleaseCard(release, index, releaseVideoLookup.get(release.slug) || null));
-                        });
-                        latestReleaseGrid.append(buildDirectoryCard(catalog.artist));
+                        if (window.HeavyMooseCatalog) {
+                            var youtubeBySlug = window.HeavyMooseCatalog.youtubeMap(mediaLibrary);
+                            latestReleaseGrid.innerHTML = window.HeavyMooseCatalog.renderGrid(
+                                catalog.releases.slice(0, 8),
+                                youtubeBySlug,
+                                catalog.artist,
+                                'latest'
+                            );
+                            catalogGrid.innerHTML = window.HeavyMooseCatalog.renderGrid(
+                                catalog.releases,
+                                youtubeBySlug,
+                                catalog.artist,
+                                'catalog'
+                            );
+                        } else {
+                            catalog.releases.slice(0, 8).forEach(function (release, index) {
+                                latestReleaseGrid.append(buildReleaseCard(release, index, releaseVideoLookup.get(release.slug) || null));
+                            });
+                            catalogGrid.textContent = '';
+                            catalog.releases.forEach(function (release) {
+                                var isSingle = release.type === 'single' || release.type === 'ep';
+                                var card = document.createElement('article');
+                                card.className = 'catalog-card';
+                                card.setAttribute('data-kind', isSingle ? 'single' : 'album');
 
+                                var image = document.createElement('img');
+                                image.src = release.artwork;
+                                image.alt = 'Heavy Moose — ' + release.title + ' cover art';
+                                image.loading = 'lazy';
+                                image.width = 600;
+                                image.height = 600;
+
+                                var body = document.createElement('div');
+                                body.className = 'catalog-card-body';
+
+                                var date = document.createElement('p');
+                                date.className = 'catalog-card-date';
+                                date.textContent = formatReleaseDate(release.releaseDate);
+
+                                var title = document.createElement('h3');
+                                title.textContent = release.title;
+
+                                var meta = document.createElement('p');
+                                meta.className = 'catalog-card-meta';
+                                meta.textContent = release.trackCount + (release.trackCount === 1 ? ' track · ' : ' tracks · ') + release.genre;
+
+                                var links = document.createElement('div');
+                                links.className = 'catalog-card-links';
+
+                                var appleLink = document.createElement('a');
+                                appleLink.className = 'catalog-card-link';
+                                appleLink.href = release.appleMusicUrl;
+                                appleLink.target = '_blank';
+                                appleLink.rel = 'noopener';
+                                appleLink.textContent = 'Apple';
+                                appleLink.setAttribute('aria-label', 'Open ' + release.title + ' on Apple Music');
+
+                                var youtubeLink = document.createElement('a');
+                                youtubeLink.className = 'catalog-card-link';
+                                youtubeLink.href = (releaseVideoLookup.get(release.slug) && releaseVideoLookup.get(release.slug).watchUrl) || catalog.artist.youtubeUrl;
+                                youtubeLink.target = '_blank';
+                                youtubeLink.rel = 'noopener';
+                                youtubeLink.textContent = 'YouTube';
+                                youtubeLink.setAttribute('aria-label', 'Open ' + release.title + ' on YouTube');
+
+                                links.append(appleLink, youtubeLink);
+                                body.append(date, title, meta, links);
+                                card.append(image, body);
+                                catalogGrid.append(card);
+                            });
+                        }
                         var trackTotal = catalog.releases.reduce(function (sum, release) {
                             return sum + (Number(release.trackCount) || 0);
                         }, 0);
                         catalogSummaryLabel.textContent = catalog.releases.length + ' Releases · ' + trackTotal + ' Tracks';
-
-                        catalogGrid.textContent = '';
-                        catalog.releases.forEach(function (release) {
-                            var isSingle = release.type === 'single' || release.type === 'ep';
-                            var card = document.createElement('article');
-                            card.className = 'catalog-card';
-                            card.setAttribute('data-kind', isSingle ? 'single' : 'album');
-
-                            var image = document.createElement('img');
-                            image.src = release.artwork;
-                            image.alt = 'Heavy Moose — ' + release.title + ' cover art';
-                            image.loading = 'lazy';
-                            image.width = 600;
-                            image.height = 600;
-
-                            var body = document.createElement('div');
-                            body.className = 'catalog-card-body';
-
-                            var date = document.createElement('p');
-                            date.className = 'catalog-card-date';
-                            date.textContent = formatReleaseDate(release.releaseDate);
-
-                            var title = document.createElement('h3');
-                            title.textContent = release.title;
-
-                            var meta = document.createElement('p');
-                            meta.className = 'catalog-card-meta';
-                            meta.textContent = release.trackCount + (release.trackCount === 1 ? ' track · ' : ' tracks · ') + release.genre;
-
-                            var links = document.createElement('div');
-                            links.className = 'catalog-card-links';
-
-                            var appleLink = document.createElement('a');
-                            appleLink.className = 'catalog-card-link';
-                            appleLink.href = release.appleMusicUrl;
-                            appleLink.target = '_blank';
-                            appleLink.rel = 'noopener';
-                            appleLink.textContent = 'Apple';
-                            appleLink.setAttribute('aria-label', 'Open ' + release.title + ' on Apple Music');
-
-                            var amazonLink = document.createElement('a');
-                            amazonLink.className = 'catalog-card-link';
-                            amazonLink.href = 'https://music.amazon.com/search/' + encodeURIComponent('Heavy Moose ' + release.title.replace(/ - (Single|EP)$/i, ''));
-                            amazonLink.target = '_blank';
-                            amazonLink.rel = 'noopener';
-                            amazonLink.textContent = 'Amazon';
-                            amazonLink.setAttribute('aria-label', 'Find ' + release.title + ' on Amazon Music');
-
-                            links.append(appleLink, amazonLink);
-                            body.append(date, title, meta, links);
-                            card.append(image, body);
-                            catalogGrid.append(card);
-                        });
 
                         var latestVideo = pickFeaturedVideo(mediaLibrary);
 
@@ -4108,21 +4105,7 @@
                         }
                     })
                     .catch(function () {
-                        var status = document.createElement('p');
-                        status.className = 'catalog-status';
-                        status.textContent = 'Catalog feed unavailable. Use the detailed releases below.';
-                        catalogGrid.replaceChildren(status);
-
-                        var latestStatus = document.createElement('p');
-                        latestStatus.className = 'catalog-status';
-                        latestStatus.textContent = 'Latest release feed unavailable. Use the catalog below.';
-                        latestReleaseGrid.replaceChildren(latestStatus);
-
-                        var videoStatus = document.createElement('p');
-                        videoStatus.className = 'catalog-status';
-                        videoStatus.textContent = 'Video feed unavailable. Use the embedded archive sections below.';
-                        latestVideoFeed.replaceChildren(videoStatus.cloneNode(true));
-                        featureVideoFeed.replaceChildren(videoStatus);
+                        // Keep baked catalog cards when the live JSON feed is unavailable.
                     });
 
                 catalogButtons.forEach(function (button) {
