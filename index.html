@@ -1111,6 +1111,159 @@
             border: none;
         }
 
+        .now {
+            padding: 108px 0 40px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .now-kicker {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--electric);
+            margin-bottom: 10px;
+        }
+
+        .now h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .now-lede {
+            color: var(--text-muted);
+            max-width: 62ch;
+            margin-bottom: 0;
+        }
+
+        .now-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(240px, 340px);
+            gap: 22px;
+            align-items: start;
+            margin-top: 28px;
+        }
+
+        .now-video,
+        .now-release {
+            border: 1px solid var(--border);
+            background: rgba(16, 16, 22, 0.92);
+            overflow: hidden;
+        }
+
+        .now-video h2,
+        .now-release h2 {
+            font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin: 0 0 14px;
+        }
+
+        .now-facade {
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            padding: 0;
+            border: 0;
+            background: #000;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .now-facade img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: 0;
+        }
+
+        .now-video iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            display: block;
+            border: 0;
+            background: #000;
+        }
+
+        .now-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            min-height: 44px;
+            padding: 0 16px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .now-copy,
+        .now-release-body {
+            padding: 16px 18px 20px;
+        }
+
+        .now-release img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .now-art {
+            display: block;
+        }
+
+        .now-meta {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 10px;
+        }
+
+        .now-copy p,
+        .now-release-body p:not(.now-meta):not(.section-label) {
+            color: var(--text-secondary);
+            margin: 0 0 12px;
+        }
+
+        .now-copy a {
+            color: var(--electric);
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .listen-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .listen-row .btn {
+            padding: 12px 20px;
+        }
+
+        .now-next {
+            margin-top: 18px;
+            color: var(--text-muted);
+        }
+
+        .now-next a {
+            color: var(--electric);
+        }
+
         .signal-promo {
             position: relative;
             overflow: hidden;
@@ -1821,9 +1974,8 @@
        RESPONSIVE
        ============================================= */
         @media (max-width: 900px) {
-            .hero-layout {
+            .now-grid {
                 grid-template-columns: 1fr;
-                gap: 22px;
             }
 
             .hero-social {
@@ -2212,7 +2364,7 @@
             <div class="hm-quicklinks" aria-label="Primary navigation">
                 <a href="index.html" aria-current="page">Home</a>
                 <a href="videos.html">Videos</a>
-                <a href="music.html">Music</a>
+                <a href="music.html">Discography</a>
             </div>
 
             <div class="hm-menu-actions">
@@ -2235,7 +2387,7 @@
                         <span class="hm-link-chip">HM</span>
                         <span class="hm-link-copy">
                             <span class="hm-link-title">Homepage</span>
-                            <span class="hm-link-subtitle">Artist overview, featured video, and current catalog entry points.</span>
+                            <span class="hm-link-subtitle">Current release and current official video, then Videos, then history.</span>
                         </span>
                     </a>
                     <a class="hm-menu-link" href="#about">
@@ -2364,225 +2516,48 @@
     <main id="main">
 
         <!-- ==========================================
-         HERO        <!-- ==========================================
-         HERO
+         CURRENT RELEASE + OFFICIAL VIDEO
          ========================================== -->
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="hero-bg" aria-hidden="true"></div>
-            <div class="hero-bg-grain" aria-hidden="true"></div>
-
-            <div class="hero-layout">
-                <div class="hero-content">
-                    <span class="hero-eyebrow">Yeah... Sometimes Life is Heavy</span>
-                    <h1 class="hero-title" id="hero-title">
-                        <span class="hero-title-static">Heavy</span>
-                        <span class="hero-title-glitch" data-text="Moose">Moose</span>
-                    </h1>
-                    <p class="hero-tagline">
-                        Heavy Moose pulls industrial weight, dark ambience, and experimental texture through the wreckage,
-                        making songs for anyone drawn to the shimmer left behind when grief, pressure, and beauty refuse to disappear.
-                    </p>
-                    <div class="hero-cta-group">
-                        <a href="videos.html" class="btn btn-primary">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                            Watch Videos
-                        </a>
-                        <a href="music.html" class="btn btn-outline">
-                            Explore the Music
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <aside class="hero-social reveal" aria-labelledby="hero-social-title">
-                    <div class="hero-social-header">
-                        <div>
-                            <span class="hero-social-kicker" id="hero-social-kicker">Current Release</span>
-                            <h2 class="hero-social-title" id="hero-social-title">Play the latest Heavy Moose work</h2>
-                        </div>
-                    </div>
-                    <div class="hero-social-card">
-                        <a class="hero-social-link" href="https://music.apple.com/us/album/pledge-single/6805803272" id="hero-social-link" target="_blank" rel="noopener" aria-label="Listen to the current Heavy Moose release">
-                            <div class="hero-social-poster" id="hero-social-poster">
-                                <span class="hero-social-chip">Current Release</span>
-                                <div class="hero-social-body">
-                                    <div class="hero-social-handle">Heavy Moose</div>
-                                    <h3 class="hero-social-headline" id="hero-social-headline">Pledge - Single</h3>
-                                    <p class="hero-social-desc" id="hero-social-desc">
-                                        The current Heavy Moose release on Apple Music, kept in sync with the verified artist catalog.
-                                    </p>
-                                    <span class="hero-social-action">
-                                        Listen on Apple Music
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            <polyline points="12 5 19 12 12 19"></polyline>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="hero-social-foot">
-                                    <span id="hero-social-foot-label">Latest catalog entry</span>
-                                    <span class="hero-social-url" id="hero-social-url">Pledge - Single</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <p class="hero-social-note">
-                        Featured video and album update from the synced catalog. America 250 remains in the archive below and on the <a href="music.html#america-250">music page player</a>.
-                    </p>
-                </aside>
-            </div>
-
-            <div class="hero-scroll-cue" aria-hidden="true">
-                <span>Scroll</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
-        </section>
-
-        <!-- ==========================================
-         SHOWCASE VIDEO
-         ========================================== -->
-        <section class="showcase" id="showcase" aria-labelledby="showcase-title">
+        <section class="now" id="now" aria-labelledby="now-title">
             <div class="container">
-                <div class="showcase-inner">
-                    <div class="showcase-text reveal">
-                        <span class="section-label" id="showcase-label">Latest Official Upload</span>
-                        <h2 class="section-title" id="showcase-title">Wiggle Pit It</h2>
-                        <div class="showcase-badges" aria-label="Latest music video highlights">
-                            <span class="showcase-badge showcase-badge--hot" id="showcase-badge-primary">New Music Video</span>
-                            <span class="showcase-badge">Latest Release</span>
-                            <span class="showcase-badge">Heavy Moose</span>
+                <p class="section-label now-kicker">Current</p>
+                <h1 class="now-title" id="now-title">Heavy Moose</h1>
+                <p class="now-lede">Newest work first. Then videos. Then history.</p>
+                <div class="now-grid">
+                    <article class="now-video" aria-labelledby="showcase-title">
+                        <button type="button" class="now-facade" id="showcase-facade" data-embed="https://www.youtube-nocookie.com/embed/_AlTynB84dE" aria-label="Play Wiggle Pit It">
+                            <img src="https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg" alt="" width="480" height="360">
+                            <span class="now-play" aria-hidden="true">Play</span>
+                        </button>
+                        <div class="now-copy">
+                            <p class="section-label" id="showcase-label">Official video</p>
+                            <h2 id="showcase-title">Wiggle Pit It</h2>
+                            <p id="showcase-copy">Newest official music video on the Heavy Moose channel.</p>
+                            <a id="showcase-link" href="https://www.youtube.com/watch?v=_AlTynB84dE" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
                         </div>
-                        <p class="section-intro" id="showcase-copy">
-                            <strong>Wiggle Pit It</strong> currently leads the official Heavy Moose upload feed and updates automatically from the synced channel data.
-                        </p>
-                        <div class="showcase-actions">
-                        <a href="video-wiggle-pit-it.html" class="btn btn-outline" id="showcase-link">
-                            Open watch page
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
+                    </article>
+                    <article class="now-release" aria-labelledby="conus-signal-title">
+                        <a class="now-art" id="latest-release-art-link" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener noreferrer">
+                            <img id="latest-release-art" src="assets/images/releases/pledge.jpg" alt="Pledge album artwork" width="640" height="640">
                         </a>
-                        <a href="videos.html" class="btn btn-primary">All Videos</a>
-                        </div>
-                    </div>
-                    <div class="showcase-embed reveal">
-                        <iframe
-                            src="https://www.youtube-nocookie.com/embed/_AlTynB84dE"
-                            title="Heavy Moose latest music video"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                            id="showcase-iframe"
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="signal-promo" id="conus-signal" aria-labelledby="conus-signal-title">
-            <div class="container">
-                <div class="signal-promo-grid">
-                    <div class="signal-promo-copy reveal">
-                        <span class="section-label" id="latest-release-label">Single · 2026-08-26</span>
-                        <h2 class="section-title" id="conus-signal-title">Pledge - Single</h2>
-                        <p class="section-intro" id="latest-release-copy">
-                            Current Heavy Moose release, synchronized from the verified Apple Music artist catalog.
-                        </p>
-                        <div class="signal-promo-actions">
-                            <a href="https://music.apple.com/us/album/pledge-single/6805803272" class="btn btn-primary" target="_blank" rel="noopener" id="latest-release-link">Apple Music</a>
-                            <a href="https://music.amazon.com/artists/B0GYLK4RWC/heavy-moose" class="btn btn-outline" target="_blank" rel="noopener" id="latest-release-amazon">Amazon Music</a>
-                            <a href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" class="btn btn-outline" target="_blank" rel="noopener">YouTube</a>
-                            <a href="music.html#latest-releases" class="btn btn-outline">Discography</a>
-                        </div>
-                    </div>
-                    <article class="signal-promo-card reveal" aria-label="Latest Heavy Moose release art and metadata">
-                        <div class="signal-promo-art">
-                            <img
-                                src="assets/images/releases/pledge.jpg"
-                                alt="Pledge - Single cover art"
-                                loading="lazy"
-                                id="latest-release-art"
-                                width="800"
-                                height="800">
-                        </div>
-                        <div class="signal-promo-body">
-                            <div class="signal-promo-kicker">Latest Release</div>
-                            <h3 class="signal-promo-title" id="latest-release-card-title">Pledge - Single</h3>
-                            <div class="signal-promo-meta" id="latest-release-meta">Heavy Moose · 2026 · 1 Track</div>
-                            <p class="signal-promo-desc" id="latest-release-desc">
-                                New world layer art and canonical release metadata now stay synced from one source of truth.
-                            </p>
+                        <div class="now-release-body">
+                            <p class="section-label" id="latest-release-label">Release</p>
+                            <h2 id="conus-signal-title">Pledge</h2>
+                            <p id="latest-release-card-title" hidden>Pledge</p>
+                            <p class="now-meta" id="latest-release-meta">Single · 1 song · Aug 26, 2026</p>
+                            <p id="latest-release-desc">Newest Apple Music release.</p>
+                            <p id="latest-release-copy" hidden>Current Heavy Moose release from the verified Apple Music catalog.</p>
                         </div>
                     </article>
                 </div>
+                <div class="listen-row" aria-label="Listen">
+                    <a class="btn btn-primary" id="latest-release-link" href="https://music.apple.com/us/album/pledge-single/6805803272" target="_blank" rel="noopener noreferrer">Apple Music</a>
+                    <a class="btn btn-outline" id="latest-release-amazon" href="https://music.amazon.com/artists/B0GYLK4RWC/heavy-moose" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+                    <a class="btn btn-outline" href="https://www.youtube.com/@HeavyMoose?sub_confirmation=1" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </div>
+                <p class="now-next">Then <a href="videos.html">Videos</a>, then <a href="#albums">history</a>.</p>
             </div>
         </section>
-
-
-        <!-- ==========================================
-         AMERICA 250 ARCHIVE
-         ========================================== -->
-        <section class="july4-hero" id="america-got-ya" aria-labelledby="july4-title">
-            <div class="july4-hero-bg" aria-hidden="true"></div>
-            <div class="july4-hero-stars" id="july4-stars" aria-hidden="true"></div>
-            <div class="july4-hero-sweep" aria-hidden="true"></div>
-
-            <div class="july4-hero-inner">
-                <header class="july4-header reveal">
-                    <p class="july4-eyebrow">
-                        <span class="july4-star-icon" aria-hidden="true">&#9733;</span>
-                        4th of July &middot; Independence Day Tribute &middot; 2025
-                        <span class="july4-star-icon" aria-hidden="true">&#9733;</span>
-                    </p>
-                    <h2 class="july4-title" id="july4-title">
-                        <span class="word-america">America</span>
-                        <span class="word-got-ya">Got Ya</span>
-                    </h2>
-                    <p class="july4-subtitle">
-                        Independence Day tribute from the America 250 run. BF brings industrial signal to the anniversary &mdash;
-                        kept here as catalog history, not the current Heavy Moose release.
-                    </p>
-                </header>
-
-                <div class="july4-embed-wrap reveal">
-                    <div class="july4-embed-frame">
-                        <iframe
-                            src="https://www.youtube-nocookie.com/embed/iK2ytZ4Duxo"
-                            title="Heavy Moose / BF &mdash; America Got Ya &middot; 4th of July Tribute"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                            loading="eager">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div class="july4-meta-row reveal">
-                    <span class="july4-badge july4-badge--red">Independence Day Drop</span>
-                    <span class="july4-badge july4-badge--blue">America 250</span>
-                    <span class="july4-badge july4-badge--neutral">Heavy Moose &middot; BF &middot; 2025</span>
-                </div>
-
-                <div class="july4-cta reveal">
-                    <a href="https://youtu.be/iK2ytZ4Duxo" class="btn btn-patriot" target="_blank" rel="noopener" aria-label="Watch America Got Ya on YouTube (opens in new tab)">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                        Watch on YouTube
-                    </a>
-                    <a href="music.html#america-250" class="btn btn-outline">
-                        America 250 Signal
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                </div>
-            </div>
-        </section>
-
 
         <!-- ==========================================
          ABOUT
@@ -2645,12 +2620,13 @@
         <section class="albums" id="albums" aria-labelledby="albums-title">
             <div class="container">
                 <div class="albums-header reveal">
-                    <span class="section-label">Discography</span>
-                    <h2 class="section-title" id="albums-title">The Heavy Moose Catalog</h2>
+                    <span class="section-label">Origin story</span>
+                    <h2 class="section-title" id="albums-title">The DROSS trilogy, then later history</h2>
                     <p class="section-intro">
-                        The first three albums form the <strong>DROSS trilogy</strong>: <strong>Glass and Ash</strong>,
-                        <strong>Yield</strong>, and <strong>Temper</strong>. Later Heavy Moose releases,
-                        including <strong>Knock, Knock ('Merica)</strong>, <strong>Floor Witness</strong>, and <strong>Missed Some 80s</strong>, stand on their own.
+                        The first three albums are the origin story: <strong>Glass and Ash</strong>,
+                        <strong>Yield</strong>, and <strong>Temper</strong>. Later history includes
+                        <strong>Floor Witness</strong>, <strong>Flipside Rituals</strong>, and the
+                        America 250 / <strong>Knock, Knock ('Merica)</strong> campaign. Current releases live on the first screen and in the <a href="music.html">discography</a>.
                     </p>
                 </div>
                 <div class="album-grid">
@@ -2855,7 +2831,7 @@
 
                     <!-- KNOCK, KNOCK ('MERICA) -->
                     <article class="album-card reveal">
-                        <span class="album-number">Album 006</span>
+                        <span class="album-number">America 250 · Archive</span>
                         <div class="album-art-placeholder">
                             <img src="assets/images/america-250/knock-knock-merica-250-key-art.png" alt="Knock, Knock ('Merica) America 250 key art — Heavy Moose" loading="lazy">
                         </div>
@@ -2896,54 +2872,60 @@
         </section>
 
         <!-- ==========================================
-         ART GALLERY
+         AMERICA 250 ARCHIVE
          ========================================== -->
-        <section class="art-gallery" id="gallery" aria-labelledby="gallery-title">
-            <div class="container">
-                <div class="reveal">
-                    <span class="section-label">Visual Identity</span>
-                    <h2 class="section-title" id="gallery-title">The World of Heavy Moose</h2>
+        <section class="july4-hero" id="america-got-ya" aria-labelledby="july4-title">
+            <div class="july4-hero-bg" aria-hidden="true"></div>
+            <div class="july4-hero-stars" id="july4-stars" aria-hidden="true"></div>
+            <div class="july4-hero-sweep" aria-hidden="true"></div>
+
+            <div class="july4-hero-inner">
+                <header class="july4-header reveal">
+                    <p class="july4-eyebrow">
+                        <span class="july4-star-icon" aria-hidden="true">&#9733;</span>
+                        4th of July &middot; Independence Day Tribute &middot; 2025
+                        <span class="july4-star-icon" aria-hidden="true">&#9733;</span>
+                    </p>
+                    <h2 class="july4-title" id="july4-title">
+                        <span class="word-america">America</span>
+                        <span class="word-got-ya">Got Ya</span>
+                    </h2>
+                    <p class="july4-subtitle">
+                        America 250 archive. BF and Knock Knock live here as campaign history, not the current Heavy Moose release.
+                    </p>
+                </header>
+
+                <div class="july4-embed-wrap reveal">
+                    <div class="july4-embed-frame">
+                        <iframe
+                            src="https://www.youtube-nocookie.com/embed/iK2ytZ4Duxo"
+                            title="Heavy Moose / BF &mdash; America Got Ya &middot; 4th of July Tribute"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-cell reveal">
-                        <img
-                            src="assets/images/yippee-ki-yay/yippee-ki-yay-concept-1.png"
-                            alt="Yippee Ki-Yay concept world art with cosmic western silhouettes"
-                            loading="lazy">
-                    </div>
-                    <div class="gallery-cell reveal">
-                        <img
-                            src="assets/images/yippee-ki-yay/yippee-ki-yay-concept-2.png"
-                            alt="Yippee Ki-Yay concept world art with surreal electric desert textures"
-                            loading="lazy">
-                    </div>
-                    <div class="gallery-cell reveal">
-                        <img
-                            src="assets/images/yippee-ki-yay/yippee-ki-yay-foundry-republic.png"
-                            alt="Yippee Ki-Yay world concept labeled Foundry Republic"
-                            loading="lazy">
-                    </div>
-                    <div class="gallery-cell reveal">
-                        <img
-                            src="assets/images/america-250/signal-standard-mobile-hero.png"
-                            alt="America 250 signal standard rising over a dark industrial city"
-                            loading="lazy">
-                    </div>
-                    <div class="gallery-cell wide reveal">
-                        <img
-                            src="assets/images/america-250/river-of-signals.png"
-                            alt="Industrial river of red and cyan signals beneath a Heavy Moose bridge figure"
-                            loading="lazy">
-                    </div>
-                    <div class="gallery-cell reveal">
-                        <img
-                            src="assets/images/america-250/anniversary-signal-deck.png"
-                            alt="America 250 anniversary signal deck with Heavy Moose industrial controls"
-                            loading="lazy">
-                    </div>
+
+                <div class="july4-meta-row reveal">
+                    <span class="july4-badge july4-badge--red">Independence Day Drop</span>
+                    <span class="july4-badge july4-badge--blue">America 250</span>
+                    <span class="july4-badge july4-badge--neutral">Heavy Moose &middot; BF &middot; 2025</span>
+                </div>
+
+                <div class="july4-cta reveal">
+                    <a href="https://youtu.be/iK2ytZ4Duxo" class="btn btn-patriot" target="_blank" rel="noopener" aria-label="Watch America Got Ya on YouTube (opens in new tab)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                        Watch on YouTube
+                    </a>
+                    <a href="music.html#america-250" class="btn btn-outline">
+                        America 250 Signal
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
                 </div>
             </div>
         </section>
+
 
         <!-- ==========================================
          ECOSYSTEM BRIDGE
@@ -2991,8 +2973,9 @@
             <p class="footer-wordmark">Heavy Moose</p>
             <p class="footer-tagline">Yeah... Sometimes Life is Heavy</p>
             <nav class="footer-links" aria-label="Footer navigation">
-                <a href="music.html">Music</a>
+                <a href="index.html">Home</a>
                 <a href="videos.html">Videos</a>
+                <a href="music.html">Discography</a>
                 <a href="#about">About</a>
                 <a href="mailto:gfv@heavymoose.com">gfv@heavymoose.com</a>
                 <a href="https://goodflippinvibes.com" target="_blank" rel="noopener">GFV</a>
@@ -3033,16 +3016,52 @@
             var showcaseTitle = document.getElementById('showcase-title');
             var showcaseCopy = document.getElementById('showcase-copy');
             var showcaseLink = document.getElementById('showcase-link');
-            var showcaseIframe = document.getElementById('showcase-iframe');
+            var showcaseFacade = document.getElementById('showcase-facade');
             var showcaseLabel = document.getElementById('showcase-label');
-            var showcaseBadgePrimary = document.getElementById('showcase-badge-primary');
             var latestReleaseLabel = document.getElementById('latest-release-label');
             var latestReleaseCopy = document.getElementById('latest-release-copy');
             var latestReleaseLink = document.getElementById('latest-release-link');
+            var latestReleaseAmazon = document.getElementById('latest-release-amazon');
             var latestReleaseArt = document.getElementById('latest-release-art');
+            var latestReleaseArtLink = document.getElementById('latest-release-art-link');
             var latestReleaseCardTitle = document.getElementById('latest-release-card-title');
             var latestReleaseMeta = document.getElementById('latest-release-meta');
             var latestReleaseDesc = document.getElementById('latest-release-desc');
+
+            function pickFeaturedVideo(mediaLibrary) {
+                var videos = (mediaLibrary && mediaLibrary.videos) || [];
+                var featuredId = mediaLibrary.latestUploadVideoId || mediaLibrary.latestMusicVideoId;
+                var byId = videos.find(function (video) {
+                    return video.videoId === featuredId;
+                });
+                if (byId) return byId;
+                var latestUpload = videos.find(function (video) {
+                    return video.isLatestUpload;
+                });
+                if (latestUpload) return latestUpload;
+                var official = videos.filter(function (video) {
+                    return video.inOfficialMusicVideosPlaylist;
+                }).sort(function (a, b) {
+                    return (a.officialPlaylistIndex || 0) - (b.officialPlaylistIndex || 0);
+                });
+                return official[0] || videos[0] || null;
+            }
+
+            function bindNowFacade(button) {
+                if (!button) return;
+                button.addEventListener('click', function () {
+                    var embed = button.getAttribute('data-embed');
+                    if (!embed) return;
+                    var iframe = document.createElement('iframe');
+                    iframe.src = embed + (embed.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+                    iframe.title = button.getAttribute('aria-label') || 'Heavy Moose video';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.allowFullscreen = true;
+                    button.replaceWith(iframe);
+                });
+            }
+
+            bindNowFacade(showcaseFacade);
 
             if (window.fetch) {
                 Promise.all([
@@ -3058,42 +3077,24 @@
                     var catalog = results[0];
                     var mediaLibrary = results[1];
                     var latestRelease = catalog.releases[0];
-                    var latestReleaseArtworkOverrides = {
-                        'yippee-ki-yay': 'assets/images/yippee-ki-yay/yippee-ki-yay-cowboy-electric-desert.png'
-                    };
-                    var latestVideo = mediaLibrary.videos.find(function (video) {
-                        return video.videoId === mediaLibrary.latestMusicVideoId;
-                    }) || mediaLibrary.videos[0];
+                    var latestVideo = pickFeaturedVideo(mediaLibrary);
 
                     if (latestRelease) {
                         latestReleaseLabel.textContent = formatReleaseType(latestRelease.type) + ' · ' + formatMonthDayYear(latestRelease.releaseDate);
                         document.getElementById('conus-signal-title').textContent = latestRelease.title;
-                        latestReleaseCopy.textContent = 'Current Heavy Moose release, synchronized from the verified Apple Music artist catalog with canonical release artwork.';
-                        latestReleaseLink.href = latestRelease.appleMusicUrl;
-                        latestReleaseArt.src = latestReleaseArtworkOverrides[latestRelease.slug] || latestRelease.artwork;
-                        latestReleaseArt.alt = latestRelease.title + ' cover art';
-                        latestReleaseCardTitle.textContent = latestRelease.title;
-                        latestReleaseMeta.textContent = 'Heavy Moose · ' + latestRelease.releaseDate.slice(0, 4) + ' · ' + latestRelease.trackCount + (latestRelease.trackCount === 1 ? ' Track' : ' Tracks');
-                        latestReleaseDesc.textContent = 'Latest verified release in the current Heavy Moose run. Open the discography for the full catalog and direct platform links.';
-                    }
-
-
-                    if (latestRelease) {
-                        var heroHeadline = document.getElementById('hero-social-headline');
-                        var heroDesc = document.getElementById('hero-social-desc');
-                        var heroLink = document.getElementById('hero-social-link');
-                        var heroPoster = document.getElementById('hero-social-poster');
-                        var heroUrl = document.getElementById('hero-social-url');
-                        var heroKicker = document.getElementById('hero-social-kicker');
-                        if (heroHeadline) heroHeadline.textContent = latestRelease.title;
-                        if (heroDesc) heroDesc.textContent = 'The current Heavy Moose release on Apple Music, kept in sync with the verified artist catalog.';
-                        if (heroLink) {
-                            heroLink.href = latestRelease.appleMusicUrl;
-                            heroLink.setAttribute('aria-label', 'Listen to ' + latestRelease.title + ' on Apple Music');
+                        if (latestReleaseCopy) {
+                            latestReleaseCopy.textContent = 'Current Heavy Moose release from the verified Apple Music catalog.';
                         }
-                        if (heroPoster) heroPoster.style.backgroundImage = "linear-gradient(180deg, rgba(8, 8, 12, 0.58) 0%, rgba(6, 6, 8, 0.86) 100%), url('" + (latestReleaseArtworkOverrides[latestRelease.slug] || latestRelease.artwork) + "')";
-                        if (heroUrl) heroUrl.textContent = latestRelease.title;
-                        if (heroKicker) heroKicker.textContent = formatReleaseType(latestRelease.type) + ' · Current';
+                        latestReleaseLink.href = latestRelease.appleMusicUrl;
+                        if (latestReleaseArtLink) latestReleaseArtLink.href = latestRelease.appleMusicUrl;
+                        if (latestReleaseAmazon && catalog.artist && catalog.artist.amazonMusicUrl) {
+                            latestReleaseAmazon.href = catalog.artist.amazonMusicUrl;
+                        }
+                        latestReleaseArt.src = latestRelease.artwork;
+                        latestReleaseArt.alt = latestRelease.title + ' cover art';
+                        if (latestReleaseCardTitle) latestReleaseCardTitle.textContent = latestRelease.title;
+                        latestReleaseMeta.textContent = formatReleaseType(latestRelease.type) + ' · ' + latestRelease.trackCount + (latestRelease.trackCount === 1 ? ' song' : ' songs') + ' · ' + formatMonthDayYear(latestRelease.releaseDate);
+                        latestReleaseDesc.textContent = 'Newest Apple Music release.';
                         var aboutReleases = document.getElementById('about-stat-releases');
                         var aboutTracks = document.getElementById('about-stat-tracks');
                         var aboutDross = document.getElementById('about-stat-dross');
@@ -3107,20 +3108,27 @@
                     }
 
                     if (latestVideo) {
-                        showcaseLabel.textContent = latestVideo.isLatestUpload ? 'Latest Official Upload' : 'Latest Music Video Release';
-                        showcaseBadgePrimary.textContent = latestVideo.catalogClass === 'feature-appearance' ? 'Feature Appearance' : 'New Music Video';
-                        showcaseTitle.textContent = latestVideo.title;
-                        showcaseCopy.innerHTML = '<strong>' + latestVideo.title + '</strong> is now leading the live Heavy Moose video feed from the official channel, with newer release embeds syncing directly into the discography.';
-                        showcaseLink.href = latestVideo.watchPage || latestVideo.watchUrl;
-                        if (latestVideo.watchPage) {
-                            showcaseLink.removeAttribute('target');
-                            showcaseLink.removeAttribute('rel');
-                        } else {
-                            showcaseLink.target = '_blank';
-                            showcaseLink.rel = 'noopener';
+                        if (showcaseLabel) {
+                            showcaseLabel.textContent = latestVideo.isLatestUpload ? 'Current official video' : 'Official video';
                         }
-                        showcaseIframe.src = latestVideo.embedUrl;
-                        showcaseIframe.title = 'Heavy Moose - ' + latestVideo.title + ' music video';
+                        if (showcaseTitle) showcaseTitle.textContent = latestVideo.title;
+                        if (showcaseCopy) {
+                            showcaseCopy.textContent = 'Newest official music video on the Heavy Moose channel.';
+                        }
+                        if (showcaseLink) {
+                            showcaseLink.href = latestVideo.watchUrl;
+                            showcaseLink.target = '_blank';
+                            showcaseLink.rel = 'noopener noreferrer';
+                        }
+                        var liveFacade = document.getElementById('showcase-facade');
+                        if (liveFacade) {
+                            liveFacade.setAttribute('data-embed', latestVideo.embedUrl);
+                            liveFacade.setAttribute('aria-label', 'Play ' + latestVideo.title);
+                            var thumb = liveFacade.querySelector('img');
+                            if (thumb && latestVideo.thumbnailUrl) {
+                                thumb.src = latestVideo.thumbnailUrl;
+                            }
+                        }
                     }
                 }).catch(function () {
                     // Keep the inline fallback copy if the feeds are unavailable.

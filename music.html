@@ -615,6 +615,44 @@
             border: none;
         }
 
+        .video-facade {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .video-facade img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            min-height: 44px;
+            padding: 0 16px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .video-feed-card .video-facade {
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
         .video-feed-section {
             padding: 0 0 84px;
         }
@@ -1959,7 +1997,7 @@
             <div class="hm-quicklinks" aria-label="Primary navigation">
                 <a href="index.html">Home</a>
                 <a href="videos.html">Videos</a>
-                <a href="music.html" aria-current="page">Music</a>
+                <a href="music.html" aria-current="page">Discography</a>
             </div>
 
             <div class="hm-menu-actions">
@@ -1989,14 +2027,14 @@
                         <span class="hm-link-chip">VID</span>
                         <span class="hm-link-copy">
                             <span class="hm-link-title">Videos</span>
-                            <span class="hm-link-subtitle">Open the full official music video library with embeds and Watch on YouTube links.</span>
+                            <span class="hm-link-subtitle">Open the official music video library. Click a thumbnail to play.</span>
                         </span>
                     </a>
                     <a class="hm-menu-link" href="#latest-youtube-releases">
                         <span class="hm-link-chip">NEW</span>
                         <span class="hm-link-copy">
                             <span class="hm-link-title">Latest YouTube Releases</span>
-                            <span class="hm-link-subtitle">Embedded latest videos plus current release links, all driven from the live catalog sync.</span>
+                            <span class="hm-link-subtitle">A short official-playlist feed. The full library is on Videos.</span>
                         </span>
                     </a>
                     <a class="hm-menu-link" href="#knock-knock-merica">
@@ -2105,10 +2143,11 @@
                     <span class="section-label">Full Catalog</span>
                     <h1 class="section-title">Heavy Moose Discography</h1>
                     <p class="section-intro">
-                        The official Heavy Moose discography. The first three albums form the
-                        <strong>DROSS trilogy</strong>: <strong>Glass and Ash</strong>, <strong>Yield</strong>, and
-                        <strong>Temper</strong>. Later releases, including <strong>Knock, Knock ('Merica)</strong>,
-                        <strong>Floor Witness</strong>, and the standalone single <strong>Missed Some 80s</strong>, move forward without the DROSS label. The current release shelf now tracks the verified Apple Music and Amazon Music catalogs while deeper on-site pages are built.
+                        The official Heavy Moose discography. Newest Apple Music releases sit at the top.
+                        The <strong>DROSS trilogy</strong> — <strong>Glass and Ash</strong>, <strong>Yield</strong>, and
+                        <strong>Temper</strong> — is the origin story below, not the current catalog.
+                        Later history includes <strong>Knock, Knock ('Merica)</strong>,
+                        <strong>Floor Witness</strong>, and the standalone single <strong>Missed Some 80s</strong>.
                     </p>
                 </div>
             </div>
@@ -2193,7 +2232,7 @@
             <div class="container">
                 <div class="catalog-toolbar">
                     <div>
-                        <span class="section-label" id="catalog-summary-label">Loading catalog summary…</span>
+                        <span class="section-label" id="catalog-summary-label">27 Releases · 306 Tracks</span>
                         <h2 class="section-title" id="catalog-title">Complete Current Catalog</h2>
                         <p class="section-intro">Every verified Heavy Moose release on the distributor catalog, newest first.</p>
                     </div>
@@ -2377,15 +2416,11 @@
         <section class="video-section" id="video" aria-labelledby="video-title">
             <div class="container">
                 <div class="video-grid">
-                    <div class="video-embed reveal">
-                        <iframe
-                            src="https://www.youtube-nocookie.com/embed/_AlTynB84dE"
-                            title="Heavy Moose - Wiggle Pit It"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                            id="latest-video-iframe"
-                            loading="lazy">
-                        </iframe>
+                    <div class="video-embed reveal" id="latest-video-embed">
+                        <button type="button" class="video-facade" id="latest-video-facade" data-embed="https://www.youtube-nocookie.com/embed/_AlTynB84dE" aria-label="Play Wiggle Pit It">
+                            <img src="https://i.ytimg.com/vi/_AlTynB84dE/hqdefault.jpg" alt="" width="480" height="360">
+                            <span class="video-play" aria-hidden="true">Play</span>
+                        </button>
                     </div>
                     <div class="video-meta reveal">
                         <span class="video-badge" id="latest-video-badge">
@@ -3661,6 +3696,7 @@
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="index.html">Home</a>
                 <a href="videos.html">Videos</a>
+                <a href="music.html">Discography</a>
                 <a href="#temper">DROSS: TEMPER</a>
                 <a href="#dross-1">DROSS</a>
                 <a href="#dross-2">DROSS II</a>
@@ -3687,7 +3723,7 @@
             var latestVideoTitle = document.getElementById('video-title');
             var latestVideoCopy = document.getElementById('latest-video-copy');
             var latestVideoLink = document.getElementById('latest-video-link');
-            var latestVideoIframe = document.getElementById('latest-video-iframe');
+            var latestVideoFacade = document.getElementById('latest-video-facade');
             var latestVideoFeed = document.getElementById('latest-video-feed');
             var featureVideoFeed = document.getElementById('feature-video-feed');
             var catalogButtons = document.querySelectorAll('[data-catalog-filter]');
@@ -3717,13 +3753,9 @@
                 var card = document.createElement('article');
                 card.className = 'latest-release-card reveal visible' + (index === 0 ? ' latest-release-card--feature' : '');
 
-                var releaseArtworkOverrides = {
-                    'yippee-ki-yay': 'assets/images/yippee-ki-yay/yippee-ki-yay-foundry-republic.png'
-                };
-
                 var image = document.createElement('img');
                 image.className = 'latest-release-art';
-                image.src = releaseArtworkOverrides[release.slug] || release.artwork;
+                image.src = release.artwork;
                 image.alt = release.title + ' album cover';
                 image.loading = index === 0 ? 'eager' : 'lazy';
                 image.width = 600;
@@ -3830,16 +3862,64 @@
                 return card;
             }
 
+            function bindVideoFacades(root) {
+                if (!root) return;
+                root.addEventListener('click', function (event) {
+                    var button = event.target.closest('.video-facade');
+                    if (!button || !root.contains(button)) return;
+                    var embed = button.getAttribute('data-embed');
+                    if (!embed) return;
+                    var iframe = document.createElement('iframe');
+                    iframe.src = embed + (embed.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+                    iframe.title = button.getAttribute('aria-label') || 'Heavy Moose video';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.allowFullscreen = true;
+                    button.replaceWith(iframe);
+                });
+            }
+
+            bindVideoFacades(document.getElementById('latest-video-embed'));
+            bindVideoFacades(document.getElementById('latest-video-feed'));
+            bindVideoFacades(document.getElementById('feature-video-feed'));
+
+            function pickFeaturedVideo(mediaLibrary) {
+                var videos = (mediaLibrary && mediaLibrary.videos) || [];
+                var featuredId = mediaLibrary.latestUploadVideoId || mediaLibrary.latestMusicVideoId;
+                var byId = videos.find(function (video) {
+                    return video.videoId === featuredId;
+                });
+                if (byId) return byId;
+                var latestUpload = videos.find(function (video) {
+                    return video.isLatestUpload;
+                });
+                if (latestUpload) return latestUpload;
+                return videos.filter(function (video) {
+                    return video.inOfficialMusicVideosPlaylist;
+                })[0] || videos[0] || null;
+            }
+
             function buildVideoCard(video, releaseLookup) {
                 var card = document.createElement('article');
                 card.className = 'video-feed-card reveal visible';
 
-                var frame = document.createElement('iframe');
-                frame.src = video.embedUrl;
-                frame.title = 'Heavy Moose - ' + video.title;
-                frame.loading = 'lazy';
-                frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                frame.allowFullscreen = true;
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'video-facade';
+                button.setAttribute('data-embed', video.embedUrl);
+                button.setAttribute('aria-label', 'Play ' + video.title);
+
+                var thumb = document.createElement('img');
+                thumb.src = video.thumbnailUrl;
+                thumb.alt = '';
+                thumb.width = 480;
+                thumb.height = 360;
+                thumb.loading = 'lazy';
+
+                var play = document.createElement('span');
+                play.className = 'video-play';
+                play.setAttribute('aria-hidden', 'true');
+                play.textContent = 'Play';
+                button.append(thumb, play);
 
                 var body = document.createElement('div');
                 body.className = 'video-feed-body';
@@ -3876,7 +3956,7 @@
                 }
 
                 body.append(kicker, title, meta, links);
-                card.append(frame, body);
+                card.append(button, body);
                 return card;
             }
 
@@ -3912,7 +3992,10 @@
                         });
                         latestReleaseGrid.append(buildDirectoryCard(catalog.artist));
 
-                        catalogSummaryLabel.textContent = formatReleaseDate(catalog.releases[catalog.releases.length - 1].releaseDate, { month: 'long', year: 'numeric' }) + ' – ' + formatReleaseDate(catalog.releases[0].releaseDate, { month: 'long', year: 'numeric' }) + ' · ' + catalog.releases.length + ' releases';
+                        var trackTotal = catalog.releases.reduce(function (sum, release) {
+                            return sum + (Number(release.trackCount) || 0);
+                        }, 0);
+                        catalogSummaryLabel.textContent = catalog.releases.length + ' Releases · ' + trackTotal + ' Tracks';
 
                         catalogGrid.textContent = '';
                         catalog.releases.forEach(function (release) {
@@ -3967,23 +4050,28 @@
                             catalogGrid.append(card);
                         });
 
-                        var latestVideo = mediaLibrary.videos.find(function (video) {
-                            return video.videoId === mediaLibrary.latestMusicVideoId;
-                        }) || mediaLibrary.videos[0];
+                        var latestVideo = pickFeaturedVideo(mediaLibrary);
 
                         if (latestVideo) {
                             if (latestVideoBadge) {
-                                var badgeText = latestVideo.isLatestUpload ? ' Latest upload' : ' Latest music video';
+                                var badgeText = latestVideo.isLatestUpload ? ' Current official video' : ' Official video';
                                 var textNode = Array.prototype.find.call(latestVideoBadge.childNodes, function (node) {
                                     return node.nodeType === 3 && node.textContent.trim();
                                 });
                                 if (textNode) textNode.textContent = badgeText;
                             }
                             latestVideoTitle.textContent = latestVideo.title;
-                            latestVideoCopy.innerHTML = '<strong>' + latestVideo.title + '</strong> currently leads the synced Heavy Moose channel feed and stays embedded here alongside the rest of the current release run.';
+                            latestVideoCopy.textContent = latestVideo.description || 'Current official music video from the Heavy Moose playlist.';
                             latestVideoLink.href = latestVideo.watchUrl;
-                            latestVideoIframe.src = latestVideo.embedUrl;
-                            latestVideoIframe.title = 'Heavy Moose - ' + latestVideo.title;
+                            var liveFacade = document.getElementById('latest-video-facade');
+                            if (liveFacade) {
+                                liveFacade.setAttribute('data-embed', latestVideo.embedUrl);
+                                liveFacade.setAttribute('aria-label', 'Play ' + latestVideo.title);
+                                var thumb = liveFacade.querySelector('img');
+                                if (thumb && latestVideo.thumbnailUrl) {
+                                    thumb.src = latestVideo.thumbnailUrl;
+                                }
+                            }
                         }
 
                         latestVideoFeed.textContent = '';
@@ -3995,7 +4083,7 @@
                                 }
                                 return String(b.publishedAt || '') < String(a.publishedAt || '') ? -1 : 1;
                             })
-                            .slice(0, 15)
+                            .slice(0, 5)
                             .forEach(function (video) {
                                 latestVideoFeed.append(buildVideoCard(video, releaseLookup));
                             });
