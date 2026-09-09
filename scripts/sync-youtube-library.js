@@ -3,14 +3,15 @@
  * Enrich media-library.json from the canonical Heavy Moose YouTube channel.
  *
  * Responsibilities:
- *   - enumerate the complete channel Uploads playlist (not only the 15-entry RSS window)
+ *   - enumerate candidate videos from the complete channel Uploads surface
+ *   - verify every candidate belongs to the canonical Heavy Moose channel
  *   - hydrate missing uploads from YouTube's public player metadata
  *   - capture public view counts and rank the most-watched uploads
- *   - set latestUploadVideoId to the newest actual channel upload
+ *   - set latestUploadVideoId to the newest verified channel upload
  *
- * The script is deliberately fail-closed on channel enumeration. If YouTube cannot
- * return a credible uploads list, the deployment should keep serving the last known
- * good library rather than publish a partially refreshed one.
+ * YouTube browse responses can contain recommendations from other channels. Those
+ * candidates are ignored after player-level channel verification. The script still
+ * fails closed if fewer than 10 verified Heavy Moose uploads or rankings remain.
  */
 'use strict';
 
@@ -111,7 +112,7 @@ function collectUploadItems(obj, collected) {
     });
 }
 
-function fetchUploadsPlaylist() {
+function fetchUploadCandidates() {
     const items = [];
     const seen = new Set();
     let payload = {
@@ -132,7 +133,7 @@ function fetchUploadsPlaylist() {
             items.push({
                 videoId: item.videoId,
                 rawTitle: item.rawTitle,
-                playlistIndex: items.length
+                browseIndex: items.length
             });
         });
 
@@ -168,13 +169,16 @@ function normalizePublishedAt(value) {
     return value;
 }
 
-function playerRecord(videoId, playlistIndex, current, data, now) {
+function playerRecord(videoId, browseIndex, current, data, now) {
     const details = data && data.videoDetails;
     const playability = data && data.playabilityStatus;
     const micro = data && data.microformat && data.microformat.playerMicroformatRenderer;
 
-    if (!details || details.channelId !== HEAVY_MOOSE_CHANNEL_ID) {
-        throw new Error('Player metadata did not resolve to the Heavy Moose channel for ' + videoId);
+    if (!details) {
+        throw new Error('Player metadata missing video details for ' + videoId);
+    }
+    if (details.channelId !== HEAVY_MOOSE_CHANNEL_ID) {
+        return null;
     }
 
     const publishedAt = normalizePublishedAt(
@@ -219,7 +223,7 @@ function playerRecord(videoId, playlistIndex, current, data, now) {
         embedUrl: 'https://www.youtube-nocookie.com/embed/' + videoId,
         thumbnailUrl: (current && current.thumbnailUrl) || thumbnail,
         inChannelUploads: true,
-        channelUploadIndex: playlistIndex,
+        channelUploadIndex: browseIndex,
         youtubeViewCount: viewCount,
         youtubeViewCountText: Number.isFinite(Number(viewCount))
             ? new Intl.NumberFormat('en-US').format(Number(viewCount)) + ' views'
@@ -234,15 +238,10 @@ function main() {
     const media = JSON.parse(fs.readFileSync(MEDIA_PATH, 'utf8'));
     const videos = media.videos || [];
     const previousChannelCount = Number(media.channelUploadCount || 0);
-    const uploads = fetchUploadsPlaylist();
+    const candidates = fetchUploadCandidates();
 
-    if (uploads.length < MIN_EXPECTED_UPLOADS) {
-        throw new Error('Refusing partial YouTube sync: only ' + uploads.length + ' uploads were enumerated.');
-    }
-    if (previousChannelCount && uploads.length < previousChannelCount) {
-        throw new Error(
-            'Refusing smaller YouTube upload library: got ' + uploads.length + ', previously had ' + previousChannelCount + '.'
-        );
+    if (candidates.length < MIN_EXPECTED_UPLOADS) {
+        throw new Error('Refusing partial YouTube sync: only ' + candidates.length + ' browse candidates were enumerated.');
     }
 
     const now = new Date().toISOString();
@@ -257,11 +256,16 @@ function main() {
     });
 
     let metricFailures = 0;
-    uploads.forEach(function (item) {
+    let foreignCandidates = 0;
+    candidates.forEach(function (item) {
         const current = byId.get(item.videoId) || null;
         try {
             const data = fetchPlayer(item.videoId);
-            const merged = playerRecord(item.videoId, item.playlistIndex, current, data, now);
+            const merged = playerRecord(item.videoId, item.browseIndex, current, data, now);
+            if (!merged) {
+                foreignCandidates += 1;
+                return;
+            }
             byId.set(item.videoId, merged);
         } catch (err) {
             metricFailures += 1;
@@ -271,13 +275,22 @@ function main() {
             console.warn('player metadata fallback', item.videoId, err.message);
             byId.set(item.videoId, Object.assign({}, current, {
                 inChannelUploads: true,
-                channelUploadIndex: item.playlistIndex
+                channelUploadIndex: item.browseIndex
             }));
         }
     });
 
     const channelVideos = Array.from(byId.values())
         .filter(function (video) { return video.inChannelUploads; });
+
+    if (channelVideos.length < MIN_EXPECTED_UPLOADS) {
+        throw new Error('Refusing YouTube sync with fewer than ' + MIN_EXPECTED_UPLOADS + ' verified Heavy Moose uploads.');
+    }
+    if (previousChannelCount && channelVideos.length < previousChannelCount) {
+        throw new Error(
+            'Refusing smaller verified YouTube library: got ' + channelVideos.length + ', previously had ' + previousChannelCount + '.'
+        );
+    }
 
     const withViews = channelVideos
         .filter(function (video) { return Number.isFinite(Number(video.youtubeViewCount)); })
@@ -333,14 +346,16 @@ function main() {
     media.latestUploadVideoId = newest.videoId;
     media.youtubeMetricsUpdatedAt = now;
     media.youtubeMetricFailures = metricFailures;
+    media.youtubeForeignCandidatesIgnored = foreignCandidates;
     media.videos = allVideos;
 
     fs.writeFileSync(MEDIA_PATH, JSON.stringify(media, null, 2) + '\n');
 
     console.log(
-        'youtube channel', channelVideos.length, 'uploads;',
+        'youtube channel', channelVideos.length, 'verified uploads;',
         'ranked', withViews.length + ';',
         'latest', newest.videoId + ';',
+        'foreign candidates ignored', foreignCandidates + ';',
         'metric fallbacks', metricFailures
     );
     console.log(
