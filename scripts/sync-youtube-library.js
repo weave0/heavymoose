@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 /**
- * Refresh the Heavy Moose YouTube library from public YouTube metadata.
- *
- * We intentionally do not trust every video renderer returned by the Uploads
- * browse surface: YouTube can mix recommendations into that response. Every
- * candidate must resolve through player metadata to the canonical Heavy Moose
- * channel before it can enter the channel library or popularity ranking.
+ * Verify and rank the Heavy Moose media inventory using public YouTube watch-page
+ * metadata. Inventory discovery remains in sync-music-catalog.js, which already
+ * merges the channel RSS window with the official Music Videos playlist and keeps
+ * older known entries instead of truncating them.
  */
 'use strict';
 
@@ -16,258 +14,138 @@ const { spawnSync } = require('child_process');
 const ROOT = path.join(__dirname, '..');
 const MEDIA_PATH = path.join(ROOT, 'assets/data/media-library.json');
 const CHANNEL_ID = 'UCrGqGbSQYxxNAjsvlQ8tT8g';
-const UPLOADS_PLAYLIST_ID = 'UU' + CHANNEL_ID.slice(2);
-const BROWSE_URL = 'https://www.youtube.com/youtubei/v1/browse?prettyPrint=false';
-const PLAYER_URL = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';
 const MIN_VERIFIED = 10;
-const CLIENT = {
-    clientName: 'WEB',
-    clientVersion: '2.20260101.00.00',
-    hl: 'en',
-    gl: 'US'
-};
 
-function postJson(url, payload) {
+function fetchText(url) {
     const result = spawnSync('curl', [
         '-fsSL',
-        '-A', 'HeavyMooseYouTubeSync/1.1',
-        '-H', 'Content-Type: application/json',
-        '-H', 'Origin: https://www.youtube.com',
-        '-H', 'Referer: https://www.youtube.com/',
-        '--data-binary', '@-',
+        '--compressed',
+        '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142 Safari/537.36',
+        '-H', 'Accept-Language: en-US,en;q=0.9',
+        '-H', 'Cookie: SOCS=CAI; CONSENT=YES+cb',
         url
     ], {
-        input: JSON.stringify(payload),
         encoding: 'utf8',
         maxBuffer: 25 * 1024 * 1024
     });
-
     if (result.status !== 0) {
-        throw new Error('YouTube request failed: ' + (result.stderr || result.status));
+        throw new Error('YouTube watch-page request failed: ' + (result.stderr || result.status));
     }
-    return JSON.parse(result.stdout);
+    return result.stdout;
 }
 
-function textValue(value) {
-    if (!value) return '';
-    if (typeof value === 'string') return value;
-    if (typeof value.simpleText === 'string') return value.simpleText;
-    if (typeof value.content === 'string') return value.content;
-    if (Array.isArray(value.runs)) {
-        return value.runs.map(function (run) { return run.text || ''; }).join('');
-    }
-    return '';
-}
+function extractBalancedObject(text, startIndex) {
+    const open = text.indexOf('{', startIndex);
+    if (open === -1) return null;
 
-function continuationToken(obj) {
-    if (!obj || typeof obj !== 'object') return null;
-    if (obj.continuationCommand && obj.continuationCommand.token) {
-        return obj.continuationCommand.token;
-    }
-    const values = Array.isArray(obj) ? obj : Object.keys(obj).map(function (key) { return obj[key]; });
-    for (let i = 0; i < values.length; i += 1) {
-        const found = continuationToken(values[i]);
-        if (found) return found;
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let i = open; i < text.length; i += 1) {
+        const ch = text[i];
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+            } else if (ch === '\\') {
+                escaped = true;
+            } else if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+        } else if (ch === '{') {
+            depth += 1;
+        } else if (ch === '}') {
+            depth -= 1;
+            if (depth === 0) return text.slice(open, i + 1);
+        }
     }
     return null;
 }
 
-function collectCandidates(obj, out) {
-    if (!obj || typeof obj !== 'object') return;
+function extractPlayerResponse(html) {
+    const markers = [
+        'ytInitialPlayerResponse =',
+        'ytInitialPlayerResponse=',
+        'var ytInitialPlayerResponse ='
+    ];
 
-    if (obj.lockupViewModel && obj.lockupViewModel.contentId) {
-        const vm = obj.lockupViewModel;
-        if (/^[A-Za-z0-9_-]{11}$/.test(vm.contentId)) {
-            out.push({
-                videoId: vm.contentId,
-                title: ((((vm.metadata || {}).lockupMetadataViewModel || {}).title) || {}).content || ''
-            });
+    for (let i = 0; i < markers.length; i += 1) {
+        const index = html.indexOf(markers[i]);
+        if (index === -1) continue;
+        const raw = extractBalancedObject(html, index + markers[i].length);
+        if (!raw) continue;
+        try {
+            return JSON.parse(raw);
+        } catch (error) {
+            // Try the next representation if YouTube changed the surrounding script.
         }
     }
 
-    ['playlistVideoRenderer', 'videoRenderer', 'gridVideoRenderer'].forEach(function (key) {
-        const renderer = obj[key];
-        if (!renderer || !/^[A-Za-z0-9_-]{11}$/.test(renderer.videoId || '')) return;
-        out.push({ videoId: renderer.videoId, title: textValue(renderer.title) });
-    });
-
-    const values = Array.isArray(obj) ? obj : Object.keys(obj).map(function (key) { return obj[key]; });
-    values.forEach(function (value) { collectCandidates(value, out); });
-}
-
-function fetchCandidates() {
-    const result = [];
-    const seen = new Set();
-    let payload = { context: { client: CLIENT }, browseId: 'VL' + UPLOADS_PLAYLIST_ID };
-    let pages = 0;
-
-    while (payload && pages < 20) {
-        pages += 1;
-        const data = postJson(BROWSE_URL, payload);
-        const page = [];
-        collectCandidates(data, page);
-        page.forEach(function (item) {
-            if (seen.has(item.videoId)) return;
-            seen.add(item.videoId);
-            result.push(item);
-        });
-        const token = continuationToken(data);
-        payload = token ? { context: { client: CLIENT }, continuation: token } : null;
+    const escapedMarker = '"playerResponse":"';
+    const escapedIndex = html.indexOf(escapedMarker);
+    if (escapedIndex !== -1) {
+        let i = escapedIndex + escapedMarker.length;
+        let escaped = false;
+        let raw = '';
+        for (; i < html.length; i += 1) {
+            const ch = html[i];
+            if (!escaped && ch === '"') break;
+            raw += ch;
+            if (escaped) escaped = false;
+            else if (ch === '\\') escaped = true;
+        }
+        try {
+            return JSON.parse(JSON.parse('"' + raw + '"'));
+        } catch (error) {
+            return null;
+        }
     }
 
-    return result;
+    return null;
 }
 
-function fetchPlayer(videoId) {
-    return postJson(PLAYER_URL, {
-        context: { client: CLIENT },
-        videoId: videoId,
-        contentCheckOk: true,
-        racyCheckOk: true
-    });
-}
+function publicMetadata(videoId) {
+    const html = fetchText('https://www.youtube.com/watch?v=' + videoId + '&hl=en&gl=US');
+    const player = extractPlayerResponse(html);
+    const details = player && player.videoDetails;
+    if (!details) return null;
+    if (details.videoId && details.videoId !== videoId) return null;
+    if (details.channelId !== CHANNEL_ID) return null;
 
-function slugify(title) {
-    return String(title || '')
-        .toLowerCase()
-        .replace(/['’]/g, '-')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-}
-
-function publishedAt(data, current) {
-    const micro = data && data.microformat && data.microformat.playerMicroformatRenderer;
-    const raw = (micro && (micro.publishDate || micro.uploadDate)) || (current && current.publishedAt) || '';
-    return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw + 'T00:00:00+00:00' : raw;
-}
-
-function verifiedRecord(videoId, current, data, now, channelIndex) {
-    const details = data && data.videoDetails;
-    if (!details || details.channelId !== CHANNEL_ID) return null;
-
-    const micro = data.microformat && data.microformat.playerMicroformatRenderer;
-    const thumbnails = details.thumbnail && details.thumbnail.thumbnails;
-    const fallbackThumb = Array.isArray(thumbnails) && thumbnails.length
-        ? thumbnails[thumbnails.length - 1].url
-        : 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg';
-    const title = (current && current.title) || details.title || videoId;
     const views = Number(details.viewCount);
+    return {
+        viewCount: Number.isFinite(views) ? views : null,
+        title: details.title || '',
+        lengthSeconds: Number(details.lengthSeconds) || null,
+        playable: !player.playabilityStatus || player.playabilityStatus.status === 'OK'
+    };
+}
 
-    return Object.assign({
-        title: title,
-        rawTitle: details.title || title,
-        slug: slugify(title),
-        videoId: videoId,
-        publishedAt: publishedAt(data, current),
-        watchUrl: 'https://www.youtube.com/watch?v=' + videoId,
-        embedUrl: 'https://www.youtube-nocookie.com/embed/' + videoId,
-        thumbnailUrl: fallbackThumb,
-        description: (micro && micro.description && textValue(micro.description)) || '',
-        catalogClass: 'primary-release',
-        heavyMooseRole: 'primary-artist',
-        associatedTrackTitle: null,
-        associatedReleaseSlug: null,
-        associatedReleaseTitle: null,
-        associatedArtwork: null,
-        watchPage: null,
-        isLatestUpload: false,
-        includeInLatestMusicVideos: true,
-        inOfficialMusicVideosPlaylist: false,
-        officialPlaylistIndex: null,
-        includeInFeaturesGroup: false
-    }, current || {}, {
-        videoId: videoId,
-        publishedAt: publishedAt(data, current),
-        watchUrl: 'https://www.youtube.com/watch?v=' + videoId,
-        embedUrl: 'https://www.youtube-nocookie.com/embed/' + videoId,
-        thumbnailUrl: (current && current.thumbnailUrl) || fallbackThumb,
-        inChannelUploads: true,
-        channelUploadIndex: channelIndex,
-        youtubeViewCount: Number.isFinite(views) ? views : (current && current.youtubeViewCount),
-        youtubeMetricsUpdatedAt: now,
-        youtubePlayable: Boolean(data.playabilityStatus && data.playabilityStatus.status === 'OK'),
-        youtubeDurationSeconds: Number(details.lengthSeconds) || (current && current.youtubeDurationSeconds) || null
-    });
+function candidateVideo(video) {
+    if (!video || !video.videoId) return false;
+    if (video.catalogClass === 'feature-appearance' || video.catalogClass === 'collaboration') return false;
+    if (video.heavyMooseRole && video.heavyMooseRole !== 'primary-artist') return false;
+    return Boolean(video.inOfficialMusicVideosPlaylist || video.includeInLatestMusicVideos || video.inChannelUploads);
+}
+
+function newestFirst(a, b) {
+    const aDate = String(a.publishedAt || '');
+    const bDate = String(b.publishedAt || '');
+    if (aDate !== bDate) return bDate.localeCompare(aDate);
+    const aIndex = a.officialPlaylistIndex == null ? Number.MAX_SAFE_INTEGER : Number(a.officialPlaylistIndex);
+    const bIndex = b.officialPlaylistIndex == null ? Number.MAX_SAFE_INTEGER : Number(b.officialPlaylistIndex);
+    return aIndex - bIndex;
 }
 
 function main() {
     const media = JSON.parse(fs.readFileSync(MEDIA_PATH, 'utf8'));
-    const previous = new Map();
-    (media.videos || []).forEach(function (video) {
-        previous.set(video.videoId, Object.assign({}, video, {
-            isLatestUpload: false,
-            youtubePopularityRank: null
-        }));
-    });
-
-    const candidates = fetchCandidates();
-    if (candidates.length < MIN_VERIFIED) {
-        throw new Error('Only ' + candidates.length + ' YouTube browse candidates were returned.');
-    }
-
     const now = new Date().toISOString();
-    const verified = [];
-    let foreignOrUnverifiable = 0;
-    let requestFailures = 0;
-
-    candidates.forEach(function (candidate) {
-        const current = previous.get(candidate.videoId) || null;
-        try {
-            const record = verifiedRecord(candidate.videoId, current, fetchPlayer(candidate.videoId), now, verified.length);
-            if (!record) {
-                foreignOrUnverifiable += 1;
-                return;
-            }
-            verified.push(record);
-        } catch (error) {
-            requestFailures += 1;
-            if (current && current.inChannelUploads) {
-                verified.push(Object.assign({}, current, {
-                    isLatestUpload: false,
-                    inChannelUploads: true,
-                    channelUploadIndex: verified.length,
-                    youtubePopularityRank: null
-                }));
-                console.warn('preserved previously verified upload', candidate.videoId, error.message);
-                return;
-            }
-            foreignOrUnverifiable += 1;
-            console.warn('ignored unverifiable candidate', candidate.videoId, error.message);
-        }
-    });
-
-    if (verified.length < MIN_VERIFIED) {
-        throw new Error('Only ' + verified.length + ' verified Heavy Moose uploads remained.');
-    }
-    if (media.channelUploadCount && verified.length < media.channelUploadCount) {
-        throw new Error('Refusing smaller channel library: ' + verified.length + ' < ' + media.channelUploadCount + '.');
-    }
-
-    const ranked = verified
-        .filter(function (video) { return Number.isFinite(Number(video.youtubeViewCount)); })
-        .sort(function (a, b) {
-            const views = Number(b.youtubeViewCount) - Number(a.youtubeViewCount);
-            return views || Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
-        });
-
-    if (ranked.length < MIN_VERIFIED) {
-        throw new Error('Only ' + ranked.length + ' verified uploads exposed public view counts.');
-    }
-
-    ranked.forEach(function (video, index) {
-        video.youtubePopularityRank = index + 1;
-        video.youtubeViewCountText = Number(video.youtubeViewCount).toLocaleString('en-US') + ' views';
-    });
-
-    verified.sort(function (a, b) {
-        return Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
-    });
-    verified[0].isLatestUpload = true;
-
-    const verifiedIds = new Set(verified.map(function (video) { return video.videoId; }));
-    const extras = Array.from(previous.values()).filter(function (video) {
-        return !verifiedIds.has(video.videoId);
-    }).map(function (video) {
+    const videos = (media.videos || []).map(function (video) {
         return Object.assign({}, video, {
             isLatestUpload: false,
             inChannelUploads: false,
@@ -276,26 +154,76 @@ function main() {
         });
     });
 
+    const candidates = videos.filter(candidateVideo).sort(newestFirst);
+    const verified = [];
+    let unavailable = 0;
+
+    candidates.forEach(function (video) {
+        try {
+            const meta = publicMetadata(video.videoId);
+            if (!meta) {
+                unavailable += 1;
+                return;
+            }
+            video.inChannelUploads = true;
+            video.channelUploadIndex = verified.length;
+            video.youtubeViewCount = meta.viewCount;
+            video.youtubeViewCountText = meta.viewCount == null
+                ? ''
+                : meta.viewCount.toLocaleString('en-US') + ' views';
+            video.youtubeMetricsUpdatedAt = now;
+            video.youtubePlayable = meta.playable;
+            video.youtubeDurationSeconds = meta.lengthSeconds || video.youtubeDurationSeconds || null;
+            if (!video.title && meta.title) video.title = meta.title;
+            verified.push(video);
+        } catch (error) {
+            unavailable += 1;
+            console.warn('watch-page metadata unavailable', video.videoId, error.message);
+        }
+    });
+
+    if (verified.length < MIN_VERIFIED) {
+        throw new Error('Only ' + verified.length + ' Heavy Moose uploads could be verified from public watch pages.');
+    }
+
+    const ranked = verified
+        .filter(function (video) { return Number.isFinite(Number(video.youtubeViewCount)); })
+        .sort(function (a, b) {
+            const viewDelta = Number(b.youtubeViewCount) - Number(a.youtubeViewCount);
+            return viewDelta || Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
+        });
+
+    if (ranked.length < MIN_VERIFIED) {
+        throw new Error('Only ' + ranked.length + ' verified uploads exposed public YouTube view counts.');
+    }
+
+    ranked.forEach(function (video, index) {
+        video.youtubePopularityRank = index + 1;
+    });
+
+    verified.sort(function (a, b) { return Number(a.channelUploadIndex) - Number(b.channelUploadIndex); });
+    verified[0].isLatestUpload = true;
+
+    const verifiedIds = new Set(verified.map(function (video) { return video.videoId; }));
+    const remainder = videos.filter(function (video) { return !verifiedIds.has(video.videoId); });
+
     media.source = Object.assign({}, media.source || {}, {
-        youtubeUploadsPlaylist: 'https://www.youtube.com/playlist?list=' + UPLOADS_PLAYLIST_ID,
-        youtubeUploadsPlaylistId: UPLOADS_PLAYLIST_ID,
-        youtubePlayerMetadata: PLAYER_URL
+        youtubeMetrics: 'public watch-page ytInitialPlayerResponse',
+        youtubeChannelId: CHANNEL_ID
     });
     media.channelUploadCount = verified.length;
     media.latestUploadVideoId = verified[0].videoId;
     media.youtubeMetricsUpdatedAt = now;
-    media.youtubeRequestFailures = requestFailures;
-    media.youtubeForeignCandidatesIgnored = foreignOrUnverifiable;
-    media.videos = verified.concat(extras);
+    media.youtubeMetadataUnavailableCount = unavailable;
+    media.videos = verified.concat(remainder);
 
     fs.writeFileSync(MEDIA_PATH, JSON.stringify(media, null, 2) + '\n');
 
-    console.log('verified uploads:', verified.length);
+    console.log('verified channel uploads:', verified.length, 'unavailable:', unavailable);
     console.log('latest:', verified[0].videoId, '-', verified[0].title);
-    console.log('ignored browse candidates:', foreignOrUnverifiable, 'request failures:', requestFailures);
-    console.log('top 10:');
+    console.log('top 10 by public YouTube views:');
     ranked.slice(0, 10).forEach(function (video) {
-        console.log(video.youtubePopularityRank + '.', video.videoId, video.youtubeViewCount, '-', video.title);
+        console.log(video.youtubePopularityRank + '.', video.youtubeViewCount, video.videoId, '-', video.title);
     });
 }
 
