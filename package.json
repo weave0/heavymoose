@@ -8,7 +8,7 @@
         "catalog:sync": "node scripts/sync-music-catalog.js && node scripts/bake-catalog-html.js",
         "sync:catalogs": "node scripts/sync-music-catalog.js && node scripts/bake-catalog-html.js",
         "catalog:bake": "node scripts/bake-catalog-html.js",
-        "youtube:sync": "node scripts/sync-youtube-library.js",
+        "youtube:sync": "node scripts/sync-music-catalog.js && node scripts/sync-youtube-library.js",
         "deploy": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main --commit-dirty=true",
         "deploy:clean": "npx wrangler@latest pages deploy . --project-name=heavymoose --branch main",
         "verify:prod": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/verify-production.ps1",
