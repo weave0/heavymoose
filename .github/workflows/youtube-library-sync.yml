@@ -16,6 +16,10 @@ on:
 permissions:
     contents: write
 
+concurrency:
+    group: youtube-library-${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
     refresh:
         runs-on: ubuntu-latest
