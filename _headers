@@ -12,6 +12,15 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/shared/heavy-moose-nav.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/shared/youtube-library.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/data/media-library.json
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
