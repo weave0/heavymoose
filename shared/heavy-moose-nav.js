@@ -118,6 +118,14 @@
     grid.setAttribute('data-hm-youtube-library-grid', 'true');
     grid.removeAttribute('id');
 
+    if (!document.querySelector('link[data-hm-youtube-library-style]')) {
+        var style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'shared/youtube-library.css?v=2026-09-09-compact1';
+        style.setAttribute('data-hm-youtube-library-style', 'true');
+        document.head.appendChild(style);
+    }
+
     var script = document.createElement('script');
     script.src = 'shared/youtube-library.js?v=2026-09-09-ytlib2';
     script.defer = true;
