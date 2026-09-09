@@ -1,8 +1,8 @@
-/* Cover-led catalog: the artwork is the surface. No filled card body. */
+/* Cover-led catalog: artwork stays dominant; typography and actions stay quiet. */
 
 :root {
     --hairline: rgba(255, 255, 255, 0.10);
-    --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.7) 32%, rgb(0 0 0 / 0.9) 100%);
+    --scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.66) 42%, rgb(0 0 0 / 0.92) 100%);
 }
 
 @supports (color: color-mix(in srgb, white 10%, transparent)) {
@@ -37,15 +37,8 @@
 }
 
 @keyframes cover-strip-shift {
-    from {
-        opacity: 0.68;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0.68; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .current-catalog {
@@ -62,34 +55,28 @@
 
 .current-catalog-header .section-title {
     letter-spacing: -0.04em;
-    font-size: clamp(1.6rem, 2.4vw + 1rem, 2.6rem);
+    font-size: clamp(1.5rem, 2vw + 0.9rem, 2.35rem);
 }
 
 .current-catalog-header .section-intro {
-    margin-top: 10px;
+    margin-top: 8px;
     max-width: 62ch;
 }
 
 .cover-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    background: transparent;
-    border: 0;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
 }
 
 .cover-card {
     position: relative;
     min-width: 0;
-    background: transparent;
+    background: #000;
     overflow: hidden;
     isolation: isolate;
-    box-shadow: inset 0 0 0 1px var(--hairline);
-}
-
-.cover-card:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
 }
 
 .cover-card-art {
@@ -101,14 +88,14 @@
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    transition: transform 400ms ease, filter 400ms ease;
+    transition: transform 300ms ease, filter 300ms ease;
     filter: saturate(0.94) contrast(1.04);
 }
 
 .cover-card:hover .cover-card-art img,
 .cover-card:focus-within .cover-card-art img {
-    transform: scale(1.03);
-    filter: saturate(1) contrast(1.08);
+    transform: scale(1.02);
+    filter: saturate(1) contrast(1.07);
 }
 
 .cover-card-body {
@@ -119,8 +106,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.55rem;
-    padding: 2.6rem 0.85rem 0.7rem;
+    gap: 0.34rem;
+    padding: 2rem 0.62rem 0.48rem;
     background: var(--scrim);
     pointer-events: none;
 }
@@ -129,22 +116,17 @@
     pointer-events: auto;
 }
 
-.cover-card:nth-child(1) .cover-card-body {
-    padding: 3.1rem 1rem 0.85rem;
-    gap: 0.62rem;
-}
-
 .cover-card-date,
 .cover-card-meta {
     margin: 0;
     color: #e6e6ee;
-    font: 500 0.62rem/1.55 var(--font-mono);
-    letter-spacing: 0.1em;
+    font: 500 0.54rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.1em 0.25em;
-    margin-left: -0.25em;
-    background: rgb(0 0 0 / 0.4);
-    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 16px rgb(0 0 0 / 0.92);
+    padding: 0.08em 0.2em;
+    margin-left: -0.2em;
+    background: rgb(0 0 0 / 0.42);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 12px rgb(0 0 0 / 0.92);
 }
 
 @supports (color: color-mix(in srgb, white 10%, transparent)) and (color: oklch(0.72 0.014 250)) {
@@ -158,39 +140,30 @@
     display: none;
 }
 
-.cover-card:nth-child(1) .cover-card-meta {
-    display: block;
-}
-
 .cover-card h3 {
     margin: 0;
-    font-size: 0.98rem;
+    font-size: 0.78rem;
     font-weight: 650;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
+    letter-spacing: -0.015em;
+    line-height: 1.18;
     overflow-wrap: anywhere;
-    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 16px rgb(0 0 0 / 0.92);
-}
-
-.cover-card:nth-child(1) h3 {
-    font-size: clamp(1.25rem, 1.4vw + 1rem, 1.7rem);
-    letter-spacing: -0.03em;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 12px rgb(0 0 0 / 0.92);
 }
 
 .cover-card-links {
     display: flex;
-    gap: 14px;
+    gap: 10px;
     margin-top: 0;
 }
 
 .cover-card-links a {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
+    min-height: 30px;
     color: rgba(255, 255, 255, 0.82);
-    font-size: 0.72rem;
+    font-size: 0.58rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
 }
 
@@ -206,15 +179,15 @@
 }
 
 .catalog-more {
-    margin-top: 22px;
+    margin-top: 18px;
 }
 
 .catalog-more a {
     color: var(--text-secondary);
-    min-height: 44px;
+    min-height: 40px;
     display: inline-flex;
     align-items: center;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     letter-spacing: 0.04em;
 }
 
@@ -230,39 +203,29 @@
 .origin-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0;
-    background: transparent;
-    border: 0;
-}
-
-.origin-grid .cover-card:nth-child(1) {
-    grid-column: auto;
-    grid-row: auto;
-}
-
-.origin-grid .cover-card:nth-child(1) h3 {
-    font-size: 0.98rem;
-}
-
-.origin-grid .cover-card:nth-child(1) .cover-card-body {
-    padding: 2.4rem 0.8rem 0.6rem;
-}
-
-.origin-grid .cover-card:nth-child(1) .cover-card-meta {
-    display: none;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
 }
 
 .origin-kicker {
     display: block;
     margin: 0;
     color: var(--electric);
-    font: 500 0.62rem/1.5 var(--font-mono);
-    letter-spacing: 0.14em;
+    font: 500 0.54rem/1.4 var(--font-mono);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 16px rgb(0 0 0 / 0.92);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 1), 0 0 12px rgb(0 0 0 / 0.92);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
+    .cover-grid,
+    .origin-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 780px) {
     .cover-strip {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         max-height: 28vw;
@@ -272,32 +235,30 @@
         display: none;
     }
 
-    .cover-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .cover-card:nth-child(1) {
-        grid-column: span 2;
-        grid-row: auto;
-    }
-
+    .cover-grid,
     .origin-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
     .cover-grid,
     .origin-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .cover-card:nth-child(1) h3 {
-        font-size: 1.15rem;
+    .cover-card-body {
+        padding: 1.8rem 0.55rem 0.4rem;
     }
 
-    .cover-card-meta {
-        display: none;
+    .cover-card h3 {
+        font-size: 0.72rem;
+    }
+
+    .cover-card-date,
+    .origin-kicker,
+    .cover-card-links a {
+        font-size: 0.52rem;
     }
 }
 

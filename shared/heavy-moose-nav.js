@@ -103,3 +103,32 @@
         closeAllPanels();
     });
 })();
+
+(function () {
+    'use strict';
+
+    var grid = document.getElementById('official-video-grid');
+    if (!grid) return;
+    if (document.querySelector('script[data-hm-youtube-library]')) return;
+
+    // Hand the grid to the channel-library enhancer before videos.html's legacy
+    // inline enhancer runs. The baked cards remain in place as a no-JS/fetch fallback,
+    // while the legacy enhancer sees no #official-video-grid and therefore does not
+    // issue a duplicate JSON fetch or re-render.
+    grid.setAttribute('data-hm-youtube-library-grid', 'true');
+    grid.removeAttribute('id');
+
+    if (!document.querySelector('link[data-hm-youtube-library-style]')) {
+        var style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'shared/youtube-library.css?v=2026-09-09-compact1';
+        style.setAttribute('data-hm-youtube-library-style', 'true');
+        document.head.appendChild(style);
+    }
+
+    var script = document.createElement('script');
+    script.src = 'shared/youtube-library.js?v=2026-09-09-ytlib2';
+    script.defer = true;
+    script.setAttribute('data-hm-youtube-library', 'true');
+    document.head.appendChild(script);
+})();

@@ -37,6 +37,7 @@ function main() {
     const artist = catalog.artist || {};
     const youtubeBySlug = catalogCards.youtubeMap(media);
     const latest = releases.slice(0, 8);
+    const homepage = releases.slice(0, 10);
     const strip = releases.slice(0, 8);
 
     bakeFile(path.join(ROOT, 'index.html'), [
@@ -48,7 +49,7 @@ function main() {
         {
             start: '<!-- CATALOG_GRID_START -->',
             end: '<!-- CATALOG_GRID_END -->',
-            inner: catalogCards.renderGrid(releases, youtubeBySlug, artist, 'cover')
+            inner: catalogCards.renderGrid(homepage, youtubeBySlug, artist, 'cover')
                 .split('\n')
                 .map(function (line) { return '                    ' + line; })
                 .join('\n')
@@ -74,7 +75,7 @@ function main() {
         }
     ]);
 
-    console.log('baked', releases.length, 'catalog cards and', latest.length, 'latest cards');
+    console.log('baked', releases.length, 'catalog cards,', latest.length, 'latest cards, and', homepage.length, 'homepage cards');
 }
 
 if (require.main === module) {
