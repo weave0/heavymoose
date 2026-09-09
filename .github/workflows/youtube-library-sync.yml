@@ -5,7 +5,7 @@ on:
     schedule:
         - cron: "17 */6 * * *"
     push:
-        branches: [ feat/youtube-library-auto-sync ]
+        branches: [ main, feat/youtube-library-auto-sync ]
         paths:
             - "scripts/sync-youtube-library.js"
             - "shared/youtube-library.js"
@@ -24,6 +24,8 @@ jobs:
     refresh:
         runs-on: ubuntu-latest
         name: Refresh channel library
+        env:
+            YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
         steps:
             - name: Checkout
@@ -40,16 +42,23 @@ jobs:
               run: npm ci
 
             - name: Refresh YouTube uploads and public view rankings
+              if: ${{ env.YOUTUBE_API_KEY != '' }}
               run: npm run youtube:sync
+
+            - name: Report missing YouTube API credential
+              if: ${{ env.YOUTUBE_API_KEY == '' }}
+              run: echo "YOUTUBE_API_KEY is not configured; validating code without mutating the last-known media library."
 
             - name: Validate site
               run: |
                   npm run lint:html
                   node --check scripts/sync-youtube-library.js
                   node --check shared/youtube-library.js
+                  node --check shared/heavy-moose-nav.js
                   git diff --check
 
             - name: Commit refreshed library when changed
+              if: ${{ env.YOUTUBE_API_KEY != '' }}
               shell: bash
               run: |
                   if git diff --quiet -- assets/data/media-library.json; then
