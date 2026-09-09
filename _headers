@@ -18,7 +18,16 @@
 /shared/youtube-library.js
   Cache-Control: public, max-age=0, must-revalidate
 
+/shared/youtube-library.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/shared/catalog-cards.css
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/data/media-library.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/data/music-catalog.json
   Cache-Control: public, max-age=0, must-revalidate
 
 /assets/*
