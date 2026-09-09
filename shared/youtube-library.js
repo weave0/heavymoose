@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    var officialGrid = document.getElementById('official-video-grid');
-    if (!officialGrid) return;
+    var officialGrid = document.querySelector('[data-hm-youtube-library-grid]') || document.getElementById('official-video-grid');
+    if (!officialGrid || !window.fetch) return;
 
     function formatDate(value) {
         if (!value) return '';
@@ -135,7 +135,7 @@
         });
     }
 
-    fetch('assets/data/media-library.json', { cache: 'no-store' })
+    window.fetch('assets/data/media-library.json', { cache: 'no-store' })
         .then(function (response) {
             if (!response.ok) throw new Error('media-library fetch failed: ' + response.status);
             return response.json();
