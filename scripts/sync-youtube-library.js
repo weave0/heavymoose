@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Verify and rank the Heavy Moose media inventory using public YouTube watch-page
- * metadata. Inventory discovery remains in sync-music-catalog.js, which merges the
- * channel RSS window with the official Music Videos playlist and preserves older
- * known entries instead of truncating them.
+ * Refresh the complete known Heavy Moose YouTube library without a private API key.
+ * The public browser API key/client version are discovered from the Heavy Moose
+ * channel page itself, then candidate video IDs are verified against the canonical
+ * channel before view counts or newest-upload status are accepted.
  */
 'use strict';
 
@@ -13,203 +13,209 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const MEDIA_PATH = path.join(ROOT, 'assets/data/media-library.json');
 const CHANNEL_ID = 'UCrGqGbSQYxxNAjsvlQ8tT8g';
+const CHANNEL_URL = 'https://www.youtube.com/@HeavyMoose/videos?hl=en&gl=US';
 const MIN_VERIFIED = 10;
 const CONCURRENCY = 6;
-const REQUEST_TIMEOUT_MS = 12000;
+const TIMEOUT_MS = 12000;
 
-async function fetchText(url) {
-    const response = await fetch(url, {
+async function request(url, options) {
+    const response = await fetch(url, Object.assign({
         redirect: 'follow',
         headers: {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142 Safari/537.36',
-            'accept-language': 'en-US,en;q=0.9',
-            cookie: 'SOCS=CAI; CONSENT=YES+cb'
+            'accept-language': 'en-US,en;q=0.9'
         },
-        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
-    });
-    if (!response.ok) throw new Error('HTTP ' + response.status);
-    return response.text();
+        signal: AbortSignal.timeout(TIMEOUT_MS)
+    }, options || {}));
+    if (!response.ok) throw new Error('HTTP ' + response.status + ' for ' + url);
+    return response;
 }
 
-function extractBalancedObject(text, startIndex) {
-    const open = text.indexOf('{', startIndex);
-    if (open === -1) return null;
-    let depth = 0;
-    let inString = false;
-    let escaped = false;
-
-    for (let i = open; i < text.length; i += 1) {
-        const ch = text[i];
-        if (inString) {
-            if (escaped) escaped = false;
-            else if (ch === '\\') escaped = true;
-            else if (ch === '"') inString = false;
-            continue;
-        }
-        if (ch === '"') inString = true;
-        else if (ch === '{') depth += 1;
-        else if (ch === '}') {
-            depth -= 1;
-            if (depth === 0) return text.slice(open, i + 1);
-        }
-    }
-    return null;
+function firstMatch(text, regex, label) {
+    const match = text.match(regex);
+    if (!match) throw new Error('Could not discover ' + label + ' from YouTube channel page.');
+    return match[1];
 }
 
-function extractPlayerResponse(html) {
-    const markers = ['ytInitialPlayerResponse =', 'ytInitialPlayerResponse=', 'var ytInitialPlayerResponse ='];
-    for (let i = 0; i < markers.length; i += 1) {
-        const index = html.indexOf(markers[i]);
-        if (index === -1) continue;
-        const raw = extractBalancedObject(html, index + markers[i].length);
-        if (!raw) continue;
-        try {
-            return JSON.parse(raw);
-        } catch (error) {
-            // Try another representation.
-        }
+async function discoverBrowserClient() {
+    const html = await (await request(CHANNEL_URL)).text();
+    const apiKey = firstMatch(html, /"INNERTUBE_API_KEY":"([^"]+)"/, 'INNERTUBE_API_KEY');
+    const clientVersion = firstMatch(html, /"INNERTUBE_CLIENT_VERSION":"([^"]+)"/, 'INNERTUBE_CLIENT_VERSION');
+    const ids = [];
+    const seen = new Set();
+    const regex = /"videoId":"([A-Za-z0-9_-]{11})"/g;
+    let match;
+    while ((match = regex.exec(html)) && ids.length < 100) {
+        if (seen.has(match[1])) continue;
+        seen.add(match[1]);
+        ids.push(match[1]);
     }
-
-    const escapedMarker = '"playerResponse":"';
-    const escapedIndex = html.indexOf(escapedMarker);
-    if (escapedIndex === -1) return null;
-
-    let raw = '';
-    let escaped = false;
-    for (let i = escapedIndex + escapedMarker.length; i < html.length; i += 1) {
-        const ch = html[i];
-        if (!escaped && ch === '"') break;
-        raw += ch;
-        if (escaped) escaped = false;
-        else if (ch === '\\') escaped = true;
-    }
-    try {
-        return JSON.parse(JSON.parse('"' + raw + '"'));
-    } catch (error) {
-        return null;
-    }
+    return { apiKey: apiKey, clientVersion: clientVersion, channelPageVideoIds: ids };
 }
 
-async function publicMetadata(videoId) {
-    const html = await fetchText('https://www.youtube.com/watch?v=' + videoId + '&hl=en&gl=US');
-    const player = extractPlayerResponse(html);
-    const details = player && player.videoDetails;
-    if (!details) return null;
-    if (details.videoId && details.videoId !== videoId) return null;
-    if (details.channelId !== CHANNEL_ID) return null;
+async function playerMetadata(videoId, client) {
+    const response = await request(
+        'https://www.youtube.com/youtubei/v1/player?key=' + encodeURIComponent(client.apiKey) + '&prettyPrint=false',
+        {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142 Safari/537.36',
+                'origin': 'https://www.youtube.com',
+                'referer': CHANNEL_URL
+            },
+            body: JSON.stringify({
+                context: {
+                    client: {
+                        clientName: 'WEB',
+                        clientVersion: client.clientVersion,
+                        hl: 'en',
+                        gl: 'US'
+                    }
+                },
+                videoId: videoId,
+                contentCheckOk: true,
+                racyCheckOk: true
+            })
+        }
+    );
+    const data = await response.json();
+    const details = data && data.videoDetails;
+    if (!details || details.channelId !== CHANNEL_ID) return null;
 
-    const views = Number(details.viewCount);
+    const micro = data.microformat && data.microformat.playerMicroformatRenderer;
+    const thumbs = details.thumbnail && details.thumbnail.thumbnails;
+    const published = micro && (micro.publishDate || micro.uploadDate);
     return {
-        viewCount: Number.isFinite(views) ? views : null,
-        title: details.title || '',
-        lengthSeconds: Number(details.lengthSeconds) || null,
-        playable: !player.playabilityStatus || player.playabilityStatus.status === 'OK'
+        videoId: videoId,
+        title: details.title || videoId,
+        description: details.shortDescription || '',
+        publishedAt: published ? published + (/^\d{4}-\d{2}-\d{2}$/.test(published) ? 'T00:00:00+00:00' : '') : '',
+        viewCount: Number.isFinite(Number(details.viewCount)) ? Number(details.viewCount) : null,
+        durationSeconds: Number(details.lengthSeconds) || null,
+        thumbnailUrl: Array.isArray(thumbs) && thumbs.length ? thumbs[thumbs.length - 1].url : 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg',
+        playable: !data.playabilityStatus || data.playabilityStatus.status === 'OK'
     };
 }
 
-function candidateVideo(video) {
-    if (!video || !video.videoId) return false;
-    if (video.catalogClass === 'feature-appearance' || video.catalogClass === 'collaboration') return false;
-    if (video.heavyMooseRole && video.heavyMooseRole !== 'primary-artist') return false;
-    return Boolean(video.inOfficialMusicVideosPlaylist || video.includeInLatestMusicVideos || video.inChannelUploads);
+function slugify(value) {
+    return String(value || '').toLowerCase().replace(/['’]/g, '-').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-function newestFirst(a, b) {
-    const aDate = String(a.publishedAt || '');
-    const bDate = String(b.publishedAt || '');
-    if (aDate !== bDate) return bDate.localeCompare(aDate);
-    const aIndex = a.officialPlaylistIndex == null ? Number.MAX_SAFE_INTEGER : Number(a.officialPlaylistIndex);
-    const bIndex = b.officialPlaylistIndex == null ? Number.MAX_SAFE_INTEGER : Number(b.officialPlaylistIndex);
-    return aIndex - bIndex;
+function asVideo(meta, current, now) {
+    return Object.assign({
+        title: meta.title,
+        rawTitle: meta.title,
+        slug: slugify(meta.title),
+        videoId: meta.videoId,
+        publishedAt: meta.publishedAt,
+        watchUrl: 'https://www.youtube.com/watch?v=' + meta.videoId,
+        embedUrl: 'https://www.youtube-nocookie.com/embed/' + meta.videoId,
+        thumbnailUrl: meta.thumbnailUrl,
+        description: meta.description,
+        catalogClass: 'primary-release',
+        heavyMooseRole: 'primary-artist',
+        associatedTrackTitle: null,
+        associatedReleaseSlug: null,
+        associatedReleaseTitle: null,
+        associatedArtwork: null,
+        watchPage: null,
+        includeInLatestMusicVideos: true,
+        inOfficialMusicVideosPlaylist: false,
+        officialPlaylistIndex: null,
+        includeInFeaturesGroup: false
+    }, current || {}, {
+        title: (current && current.title) || meta.title,
+        rawTitle: meta.title,
+        publishedAt: meta.publishedAt || (current && current.publishedAt) || '',
+        watchUrl: 'https://www.youtube.com/watch?v=' + meta.videoId,
+        embedUrl: 'https://www.youtube-nocookie.com/embed/' + meta.videoId,
+        thumbnailUrl: (current && current.thumbnailUrl) || meta.thumbnailUrl,
+        inChannelUploads: true,
+        isLatestUpload: false,
+        youtubeViewCount: meta.viewCount,
+        youtubeViewCountText: meta.viewCount == null ? '' : meta.viewCount.toLocaleString('en-US') + ' views',
+        youtubeMetricsUpdatedAt: now,
+        youtubePlayable: meta.playable,
+        youtubeDurationSeconds: meta.durationSeconds,
+        youtubePopularityRank: null
+    });
 }
 
 async function main() {
     const media = JSON.parse(fs.readFileSync(MEDIA_PATH, 'utf8'));
     const now = new Date().toISOString();
-    const videos = (media.videos || []).map(function (video) {
-        return Object.assign({}, video, {
-            isLatestUpload: false,
-            inChannelUploads: false,
-            channelUploadIndex: null,
-            youtubePopularityRank: null
-        });
+    const existing = new Map((media.videos || []).map(function (video) { return [video.videoId, video]; }));
+    const client = await discoverBrowserClient();
+
+    const candidates = [];
+    const seen = new Set();
+    function add(id) {
+        if (!id || seen.has(id)) return;
+        seen.add(id);
+        candidates.push(id);
+    }
+    client.channelPageVideoIds.forEach(add);
+    (media.videos || []).forEach(function (video) {
+        if (video.heavyMooseRole === 'primary-artist' || video.inOfficialMusicVideosPlaylist || video.includeInLatestMusicVideos) add(video.videoId);
     });
-    const candidates = videos.filter(candidateVideo).sort(newestFirst);
+
     const results = new Array(candidates.length);
     let cursor = 0;
-
     async function worker() {
         while (true) {
-            const index = cursor;
-            cursor += 1;
+            const index = cursor++;
             if (index >= candidates.length) return;
-            const video = candidates[index];
+            const id = candidates[index];
             try {
-                results[index] = { video: video, meta: await publicMetadata(video.videoId), error: null };
+                results[index] = await playerMetadata(id, client);
             } catch (error) {
-                results[index] = { video: video, meta: null, error: error };
+                console.warn('metadata unavailable', id, error.message);
+                results[index] = null;
             }
         }
     }
-
     await Promise.all(Array.from({ length: Math.min(CONCURRENCY, candidates.length) }, worker));
 
-    const verified = [];
-    let unavailable = 0;
-    results.forEach(function (result) {
-        if (!result || !result.meta) {
-            unavailable += 1;
-            if (result && result.error) {
-                console.warn('watch-page metadata unavailable', result.video.videoId, result.error.message);
-            }
-            return;
-        }
-        const video = result.video;
-        const meta = result.meta;
-        video.inChannelUploads = true;
-        video.channelUploadIndex = verified.length;
-        video.youtubeViewCount = meta.viewCount;
-        video.youtubeViewCountText = meta.viewCount == null ? '' : meta.viewCount.toLocaleString('en-US') + ' views';
-        video.youtubeMetricsUpdatedAt = now;
-        video.youtubePlayable = meta.playable;
-        video.youtubeDurationSeconds = meta.lengthSeconds || video.youtubeDurationSeconds || null;
-        if (!video.title && meta.title) video.title = meta.title;
-        verified.push(video);
+    const verified = results.filter(Boolean).map(function (meta) {
+        return asVideo(meta, existing.get(meta.videoId) || null, now);
     });
-
     if (verified.length < MIN_VERIFIED) {
-        throw new Error('Only ' + verified.length + ' Heavy Moose uploads could be verified from public watch pages.');
+        throw new Error('Only ' + verified.length + ' Heavy Moose uploads were verified through YouTube.');
     }
 
-    const ranked = verified
-        .filter(function (video) { return Number.isFinite(Number(video.youtubeViewCount)); })
-        .sort(function (a, b) {
-            const viewDelta = Number(b.youtubeViewCount) - Number(a.youtubeViewCount);
-            return viewDelta || Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
-        });
-    if (ranked.length < MIN_VERIFIED) {
-        throw new Error('Only ' + ranked.length + ' verified uploads exposed public YouTube view counts.');
-    }
-    ranked.forEach(function (video, index) { video.youtubePopularityRank = index + 1; });
-
-    verified.sort(function (a, b) { return Number(a.channelUploadIndex) - Number(b.channelUploadIndex); });
+    verified.sort(function (a, b) {
+        return String(b.publishedAt || '').localeCompare(String(a.publishedAt || ''));
+    });
+    verified.forEach(function (video, index) { video.channelUploadIndex = index; });
     verified[0].isLatestUpload = true;
 
+    const ranked = verified.filter(function (video) {
+        return Number.isFinite(Number(video.youtubeViewCount));
+    }).sort(function (a, b) {
+        return Number(b.youtubeViewCount) - Number(a.youtubeViewCount) || Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
+    });
+    if (ranked.length < MIN_VERIFIED) throw new Error('Fewer than 10 verified uploads exposed public view counts.');
+    ranked.forEach(function (video, index) { video.youtubePopularityRank = index + 1; });
+
     const verifiedIds = new Set(verified.map(function (video) { return video.videoId; }));
-    const remainder = videos.filter(function (video) { return !verifiedIds.has(video.videoId); });
+    const remainder = (media.videos || []).filter(function (video) { return !verifiedIds.has(video.videoId); }).map(function (video) {
+        return Object.assign({}, video, { isLatestUpload: false, inChannelUploads: false, channelUploadIndex: null, youtubePopularityRank: null });
+    });
 
     media.source = Object.assign({}, media.source || {}, {
-        youtubeMetrics: 'public watch-page ytInitialPlayerResponse',
-        youtubeChannelId: CHANNEL_ID
+        youtubeChannel: CHANNEL_URL,
+        youtubeChannelId: CHANNEL_ID,
+        youtubeMetrics: 'YouTube public Innertube browser player metadata'
     });
     media.channelUploadCount = verified.length;
     media.latestUploadVideoId = verified[0].videoId;
     media.youtubeMetricsUpdatedAt = now;
-    media.youtubeMetadataUnavailableCount = unavailable;
+    media.youtubeCandidateCount = candidates.length;
     media.videos = verified.concat(remainder);
     fs.writeFileSync(MEDIA_PATH, JSON.stringify(media, null, 2) + '\n');
 
-    console.log('verified channel uploads:', verified.length, 'unavailable:', unavailable);
+    console.log('verified channel uploads:', verified.length, 'candidates:', candidates.length);
     console.log('latest:', verified[0].videoId, '-', verified[0].title);
     console.log('top 10 by public YouTube views:');
     ranked.slice(0, 10).forEach(function (video) {
@@ -218,9 +224,6 @@ async function main() {
 }
 
 if (require.main === module) {
-    main().catch(function (error) {
-        console.error(error);
-        process.exitCode = 1;
-    });
+    main().catch(function (error) { console.error(error); process.exitCode = 1; });
 }
 module.exports = { main };
