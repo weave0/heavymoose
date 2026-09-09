@@ -103,3 +103,16 @@
         closeAllPanels();
     });
 })();
+
+(function () {
+    'use strict';
+
+    if (!document.getElementById('official-video-grid')) return;
+    if (document.querySelector('script[data-hm-youtube-library]')) return;
+
+    var script = document.createElement('script');
+    script.src = 'shared/youtube-library.js?v=2026-09-08-ytlib1';
+    script.defer = true;
+    script.setAttribute('data-hm-youtube-library', 'true');
+    document.head.appendChild(script);
+})();
