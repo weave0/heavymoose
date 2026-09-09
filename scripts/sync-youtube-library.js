@@ -1,17 +1,11 @@
 #!/usr/bin/env node
 /**
- * Enrich media-library.json from the canonical Heavy Moose YouTube channel.
+ * Refresh the Heavy Moose YouTube library from public YouTube metadata.
  *
- * Responsibilities:
- *   - enumerate candidate videos from the complete channel Uploads surface
- *   - verify every candidate belongs to the canonical Heavy Moose channel
- *   - hydrate missing uploads from YouTube's public player metadata
- *   - capture public view counts and rank the most-watched uploads
- *   - set latestUploadVideoId to the newest verified channel upload
- *
- * YouTube browse responses can contain recommendations from other channels. Those
- * candidates are ignored after player-level channel verification. The script still
- * fails closed if fewer than 10 verified Heavy Moose uploads or rankings remain.
+ * We intentionally do not trust every video renderer returned by the Uploads
+ * browse surface: YouTube can mix recommendations into that response. Every
+ * candidate must resolve through player metadata to the canonical Heavy Moose
+ * channel before it can enter the channel library or popularity ranking.
  */
 'use strict';
 
@@ -21,42 +15,36 @@ const { spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const MEDIA_PATH = path.join(ROOT, 'assets/data/media-library.json');
-const HEAVY_MOOSE_CHANNEL_ID = 'UCrGqGbSQYxxNAjsvlQ8tT8g';
-const UPLOADS_PLAYLIST_ID = 'UU' + HEAVY_MOOSE_CHANNEL_ID.slice(2);
-const YT_BROWSE_URL = 'https://www.youtube.com/youtubei/v1/browse?prettyPrint=false';
-const YT_PLAYER_URL = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';
-const MIN_EXPECTED_UPLOADS = 10;
-
-const WEB_CLIENT = {
+const CHANNEL_ID = 'UCrGqGbSQYxxNAjsvlQ8tT8g';
+const UPLOADS_PLAYLIST_ID = 'UU' + CHANNEL_ID.slice(2);
+const BROWSE_URL = 'https://www.youtube.com/youtubei/v1/browse?prettyPrint=false';
+const PLAYER_URL = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false';
+const MIN_VERIFIED = 10;
+const CLIENT = {
     clientName: 'WEB',
     clientVersion: '2.20260101.00.00',
     hl: 'en',
     gl: 'US'
 };
 
-function curlJsonPost(url, payload) {
-    const result = spawnSync(
-        'curl',
-        [
-            '-fsSL',
-            '-A', 'HeavyMooseYouTubeSync/1.0',
-            '-H', 'Content-Type: application/json',
-            '-H', 'Origin: https://www.youtube.com',
-            '-H', 'Referer: https://www.youtube.com/',
-            '--data-binary', '@-',
-            url
-        ],
-        {
-            input: JSON.stringify(payload),
-            encoding: 'utf8',
-            maxBuffer: 25 * 1024 * 1024
-        }
-    );
+function postJson(url, payload) {
+    const result = spawnSync('curl', [
+        '-fsSL',
+        '-A', 'HeavyMooseYouTubeSync/1.1',
+        '-H', 'Content-Type: application/json',
+        '-H', 'Origin: https://www.youtube.com',
+        '-H', 'Referer: https://www.youtube.com/',
+        '--data-binary', '@-',
+        url
+    ], {
+        input: JSON.stringify(payload),
+        encoding: 'utf8',
+        maxBuffer: 25 * 1024 * 1024
+    });
 
     if (result.status !== 0) {
-        throw new Error('Failed to POST ' + url + ': ' + (result.stderr || result.status));
+        throw new Error('YouTube request failed: ' + (result.stderr || result.status));
     }
-
     return JSON.parse(result.stdout);
 }
 
@@ -64,98 +52,82 @@ function textValue(value) {
     if (!value) return '';
     if (typeof value === 'string') return value;
     if (typeof value.simpleText === 'string') return value.simpleText;
+    if (typeof value.content === 'string') return value.content;
     if (Array.isArray(value.runs)) {
         return value.runs.map(function (run) { return run.text || ''; }).join('');
     }
-    if (typeof value.content === 'string') return value.content;
     return '';
 }
 
-function findContinuationToken(obj) {
+function continuationToken(obj) {
     if (!obj || typeof obj !== 'object') return null;
     if (obj.continuationCommand && obj.continuationCommand.token) {
         return obj.continuationCommand.token;
     }
-
     const values = Array.isArray(obj) ? obj : Object.keys(obj).map(function (key) { return obj[key]; });
     for (let i = 0; i < values.length; i += 1) {
-        const found = findContinuationToken(values[i]);
+        const found = continuationToken(values[i]);
         if (found) return found;
     }
     return null;
 }
 
-function collectUploadItems(obj, collected) {
+function collectCandidates(obj, out) {
     if (!obj || typeof obj !== 'object') return;
 
     if (obj.lockupViewModel && obj.lockupViewModel.contentId) {
         const vm = obj.lockupViewModel;
-        const videoId = vm.contentId;
-        if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
-            const title = ((((vm.metadata || {}).lockupMetadataViewModel || {}).title) || {}).content || '';
-            collected.push({ videoId: videoId, rawTitle: title });
+        if (/^[A-Za-z0-9_-]{11}$/.test(vm.contentId)) {
+            out.push({
+                videoId: vm.contentId,
+                title: ((((vm.metadata || {}).lockupMetadataViewModel || {}).title) || {}).content || ''
+            });
         }
     }
 
     ['playlistVideoRenderer', 'videoRenderer', 'gridVideoRenderer'].forEach(function (key) {
         const renderer = obj[key];
-        if (!renderer || !renderer.videoId || !/^[A-Za-z0-9_-]{11}$/.test(renderer.videoId)) return;
-        collected.push({
-            videoId: renderer.videoId,
-            rawTitle: textValue(renderer.title)
-        });
+        if (!renderer || !/^[A-Za-z0-9_-]{11}$/.test(renderer.videoId || '')) return;
+        out.push({ videoId: renderer.videoId, title: textValue(renderer.title) });
     });
 
     const values = Array.isArray(obj) ? obj : Object.keys(obj).map(function (key) { return obj[key]; });
-    values.forEach(function (value) {
-        collectUploadItems(value, collected);
-    });
+    values.forEach(function (value) { collectCandidates(value, out); });
 }
 
-function fetchUploadCandidates() {
-    const items = [];
+function fetchCandidates() {
+    const result = [];
     const seen = new Set();
-    let payload = {
-        context: { client: WEB_CLIENT },
-        browseId: 'VL' + UPLOADS_PLAYLIST_ID
-    };
-    let guard = 0;
+    let payload = { context: { client: CLIENT }, browseId: 'VL' + UPLOADS_PLAYLIST_ID };
+    let pages = 0;
 
-    while (payload && guard < 20) {
-        guard += 1;
-        const data = curlJsonPost(YT_BROWSE_URL, payload);
-        const pageItems = [];
-        collectUploadItems(data, pageItems);
-
-        pageItems.forEach(function (item) {
+    while (payload && pages < 20) {
+        pages += 1;
+        const data = postJson(BROWSE_URL, payload);
+        const page = [];
+        collectCandidates(data, page);
+        page.forEach(function (item) {
             if (seen.has(item.videoId)) return;
             seen.add(item.videoId);
-            items.push({
-                videoId: item.videoId,
-                rawTitle: item.rawTitle,
-                browseIndex: items.length
-            });
+            result.push(item);
         });
-
-        const token = findContinuationToken(data);
-        payload = token
-            ? { context: { client: WEB_CLIENT }, continuation: token }
-            : null;
+        const token = continuationToken(data);
+        payload = token ? { context: { client: CLIENT }, continuation: token } : null;
     }
 
-    return items;
+    return result;
 }
 
 function fetchPlayer(videoId) {
-    return curlJsonPost(YT_PLAYER_URL, {
-        context: { client: WEB_CLIENT },
+    return postJson(PLAYER_URL, {
+        context: { client: CLIENT },
         videoId: videoId,
         contentCheckOk: true,
         racyCheckOk: true
     });
 }
 
-function slugifyTitle(title) {
+function slugify(title) {
     return String(title || '')
         .toLowerCase()
         .replace(/['’]/g, '-')
@@ -163,46 +135,33 @@ function slugifyTitle(title) {
         .replace(/^-+|-+$/g, '');
 }
 
-function normalizePublishedAt(value) {
-    if (!value) return '';
-    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value + 'T00:00:00+00:00';
-    return value;
+function publishedAt(data, current) {
+    const micro = data && data.microformat && data.microformat.playerMicroformatRenderer;
+    const raw = (micro && (micro.publishDate || micro.uploadDate)) || (current && current.publishedAt) || '';
+    return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw + 'T00:00:00+00:00' : raw;
 }
 
-function playerRecord(videoId, browseIndex, current, data, now) {
+function verifiedRecord(videoId, current, data, now, channelIndex) {
     const details = data && data.videoDetails;
-    const playability = data && data.playabilityStatus;
-    const micro = data && data.microformat && data.microformat.playerMicroformatRenderer;
+    if (!details || details.channelId !== CHANNEL_ID) return null;
 
-    if (!details) {
-        throw new Error('Player metadata missing video details for ' + videoId);
-    }
-    if (details.channelId !== HEAVY_MOOSE_CHANNEL_ID) {
-        return null;
-    }
-
-    const publishedAt = normalizePublishedAt(
-        (micro && (micro.publishDate || micro.uploadDate)) ||
-        (current && current.publishedAt) ||
-        ''
-    );
-    const title = (current && current.title) || details.title || videoId;
+    const micro = data.microformat && data.microformat.playerMicroformatRenderer;
     const thumbnails = details.thumbnail && details.thumbnail.thumbnails;
-    const thumbnail = Array.isArray(thumbnails) && thumbnails.length
+    const fallbackThumb = Array.isArray(thumbnails) && thumbnails.length
         ? thumbnails[thumbnails.length - 1].url
         : 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg';
-    const parsedViews = Number(details.viewCount);
-    const viewCount = Number.isFinite(parsedViews) ? parsedViews : (current && current.youtubeViewCount);
+    const title = (current && current.title) || details.title || videoId;
+    const views = Number(details.viewCount);
 
     return Object.assign({
         title: title,
         rawTitle: details.title || title,
-        slug: slugifyTitle(title),
+        slug: slugify(title),
         videoId: videoId,
-        publishedAt: publishedAt,
+        publishedAt: publishedAt(data, current),
         watchUrl: 'https://www.youtube.com/watch?v=' + videoId,
         embedUrl: 'https://www.youtube-nocookie.com/embed/' + videoId,
-        thumbnailUrl: thumbnail,
+        thumbnailUrl: fallbackThumb,
         description: (micro && micro.description && textValue(micro.description)) || '',
         catalogClass: 'primary-release',
         heavyMooseRole: 'primary-artist',
@@ -218,156 +177,127 @@ function playerRecord(videoId, browseIndex, current, data, now) {
         includeInFeaturesGroup: false
     }, current || {}, {
         videoId: videoId,
-        publishedAt: publishedAt || (current && current.publishedAt) || '',
+        publishedAt: publishedAt(data, current),
         watchUrl: 'https://www.youtube.com/watch?v=' + videoId,
         embedUrl: 'https://www.youtube-nocookie.com/embed/' + videoId,
-        thumbnailUrl: (current && current.thumbnailUrl) || thumbnail,
+        thumbnailUrl: (current && current.thumbnailUrl) || fallbackThumb,
         inChannelUploads: true,
-        channelUploadIndex: browseIndex,
-        youtubeViewCount: viewCount,
-        youtubeViewCountText: Number.isFinite(Number(viewCount))
-            ? new Intl.NumberFormat('en-US').format(Number(viewCount)) + ' views'
-            : (current && current.youtubeViewCountText) || '',
+        channelUploadIndex: channelIndex,
+        youtubeViewCount: Number.isFinite(views) ? views : (current && current.youtubeViewCount),
         youtubeMetricsUpdatedAt: now,
-        youtubePlayable: Boolean(playability && playability.status === 'OK'),
+        youtubePlayable: Boolean(data.playabilityStatus && data.playabilityStatus.status === 'OK'),
         youtubeDurationSeconds: Number(details.lengthSeconds) || (current && current.youtubeDurationSeconds) || null
     });
 }
 
 function main() {
     const media = JSON.parse(fs.readFileSync(MEDIA_PATH, 'utf8'));
-    const videos = media.videos || [];
-    const previousChannelCount = Number(media.channelUploadCount || 0);
-    const candidates = fetchUploadCandidates();
-
-    if (candidates.length < MIN_EXPECTED_UPLOADS) {
-        throw new Error('Refusing partial YouTube sync: only ' + candidates.length + ' browse candidates were enumerated.');
-    }
-
-    const now = new Date().toISOString();
-    const byId = new Map();
-    videos.forEach(function (video) {
-        byId.set(video.videoId, Object.assign({}, video, {
+    const previous = new Map();
+    (media.videos || []).forEach(function (video) {
+        previous.set(video.videoId, Object.assign({}, video, {
             isLatestUpload: false,
-            inChannelUploads: false,
-            channelUploadIndex: null,
             youtubePopularityRank: null
         }));
     });
 
-    let metricFailures = 0;
-    let foreignCandidates = 0;
-    candidates.forEach(function (item) {
-        const current = byId.get(item.videoId) || null;
+    const candidates = fetchCandidates();
+    if (candidates.length < MIN_VERIFIED) {
+        throw new Error('Only ' + candidates.length + ' YouTube browse candidates were returned.');
+    }
+
+    const now = new Date().toISOString();
+    const verified = [];
+    let foreignOrUnverifiable = 0;
+    let requestFailures = 0;
+
+    candidates.forEach(function (candidate) {
+        const current = previous.get(candidate.videoId) || null;
         try {
-            const data = fetchPlayer(item.videoId);
-            const merged = playerRecord(item.videoId, item.browseIndex, current, data, now);
-            if (!merged) {
-                foreignCandidates += 1;
+            const record = verifiedRecord(candidate.videoId, current, fetchPlayer(candidate.videoId), now, verified.length);
+            if (!record) {
+                foreignOrUnverifiable += 1;
                 return;
             }
-            byId.set(item.videoId, merged);
-        } catch (err) {
-            metricFailures += 1;
-            if (!current) {
-                throw err;
+            verified.push(record);
+        } catch (error) {
+            requestFailures += 1;
+            if (current && current.inChannelUploads) {
+                verified.push(Object.assign({}, current, {
+                    isLatestUpload: false,
+                    inChannelUploads: true,
+                    channelUploadIndex: verified.length,
+                    youtubePopularityRank: null
+                }));
+                console.warn('preserved previously verified upload', candidate.videoId, error.message);
+                return;
             }
-            console.warn('player metadata fallback', item.videoId, err.message);
-            byId.set(item.videoId, Object.assign({}, current, {
-                inChannelUploads: true,
-                channelUploadIndex: item.browseIndex
-            }));
+            foreignOrUnverifiable += 1;
+            console.warn('ignored unverifiable candidate', candidate.videoId, error.message);
         }
     });
 
-    const channelVideos = Array.from(byId.values())
-        .filter(function (video) { return video.inChannelUploads; });
-
-    if (channelVideos.length < MIN_EXPECTED_UPLOADS) {
-        throw new Error('Refusing YouTube sync with fewer than ' + MIN_EXPECTED_UPLOADS + ' verified Heavy Moose uploads.');
+    if (verified.length < MIN_VERIFIED) {
+        throw new Error('Only ' + verified.length + ' verified Heavy Moose uploads remained.');
     }
-    if (previousChannelCount && channelVideos.length < previousChannelCount) {
-        throw new Error(
-            'Refusing smaller verified YouTube library: got ' + channelVideos.length + ', previously had ' + previousChannelCount + '.'
-        );
+    if (media.channelUploadCount && verified.length < media.channelUploadCount) {
+        throw new Error('Refusing smaller channel library: ' + verified.length + ' < ' + media.channelUploadCount + '.');
     }
 
-    const withViews = channelVideos
+    const ranked = verified
         .filter(function (video) { return Number.isFinite(Number(video.youtubeViewCount)); })
         .sort(function (a, b) {
-            const delta = Number(b.youtubeViewCount) - Number(a.youtubeViewCount);
-            if (delta) return delta;
-            return Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
+            const views = Number(b.youtubeViewCount) - Number(a.youtubeViewCount);
+            return views || Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
         });
 
-    if (withViews.length < MIN_EXPECTED_UPLOADS) {
-        throw new Error('Refusing YouTube ranking with fewer than ' + MIN_EXPECTED_UPLOADS + ' measured uploads.');
+    if (ranked.length < MIN_VERIFIED) {
+        throw new Error('Only ' + ranked.length + ' verified uploads exposed public view counts.');
     }
 
-    withViews.forEach(function (video, index) {
+    ranked.forEach(function (video, index) {
         video.youtubePopularityRank = index + 1;
+        video.youtubeViewCountText = Number(video.youtubeViewCount).toLocaleString('en-US') + ' views';
     });
 
-    channelVideos.forEach(function (video) {
-        if (!Number.isFinite(Number(video.youtubePopularityRank))) {
-            video.youtubePopularityRank = null;
-        }
+    verified.sort(function (a, b) {
+        return Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
     });
+    verified[0].isLatestUpload = true;
 
-    const newest = channelVideos
-        .slice()
-        .sort(function (a, b) {
-            const aIdx = Number.isFinite(Number(a.channelUploadIndex)) ? Number(a.channelUploadIndex) : Number.MAX_SAFE_INTEGER;
-            const bIdx = Number.isFinite(Number(b.channelUploadIndex)) ? Number(b.channelUploadIndex) : Number.MAX_SAFE_INTEGER;
-            if (aIdx !== bIdx) return aIdx - bIdx;
-            return String(b.publishedAt || '').localeCompare(String(a.publishedAt || ''));
-        })[0];
-
-    if (!newest) {
-        throw new Error('YouTube sync produced no newest upload.');
-    }
-    newest.isLatestUpload = true;
-
-    const allVideos = Array.from(byId.values()).sort(function (a, b) {
-        if (a.inChannelUploads && b.inChannelUploads) {
-            return Number(a.channelUploadIndex) - Number(b.channelUploadIndex);
-        }
-        if (a.inChannelUploads) return -1;
-        if (b.inChannelUploads) return 1;
-        return String(b.publishedAt || '').localeCompare(String(a.publishedAt || ''));
+    const verifiedIds = new Set(verified.map(function (video) { return video.videoId; }));
+    const extras = Array.from(previous.values()).filter(function (video) {
+        return !verifiedIds.has(video.videoId);
+    }).map(function (video) {
+        return Object.assign({}, video, {
+            isLatestUpload: false,
+            inChannelUploads: false,
+            channelUploadIndex: null,
+            youtubePopularityRank: null
+        });
     });
 
     media.source = Object.assign({}, media.source || {}, {
         youtubeUploadsPlaylist: 'https://www.youtube.com/playlist?list=' + UPLOADS_PLAYLIST_ID,
         youtubeUploadsPlaylistId: UPLOADS_PLAYLIST_ID,
-        youtubePlayerMetadata: YT_PLAYER_URL
+        youtubePlayerMetadata: PLAYER_URL
     });
-    media.channelUploadCount = channelVideos.length;
-    media.latestUploadVideoId = newest.videoId;
+    media.channelUploadCount = verified.length;
+    media.latestUploadVideoId = verified[0].videoId;
     media.youtubeMetricsUpdatedAt = now;
-    media.youtubeMetricFailures = metricFailures;
-    media.youtubeForeignCandidatesIgnored = foreignCandidates;
-    media.videos = allVideos;
+    media.youtubeRequestFailures = requestFailures;
+    media.youtubeForeignCandidatesIgnored = foreignOrUnverifiable;
+    media.videos = verified.concat(extras);
 
     fs.writeFileSync(MEDIA_PATH, JSON.stringify(media, null, 2) + '\n');
 
-    console.log(
-        'youtube channel', channelVideos.length, 'verified uploads;',
-        'ranked', withViews.length + ';',
-        'latest', newest.videoId + ';',
-        'foreign candidates ignored', foreignCandidates + ';',
-        'metric fallbacks', metricFailures
-    );
-    console.log(
-        'top 10',
-        withViews.slice(0, 10).map(function (video) {
-            return video.youtubePopularityRank + ':' + video.videoId + ':' + video.youtubeViewCount;
-        }).join(' | ')
-    );
+    console.log('verified uploads:', verified.length);
+    console.log('latest:', verified[0].videoId, '-', verified[0].title);
+    console.log('ignored browse candidates:', foreignOrUnverifiable, 'request failures:', requestFailures);
+    console.log('top 10:');
+    ranked.slice(0, 10).forEach(function (video) {
+        console.log(video.youtubePopularityRank + '.', video.videoId, video.youtubeViewCount, '-', video.title);
+    });
 }
 
-if (require.main === module) {
-    main();
-}
-
+if (require.main === module) main();
 module.exports = { main };
