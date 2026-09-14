@@ -8,8 +8,20 @@
     "youtubeChannelId": "UCrGqGbSQYxxNAjsvlQ8tT8g"
   },
   "source": "https://itunes.apple.com/lookup?id=1895530727&entity=album&limit=200",
-  "updatedAt": "2026-09-14T01:05:15.634Z",
+  "updatedAt": "2026-09-14T06:51:55.889Z",
   "releases": [
+    {
+      "title": "December in July",
+      "slug": "december-in-july",
+      "type": "album",
+      "releaseDate": "2026-09-12",
+      "trackCount": 10,
+      "genre": "Dance",
+      "appleMusicId": 6811724618,
+      "appleMusicUrl": "https://music.apple.com/us/album/december-in-july/6811724618",
+      "artwork": "assets/images/releases/december-in-july.jpg",
+      "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/59/19/1a/59191a35-9ea1-622e-1380-981e4ec271e3/artwork.jpg/800x800bb.jpg"
+    },
     {
       "title": "Why",
       "slug": "why",
