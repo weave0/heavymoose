@@ -8,8 +8,20 @@
     "youtubeChannelId": "UCrGqGbSQYxxNAjsvlQ8tT8g"
   },
   "source": "https://itunes.apple.com/lookup?id=1895530727&entity=album&limit=200",
-  "updatedAt": "2026-09-23T00:58:23.396Z",
+  "updatedAt": "2026-09-23T06:42:48.109Z",
   "releases": [
+    {
+      "title": "Fwomp",
+      "slug": "fwomp",
+      "type": "album",
+      "releaseDate": "2026-09-21",
+      "trackCount": 11,
+      "genre": "Dance",
+      "appleMusicId": 6814989206,
+      "appleMusicUrl": "https://music.apple.com/us/album/fwomp/6814989206",
+      "artwork": "assets/images/releases/fwomp.jpg",
+      "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8d/cc/92/8dcc9204-8f0b-601f-7729-780faa8a5796/artwork.jpg/800x800bb.jpg"
+    },
     {
       "title": "December in July",
       "slug": "december-in-july",
