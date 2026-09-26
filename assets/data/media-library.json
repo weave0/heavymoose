@@ -17,7 +17,7 @@
     "youtubeUploadsPlaylistId": "UUrGqGbSQYxxNAjsvlQ8tT8g",
     "youtubeMetrics": "YouTube Data API v3 public channel, playlistItems, and video statistics"
   },
-  "releasesUpdatedAt": "2026-09-26T12:34:07.893Z",
+  "releasesUpdatedAt": "2026-09-26T18:30:13.127Z",
   "latestReleaseSlug": "fwomp",
   "latestReleaseTitle": "Fwomp",
   "latestReleaseDate": "2026-09-21",
@@ -25,7 +25,7 @@
   "latestUploadVideoId": "3ncfMO3Pz3U",
   "officialPlaylistId": "PLqKeZP1HGoZmqeR60aYzywnEJDY227xgZ",
   "officialPlaylistCount": 46,
-  "videosUpdatedAt": "2026-09-26T12:34:08.678Z",
+  "videosUpdatedAt": "2026-09-26T18:30:13.780Z",
   "videos": [
     {
       "title": "Pantalones",
@@ -51,12 +51,12 @@
       "isLatestUpload": true,
       "inChannelUploads": true,
       "channelUploadIndex": 0,
-      "youtubeViewCount": 2,
-      "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 3,
+      "youtubeViewCountText": "3 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 216,
-      "youtubePopularityRank": 64
+      "youtubePopularityRank": 60
     },
     {
       "title": "Nostalgy (We Ain't Done Yet)",
@@ -82,12 +82,12 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 1,
-      "youtubeViewCount": 2,
-      "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 5,
+      "youtubeViewCountText": "5 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 282,
-      "youtubePopularityRank": 65
+      "youtubePopularityRank": 52
     },
     {
       "title": "Peaceful",
@@ -113,12 +113,12 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 2,
-      "youtubeViewCount": 15,
-      "youtubeViewCountText": "15 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 18,
+      "youtubeViewCountText": "18 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 286,
-      "youtubePopularityRank": 40
+      "youtubePopularityRank": 38
     },
     {
       "title": "Beep Boop",
@@ -144,12 +144,12 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 3,
-      "youtubeViewCount": 15,
-      "youtubeViewCountText": "15 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 16,
+      "youtubeViewCountText": "16 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 158,
-      "youtubePopularityRank": 41
+      "youtubePopularityRank": 40
     },
     {
       "title": "Fuzzy Bear",
@@ -175,12 +175,12 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 4,
-      "youtubeViewCount": 22,
-      "youtubeViewCountText": "22 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 25,
+      "youtubeViewCountText": "25 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 92,
-      "youtubePopularityRank": 34
+      "youtubePopularityRank": 30
     },
     {
       "title": "Bad News Is",
@@ -206,12 +206,12 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 5,
-      "youtubeViewCount": 20,
-      "youtubeViewCountText": "20 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 21,
+      "youtubeViewCountText": "21 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 191,
-      "youtubePopularityRank": 36
+      "youtubePopularityRank": 35
     },
     {
       "title": "Cloud",
@@ -239,7 +239,7 @@
       "channelUploadIndex": 6,
       "youtubeViewCount": 33,
       "youtubeViewCountText": "33 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 285,
       "youtubePopularityRank": 26
@@ -268,9 +268,9 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 7,
-      "youtubeViewCount": 207,
-      "youtubeViewCountText": "207 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 209,
+      "youtubeViewCountText": "209 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 258,
       "youtubePopularityRank": 1
@@ -301,7 +301,7 @@
       "channelUploadIndex": 8,
       "youtubeViewCount": 64,
       "youtubeViewCountText": "64 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 140,
       "youtubePopularityRank": 9
@@ -332,7 +332,7 @@
       "channelUploadIndex": 9,
       "youtubeViewCount": 83,
       "youtubeViewCountText": "83 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 259,
       "youtubePopularityRank": 7
@@ -363,7 +363,7 @@
       "channelUploadIndex": 10,
       "youtubeViewCount": 37,
       "youtubeViewCountText": "37 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 202,
       "youtubePopularityRank": 21
@@ -394,7 +394,7 @@
       "channelUploadIndex": 11,
       "youtubeViewCount": 48,
       "youtubeViewCountText": "48 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 167,
       "youtubePopularityRank": 12
@@ -425,7 +425,7 @@
       "channelUploadIndex": 12,
       "youtubeViewCount": 36,
       "youtubeViewCountText": "36 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 137,
       "youtubePopularityRank": 22
@@ -456,7 +456,7 @@
       "channelUploadIndex": 13,
       "youtubeViewCount": 192,
       "youtubeViewCountText": "192 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 107,
       "youtubePopularityRank": 2
@@ -487,7 +487,7 @@
       "channelUploadIndex": 14,
       "youtubeViewCount": 38,
       "youtubeViewCountText": "38 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 113,
       "youtubePopularityRank": 20
@@ -518,10 +518,10 @@
       "channelUploadIndex": 15,
       "youtubeViewCount": 23,
       "youtubeViewCountText": "23 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 132,
-      "youtubePopularityRank": 33
+      "youtubePopularityRank": 34
     },
     {
       "title": "Try (Meh)",
@@ -549,7 +549,7 @@
       "channelUploadIndex": 16,
       "youtubeViewCount": 50,
       "youtubeViewCountText": "50 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 168,
       "youtubePopularityRank": 11
@@ -578,9 +578,9 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 17,
-      "youtubeViewCount": 44,
-      "youtubeViewCountText": "44 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 45,
+      "youtubeViewCountText": "45 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 270,
       "youtubePopularityRank": 14
@@ -611,7 +611,7 @@
       "channelUploadIndex": 18,
       "youtubeViewCount": 39,
       "youtubeViewCountText": "39 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 160,
       "youtubePopularityRank": 19
@@ -642,7 +642,7 @@
       "channelUploadIndex": 19,
       "youtubeViewCount": 41,
       "youtubeViewCountText": "41 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 182,
       "youtubePopularityRank": 17
@@ -671,9 +671,9 @@
       "isLatestUpload": false,
       "inChannelUploads": true,
       "channelUploadIndex": 20,
-      "youtubeViewCount": 76,
-      "youtubeViewCountText": "76 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeViewCount": 77,
+      "youtubeViewCountText": "77 views",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 242,
       "youtubePopularityRank": 8
@@ -704,7 +704,7 @@
       "channelUploadIndex": 21,
       "youtubeViewCount": 36,
       "youtubeViewCountText": "36 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 208,
       "youtubePopularityRank": 23
@@ -735,7 +735,7 @@
       "channelUploadIndex": 22,
       "youtubeViewCount": 52,
       "youtubeViewCountText": "52 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 241,
       "youtubePopularityRank": 10
@@ -766,7 +766,7 @@
       "channelUploadIndex": 23,
       "youtubeViewCount": 155,
       "youtubeViewCountText": "155 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 242,
       "youtubePopularityRank": 4
@@ -797,7 +797,7 @@
       "channelUploadIndex": 24,
       "youtubeViewCount": 133,
       "youtubeViewCountText": "133 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 210,
       "youtubePopularityRank": 5
@@ -828,10 +828,10 @@
       "channelUploadIndex": 25,
       "youtubeViewCount": 16,
       "youtubeViewCountText": "16 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 161,
-      "youtubePopularityRank": 39
+      "youtubePopularityRank": 41
     },
     {
       "title": "Welp: Moose Told It",
@@ -859,10 +859,10 @@
       "channelUploadIndex": 26,
       "youtubeViewCount": 18,
       "youtubeViewCountText": "18 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 264,
-      "youtubePopularityRank": 38
+      "youtubePopularityRank": 39
     },
     {
       "title": "BF (America Got Ya)",
@@ -890,7 +890,7 @@
       "channelUploadIndex": 27,
       "youtubeViewCount": 164,
       "youtubeViewCountText": "164 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 299,
       "youtubePopularityRank": 3
@@ -921,10 +921,10 @@
       "channelUploadIndex": 28,
       "youtubeViewCount": 24,
       "youtubeViewCountText": "24 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 148,
-      "youtubePopularityRank": 30
+      "youtubePopularityRank": 31
     },
     {
       "title": "Heavy Moose (Dross: Temper) - Every Night",
@@ -952,7 +952,7 @@
       "channelUploadIndex": 29,
       "youtubeViewCount": 30,
       "youtubeViewCountText": "30 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 327,
       "youtubePopularityRank": 28
@@ -983,7 +983,7 @@
       "channelUploadIndex": 30,
       "youtubeViewCount": 44,
       "youtubeViewCountText": "44 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 275,
       "youtubePopularityRank": 15
@@ -1014,7 +1014,7 @@
       "channelUploadIndex": 31,
       "youtubeViewCount": 35,
       "youtubeViewCountText": "35 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 240,
       "youtubePopularityRank": 24
@@ -1045,10 +1045,10 @@
       "channelUploadIndex": 32,
       "youtubeViewCount": 24,
       "youtubeViewCountText": "24 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 151,
-      "youtubePopularityRank": 31
+      "youtubePopularityRank": 32
     },
     {
       "title": "Heavy Moose - Give the Nuns One",
@@ -1076,7 +1076,7 @@
       "channelUploadIndex": 33,
       "youtubeViewCount": 46,
       "youtubeViewCountText": "46 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 333,
       "youtubePopularityRank": 13
@@ -1107,7 +1107,7 @@
       "channelUploadIndex": 34,
       "youtubeViewCount": 26,
       "youtubeViewCountText": "26 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 311,
       "youtubePopularityRank": 29
@@ -1138,10 +1138,10 @@
       "channelUploadIndex": 35,
       "youtubeViewCount": 24,
       "youtubeViewCountText": "24 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 290,
-      "youtubePopularityRank": 32
+      "youtubePopularityRank": 33
     },
     {
       "title": "Stars, Stripes, and Side Eye",
@@ -1169,7 +1169,7 @@
       "channelUploadIndex": 36,
       "youtubeViewCount": 9,
       "youtubeViewCountText": "9 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 155,
       "youtubePopularityRank": 48
@@ -1200,7 +1200,7 @@
       "channelUploadIndex": 37,
       "youtubeViewCount": 13,
       "youtubeViewCountText": "13 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 235,
       "youtubePopularityRank": 43
@@ -1231,7 +1231,7 @@
       "channelUploadIndex": 38,
       "youtubeViewCount": 43,
       "youtubeViewCountText": "43 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 372,
       "youtubePopularityRank": 16
@@ -1262,7 +1262,7 @@
       "channelUploadIndex": 39,
       "youtubeViewCount": 34,
       "youtubeViewCountText": "34 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 368,
       "youtubePopularityRank": 25
@@ -1293,7 +1293,7 @@
       "channelUploadIndex": 40,
       "youtubeViewCount": 94,
       "youtubeViewCountText": "94 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 197,
       "youtubePopularityRank": 6
@@ -1324,7 +1324,7 @@
       "channelUploadIndex": 41,
       "youtubeViewCount": 40,
       "youtubeViewCountText": "40 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 228,
       "youtubePopularityRank": 18
@@ -1355,7 +1355,7 @@
       "channelUploadIndex": 42,
       "youtubeViewCount": 31,
       "youtubeViewCountText": "31 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 269,
       "youtubePopularityRank": 27
@@ -1386,10 +1386,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 21,
       "youtubeViewCountText": "21 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 220,
-      "youtubePopularityRank": 35
+      "youtubePopularityRank": 36
     },
     {
       "title": "Heavy Moose - Yield - Heavy Water #music #art #reggae",
@@ -1417,7 +1417,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 12,
       "youtubeViewCountText": "12 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 190,
       "youtubePopularityRank": 45
@@ -1448,10 +1448,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 234,
-      "youtubePopularityRank": 53
+      "youtubePopularityRank": 54
     },
     {
       "title": "Heavy Moose - Yield - The Long Game #music #art #hiphop",
@@ -1479,7 +1479,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 10,
       "youtubeViewCountText": "10 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 162,
       "youtubePopularityRank": 47
@@ -1510,7 +1510,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 2,
       "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 164,
       "youtubePopularityRank": 66
@@ -1541,7 +1541,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 15,
       "youtubeViewCountText": "15 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 244,
       "youtubePopularityRank": 42
@@ -1572,10 +1572,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 163,
-      "youtubePopularityRank": 54
+      "youtubePopularityRank": 55
     },
     {
       "title": "Heavy Moose - Yield - Yield #music #art",
@@ -1603,10 +1603,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 3,
       "youtubeViewCountText": "3 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 177,
-      "youtubePopularityRank": 59
+      "youtubePopularityRank": 61
     },
     {
       "title": "Heavy Moose - Yield - Blood and Honey #music #art",
@@ -1634,7 +1634,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 7,
       "youtubeViewCountText": "7 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 208,
       "youtubePopularityRank": 49
@@ -1665,10 +1665,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 3,
       "youtubeViewCountText": "3 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 129,
-      "youtubePopularityRank": 60
+      "youtubePopularityRank": 62
     },
     {
       "title": "Heavy Moose - Yield - We #music #art",
@@ -1696,10 +1696,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 3,
       "youtubeViewCountText": "3 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 142,
-      "youtubePopularityRank": 61
+      "youtubePopularityRank": 63
     },
     {
       "title": "Heavy Moose - Yield - Three AM",
@@ -1727,7 +1727,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 2,
       "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 163,
       "youtubePopularityRank": 67
@@ -1758,7 +1758,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 2,
       "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 153,
       "youtubePopularityRank": 68
@@ -1789,10 +1789,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 198,
-      "youtubePopularityRank": 55
+      "youtubePopularityRank": 56
     },
     {
       "title": "Heavy Moose - Glass and Ash - Embed #music #rock #metal #heavy #healing",
@@ -1820,7 +1820,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 2,
       "youtubeViewCountText": "2 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 177,
       "youtubePopularityRank": 69
@@ -1851,10 +1851,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 5,
       "youtubeViewCountText": "5 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 240,
-      "youtubePopularityRank": 52
+      "youtubePopularityRank": 53
     },
     {
       "title": "Heavy Moose - Glass and Ash - Pressure Surface #music #art #healing #rock",
@@ -1882,7 +1882,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 1,
       "youtubeViewCountText": "1 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 143,
       "youtubePopularityRank": 70
@@ -1913,10 +1913,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 183,
-      "youtubePopularityRank": 56
+      "youtubePopularityRank": 57
     },
     {
       "title": "Heavy Moose - Glass and Ash - Iron in Blood #music #rock #heavy",
@@ -1944,10 +1944,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 249,
-      "youtubePopularityRank": 57
+      "youtubePopularityRank": 58
     },
     {
       "title": "Heavy Moose -Glass and Ash - Meridian Dark #music #art #healing #heavy",
@@ -1975,7 +1975,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 0,
       "youtubeViewCountText": "0 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 275,
       "youtubePopularityRank": 71
@@ -2006,7 +2006,7 @@
       "isLatestUpload": false,
       "youtubeViewCount": 0,
       "youtubeViewCountText": "0 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 163,
       "youtubePopularityRank": 72
@@ -2037,10 +2037,10 @@
       "isLatestUpload": false,
       "youtubeViewCount": 3,
       "youtubeViewCountText": "3 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 214,
-      "youtubePopularityRank": 62
+      "youtubePopularityRank": 64
     },
     {
       "title": "Heavy Moose: Flipside Rituals - Get Flipped",
@@ -2068,7 +2068,7 @@
       "channelUploadIndex": 65,
       "youtubeViewCount": 20,
       "youtubeViewCountText": "20 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 209,
       "youtubePopularityRank": 37
@@ -2099,7 +2099,7 @@
       "channelUploadIndex": 66,
       "youtubeViewCount": 6,
       "youtubeViewCountText": "6 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 202,
       "youtubePopularityRank": 51
@@ -2130,7 +2130,7 @@
       "channelUploadIndex": 67,
       "youtubeViewCount": 13,
       "youtubeViewCountText": "13 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 122,
       "youtubePopularityRank": 44
@@ -2161,10 +2161,10 @@
       "channelUploadIndex": 68,
       "youtubeViewCount": 3,
       "youtubeViewCountText": "3 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 143,
-      "youtubePopularityRank": 63
+      "youtubePopularityRank": 65
     },
     {
       "title": "Heavy Moose: Wicked Clean Re-release - 'Merica",
@@ -2192,7 +2192,7 @@
       "channelUploadIndex": 69,
       "youtubeViewCount": 7,
       "youtubeViewCountText": "7 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 248,
       "youtubePopularityRank": 50
@@ -2223,10 +2223,10 @@
       "channelUploadIndex": 70,
       "youtubeViewCount": 4,
       "youtubeViewCountText": "4 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 231,
-      "youtubePopularityRank": 58
+      "youtubePopularityRank": 59
     },
     {
       "title": "Heavy Moose: Floor Witness - Air Punch Ceremony",
@@ -2254,12 +2254,12 @@
       "channelUploadIndex": 71,
       "youtubeViewCount": 11,
       "youtubeViewCountText": "11 views",
-      "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z",
+      "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z",
       "youtubePlayable": true,
       "youtubeDurationSeconds": 202,
       "youtubePopularityRank": 46
     }
   ],
   "channelUploadCount": 72,
-  "youtubeMetricsUpdatedAt": "2026-09-26T12:34:08.900Z"
+  "youtubeMetricsUpdatedAt": "2026-09-26T18:30:14.173Z"
 }
