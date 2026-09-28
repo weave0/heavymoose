@@ -8,8 +8,20 @@
     "youtubeChannelId": "UCrGqGbSQYxxNAjsvlQ8tT8g"
   },
   "source": "https://itunes.apple.com/lookup?id=1895530727&entity=album&limit=200",
-  "updatedAt": "2026-09-27T18:30:37.684Z",
+  "updatedAt": "2026-09-28T01:08:54.291Z",
   "releases": [
+    {
+      "title": "Huck",
+      "slug": "huck",
+      "type": "album",
+      "releaseDate": "2026-09-27",
+      "trackCount": 7,
+      "genre": "Dance",
+      "appleMusicId": 6816776924,
+      "appleMusicUrl": "https://music.apple.com/us/album/huck/6816776924",
+      "artwork": "assets/images/releases/huck.jpg",
+      "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/30/ef/fc/30effc64-ecd8-bf09-4c62-41a22fd1b5eb/artwork.jpg/800x800bb.jpg"
+    },
     {
       "title": "Fwomp",
       "slug": "fwomp",
