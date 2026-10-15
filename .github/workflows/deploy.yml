@@ -20,12 +20,11 @@ jobs:
               run: node scripts/update-cache-bust.js
 
             - name: Publish to Cloudflare Pages
-              uses: cloudflare/pages-action@v1
+              uses: cloudflare/wrangler-action@v4
               with:
                   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                  projectName: heavymoose
-                  directory: .
+                  command: pages deploy . --project-name=heavymoose --branch=main
                   gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Verify production markers
