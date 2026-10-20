@@ -8,8 +8,20 @@
     "youtubeChannelId": "UCrGqGbSQYxxNAjsvlQ8tT8g"
   },
   "source": "https://itunes.apple.com/lookup?id=1895530727&entity=album&limit=200",
-  "updatedAt": "2026-10-19T18:34:15.039Z",
+  "updatedAt": "2026-10-20T00:57:43.691Z",
   "releases": [
+    {
+      "title": "No L",
+      "slug": "no-l",
+      "type": "album",
+      "releaseDate": "2026-10-19",
+      "trackCount": 12,
+      "genre": "Metal",
+      "appleMusicId": 6824638293,
+      "appleMusicUrl": "https://music.apple.com/us/album/no-l/6824638293",
+      "artwork": "assets/images/releases/no-l.jpg",
+      "artworkSource": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/39/03/6e/39036efd-d32a-6fa3-dbeb-e8a3249377e1/artwork.jpg/800x800bb.jpg"
+    },
     {
       "title": "Nutha",
       "slug": "nutha",
