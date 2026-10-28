@@ -49,7 +49,13 @@ export default {
       }
     }
 
-
+    // Permanent file rename only. This is not an HTML pretty-URL alias.
+    // Do not map extensionless HTML routes such as /videos → videos.html;
+    // Cloudflare Pages already 308s *.html and that alias loops.
+    if (decodedPath === "/assets/images/Heavy Moose DJ Sillouette.png") {
+      url.pathname = "/assets/images/heavy-moose-dj-silhouette.png";
+      return Response.redirect(url.toString(), 301);
+    }
 
     // Serve static asset via Cloudflare Pages
     return env.ASSETS.fetch(request);
