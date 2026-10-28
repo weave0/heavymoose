@@ -30,6 +30,9 @@
 /assets/data/music-catalog.json
   Cache-Control: public, max-age=0, must-revalidate
 
+/docs/america-250-art-prompt-pack.md
+  Content-Type: text/plain; charset=utf-8
+
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
