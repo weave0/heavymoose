@@ -78,7 +78,15 @@ The service worker is scoped to the app directory and caches only the shell/cata
 
 ## Deployment and DNS
 
-`.github/workflows/listening-room.yml` validates PRs and deploys pushes to `main` and the initial `feat/listening-room` branch **only to heavymoose-listen**, using the existing repository Cloudflare secrets. The initial branch is allowed to publish this separate app for review before merging. Later feature branches validate on PR without publishing. Existing production deployment rules are untouched.
+`.github/workflows/listening-room.yml` validates PRs and deploys pushes to `main` and the initial `feat/listening-room` branch **only to heavymoose-listen**, when repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are configured. The initial repository audit found these two secrets absent, so automatic publishing skips with a clear summary until they are supplied. The initial branch is allowed to publish this separate app for review before merging. Later feature branches validate on PR without publishing. Existing production deployment rules are untouched.
+
+Local publishing uses the existing Cloudflare sign-in (no token in source):
+
+```powershell
+node --test scripts/test-listen.mjs
+node scripts/build-listen.cjs
+npx wrangler@4 pages deploy dist/listen --project-name=heavymoose-listen --branch=main
+```
 
 The production site remains on `heavymoose` / heavymoose.com. Listening-room deployment uses `heavymoose-listen.pages.dev`. To attach the preferred hostname, register `listen.heavymoose.com` under the new project's custom domains, then create only a CNAME named `listen` pointing to `heavymoose-listen.pages.dev` (proxied). Wait for Cloudflare domain validation and TLS activation. Do not replace apex or www records. DNS completion/status is reported separately in the handoff.
 

@@ -26,8 +26,21 @@ jobs:
           node --check listen/sw.js
       - name: Build isolated static app
         run: node scripts/build-listen.cjs
-      - name: Publish Listening Room only
+      - name: Check deployment configuration
+        id: deploy-config
         if: github.event_name == 'push'
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "Validation passed. Automatic publishing needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets; use the documented local deploy command meanwhile." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Publish Listening Room only
+        if: github.event_name == 'push' && steps.deploy-config.outputs.configured == 'true'
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
