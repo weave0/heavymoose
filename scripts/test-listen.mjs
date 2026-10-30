@@ -35,6 +35,12 @@ test('shell cache excludes automatic audio caching and is scoped to the app',()=
   const sw=fs.readFileSync(path.join(root,'listen/sw.js'),'utf8');assert(sw.includes("event.request.headers.has('Range')"));assert(!sw.match(/const SHELL=.*\.mp3/));
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'listen/manifest.webmanifest'),'utf8'));assert.equal(manifest.scope,'./');assert.equal(manifest.start_url,'./');
 });
+test('Restricted feature preserves the supplied nine-song sequence and listening-only settings',()=>{
+  const a=catalog.albums.find(a=>a.id==='80s-maybe-included');assert(a);assert.equal(catalog.feature.albumId,a.id);assert.equal(catalog.feature.videoId,'mde4tAc-s9o');
+  const songs=a.tracks.map(id=>catalog.tracks.find(t=>t.id===id));
+  assert.deepEqual(songs.map(t=>t.title),["80's Opening Song",'Juggle','Bat Attack','FF','Less Of A Fan','Fly To',"Somethin'",'In Context',"80's Close"]);
+  assert(songs.every(t=>t.downloadAllowed===false));assert.equal(a.expectedTracks,9);
+});
 test('album importer validates, dry-runs, imports into an isolated fixture and refuses duplicates',()=>{
   fs.mkdirSync(path.join(root,'dist'),{recursive:true});
   const fixture=fs.mkdtempSync(path.join(root,'dist/ingest-test-'));

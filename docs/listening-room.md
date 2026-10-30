@@ -7,6 +7,8 @@ Preferred hostname: **listen.heavymoose.com**. Existing `heavymoose` project and
 
 No dependency installation or paid service is required for the application.
 
+On a fresh checkout, first run `node scripts/hydrate-listen.cjs` to restore Git-ignored streaming media from the current label-owned deployment. The Restricted campaign features the album and Bat Attack video on Discover.
+
 ```powershell
 node --test scripts/test-listen.mjs
 node scripts/build-listen.cjs
@@ -15,7 +17,23 @@ node scripts/preview-listen.cjs
 
 Open http://127.0.0.1:3001. `dist/listen` contains only the app, its headers, and referenced assets. It excludes repository internals and the existing production Worker. The preview server supports byte-range requests for audio seeking.
 
-## Current source audit
+## Current library
+
+38 releases and 25 streamable songs. The latest addition is **80s Maybe Included** by Heavy Moose, using the supplied Cosmic Moose Sentinel cover and the nine `master_B_reference_320.mp3` listening masters. WAV masters remain untouched. Every MP3 passed a complete FFmpeg decode and SHA-256 copy comparison. Streaming is enabled; file downloads remain disabled. The supplied order and titles are authoritative, including “Bat Attack” (source folder `03_bst_attack22`) and “Fly To” (source folder `06_flyin`). The album appears first in the manifest and discovery cards. The Restricted hero plays this album, alongside an opt-in YouTube embed for Bat Attack (`mde4tAc-s9o`).
+
+Artist-supplied MP3s under `assets/audio/listen/` are Git-ignored. The public repository contains catalog paths, sizes and SHA-256 hashes in `listen/media-assets.json`. The deployment serves audio for listening without download links. Streaming cannot prevent browser recording or network-level copying. Rebuilds restore absent audio with `scripts/hydrate-listen.cjs` and verify every hash; bootstrap new recordings locally before CI can fetch them.
+
+1. 80's Opening Song
+2. Juggle
+3. Bat Attack
+4. FF
+5. Less Of A Fan
+6. Fly To
+7. Somethin'
+8. In Context
+9. 80's Close
+
+## Initial source audit
 
 37 release entries were migrated from the existing music catalog and structured metadata. Two artists/collaborators are represented: Heavy Moose and DJ Shariff. Only 16 recordings pass the MP3 signature check: 12 Knock, Knock ('Merica) tracks, three Flipside Rituals tracks, and DJ Shariff's 'Merica. These were already served on the existing music page.
 

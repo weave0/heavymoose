@@ -21,6 +21,7 @@ jobs:
           node-version: '22'
       - name: Validate catalog and player
         run: |
+          node scripts/hydrate-listen.cjs
           node --test scripts/test-listen.mjs
           node --check listen/app.js
           node --check listen/sw.js

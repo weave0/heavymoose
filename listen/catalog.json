@@ -1,7 +1,7 @@
 {
   "version": 1,
   "label": "Good Flippin Vibes",
-  "notice": "Streaming recordings already published on the Heavy Moose website. Other releases show catalog metadata only. Offline music saving awaits owner approval per recording.",
+  "notice": "Recordings supplied by the artists or previously published on the Heavy Moose website. Other releases show catalog metadata only. Offline music saving awaits owner approval per recording.",
   "artists": [
     {
       "id": "heavy-moose",
@@ -17,6 +17,27 @@
     }
   ],
   "albums": [
+    {
+      "id": "80s-maybe-included",
+      "artistId": "heavy-moose",
+      "title": "80s Maybe Included",
+      "year": "2026",
+      "releaseDate": "2026",
+      "genre": "Independent",
+      "cover": "./assets/images/listen/80s-maybe-included.png",
+      "expectedTracks": 9,
+      "tracks": [
+        "heavy-moose-80s-maybe-included-1",
+        "heavy-moose-80s-maybe-included-2",
+        "heavy-moose-80s-maybe-included-3",
+        "heavy-moose-80s-maybe-included-4",
+        "heavy-moose-80s-maybe-included-5",
+        "heavy-moose-80s-maybe-included-6",
+        "heavy-moose-80s-maybe-included-7",
+        "heavy-moose-80s-maybe-included-8",
+        "heavy-moose-80s-maybe-included-9"
+      ]
+    },
     {
       "id": "no-l",
       "artistId": "heavy-moose",
@@ -572,6 +593,86 @@
       "title": "'Merica",
       "src": "./assets/audio/america-250/dj-shariff-merica.mp3",
       "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-1",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "80's Opening Song",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/01.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-2",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Juggle",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/02.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-3",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Bat Attack",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/03.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-4",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "FF",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/04.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-5",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Less Of A Fan",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/05.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-6",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Fly To",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/06.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-7",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Somethin'",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/07.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-8",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "In Context",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/08.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-9",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "80's Close",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/09.mp3",
+      "downloadAllowed": false
     }
-  ]
+  ],
+  "feature": {
+    "label": "Restricted",
+    "headline": "Restricted. Still playing.",
+    "albumId": "80s-maybe-included",
+    "videoTitle": "Bat Attack",
+    "videoId": "mde4tAc-s9o",
+    "statement": "Nine songs. No permission slip. Heavy Moose / Good Flippin Vibes — we’re doing it anyway."
+  }
 }
