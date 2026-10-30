@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
 import {restore,nextId,searchCatalog} from '../listen/player.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'listen/catalog.json'),'utf8'));
@@ -33,4 +34,21 @@ test('search matches artist, album and title without case sensitivity',()=>{
 test('shell cache excludes automatic audio caching and is scoped to the app',()=>{
   const sw=fs.readFileSync(path.join(root,'listen/sw.js'),'utf8');assert(sw.includes("event.request.headers.has('Range')"));assert(!sw.match(/const SHELL=.*\.mp3/));
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'listen/manifest.webmanifest'),'utf8'));assert.equal(manifest.scope,'./');assert.equal(manifest.start_url,'./');
+});
+test('album importer validates, dry-runs, imports into an isolated fixture and refuses duplicates',()=>{
+  fs.mkdirSync(path.join(root,'dist'),{recursive:true});
+  const fixture=fs.mkdtempSync(path.join(root,'dist/ingest-test-'));
+  fs.mkdirSync(path.join(fixture,'scripts'));fs.mkdirSync(path.join(fixture,'listen'));fs.mkdirSync(path.join(fixture,'album'));
+  fs.copyFileSync(path.join(root,'scripts/ingest-listen.cjs'),path.join(fixture,'scripts/ingest-listen.cjs'));
+  fs.writeFileSync(path.join(fixture,'listen/catalog.json'),JSON.stringify({artists:[],albums:[],tracks:[]}));
+  fs.copyFileSync(path.resolve(root,catalog.tracks[0].src),path.join(fixture,'album/01.mp3'));
+  fs.copyFileSync(path.resolve(root,catalog.albums[0].cover),path.join(fixture,'album/cover.jpg'));
+  const input={id:'test-release',artist:{id:'test-artist',name:'Test Artist'},title:'Test Release',streamingAllowed:true,downloadAllowed:false,tracks:[{file:'01.mp3',title:'Test Song'}]};
+  const metadata=path.join(fixture,'album/album.json');fs.writeFileSync(metadata,JSON.stringify(input));
+  const run=apply=>spawnSync(process.execPath,[path.join(fixture,'scripts/ingest-listen.cjs'),path.join(fixture,'album'),...(apply?['--apply']:[])],{encoding:'utf8'});
+  assert.equal(run(false).status,0);assert.equal(JSON.parse(fs.readFileSync(path.join(fixture,'listen/catalog.json'))).albums.length,0);
+  input.tracks[0].file='../01.mp3';fs.writeFileSync(metadata,JSON.stringify(input));assert.notEqual(run(false).status,0);
+  input.tracks[0].file='01.mp3';input.streamingAllowed=false;fs.writeFileSync(metadata,JSON.stringify(input));assert.notEqual(run(false).status,0);
+  input.streamingAllowed=true;fs.writeFileSync(metadata,JSON.stringify(input));assert.equal(run(true).status,0);
+  const imported=JSON.parse(fs.readFileSync(path.join(fixture,'listen/catalog.json')));assert.equal(imported.artists[0].name,'Test Artist');assert.equal(imported.tracks[0].downloadAllowed,false);assert(fs.existsSync(path.resolve(fixture,imported.tracks[0].src)));assert.notEqual(run(true).status,0);
 });
