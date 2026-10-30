@@ -1,0 +1,36 @@
+name: Listening Room
+on:
+  pull_request:
+    branches: [main]
+    paths: ['listen/**', 'scripts/*listen*', '.github/workflows/listening-room.yml']
+  push:
+    branches: [main, feat/listening-room]
+    paths: ['listen/**', 'scripts/*listen*', 'assets/audio/**', 'assets/images/**', '.github/workflows/listening-room.yml']
+permissions:
+  contents: read
+concurrency:
+  group: listening-room-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate catalog and player
+        run: |
+          node --test scripts/test-listen.mjs
+          node --check listen/app.js
+          node --check listen/sw.js
+      - name: Build isolated static app
+        run: node scripts/build-listen.cjs
+      - name: Publish Listening Room only
+        if: github.event_name == 'push'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Separate project; never deploys to the production heavymoose project.
+          command: pages deploy dist/listen --project-name=heavymoose-listen --branch=main

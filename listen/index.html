@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111414">
+  <meta name="description" content="The Good Flippin Vibes listening room. Independent artists. Full records. Free listening.">
+  <title>The Listening Room — Heavy Moose / Good Flippin Vibes</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="./room.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to music</a>
+  <aside class="sidebar">
+    <a class="brand" href="#discover" aria-label="Listening Room home"><span class="brand-mark">hm<span>↗</span></span><span>HEAVY MOOSE<small>GOOD FLIPPIN VIBES</small></span></a>
+    <p class="eyebrow side-label">YOUR LISTENING ROOM</p>
+    <nav aria-label="Library">
+      <a href="#discover" data-view="discover"><span>◉</span> Discover</a>
+      <a href="#artists" data-view="artists"><span>◎</span> Artists</a>
+      <a href="#albums" data-view="albums"><span>▤</span> All releases</a>
+      <a href="#likes" data-view="likes"><span>♡</span> Liked songs <small id="like-count">0</small></a>
+      <a href="#queue" data-view="queue"><span>≡</span> Your queue</a>
+    </nav>
+    <div class="side-note"><span class="live-dot"></span> INDEPENDENT BY NATURE<p>No subscriptions.<br>No interruptions.<br>Just the music.</p><a href="https://heavymoose.com" target="_blank" rel="noopener">Heavy Moose website ↗</a></div>
+  </aside>
+  <div class="page">
+    <header class="topbar"><span class="eyebrow">GFV / SOUND WITHOUT BORDERS</span><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search artists, records, songs" aria-label="Search artists, albums and songs"></label><button id="install" class="quiet" hidden>Install app ↗</button></header>
+    <main id="content" tabindex="-1"><p class="empty">Opening the listening room…</p></main>
+    <footer class="page-footer"><span>GOOD FLIPPIN VIBES © <span id="year"></span></span><span>Made to be heard. Free to listen.</span><a href="#about">About this room ↗</a></footer>
+  </div>
+  <section class="player" aria-label="Music player">
+    <div class="now"><img id="now-art" src="./assets/images/releases/floor-witness.jpg" alt=""><div><strong id="now-title">Find your next frequency</strong><span id="now-artist">Choose a song to start listening</span></div><button id="now-like" class="icon-button" aria-label="Like current song" aria-pressed="false" disabled>♡</button></div>
+    <div class="transport"><div class="transport-buttons"><button id="shuffle" class="icon-button" aria-label="Shuffle" aria-pressed="false">⤨</button><button id="previous" class="icon-button" aria-label="Previous track">Ⅰ◀</button><button id="play" class="play-main" aria-label="Play">▶</button><button id="next" class="icon-button" aria-label="Next track">▶Ⅰ</button><button id="repeat" class="icon-button" aria-label="Repeat off" aria-pressed="false">↻</button></div><div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Playback position"><span id="duration">0:00</span></div></div>
+    <div class="extras"><label class="volume">Volume<input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume"></label><a class="icon-button" href="#queue" aria-label="Open queue">≡</a></div>
+  </section>
+  <audio id="audio" preload="metadata"></audio>
+  <p id="notice" role="status" aria-live="polite"></p>
+</body>
+</html>
