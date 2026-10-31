@@ -1,0 +1,678 @@
+{
+  "version": 1,
+  "label": "Good Flippin Vibes",
+  "notice": "Recordings supplied by the artists or previously published on the Heavy Moose website. Other releases show catalog metadata only. Offline music saving awaits owner approval per recording.",
+  "artists": [
+    {
+      "id": "heavy-moose",
+      "name": "Heavy Moose",
+      "image": "./assets/images/heavy-moose-dj-silhouette.png",
+      "description": "Industrial. Electronic. Experimental. Independent by nature."
+    },
+    {
+      "id": "dj-shariff",
+      "name": "DJ Shariff",
+      "image": "./assets/images/america-250/knock-knock-merica-250-key-art.png",
+      "description": "Collaborator / featured artist. One recording currently available in this room."
+    }
+  ],
+  "albums": [
+    {
+      "id": "80s-maybe-included",
+      "artistId": "heavy-moose",
+      "title": "80s Maybe Included",
+      "year": "2026",
+      "releaseDate": "2026",
+      "genre": "Independent",
+      "cover": "./assets/images/listen/80s-maybe-included.png",
+      "expectedTracks": 9,
+      "tracks": [
+        "heavy-moose-80s-maybe-included-1",
+        "heavy-moose-80s-maybe-included-2",
+        "heavy-moose-80s-maybe-included-3",
+        "heavy-moose-80s-maybe-included-4",
+        "heavy-moose-80s-maybe-included-5",
+        "heavy-moose-80s-maybe-included-6",
+        "heavy-moose-80s-maybe-included-7",
+        "heavy-moose-80s-maybe-included-8",
+        "heavy-moose-80s-maybe-included-9"
+      ]
+    },
+    {
+      "id": "no-l",
+      "artistId": "heavy-moose",
+      "title": "No L",
+      "year": "2026",
+      "releaseDate": "2026-10-19",
+      "genre": "Metal",
+      "cover": "./assets/images/releases/no-l.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "nutha",
+      "artistId": "heavy-moose",
+      "title": "Nutha",
+      "year": "2026",
+      "releaseDate": "2026-10-06",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/nutha.jpg",
+      "expectedTracks": 15,
+      "tracks": []
+    },
+    {
+      "id": "huck",
+      "artistId": "heavy-moose",
+      "title": "Huck",
+      "year": "2026",
+      "releaseDate": "2026-09-27",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/huck.jpg",
+      "expectedTracks": 7,
+      "tracks": []
+    },
+    {
+      "id": "fwomp",
+      "artistId": "heavy-moose",
+      "title": "Fwomp",
+      "year": "2026",
+      "releaseDate": "2026-09-21",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/fwomp.jpg",
+      "expectedTracks": 11,
+      "tracks": []
+    },
+    {
+      "id": "december-in-july",
+      "artistId": "heavy-moose",
+      "title": "December in July",
+      "year": "2026",
+      "releaseDate": "2026-09-12",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/december-in-july.jpg",
+      "expectedTracks": 10,
+      "tracks": []
+    },
+    {
+      "id": "why",
+      "artistId": "heavy-moose",
+      "title": "Why",
+      "year": "2026",
+      "releaseDate": "2026-08-29",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/why.jpg",
+      "expectedTracks": 11,
+      "tracks": []
+    },
+    {
+      "id": "pledge",
+      "artistId": "heavy-moose",
+      "title": "Pledge - Single",
+      "year": "2026",
+      "releaseDate": "2026-08-26",
+      "genre": "Rock",
+      "cover": "./assets/images/releases/pledge.jpg",
+      "expectedTracks": 1,
+      "tracks": []
+    },
+    {
+      "id": "double-t-moose",
+      "artistId": "heavy-moose",
+      "title": "Double T. Moose",
+      "year": "2026",
+      "releaseDate": "2026-08-22",
+      "genre": "Hip-Hop/Rap",
+      "cover": "./assets/images/releases/double-t-moose.jpg",
+      "expectedTracks": 17,
+      "tracks": []
+    },
+    {
+      "id": "fine",
+      "artistId": "heavy-moose",
+      "title": "Fine",
+      "year": "2026",
+      "releaseDate": "2026-08-16",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/fine.jpg",
+      "expectedTracks": 16,
+      "tracks": []
+    },
+    {
+      "id": "meh",
+      "artistId": "heavy-moose",
+      "title": "Meh",
+      "year": "2026",
+      "releaseDate": "2026-08-07",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/meh.jpg",
+      "expectedTracks": 18,
+      "tracks": []
+    },
+    {
+      "id": "yippee-ki-yay",
+      "artistId": "heavy-moose",
+      "title": "Yippee Ki-Yay",
+      "year": "2026",
+      "releaseDate": "2026-07-30",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/yippee-ki-yay.jpg",
+      "expectedTracks": 21,
+      "tracks": []
+    },
+    {
+      "id": "whisp",
+      "artistId": "heavy-moose",
+      "title": "Whisp",
+      "year": "2026",
+      "releaseDate": "2026-07-23",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/whisp.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "moose-pudding",
+      "artistId": "heavy-moose",
+      "title": "Moose Pudding",
+      "year": "2026",
+      "releaseDate": "2026-07-20",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/moose-pudding.jpg",
+      "expectedTracks": 16,
+      "tracks": []
+    },
+    {
+      "id": "argh",
+      "artistId": "heavy-moose",
+      "title": "Argh",
+      "year": "2026",
+      "releaseDate": "2026-07-17",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/argh.jpg",
+      "expectedTracks": 13,
+      "tracks": []
+    },
+    {
+      "id": "nebulous-breakfast",
+      "artistId": "heavy-moose",
+      "title": "Nebulous Breakfast",
+      "year": "2026",
+      "releaseDate": "2026-07-11",
+      "genre": "New Age",
+      "cover": "./assets/images/releases/nebulous-breakfast.jpg",
+      "expectedTracks": 15,
+      "tracks": []
+    },
+    {
+      "id": "pas-de-l-art",
+      "artistId": "heavy-moose",
+      "title": "Pas de l'art",
+      "year": "2026",
+      "releaseDate": "2026-07-09",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/pas-de-l-art.jpg",
+      "expectedTracks": 24,
+      "tracks": []
+    },
+    {
+      "id": "welp",
+      "artistId": "heavy-moose",
+      "title": "Welp",
+      "year": "2026",
+      "releaseDate": "2026-06-30",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/welp.jpg",
+      "expectedTracks": 14,
+      "tracks": []
+    },
+    {
+      "id": "neon-jellyfish",
+      "artistId": "heavy-moose",
+      "title": "Neon Jellyfish",
+      "year": "2026",
+      "releaseDate": "2026-06-22",
+      "genre": "Dubstep",
+      "cover": "./assets/images/releases/neon-jellyfish.jpg",
+      "expectedTracks": 16,
+      "tracks": []
+    },
+    {
+      "id": "dark-cloud-circuit",
+      "artistId": "heavy-moose",
+      "title": "Dark Cloud Circuit",
+      "year": "2026",
+      "releaseDate": "2026-06-15",
+      "genre": "Hardcore",
+      "cover": "./assets/images/releases/dark-cloud-circuit.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "word",
+      "artistId": "heavy-moose",
+      "title": "Word",
+      "year": "2026",
+      "releaseDate": "2026-06-08",
+      "genre": "Jungle/Drum'n'bass",
+      "cover": "./assets/images/releases/word.jpg",
+      "expectedTracks": 15,
+      "tracks": []
+    },
+    {
+      "id": "merican-moose-hugs",
+      "artistId": "heavy-moose",
+      "title": "Merican Moose Hugs - Single",
+      "year": "2026",
+      "releaseDate": "2026-06-04",
+      "genre": "Hardcore",
+      "cover": "./assets/images/releases/merican-moose-hugs.jpg",
+      "expectedTracks": 3,
+      "tracks": []
+    },
+    {
+      "id": "flag-on-the-jukebox",
+      "artistId": "heavy-moose",
+      "title": "Flag on the Jukebox",
+      "year": "2026",
+      "releaseDate": "2026-06-01",
+      "genre": "Pop",
+      "cover": "./assets/images/releases/flag-on-the-jukebox.jpg",
+      "expectedTracks": 11,
+      "tracks": []
+    },
+    {
+      "id": "k-paul",
+      "artistId": "heavy-moose",
+      "title": "K, Paul",
+      "year": "2026",
+      "releaseDate": "2026-05-31",
+      "genre": "Pop",
+      "cover": "./assets/images/releases/k-paul.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "floor-gospel",
+      "artistId": "heavy-moose",
+      "title": "Floor Gospel",
+      "year": "2026",
+      "releaseDate": "2026-05-29",
+      "genre": "Fitness & Workout",
+      "cover": "./assets/images/releases/floor-gospel.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "cold-cathedral",
+      "artistId": "heavy-moose",
+      "title": "Cold Cathedral +",
+      "year": "2026",
+      "releaseDate": "2026-05-24",
+      "genre": "Dance",
+      "cover": "./assets/images/releases/cold-cathedral.jpg",
+      "expectedTracks": 10,
+      "tracks": []
+    },
+    {
+      "id": "applebee-s-parking-lot-feat-dj-shariff",
+      "artistId": "heavy-moose",
+      "title": "Applebee's Parking Lot (feat. DJ Shariff) - Single",
+      "year": "2026",
+      "releaseDate": "2026-05-21",
+      "genre": "Downtempo",
+      "cover": "./assets/images/releases/applebee-s-parking-lot-feat-dj-shariff.jpg",
+      "expectedTracks": 1,
+      "tracks": []
+    },
+    {
+      "id": "motion-is-normal",
+      "artistId": "heavy-moose",
+      "title": "Motion is Normal",
+      "year": "2026",
+      "releaseDate": "2026-05-18",
+      "genre": "House",
+      "cover": "./assets/images/releases/motion-is-normal.jpg",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "jack",
+      "artistId": "heavy-moose",
+      "title": "Jack - Single",
+      "year": "2026",
+      "releaseDate": "2026-05-15",
+      "genre": "Downtempo",
+      "cover": "./assets/images/releases/jack.jpg",
+      "expectedTracks": 1,
+      "tracks": []
+    },
+    {
+      "id": "flipside-rituals",
+      "artistId": "heavy-moose",
+      "title": "Flipside Rituals - EP",
+      "year": "2026",
+      "releaseDate": "2026-05-14",
+      "genre": "Hardcore",
+      "cover": "./assets/images/releases/flipside-rituals.jpg",
+      "expectedTracks": 6,
+      "tracks": [
+        "flipside-rituals-flipside-04-pre-mission-pulse-zero-hour",
+        "flipside-rituals-flipside-05-hooah-swing-brass-smirk",
+        "flipside-rituals-flipside-06-knock-knock-merica-roll-call"
+      ]
+    },
+    {
+      "id": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Knock, Knock ('Merica)",
+      "year": "2026",
+      "releaseDate": "2026-05-07",
+      "genre": "Hardcore",
+      "cover": "./assets/images/releases/knock-knock-merica.jpg",
+      "expectedTracks": 13,
+      "tracks": [
+        "knock-knock-merica-01-knock-knock-merica",
+        "knock-knock-merica-02-boots-on-concrete",
+        "knock-knock-merica-03-pre-mission-pulse",
+        "knock-knock-merica-04-hooah-swing",
+        "knock-knock-merica-05-missed-some-80s-reissue",
+        "knock-knock-merica-06-foxhole-glass-house",
+        "knock-knock-merica-07-long-watch",
+        "knock-knock-merica-08-convoy-dawn",
+        "knock-knock-merica-09-rifle-salute",
+        "knock-knock-merica-10-welcome-home-detonation",
+        "knock-knock-merica-11-family-at-the-table",
+        "knock-knock-merica-12-knock-knock-forever"
+      ]
+    },
+    {
+      "id": "missed-some-80s-feat-dj-shariff",
+      "artistId": "heavy-moose",
+      "title": "Missed Some 80s (feat. DJ Shariff) - Single",
+      "year": "2026",
+      "releaseDate": "2026-05-05",
+      "genre": "Dubstep",
+      "cover": "./assets/images/releases/missed-some-80s-feat-dj-shariff.jpg",
+      "expectedTracks": 1,
+      "tracks": []
+    },
+    {
+      "id": "floor-witness",
+      "artistId": "heavy-moose",
+      "title": "Floor Witness",
+      "year": "2026",
+      "releaseDate": "2026-05-04",
+      "genre": "Dubstep",
+      "cover": "./assets/images/releases/floor-witness.jpg",
+      "expectedTracks": 13,
+      "tracks": []
+    },
+    {
+      "id": "air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff",
+      "artistId": "heavy-moose",
+      "title": "Air Punch Ceremony (feat. Red Leopard of St. Paul & DJ Shariff) - Single",
+      "year": "2026",
+      "releaseDate": "2026-05-02",
+      "genre": "Dubstep",
+      "cover": "./assets/images/releases/air-punch-ceremony-feat-red-leopard-of-st-paul-dj-shariff.jpg",
+      "expectedTracks": 1,
+      "tracks": []
+    },
+    {
+      "id": "temper",
+      "title": "Temper",
+      "cover": "./assets/images/COVER-TEMPER.png",
+      "artistId": "heavy-moose",
+      "year": "2026",
+      "releaseDate": "2026-04-29",
+      "genre": "Industrial",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "glass-and-ash",
+      "title": "Glass and Ash",
+      "cover": "./assets/images/COVER-glass-and-ash.png",
+      "artistId": "heavy-moose",
+      "year": "2024",
+      "releaseDate": "2024",
+      "genre": "Industrial",
+      "expectedTracks": 11,
+      "tracks": []
+    },
+    {
+      "id": "yield",
+      "title": "Yield",
+      "cover": "./assets/images/COVERyield.png",
+      "artistId": "heavy-moose",
+      "year": "2025",
+      "releaseDate": "2025",
+      "genre": "Industrial",
+      "expectedTracks": 12,
+      "tracks": []
+    },
+    {
+      "id": "dj-shariff-merica",
+      "artistId": "dj-shariff",
+      "title": "'Merica",
+      "year": "2026",
+      "releaseDate": "2026",
+      "genre": "Electronic",
+      "cover": "./assets/images/america-250/knock-knock-merica-250-key-art.png",
+      "expectedTracks": 1,
+      "tracks": [
+        "dj-shariff-merica-dj-shariff-merica"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "knock-knock-merica-01-knock-knock-merica",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Knock Knock Merica",
+      "src": "./assets/audio/america-250/01-knock-knock-merica.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-02-boots-on-concrete",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Boots on Concrete",
+      "src": "./assets/audio/america-250/02-boots-on-concrete.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-03-pre-mission-pulse",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Pre-Mission Pulse",
+      "src": "./assets/audio/america-250/03-pre-mission-pulse.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-04-hooah-swing",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Hooah Swing",
+      "src": "./assets/audio/america-250/04-hooah-swing.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-05-missed-some-80s-reissue",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Missed Some 80s (Heavy Moose Reissue)",
+      "src": "./assets/audio/america-250/05-missed-some-80s-reissue.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-06-foxhole-glass-house",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Foxhole Glass House",
+      "src": "./assets/audio/america-250/06-foxhole-glass-house.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-07-long-watch",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Long Watch (Night Vision)",
+      "src": "./assets/audio/america-250/07-long-watch.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-08-convoy-dawn",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Convoy Dawn",
+      "src": "./assets/audio/america-250/08-convoy-dawn.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-09-rifle-salute",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Rifle Salute (For the Fallen)",
+      "src": "./assets/audio/america-250/09-rifle-salute.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-10-welcome-home-detonation",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Welcome Home Detonation",
+      "src": "./assets/audio/america-250/10-welcome-home-detonation.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-11-family-at-the-table",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Family at the Table",
+      "src": "./assets/audio/america-250/11-family-at-the-table.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "knock-knock-merica-12-knock-knock-forever",
+      "albumId": "knock-knock-merica",
+      "artistId": "heavy-moose",
+      "title": "Knock Knock Forever ('Merica Reprise)",
+      "src": "./assets/audio/america-250/12-knock-knock-forever.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "flipside-rituals-flipside-04-pre-mission-pulse-zero-hour",
+      "albumId": "flipside-rituals",
+      "artistId": "heavy-moose",
+      "title": "Pre Mission Pulse (Zero Hour)",
+      "src": "./assets/audio/america-250/flipside-04-pre-mission-pulse-zero-hour.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "flipside-rituals-flipside-05-hooah-swing-brass-smirk",
+      "albumId": "flipside-rituals",
+      "artistId": "heavy-moose",
+      "title": "Hooah Swing (Brass Smirk)",
+      "src": "./assets/audio/america-250/flipside-05-hooah-swing-brass-smirk.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "flipside-rituals-flipside-06-knock-knock-merica-roll-call",
+      "albumId": "flipside-rituals",
+      "artistId": "heavy-moose",
+      "title": "Knock, Knock, 'Merica (Roll Call)",
+      "src": "./assets/audio/america-250/flipside-06-knock-knock-merica-roll-call.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "dj-shariff-merica-dj-shariff-merica",
+      "albumId": "dj-shariff-merica",
+      "artistId": "dj-shariff",
+      "title": "'Merica",
+      "src": "./assets/audio/america-250/dj-shariff-merica.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-1",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "80's Opening Song",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/01.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-2",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Juggle",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/02.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-3",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Bat Attack",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/03.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-4",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "FF",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/04.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-5",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Less Of A Fan",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/05.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-6",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Fly To",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/06.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-7",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "Somethin'",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/07.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-8",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "In Context",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/08.mp3",
+      "downloadAllowed": false
+    },
+    {
+      "id": "heavy-moose-80s-maybe-included-9",
+      "artistId": "heavy-moose",
+      "albumId": "80s-maybe-included",
+      "title": "80's Close",
+      "src": "./assets/audio/listen/heavy-moose/80s-maybe-included/09.mp3",
+      "downloadAllowed": false
+    }
+  ],
+  "feature": {
+    "label": "Restricted",
+    "headline": "Restricted. Still playing.",
+    "albumId": "80s-maybe-included",
+    "videoTitle": "Bat Attack",
+    "videoId": "mde4tAc-s9o",
+    "statement": "Nine songs. No permission slip. Heavy Moose / Good Flippin Vibes — we’re doing it anyway."
+  }
+}

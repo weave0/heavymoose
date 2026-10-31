@@ -1,0 +1,47 @@
+[
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/01.mp3",
+    "bytes": 8535919,
+    "sha256": "e61670ef66286d2a54d6a9143ce406508cd06c1180877405f45024e37e5c1e19"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/02.mp3",
+    "bytes": 8194237,
+    "sha256": "552236547a9cb2b15799fa3292eebaa539e4e4c851bc7dd6cdc4ad848900bf83"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/03.mp3",
+    "bytes": 8082433,
+    "sha256": "9a4a3e6b369493cabb00b1848ae91b711e9d638e997814c2da445384ac799bb1"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/04.mp3",
+    "bytes": 12195152,
+    "sha256": "3bb1be92ad154192fa1d2205c2e1c8c39fd691be4730dedece444120fdcf1e5d"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/05.mp3",
+    "bytes": 9298695,
+    "sha256": "91f2d38fa7712bc7498293cdd97641fb5bf909b892f183ff4db575c220135975"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/06.mp3",
+    "bytes": 7795086,
+    "sha256": "6425569e90dc04d9a1c950b260745a5c61723a9889217e1a2fbb4eef3780b1f9"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/07.mp3",
+    "bytes": 5491086,
+    "sha256": "baf23d26fee6ea285dec5ad1d54278acd23d3ce235811e16150ad28b5850b683"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/08.mp3",
+    "bytes": 9280931,
+    "sha256": "dea5851b698fa1a1ff25df22715eb8133a770c85a9c78b5be4fb214db11626f9"
+  },
+  {
+    "path": "assets/audio/listen/heavy-moose/80s-maybe-included/09.mp3",
+    "bytes": 9967429,
+    "sha256": "f20a6b590e80a5ecc22a5e61306c3b6adf0da5a48d299251f7dfb8f952f7fc8b"
+  }
+]
