@@ -6,3 +6,6 @@ desktop.ini
 .env.local
 dist/
 .wrangler/
+
+# Artist-supplied streaming files deploy from local storage; never publish in GitHub.
+/assets/audio/listen/
