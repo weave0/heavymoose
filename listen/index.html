@@ -47,6 +47,13 @@
     <div class="full-bottom"><a href="#queue" id="full-queue">See your queue ↗</a><a href="#likes" id="full-likes">Liked songs ↗</a></div>
     <p class="full-player-note">Works with standard Bluetooth media controls where supported. Android Auto browsing needs a native app.</p>
   </dialog>
+  <dialog id="save-dialog" aria-label="Save song to playlist">
+    <form method="dialog" class="save-dialog-form">
+      <h2>Save to playlist</h2><label for="playlist-select">Choose a playlist</label>
+      <select id="playlist-select" aria-label="Choose playlist"></select>
+      <div class="quick-buttons"><button id="save-to-playlist" class="primary" type="button">Save song</button><button class="secondary" value="cancel">Cancel</button></div>
+    </form>
+  </dialog>
   <audio id="audio" preload="metadata"></audio>
   <p id="notice" role="status" aria-live="polite"></p>
 </body>
