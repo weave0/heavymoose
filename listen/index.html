@@ -9,8 +9,8 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/favicon/apple-touch-icon.png">
-  <link rel="stylesheet" href="./room.css?v=restricted-2">
-  <script type="module" src="./app.js?v=restricted-2"></script>
+  <link rel="stylesheet" href="./room.css?v=continuous-1">
+  <script type="module" src="./app.js?v=continuous-1"></script>
 </head>
 <body>
   <a class="skip" href="#content">Skip to music</a>
@@ -21,7 +21,9 @@
       <a href="#discover" data-view="discover"><span>◉</span> Discover</a>
       <a href="#artists" data-view="artists"><span>◎</span> Artists</a>
       <a href="#albums" data-view="albums"><span>▤</span> All releases</a>
-      <a href="#likes" data-view="likes"><span>♡</span> Liked songs <small id="like-count">0</small></a>
+      <a href="#likes" data-view="likes"><span>♥</span> Liked songs <small id="like-count">0</small></a>
+      <a href="#playlists" data-view="playlists"><span>▦</span> My playlists</a>
+      <a href="#recent" data-view="recent"><span>◷</span> Recently played</a>
       <a href="#queue" data-view="queue"><span>≡</span> Your queue</a>
     </nav>
     <div class="side-note"><span class="live-dot"></span> INDEPENDENT BY NATURE<p>No subscriptions.<br>No interruptions.<br>Just the music.</p><a href="https://heavymoose.com" target="_blank" rel="noopener">Heavy Moose website ↗</a></div>
@@ -32,10 +34,19 @@
     <footer class="page-footer"><span>GOOD FLIPPIN VIBES © <span id="year"></span></span><span>Made to be heard. Free to listen.</span><a href="#about">About this room ↗</a></footer>
   </div>
   <section class="player" aria-label="Music player">
-    <div class="now"><img id="now-art" src="./assets/images/releases/floor-witness.jpg" alt=""><div><strong id="now-title">Find your next frequency</strong><span id="now-artist">Choose a song to start listening</span></div><button id="now-like" class="icon-button" aria-label="Like current song" aria-pressed="false" disabled>♡</button></div>
+    <div class="now"><img id="now-art" src="./assets/images/releases/floor-witness.jpg" alt=""><div><strong id="now-title">Find your next frequency</strong><span id="now-artist">Choose a song to start listening</span></div><button id="now-like" class="icon-button heart" aria-label="Like current song" aria-pressed="false" title="Like song" disabled>♡</button><button id="expand-player" class="icon-button expand-button" aria-label="Open full-screen player" title="Full player">⤢</button></div>
     <div class="transport"><div class="transport-buttons"><button id="shuffle" class="icon-button" aria-label="Shuffle" aria-pressed="false">⤨</button><button id="previous" class="icon-button" aria-label="Previous track">Ⅰ◀</button><button id="play" class="play-main" aria-label="Play">▶</button><button id="next" class="icon-button" aria-label="Next track">▶Ⅰ</button><button id="repeat" class="icon-button" aria-label="Repeat off" aria-pressed="false">↻</button></div><div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Playback position"><span id="duration">0:00</span></div></div>
     <div class="extras"><label class="volume">Volume<input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume"></label><a class="icon-button" href="#queue" aria-label="Open queue">≡</a></div>
   </section>
+  <dialog id="full-player" aria-label="Full-screen music player">
+    <div class="full-player-top"><span class="eyebrow">NOW PLAYING / GOOD FLIPPIN VIBES</span><button id="close-player" class="icon-button" aria-label="Close full player">✕</button></div>
+    <img id="full-art" src="./assets/images/releases/floor-witness.jpg" alt="Album artwork" class="full-art">
+    <div class="full-track"><div><strong id="full-title">Find your next frequency</strong><span id="full-artist">Choose a song to start listening</span></div><button id="full-like" class="icon-button heart" aria-label="Like current song" aria-pressed="false" disabled>♡</button></div>
+    <div class="full-timeline"><input id="full-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Playback position"><div><span id="full-elapsed">0:00</span><span id="full-duration">0:00</span></div></div>
+    <div class="full-controls"><button id="full-shuffle" class="icon-button" aria-label="Shuffle" aria-pressed="false">⤨</button><button id="full-previous" class="icon-button" aria-label="Previous track">Ⅰ◀</button><button id="full-play" class="play-main" aria-label="Play">▶</button><button id="full-next" class="icon-button" aria-label="Next track">▶Ⅰ</button><button id="full-repeat" class="icon-button" aria-label="Repeat off" aria-pressed="false">↻</button></div>
+    <div class="full-bottom"><a href="#queue" id="full-queue">See your queue ↗</a><a href="#likes" id="full-likes">Liked songs ↗</a></div>
+    <p class="full-player-note">Works with standard Bluetooth media controls where supported. Android Auto browsing needs a native app.</p>
+  </dialog>
   <audio id="audio" preload="metadata"></audio>
   <p id="notice" role="status" aria-live="polite"></p>
 </body>
