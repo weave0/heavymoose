@@ -13,7 +13,8 @@ export function restore(raw, tracks) {
       typeof p.name === 'string' && p.name.trim())
     .map(p => ({ id: p.id, name: p.name.trim().slice(0, 50), ids: valid(p.ids) })) : [];
   return {
-    queue, current: ids.has(saved.current) ? saved.current : null,
+    queue, upNext: valid(saved.upNext).filter(id => queue.includes(id)),
+    current: ids.has(saved.current) ? saved.current : null,
     likes: valid(saved.likes), playlists, recent: valid(saved.recent, 30),
     shuffleSeen: valid(saved.shuffleSeen).filter(id => queue.includes(id)),
     shuffle: saved.shuffle === true,
@@ -28,6 +29,7 @@ export function nextId(state, direction = 1, ended = false, random = Math.random
   const q = state.queue || [];
   if (!q.length) return null;
   if (ended && state.repeat === 'one') return state.current || q[0];
+  if (direction > 0 && state.upNext?.length) return state.upNext[0];
   const index = q.indexOf(state.current);
   if (state.shuffle && direction > 0) {
     const seen = new Set(state.shuffleSeen || []);
