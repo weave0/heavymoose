@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
-import {restore,nextId,searchCatalog} from '../listen/player.mjs';
+import {restore,nextId,searchCatalog,enqueueNext,moveInQueue,extendQueue} from '../listen/player.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'listen/catalog.json'),'utf8'));
 test('catalog references are unique, complete and use existing local assets',()=>{
@@ -57,4 +57,53 @@ test('album importer validates, dry-runs, imports into an isolated fixture and r
   input.tracks[0].file='01.mp3';input.streamingAllowed=false;fs.writeFileSync(metadata,JSON.stringify(input));assert.notEqual(run(false).status,0);
   input.streamingAllowed=true;fs.writeFileSync(metadata,JSON.stringify(input));assert.equal(run(true).status,0);
   const imported=JSON.parse(fs.readFileSync(path.join(fixture,'listen/catalog.json')));assert.equal(imported.artists[0].name,'Test Artist');assert.equal(imported.tracks[0].downloadAllowed,false);assert(fs.existsSync(path.resolve(fixture,imported.tracks[0].src)));assert.notEqual(run(true).status,0);
+});
+
+test('Shuffle All visits each track once before a cycle may restart',()=>{
+  const q=['one','two','three','four','five'],state={queue:q,current:'one',shuffle:true,shuffleSeen:['one'],repeat:'off',upNext:[]};
+  const visited=new Set(['one']);
+  for(let i=1;i<q.length;i++){
+    const choice=nextId(state,1,true,()=>.99);
+    assert(choice&&!visited.has(choice),'Repeated before the queue was exhausted');
+    visited.add(choice);state.current=choice;state.shuffleSeen.push(choice);
+  }
+  assert.equal(visited.size,q.length);
+  assert.equal(nextId(state,1,true),null);
+  state.repeat='all';
+  const another=nextId(state,1,true,()=>0);
+  assert(another&&another!==state.current,'Repeat All must start a new cycle');
+});
+test('Play Next stays prioritized over shuffle, and queue helpers do not duplicate songs',()=>{
+  const q=['a','b','c'];
+  assert.deepEqual(enqueueNext(q,'a','c'),['a','c','b']);
+  assert.deepEqual(enqueueNext(q,'a','new'),['a','new','b','c']);
+  assert.deepEqual(moveInQueue(q,2,-1),['a','c','b']);
+  assert.deepEqual(moveInQueue(q,0,-1),q);
+  assert.deepEqual(extendQueue(['b','a'],['a','c','d','c','b']),['b','a','c','d']);
+  const state={queue:q,current:'a',shuffle:true,shuffleSeen:['a'],repeat:'off',upNext:['c']};
+  assert.equal(nextId(state,1,false,()=>0),'c');
+});
+test('v1 likes and positions migrate without loss; new playlists and recent songs are safe',()=>{
+  const a=catalog.tracks[0].id,b=catalog.tracks[1].id;
+  const prior=restore(JSON.stringify({likes:[a,a,b],queue:[a,b],current:a,time:82,shuffle:true}),catalog.tracks);
+  assert.deepEqual(prior.likes,[a,b]);
+  assert.equal(prior.time,82);assert.equal(prior.continuous,true);assert.deepEqual(prior.playlists,[]);
+  const newer=restore(JSON.stringify({
+    likes:[b],queue:[a,b],upNext:[b,'ghost'],shuffleSeen:[a,'ghost'],recent:[b,a,b,'ghost'],
+    continuous:false,playlists:[{id:'road-mix',name:' Road Mix ',ids:[a,a,b,'ghost']},{id:'bad',name:'',ids:[a]}]
+  }),catalog.tracks);
+  assert.deepEqual(newer.upNext,[b]);assert.deepEqual(newer.shuffleSeen,[a]);
+  assert.deepEqual(newer.recent,[b,a]);assert.equal(newer.continuous,false);
+  assert.deepEqual(newer.playlists,[{id:'road-mix',name:'Road Mix',ids:[a,b]}]);
+});
+test('mobile controls, explicit all-library actions and restricted audio safeguards remain present',()=>{
+  const html=fs.readFileSync(path.join(root,'listen/index.html'),'utf8');
+  const app=fs.readFileSync(path.join(root,'listen/app.js'),'utf8');
+  const css=fs.readFileSync(path.join(root,'listen/room.css'),'utf8');
+  const sw=fs.readFileSync(path.join(root,'listen/sw.js'),'utf8');
+  for(const value of ['id="full-player"','id="full-seek"','id="full-like"','id="save-dialog"','#playlists','#recent'])assert(html.includes(value),value);
+  for(const value of ['data-shuffle-all','data-playlist-start','data-save-queue','setPositionState','seekbackward','seekforward','state.continuous'])assert(app.includes(value),value);
+  assert(css.includes('min-width:44px'));assert(sw.includes('gfv-room-shell-v4'));
+  assert(!/const SHELL=[^\n]*\.(mp3|wav|m4a)/.test(sw));
+  assert(catalog.tracks.filter(t=>t.albumId==='80s-maybe-included').every(t=>t.downloadAllowed===false));
 });
