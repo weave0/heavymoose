@@ -53,7 +53,7 @@ async function playTrack(id, queue=null, record=true){
   }
   const generation=sourceGeneration;
   persist();syncPlayer();
-  if('mediaSession' in navigator){
+  if('mediaSession' in navigator && typeof MediaMetadata !== 'undefined'){
     navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:artists.get(t.artistId)?.name||'',album:albums.get(t.albumId)?.title||'',artwork:[{src:new URL(albums.get(t.albumId)?.cover||'',location.href).href}]});
   }
   try{await audio.play();}catch(e){if(generation===sourceGeneration && e.name!=='AbortError')toast('Playback could not start. Tap play to retry, or check your connection.');}
@@ -64,7 +64,8 @@ function startList(ids,{shuffle=false}={}){
   if(!list.length){toast('No playable recordings in this collection yet.');return;}
   state.shuffle=shuffle;state.shuffleSeen=[];state.upNext=[];
   history=[];
-  playTrack(list[0],list);
+  const first=shuffle?list[Math.floor(Math.random()*list.length)]:list[0];
+  playTrack(first,list);
 }
 function shuffleAll(){startList(allIds(),{shuffle:true});toast('Shuffling every available song — no early repeats.');}
 function toggleLike(id){if(!tracks.has(id))return;state.likes=state.likes.includes(id)?state.likes.filter(x=>x!==id):[...state.likes,id];persist();syncPlayer();if(location.hash==='#likes')render();}
@@ -72,7 +73,7 @@ function skip(direction=1,ended=false){
   if(direction<0 && audio.currentTime>3){audio.currentTime=0;return;}
   if(direction<0 && history.length){playTrack(history.pop(),null,false);return;}
   let id=nextId(state,direction,ended);
-  if(!id && ended && direction>0 && state.continuous && state.repeat==='off'){
+  if(!id && direction>0 && state.continuous && state.repeat==='off'){
     const extended=extendQueue(state.queue,allIds());
     if(extended.length>state.queue.length){state.queue=extended;id=nextId(state,direction,ended);}
   }
