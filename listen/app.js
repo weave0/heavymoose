@@ -151,38 +151,207 @@ function render(){
   }
   syncPlayer();
 }
+function newPlaylist(name,ids=[]){
+  if(state.playlists.length>=30){toast('This device has reached the 30-playlist limit.');return null;}
+  const clean=String(name||'').trim().slice(0,50);
+  if(!clean){toast('Give your playlist a name first.');return null;}
+  const id='mix-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  const playlist={id,name:clean,ids:[...new Set(ids.filter(id=>tracks.has(id)))]};
+  state.playlists.push(playlist);persist();return playlist;
+}
+function openPlaylistSave(id){
+  if(!state.playlists.length){location.hash='#playlists';toast('Create a playlist, then save songs into it.');return;}
+  const select=$('#playlist-select');
+  select.innerHTML=state.playlists.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('');
+  $('#save-to-playlist').dataset.track=id;
+  $('#save-dialog').showModal();
+}
+function setMediaPosition(){
+  if('mediaSession' in navigator && typeof navigator.mediaSession.setPositionState==='function' && Number.isFinite(audio.duration) && audio.duration>0){
+    try{navigator.mediaSession.setPositionState({duration:audio.duration,playbackRate:audio.playbackRate,position:Math.min(audio.duration,Math.max(0,audio.currentTime))});}catch{}
+  }
+}
 async function boot(){
-  const response=await fetch('./catalog.json');if(!response.ok)throw Error('Catalog unavailable');catalog=await response.json();
-  artists=new Map(catalog.artists.map(a=>[a.id,a]));albums=new Map(catalog.albums.map(a=>[a.id,a]));tracks=new Map(catalog.tracks.map(t=>[t.id,t]));state=restore(readStorage(),catalog.tracks);
+  const response=await fetch('./catalog.json',{cache:'no-cache'});
+  if(!response.ok)throw Error('Catalog unavailable');
+  catalog=await response.json();
+  artists=new Map(catalog.artists.map(a=>[a.id,a]));
+  albums=new Map(catalog.albums.map(a=>[a.id,a]));
+  tracks=new Map(catalog.tracks.map(t=>[t.id,t]));
+  state=restore(readStorage(),catalog.tracks);
   audio.volume=state.volume;$('#volume').value=state.volume;
-  if(state.current){audio.src=tracks.get(state.current).src;audio.addEventListener('loadedmetadata',()=>{if(state.time>0&&state.time<audio.duration)audio.currentTime=state.time;},{once:true});}
+  if(state.current){
+    const restoredId=state.current,restoredTime=state.time;
+    audio.src=tracks.get(restoredId).src;
+    audio.addEventListener('loadedmetadata',()=>{
+      if(state.current===restoredId && restoredTime>0 && restoredTime<audio.duration)audio.currentTime=restoredTime;
+    },{once:true});
+  }
   $('#year').textContent=new Date().getFullYear();
   $('.skip').onclick=e=>{e.preventDefault();main.focus();};
-  main.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-    if(b.dataset.play){const ids=[...main.querySelectorAll('tr[data-track]')].map(r=>r.dataset.track);playTrack(b.dataset.play,ids);}
-    if(b.dataset.like)toggleLike(b.dataset.like);
-    if(b.dataset.add){if(!state.queue.includes(b.dataset.add))state.queue.push(b.dataset.add);persist();toast('Added to your queue.');}
-    if(b.dataset.remove!==undefined){state.queue.splice(Number(b.dataset.remove),1);persist();render();}
-    if(b.dataset.clear){state.queue=[];persist();render();}
-    if(b.dataset.artist)startList(catalog.tracks.filter(t=>t.artistId===b.dataset.artist).map(t=>t.id));
-    if(b.dataset.video && /^[a-zA-Z0-9_-]{11}$/.test(b.dataset.video)){audio.pause();const frame=document.createElement('iframe');frame.src=`https://www.youtube-nocookie.com/embed/${b.dataset.video}?autoplay=1&rel=0`;frame.title='Bat Attack — Heavy Moose';frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';frame.className='video-frame';b.replaceWith(frame);}
-    if(b.dataset.start){const key=b.dataset.start;startList(key==='all'?catalog.albums.flatMap(a=>a.tracks):key==='likes'?state.likes:key==='queue'?state.queue:albums.get(key)?.tracks||[]);}
+  main.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b||b.disabled)return;
+    if(b.dataset.play){
+      const ids=[...main.querySelectorAll('tr[data-track]')].map(r=>r.dataset.track);
+      playTrack(b.dataset.play,ids);return;
+    }
+    if(b.dataset.like){toggleLike(b.dataset.like);return;}
+    if(b.dataset.next){
+      const id=b.dataset.next;
+      state.queue=enqueueNext(state.queue,state.current,id);
+      state.upNext=[id,...state.upNext.filter(x=>x!==id && state.queue.includes(x))];
+      persist();if(location.hash==='#queue')render();toast('Added to Play Next.');return;
+    }
+    if(b.dataset.add){
+      if(!state.queue.includes(b.dataset.add))state.queue.push(b.dataset.add);
+      persist();toast('Added to the end of your queue.');return;
+    }
+    if(b.dataset.save){openPlaylistSave(b.dataset.save);return;}
+    if(b.dataset.remove!==undefined){
+      const removed=state.queue.splice(Number(b.dataset.remove),1)[0];
+      state.upNext=state.upNext.filter(x=>x!==removed);
+      state.shuffleSeen=state.shuffleSeen.filter(x=>x!==removed);
+      persist();render();return;
+    }
+    if(b.dataset.up!==undefined||b.dataset.down!==undefined){
+      const up=b.dataset.up!==undefined;
+      state.queue=moveInQueue(state.queue,Number(up?b.dataset.up:b.dataset.down),up?-1:1);
+      persist();render();return;
+    }
+    if(b.dataset.clear){
+      if(b.dataset.clear==='queue'){state.queue=[];state.upNext=[];state.shuffleSeen=[];}
+      if(b.dataset.clear==='recent')state.recent=[];
+      persist();render();return;
+    }
+    if(b.hasAttribute('data-shuffle-all')){shuffleAll();return;}
+    if(b.hasAttribute('data-resume')){
+      if(state.current)playTrack(state.current);
+      else startList(state.queue.length?state.queue:allIds());return;
+    }
+    if(b.dataset.shuffleAlbum){startList(albums.get(b.dataset.shuffleAlbum)?.tracks||[],{shuffle:true});return;}
+    if(b.dataset.artist){startList(allIds().filter(id=>tracks.get(id)?.artistId===b.dataset.artist));return;}
+    if(b.dataset.shuffleArtist){startList(allIds().filter(id=>tracks.get(id)?.artistId===b.dataset.shuffleArtist),{shuffle:true});return;}
+    if(b.dataset.shuffleCollection){
+      startList(b.dataset.shuffleCollection==='likes'?state.likes:state.recent,{shuffle:true});return;
+    }
+    if(b.dataset.playlistStart||b.dataset.shufflePlaylist){
+      const p=state.playlists.find(p=>p.id===(b.dataset.playlistStart||b.dataset.shufflePlaylist));
+      if(p)startList(p.ids,{shuffle:!!b.dataset.shufflePlaylist});return;
+    }
+    if(b.dataset.deletePlaylist){
+      const p=state.playlists.find(p=>p.id===b.dataset.deletePlaylist);
+      if(p&&confirm('Delete playlist "'+p.name+'"? This cannot be undone.')){
+        state.playlists=state.playlists.filter(x=>x.id!==p.id);persist();location.hash='#playlists';render();
+      }return;
+    }
+    if(b.hasAttribute('data-save-queue')){
+      const p=newPlaylist('Queue mix '+(state.playlists.length+1),state.queue);
+      if(p){location.hash='#playlist/'+p.id;render();toast('Queue saved as a playlist.');}return;
+    }
+    if(b.dataset.video && /^[a-zA-Z0-9_-]{11}$/.test(b.dataset.video)){
+      audio.pause();const frame=document.createElement('iframe');
+      frame.src='https://www.youtube-nocookie.com/embed/'+b.dataset.video+'?autoplay=1&rel=0';
+      frame.title='Bat Attack — Heavy Moose';frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';frame.className='video-frame';b.replaceWith(frame);return;
+    }
+    if(b.dataset.start){
+      const key=b.dataset.start;
+      const list=key==='all'?allIds():key==='likes'?state.likes:key==='recent'?state.recent:key==='queue'?state.queue:albums.get(key)?.tracks||[];
+      startList(list);
+    }
   });
-  $('#play').onclick=()=>{if(!state.current)startList(state.queue.length?state.queue:catalog.tracks.map(t=>t.id));else if(audio.paused)playTrack(state.current);else audio.pause();};
-  $('#next').onclick=()=>skip();$('#previous').onclick=()=>skip(-1);
-  $('#now-like').onclick=()=>state.current&&toggleLike(state.current);
-  $('#shuffle').onclick=()=>{state.shuffle=!state.shuffle;persist();syncPlayer();if(location.hash==='#queue')render();toast(`Shuffle ${state.shuffle?'on':'off'}`);};
-  $('#repeat').onclick=()=>{state.repeat={off:'all',all:'one',one:'off'}[state.repeat];persist();syncPlayer();if(location.hash==='#queue')render();toast(`Repeat ${state.repeat}`);};
+  main.addEventListener('submit',e=>{
+    if(e.target.id!=='playlist-form')return;
+    e.preventDefault();
+    const name=e.target.elements.playlistName.value;
+    const p=newPlaylist(name);
+    if(p){render();toast('Playlist created. Use ▦ on any song to add music.');}
+  });
+  main.addEventListener('change',e=>{
+    if(e.target.id==='continuous'){
+      state.continuous=e.target.checked;persist();
+      toast(state.continuous?'Continuous listening on.':'Continuous listening off.');
+    }
+  });
+  const togglePlayback=()=>{
+    if(!state.current)startList(state.queue.length?state.queue:allIds());
+    else if(audio.paused)playTrack(state.current);
+    else audio.pause();
+  };
+  const toggleShuffle=()=>{
+    state.shuffle=!state.shuffle;state.shuffleSeen=state.shuffle && state.current?[state.current]:[];
+    persist();syncPlayer();if(location.hash==='#queue')render();toast('Shuffle '+(state.shuffle?'on':'off'));
+  };
+  const cycleRepeat=()=>{
+    state.repeat={off:'all',all:'one',one:'off'}[state.repeat];
+    persist();syncPlayer();if(location.hash==='#queue')render();toast('Repeat '+state.repeat);
+  };
+  for(const id of ['#play','#full-play'])$(id).onclick=togglePlayback;
+  for(const id of ['#next','#full-next'])$(id).onclick=()=>skip();
+  for(const id of ['#previous','#full-previous'])$(id).onclick=()=>skip(-1);
+  for(const id of ['#now-like','#full-like'])$(id).onclick=()=>state.current&&toggleLike(state.current);
+  for(const id of ['#shuffle','#full-shuffle'])$(id).onclick=toggleShuffle;
+  for(const id of ['#repeat','#full-repeat'])$(id).onclick=cycleRepeat;
+  $('#expand-player').onclick=()=>$('#full-player').showModal();
+  $('#close-player').onclick=()=>$('#full-player').close();
+  for(const id of ['#full-queue','#full-likes'])$(id).onclick=()=>$('#full-player').close();
+  $('#save-to-playlist').onclick=()=>{
+    const p=state.playlists.find(p=>p.id===$('#playlist-select').value);
+    const id=$('#save-to-playlist').dataset.track;
+    if(p&&tracks.has(id)){
+      if(!p.ids.includes(id))p.ids.push(id);
+      persist();$('#save-dialog').close();if(location.hash.startsWith('#playlist/'))render();
+      toast('Saved to '+p.name+'.');
+    }
+  };
   $('#volume').oninput=e=>{audio.volume=Number(e.target.value);state.volume=audio.volume;persist();};
-  $('#seek').oninput=e=>{if(Number.isFinite(audio.duration)){audio.currentTime=audio.duration*Number(e.target.value)/100;state.time=audio.currentTime;persist();}};
-  let lastSave=0;
-  audio.ontimeupdate=()=>{const d=audio.duration;$('#elapsed').textContent=time(audio.currentTime);$('#duration').textContent=time(d);$('#seek').value=d?audio.currentTime/d*100:0;state.time=audio.currentTime;if(Date.now()-lastSave>3000){persist();lastSave=Date.now();}};
-  audio.onended=()=>skip(1,true);audio.onplay=audio.onpause=()=>{syncPlayer();persist();if('mediaSession'in navigator)navigator.mediaSession.playbackState=audio.paused?'paused':'playing';};
-  audio.onerror=()=>{toast('This recording could not be loaded. Check your connection or choose another song.');syncPlayer();};
-  if('mediaSession'in navigator){for(const [action,handler] of Object.entries({play:()=>playTrack(state.current),pause:()=>audio.pause(),nexttrack:()=>skip(),previoustrack:()=>skip(-1),seekto:d=>{if(Number.isFinite(d.seekTime))audio.currentTime=d.seekTime;}})){try{navigator.mediaSession.setActionHandler(action,handler);}catch{}}}
-  $('#search').oninput=render;window.addEventListener('hashchange',()=>{$('#search').value='';render();window.scrollTo(0,0);});
-  window.addEventListener('pagehide',persist);render();
-  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>toast('Offline app shell is unavailable in this browser. Streaming is ready.'));
+  for(const id of ['#seek','#full-seek']){
+    $(id).oninput=e=>{
+      if(Number.isFinite(audio.duration)&&audio.duration>0){
+        audio.currentTime=audio.duration*Number(e.target.value)/100;state.time=audio.currentTime;
+        setMediaPosition();persist();
+      }
+    };
+  }
+  let lastSave=0,lastPosition=0;
+  const updateTimeline=()=>{
+    const d=audio.duration,p=d>0&&Number.isFinite(d)?audio.currentTime/d*100:0;
+    for(const id of ['#elapsed','#full-elapsed'])$(id).textContent=time(audio.currentTime);
+    for(const id of ['#duration','#full-duration'])$(id).textContent=time(d);
+    for(const id of ['#seek','#full-seek'])$(id).value=p;
+    state.time=audio.currentTime;
+    const now=Date.now();
+    if(now-lastPosition>1000){setMediaPosition();lastPosition=now;}
+    if(now-lastSave>3000){persist();lastSave=now;}
+  };
+  audio.ontimeupdate=updateTimeline;audio.onloadedmetadata=updateTimeline;
+  audio.onended=()=>skip(1,true);
+  audio.onplay=audio.onpause=()=>{
+    syncPlayer();persist();
+    if('mediaSession'in navigator)navigator.mediaSession.playbackState=audio.paused?'paused':'playing';
+  };
+  audio.onerror=()=>{toast('Recording unavailable. Check your connection, then press Play to retry.');syncPlayer();};
+  if('mediaSession'in navigator){
+    const handlers={
+      play:()=>state.current?playTrack(state.current):startList(state.queue.length?state.queue:allIds()),
+      pause:()=>audio.pause(),stop:()=>audio.pause(),
+      nexttrack:()=>skip(),previoustrack:()=>skip(-1),
+      seekto:d=>{if(Number.isFinite(d.seekTime)&&Number.isFinite(audio.duration))audio.currentTime=Math.max(0,Math.min(audio.duration,d.seekTime));},
+      seekbackward:d=>{audio.currentTime=Math.max(0,audio.currentTime-(d.seekOffset||10));},
+      seekforward:d=>{audio.currentTime=Math.min(audio.duration||Number.MAX_SAFE_INTEGER,audio.currentTime+(d.seekOffset||10));}
+    };
+    for(const [action,handler] of Object.entries(handlers)){try{navigator.mediaSession.setActionHandler(action,handler);}catch{}}
+  }
+  $('#search').oninput=render;
+  window.addEventListener('hashchange',()=>{
+    $('#search').value='';if($('#full-player').open)$('#full-player').close();
+    render();window.scrollTo(0,0);
+  });
+  window.addEventListener('pagehide',persist);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')persist();});
+  render();
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js',{scope:'./'})
+    .catch(()=>toast('Offline app shell unavailable in this browser. Streaming is ready.'));
 }
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#install').hidden=false;});
 $('#install').onclick=async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null;$('#install').hidden=true;}};
