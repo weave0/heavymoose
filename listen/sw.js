@@ -1,6 +1,6 @@
 // Shell only. Audio is deliberately never cached without explicit download opt-in.
-const CACHE='gfv-room-shell-v3';
-const SHELL=['./','./index.html','./room.css?v=restricted-2','./app.js?v=restricted-2','./player.mjs','./catalog.json','./icon.svg','./manifest.webmanifest'];
+const CACHE='gfv-room-shell-v4';
+const SHELL=['./','./index.html','./room.css?v=continuous-1','./app.js?v=continuous-1','./player.mjs','./catalog.json','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('gfv-room-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
