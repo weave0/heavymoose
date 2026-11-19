@@ -46,7 +46,7 @@ function deriveLocation(root,filename,tags){
   let title=String(tags.title||'').trim(), titleSource='embedded tags';
   if(!title){
     const stem=plainTitle(path.parse(filename).name);
-    if(GENERIC_FILE.test(stem)){
+    if(GENERIC_FILE.test(stem)||/^master[ _.-].*reference(?:[ _.-]|$)/i.test(stem)){
       const namedFolder=path.basename(dir);
       title=/^\d{1,3}[\s._-]+/.test(namedFolder)?plainTitle(namedFolder):'Untitled / verify';
       titleSource=title==='Untitled / verify'?'unresolved':'numbered folder';
@@ -71,6 +71,7 @@ function classify(relative,bytes,metadata,ext){
   const master=/(?:master|24bit|24-bit|hires|lossless)/i.test(name)||lossless;
   const original=/(?:original|download|source)/i.test(name);
   const role=bytes===0?'invalid':lossless?'lossless source':master?'master/reference':'compressed source';
+  const sourceKind=original?'original/download':master?'master/reference':lossless?'lossless master candidate':'unclassified recording';
   if(ext!=='.mp3')flags.push('CONVERSION_NEEDED_FOR_CURRENT_INGESTER');
   if(metadata?.probeMissing)flags.push('FFPROBE_NOT_AVAILABLE');
   const bitrate=Number(metadata?.bitrateKbps)||0;
@@ -84,7 +85,7 @@ function classify(relative,bytes,metadata,ext){
   if(flags.includes('WORKING_VERSION_REVIEW'))rank-=90;
   if(flags.includes('MEDIA_UNREADABLE_OR_UNVERIFIED'))rank-=25;
   if(bytes===0)rank=-10000;
-  return {role,flags,reviewRank:rank};
+  return {role,sourceKind,flags,reviewRank:rank};
 }
 function csv(rows,columns){
   const cell=value=>'"'+String(value==null?'':Array.isArray(value)?value.join(' | '):value).replace(/"/g,'""').replace(/\r?\n/g,' ')+'"';
@@ -121,7 +122,7 @@ function getFiles(root,out){
     entries.sort((a,b)=>a.name.localeCompare(b.name,'en'));
     for(const entry of entries){
       const full=path.join(dir,entry.name);
-      if(full===out||out.startsWith(full+path.sep))continue;
+      if(full===out||full.startsWith(out+path.sep))continue;
       if(entry.isSymbolicLink())continue;
       if(entry.isDirectory()){if(!SKIP.has(entry.name))stack.push(full);continue;}
       if(!entry.isFile())continue;
@@ -227,7 +228,7 @@ async function audit(source,out,opts={}){
     archivesNeedingManualExtraction:files.archives.length,
     ffprobeUsed:probeEnabled,sha256Used:!opts.noHash,changedAudioFiles:0};
   const columns=['artist','album','trackNumber','title','albumSource','titleSource','relativePath','format',
-    'mb','durationSec','bitrateKbps','sampleRate','channels','role','reviewPriority','variantsInSongGroup',
+    'mb','durationSec','bitrateKbps','sampleRate','channels','role','sourceKind','reviewPriority','variantsInSongGroup',
     'flags','duplicateGroup','sha256','streamingAllowed','downloadAllowed'];
   const csvRows=items.map(x=>Object.fromEntries(columns.map(k=>[k,x[k]??''])));
   fs.mkdirSync(dest,{recursive:true});
