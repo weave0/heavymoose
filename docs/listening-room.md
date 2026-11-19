@@ -41,6 +41,42 @@ The 12 Temper MP3s, 13 Floor Witness MP3s and `conus/missed-some-80s.mp3` in the
 
 `scripts/seed-listen-catalog.cjs` records the original migration logic. Do not rerun it after manual catalog edits or imports: it rebuilds the catalog from the original source and would omit later additions.
 
+## Bulk-source audit: existing Heavy Moose collection on E: (preferred)
+
+**Source library:** E:\art\MUSIC\Heavy Moose. The folder can contain album subfolders, original downloads, WAV/FLAC masters, MP3 reference masters, alternates, and other nested layouts. **Do not reorganize or rename it.** Existing audio masters are never modified by the audit.
+
+On a Windows checkout of the feat/listening-room branch, **double-click** this launcher:
+
+    scripts\run-listen-library-audit.cmd
+
+The launcher finds the existing source folder, performs a recursive **read-only** audit and opens a separate results folder:
+
+    E:\art\MUSIC\Heavy Moose Listening Audit
+
+If preferred, run the same scanner directly from the checked-out repository:
+
+~~~powershell
+node scripts/audit-listen-library.cjs "E:\art\MUSIC\Heavy Moose" --out "E:\art\MUSIC\Heavy Moose Listening Audit"
+~~~
+
+This is a zero-dependency Node.js script. ffprobe (from FFmpeg) is used when available to read embedded tags, duration, bitrate and codec. Without it, the scanner still produces a filename- and folder-based inventory but reports metadata as unverified. SHA-256 comparison runs incrementally to identify **exact** duplicates across folders without loading whole recordings into memory. The optional --no-hash or --no-probe flags reduce confidence and are not recommended for the full audit. Symbolic links and junctions are ignored to avoid accidentally scanning outside the source folder. ZIP/7z/RAR archives are listed for later inspection but are not automatically unpacked.
+
+The scanner produces five files:
+
+| Report | Purpose |
+| --- | --- |
+| summary.md | Number of audio files, inferred albums, zero-byte files, identical copies and possible missing media; includes an album table |
+| inventory.csv | A row for every recording including title, album, track number, format, bitrate, SHA-256, source type, review flags and exact match to the existing app's catalog |
+| album-suggestions.json | Grouped albums with source file options, cover candidates, catalog album matches and placeholders for permissions |
+| exact-duplicates.csv | Groups of byte-for-byte identical recordings, without deleting any |
+| inventory.json | Complete technical audit for subsequent ingestion automation |
+
+**Send back only** summary.md, inventory.csv and album-suggestions.json for the next stage. They contain local file/folder names and metadata, so review their contents if filenames are private. Audio does **not** need to be uploaded to perform the first reconciliation.
+
+The audit does **not** assert that the best-scoring master is the final approved release, that folder order is authoritative, or that local ownership grants streaming/download rights. All album/track names, version choices and permissions must be reviewed before ingestion. Streams default to downloadAllowed:false; the Restricted material retains listening-only restrictions. The next stage reconciles album suggestions with existing catalog-only releases, chooses the correct version of each track, and non-destructively creates individual MP3 streaming renditions when necessary. Recordings larger than Cloudflare Pages' 25 MiB per-file limit must not be published directly. **Do not upload lossless masters, a raw E-drive directory, or private audit reports to this public GitHub repository.** Production listen.heavymoose.com remains untouched until every deployed audio file is present and verified.
+
+This chat cannot directly access the PC's E: drive merely from its path, so the Windows audit must actually be run on the machine that holds the files. No music can be marked imported or live until that step and the subsequent review/build are complete.
+
 ## Provide music one album at a time
 
 Place each album in a folder like this, anywhere accessible on your computer, or upload the folder as a ZIP / share its Google Drive folder:
@@ -55,7 +91,7 @@ Good Flippin Vibes Music/
       02 - Second Song.mp3
 ```
 
-For an album you provide in chat, the MP3s and artwork plus artist name, album name, track order, year, and streaming/download permissions are enough; the manifest can be created for you. A local Windows folder path works when this desktop has read access. A cloud folder needs an accessible link/connection. Keep original WAV/FLAC masters separately. Prefer MP3 256–320 kbps, square JPG/PNG artwork (ideally 1500px+), and files under **25 MiB each** for this initial Pages setup.
+For a smaller album you provide through chat, MP3s and artwork plus artist name, album name, track order, year, and streaming/download permissions are enough; the manifest can be created after the actual files are accessible. A local Windows drive path alone does not make the files readable from this chat. A cloud folder needs an accessible link/connection. Keep original WAV/FLAC masters separately. Prefer MP3 256–320 kbps, square JPG/PNG artwork (ideally 1500px+), and files under **25 MiB each** for this initial Pages setup.
 
 Example `album.json` for a new album:
 
