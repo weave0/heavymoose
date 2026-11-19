@@ -159,7 +159,7 @@ function markReview(items){
     }
   }
 }
-function albumGroups(items,covers,root){
+function albumGroups(items,covers,root,catalog={artists:[],albums:[]}){
   const albums=new Map();
   for(const item of items){
     const key=normalize(item.artist)+'|'+normalize(item.album);
@@ -168,7 +168,12 @@ function albumGroups(items,covers,root){
     albums.get(key).files.push(item);
   }
   const result=Array.from(albums.values());
+  const artistNames=new Map((catalog.artists||[]).map(a=>[a.id,a.name]));
   for(const group of result){
+    const existing=(catalog.albums||[]).find(a=>normalize(a.title)===normalize(group.album) &&
+      normalize(artistNames.get(a.artistId))===normalize(group.artist));
+    group.catalogAlbumId=existing?.id||null;
+    group.catalogTracksCurrentlyPlayable=existing?.tracks?.length||0;
     const candidates=new Set(group.files.map(x=>path.dirname(x.absolutePath)));
     group.covers=covers.filter(cover=>{
       const dir=path.dirname(cover);
@@ -218,16 +223,22 @@ async function audit(source,out,opts={}){
     .map(([hash,group])=>({sha256:hash,files:group.map(x=>x.relativePath),bytes:group[0].bytes}));
   for(const duplicate of duplicates)
     for(const item of items)if(item.sha256===duplicate.sha256)item.duplicateGroup=duplicate.sha256.slice(0,12);
-  const albums=albumGroups(items,files.covers,root);
+  const catalogPath=path.resolve(__dirname,'..','listen','catalog.json');
+  const existingCatalog=fs.existsSync(catalogPath)?JSON.parse(fs.readFileSync(catalogPath,'utf8')):{artists:[],albums:[]};
+  const albums=albumGroups(items,files.covers,root,existingCatalog);
+  const catalogIndex=new Map(albums.map(a=>[normalize(a.artist)+'|'+normalize(a.album),a.catalogAlbumId]));
+  for(const item of items)item.catalogAlbumId=catalogIndex.get(normalize(item.artist)+'|'+normalize(item.album))||null;
   const counts={source:root,output:dest,scannedAudio:items.length,albumGroups:albums.length,
-    exactDuplicateGroups:duplicates.length,zeroByteFiles:items.filter(x=>x.bytes===0).length,
+    exactDuplicateGroups:duplicates.length,catalogMatches:albums.filter(a=>a.catalogAlbumId).length,
+    catalogMatchesCurrentlyEmpty:albums.filter(a=>a.catalogAlbumId&&!a.catalogTracksCurrentlyPlayable).length,
+    zeroByteFiles:items.filter(x=>x.bytes===0).length,
     losslessSources:items.filter(x=>x.role==='lossless source').length,
     compressedSources:items.filter(x=>x.role==='compressed source'||x.role==='master/reference').length,
     reviewFlags:items.filter(x=>x.flags.length||x.titleSource==='unresolved'||x.albumSource==='unresolved').length,
     unrecoverableOrUnreadable:items.filter(x=>x.flags.includes('MEDIA_UNREADABLE_OR_UNVERIFIED')).length,
     archivesNeedingManualExtraction:files.archives.length,
     ffprobeUsed:probeEnabled,sha256Used:!opts.noHash,changedAudioFiles:0};
-  const columns=['artist','album','trackNumber','title','albumSource','titleSource','relativePath','format',
+  const columns=['artist','album','catalogAlbumId','trackNumber','title','albumSource','titleSource','relativePath','format',
     'mb','durationSec','bitrateKbps','sampleRate','channels','role','sourceKind','reviewPriority','variantsInSongGroup',
     'flags','duplicateGroup','sha256','streamingAllowed','downloadAllowed'];
   const csvRows=items.map(x=>Object.fromEntries(columns.map(k=>[k,x[k]??''])));
@@ -246,6 +257,8 @@ async function audit(source,out,opts={}){
     '- Source: '+root,
     '- Audio files: '+counts.scannedAudio,
     '- Candidate album groups: '+counts.albumGroups+' (inferred; require review)',
+    '- Exact matches to existing Listening Room album entries: '+counts.catalogMatches,
+    '- Matching catalog-only albums awaiting playable tracks: '+counts.catalogMatchesCurrentlyEmpty,
     '- Exact duplicate groups: '+counts.exactDuplicateGroups,
     '- Zero-byte files: '+counts.zeroByteFiles,
     '- Lossless source files: '+counts.losslessSources,
@@ -256,9 +269,9 @@ async function audit(source,out,opts={}){
     '',
     '## Candidate albums',
     '',
-    '| Artist | Album inferred from tags or folders | Files | Possible tracks | Issues |',
-    '| --- | --- | ---: | ---: | ---: |',
-    ...albums.map(a=>'| '+[a.artist,a.album,a.fileCount,a.possibleTrackCount,a.issues]
+    '| Artist | Album inferred from tags or folders | Existing catalog ID | Files | Possible tracks | Issues |',
+    '| --- | --- | --- | ---: | ---: | ---: |',
+    ...albums.map(a=>'| '+[a.artist,a.album,a.catalogAlbumId||'not matched',a.fileCount,a.possibleTrackCount,a.issues]
       .map(v=>String(v).replace(/\|/g,'/').replace(/\r?\n/g,' ')).join(' | ')+' |'),
     '',
     '## Publishing gate',
