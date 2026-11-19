@@ -12,14 +12,14 @@ const ARCHIVES=new Set(['.zip','.rar','.7z']);
 const GENERIC_DIR=/^(?:master(?:s|ed)?|audio[_ -]?masters?|final(?:s| exports?)?|export(?:s)?|mix(?:es|downs)?|download(?:s|ed)?|original(?:s| downloads?)?|track(?:s)?|source(?:s)?|audio|music|wav|flac|mp3|lossless|stereo|hires|24bit|320(?:kbps)?|output|renders?|versions?|converted|streaming|all files)$/i;
 const GENERIC_FILE=/^(?:master(?:[ _.-]?[a-z0-9]+)*|original(?:[ _.-]?(?:download|audio|file))*|audio|track|song|final|export|mix|output|reference)(?:[ _.-]?(?:\d+|320|44k|48k|24bit|16bit|wav|flac|mp3))*$/i;
 const SKIP=new Set(['.git','node_modules','__MACOSX','$RECYCLE.BIN','System Volume Information']);
-const VALID_TAGS=['album','album_artist','albumartist','artist','title','track','date','year','genre','disc'];
+const VALID_TAGS=['album','album_artist','albumartist','artist','title','track','tracknumber','date','year','genre','disc'];
 const normalize=text=>String(text||'').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 function plainTitle(input){
   return String(input||'').replace(/^\s*(?:disc\s*\d+[\s._-]*)?\d{1,3}[\s._-]+/i,'')
     .replace(/[_]+/g,' ').replace(/\s+/g,' ').trim();
 }
 function trackIndex(tags,file,relativeDir){
-  const tag=String(tags.track||'').match(/^(\d{1,3})(?:\s*\/\s*\d+)?$/);
+  const tag=String(tags.track||tags.tracknumber||'').match(/^(\d{1,3})(?:\s*\/\s*\d+)?$/);
   if(tag)return Number(tag[1]);
   for(const part of [path.parse(file).name,path.basename(relativeDir)]){
     const m=part.match(/^\s*(\d{1,3})[\s._-]/);
@@ -46,7 +46,7 @@ function deriveLocation(root,filename,tags){
   let title=String(tags.title||'').trim(), titleSource='embedded tags';
   if(!title){
     const stem=plainTitle(path.parse(filename).name);
-    if(GENERIC_FILE.test(stem)||/^master[ _.-].*reference(?:[ _.-]|$)/i.test(stem)){
+    if(GENERIC_FILE.test(stem)||/^master[ _.-].*reference(?:[ _.-]|$)/i.test(stem)||/^\d{1,3}$/.test(stem)){
       const namedFolder=path.basename(dir);
       title=/^\d{1,3}[\s._-]+/.test(namedFolder)?plainTitle(namedFolder):'Untitled / verify';
       titleSource=title==='Untitled / verify'?'unresolved':'numbered folder';
@@ -88,7 +88,7 @@ function classify(relative,bytes,metadata,ext){
   return {role,sourceKind,flags,reviewRank:rank};
 }
 function csv(rows,columns){
-  const cell=value=>'"'+String(value==null?'':Array.isArray(value)?value.join(' | '):value).replace(/"/g,'""').replace(/\r?\n/g,' ')+'"';
+  const cell=value=>{let text=String(value==null?'':Array.isArray(value)?value.join(' | '):value).replace(/\r?\n/g,' ');if(/^[=+@\t-]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"';};
   return columns.map(cell).join(',')+'\r\n'+rows.map(row=>columns.map(k=>cell(row[k])).join(',')).join('\r\n')+'\r\n';
 }
 function probe(file,enabled){
